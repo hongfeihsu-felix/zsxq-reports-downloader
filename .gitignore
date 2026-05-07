@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 虚拟环境
+venv/
+env/
+.venv/
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# 配置（包含敏感信息）
+config.json
+.env
+credentials.json
+
+# 日志
+*.log
+run.log
+error.log
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 下载的PDF
+Investment_Banking_Report/
+hermes_reports/

@@ -1,0 +1,13 @@
+{
+    "cookie": "YOUR_ZSXQ_ACCESS_TOKEN_HERE",
+    "group_id": "YOUR_GROUP_ID_HERE",
+    "smtp_server": "smtp.qq.com",
+    "smtp_port": 587,
+    "sender_email": "your_email@foxmail.com",
+    "sender_password": "YOUR_EMAIL_AUTH_CODE",
+    "recipient_email": "your_email@foxmail.com",
+    "proxy": {
+        "http": "socks5://127.0.0.1:7897",
+        "https": "socks5://127.0.0.1:7897"
+    }
+}
