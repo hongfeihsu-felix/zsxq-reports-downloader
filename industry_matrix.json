@@ -1,0 +1,1237 @@
+{
+  "companies": {
+    "MediaTek": {
+      "ticker": "2454.TW",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "NVIDIA": {
+      "ticker": "NVDA.US",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "AMD": {
+      "ticker": "AMD.US",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "Broadcom": {
+      "ticker": "AVGO.US",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "Intel": {
+      "ticker": "INTC.US",
+      "industry": "Foundry / Capacity",
+      "industry_slug": "foundry"
+    },
+    "Qualcomm": {
+      "ticker": "QCOM.US",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "Marvell": {
+      "ticker": "MRVL.US",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "Micron": {
+      "ticker": "MU.US",
+      "industry": "HBM / Memory",
+      "industry_slug": "memory"
+    },
+    "SK Hynix": {
+      "ticker": "000660.KS",
+      "industry": "HBM / Memory",
+      "industry_slug": "memory"
+    },
+    "Samsung": {
+      "ticker": "005930.KS",
+      "industry": "HBM / Memory",
+      "industry_slug": "memory"
+    },
+    "SMIC": {
+      "ticker": "0981.HK",
+      "industry": "Foundry / Capacity",
+      "industry_slug": "foundry"
+    },
+    "GlobalFoundries": {
+      "ticker": "GFS.US",
+      "industry": "Foundry / Capacity",
+      "industry_slug": "foundry"
+    },
+    "Sandisk": {
+      "ticker": "SNDK.US",
+      "industry": "HBM / Memory",
+      "industry_slug": "memory"
+    },
+    "Google": {
+      "ticker": "GOOGL.US",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "Amazon": {
+      "ticker": "AMZN",
+      "industry": "CSP",
+      "industry_slug": ""
+    },
+    "META": {
+      "ticker": "META.US",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "Apple": {
+      "ticker": "AAPL.US",
+      "industry": "Smartphone",
+      "industry_slug": ""
+    },
+    "Lumentum": {
+      "ticker": "LITE.US",
+      "industry": "Interconnect / Optical",
+      "industry_slug": "interconnect"
+    },
+    "Coherent": {
+      "ticker": "COHR.US",
+      "industry": "Interconnect / Optical",
+      "industry_slug": "interconnect"
+    },
+    "Astera": {
+      "ticker": "ALAB.US",
+      "industry": "Interconnect / Optical",
+      "industry_slug": "interconnect"
+    },
+    "TSM": {
+      "ticker": "TSM.US",
+      "industry": "Foundry / Capacity",
+      "industry_slug": "foundry"
+    },
+    "兆易创新": {
+      "ticker": "603986",
+      "industry": "HBM / Memory",
+      "industry_slug": "memory"
+    },
+    "Bloom Energy": {
+      "ticker": "BE.US",
+      "industry": "Power / Energy",
+      "industry_slug": "power"
+    },
+    "X-Energy": {
+      "ticker": "XE.US",
+      "industry": "Power / Energy",
+      "industry_slug": "power"
+    },
+    "Palantir": {
+      "ticker": "PLTR.US",
+      "industry": "AI Application",
+      "industry_slug": ""
+    },
+    "Everpure": {
+      "ticker": "P.US",
+      "industry": "HBM / Memory",
+      "industry_slug": "memory"
+    },
+    "Tesla": {
+      "ticker": "TSLA.US",
+      "industry": "Auto",
+      "industry_slug": ""
+    },
+    "Wistron": {
+      "ticker": "3231.TW",
+      "industry": "AI Infra Supply Chain",
+      "industry_slug": "ai-infra"
+    },
+    "ARM": {
+      "ticker": "ARM.US",
+      "industry": "Semiconductor IP",
+      "industry_slug": ""
+    },
+    "Microchip Technology": {
+      "ticker": "MCHP.US",
+      "industry": "Semiconductor",
+      "industry_slug": ""
+    },
+    "Fabrinet": {
+      "ticker": "FN.US",
+      "industry": "Interconnect / Optical",
+      "industry_slug": "interconnect"
+    },
+    "TSMC": {
+      "ticker": "2330.TW",
+      "industry": "Foundry / Capacity",
+      "industry_slug": "foundry"
+    },
+    "英维克": {
+      "ticker": "002837.SZ",
+      "industry": "AI Infra Supply Chain",
+      "industry_slug": "ai-infra"
+    },
+    "联特科技": {
+      "ticker": "301205.SZ",
+      "industry": "Interconnect / Optical",
+      "industry_slug": "interconnect"
+    },
+    "小米集团": {
+      "ticker": "1810.HK",
+      "industry": "Smartphone",
+      "industry_slug": ""
+    },
+    "腾讯控股": {
+      "ticker": "0700.HK",
+      "industry": "CSP",
+      "industry_slug": ""
+    },
+    "阿里巴巴": {
+      "ticker": "9988.HK",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "胜宏科技": {
+      "ticker": "300476.SZ",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "新易盛": {
+      "ticker": "300502.SZ",
+      "industry": "Interconnect / Optical",
+      "industry_slug": "interconnect"
+    },
+    "中际旭创": {
+      "ticker": "300308.SZ",
+      "industry": "Interconnect / Optical",
+      "industry_slug": "interconnect"
+    },
+    "寒武纪": {
+      "ticker": "688256.SH",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "沐曦股份": {
+      "ticker": "688802.SH",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "摩尔线程": {
+      "ticker": "688795.SH",
+      "industry": "AI Chip (GPU/TPU/ASIC)",
+      "industry_slug": "ai-chip"
+    },
+    "DeepSeek": {
+      "ticker": "",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "MiniMax": {
+      "ticker": "0100.HK",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "通义千问": {
+      "ticker": "9988.HK",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "月之暗面": {
+      "ticker": "",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "智谱AI": {
+      "ticker": "2513.HK",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "字节跳动": {
+      "ticker": "",
+      "industry": "LLM / 大模型",
+      "industry_slug": "llm"
+    },
+    "中芯国际": {
+      "ticker": "0881.HK",
+      "industry": "Foundry / Capacity",
+      "industry_slug": "foundry",
+      "keywords": [
+        "SMIC",
+        "中芯国际",
+        "中芯",
+        "0981",
+        "688981"
+      ]
+    },
+    "华虹半导体": {
+      "ticker": "1347.HK",
+      "industry": "Foundry / Capacity",
+      "industry_slug": "foundry"
+    },
+    "Kioxia Holdings": {
+      "ticker": "285A.T",
+      "industry": "HBM / Memory",
+      "industry_slug": "memory"
+    },
+    "国瓷材料": {
+      "ticker": "300285.SZ",
+      "industry": "MLCC",
+      "industry_slug": "MLCC"
+    },
+    "三环集团": {
+      "ticker": "300408.SZ",
+      "industry": "MLCC",
+      "industry_slug": "MLCC"
+    },
+    "Murata": {
+      "ticker": "6981.T",
+      "industry": "MLCC",
+      "industry_slug": "MLCC"
+    },
+    "风华高科": {
+      "ticker": "000636.SZ",
+      "industry": "MLCC",
+      "industry_slug": "MLCC"
+    },
+    "TDK": {
+      "ticker": "6762.T",
+      "industry": "MLCC",
+      "industry_slug": "MLCC"
+    },
+    "博迁新材": {
+      "ticker": "605376.SH",
+      "industry": "MLCC",
+      "industry_slug": "MLCC"
+    },
+    "深南电路": {
+      "ticker": "002916.SZ",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "兴森科技": {
+      "ticker": "002436.SZ",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "博敏电子": {
+      "ticker": "603936.SH",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "Ajinomoto Fine-Techno": {
+      "ticker": "2802.T",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "Ibiden": {
+      "ticker": "4062.T",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "Shinko Electric": {
+      "ticker": "6967.T",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "欣兴电子": {
+      "ticker": "3037.TW",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "南亚电路板": {
+      "ticker": "8046.TW",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "景硕科技": {
+      "ticker": "3189.TW",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "ASE Technology": {
+      "ticker": "3711.TW",
+      "industry": "CoWoS / Advanced Packaging",
+      "industry_slug": "cowos"
+    },
+    "Amkor Technology": {
+      "ticker": "AMKR.US",
+      "industry": "CoWoS / Advanced Packaging",
+      "industry_slug": "cowos"
+    },
+    "盛合晶微": {
+      "ticker": "688820.SH",
+      "industry": "CoWoS / Advanced Packaging",
+      "industry_slug": "cowos"
+    },
+    "长电科技": {
+      "ticker": "600584.SH",
+      "industry": "CoWoS / Advanced Packaging",
+      "industry_slug": "cowos"
+    },
+    "通富微电": {
+      "ticker": "002156.SZ",
+      "industry": "CoWoS / Advanced Packaging",
+      "industry_slug": "cowos"
+    },
+    "生益科技": {
+      "ticker": "600183.SH",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "沪电股份": {
+      "ticker": "002463.SZ",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "鹏鼎控股": {
+      "ticker": "002938.SZ",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "东山精密": {
+      "ticker": "002384.SZ",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "景旺电子": {
+      "ticker": "603228.SH",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "南亚新材": {
+      "ticker": "688519.SH",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "Taiyo Yufen": {
+      "ticker": "6976.T",
+      "industry": "MLCC",
+      "industry_slug": "MLCC"
+    },
+    "台光电子": {
+      "ticker": "2383.TW",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "台燿科技": {
+      "ticker": "6274.TW",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "联茂电子": {
+      "ticker": "6213.TW",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "南亚塑料": {
+      "ticker": "1303.TW",
+      "industry": "ABF Substrate / IC载板",
+      "industry_slug": "abf-substrate"
+    },
+    "臻鼎科技": {
+      "ticker": "4958.TW",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "华通电脑": {
+      "ticker": "2313.TW",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "金像电子": {
+      "ticker": "2368.TW",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "健鼎科技": {
+      "ticker": "3044.TW",
+      "industry": "PCB / CCL (印制电路板&覆铜板)",
+      "industry_slug": "pcb-ccl"
+    },
+    "雅克科技": {
+      "ticker": "002409.SZ",
+      "industry": "Semiconductor Materials",
+      "industry_slug": "semicon-materials"
+    },
+    "拓荆科技": {
+      "ticker": "688072.SH",
+      "industry": "Advanced Packaging (CoWoS)",
+      "industry_slug": "cowos"
+    }
+  },
+  "industries": {
+    "llm": {
+      "name": "LLM / 大模型",
+      "companies": [
+        "Google",
+        "META",
+        "阿里巴巴",
+        "DeepSeek",
+        "MiniMax",
+        "通义千问",
+        "月之暗面",
+        "智谱AI",
+        "字节跳动"
+      ],
+      "keywords": [
+        "llm",
+        "large language model",
+        "大模型",
+        "大语言模型",
+        "deepseek",
+        "qwen",
+        "通义千问",
+        "kimi",
+        "moonshot",
+        "zhipu",
+        "glm",
+        "chatglm",
+        "minimax",
+        "doubao",
+        "豆包",
+        "bytedance ai",
+        "火山引擎",
+        "kimi-k2",
+        "deepseek-r1",
+        "deepseek-v3",
+        "qwen3",
+        "glm-5"
+      ],
+      "metrics": null
+    },
+    "cowos": {
+      "name": "CoWoS / Advanced Packaging",
+      "companies": [
+        "ASE Technology",
+        "Amkor Technology",
+        "盛合晶微",
+        "长电科技",
+        "通富微电"
+      ],
+      "keywords": [
+        "cowos",
+        "chip on wafer",
+        "advanced packaging",
+        "3D packaging",
+        "先进封装",
+        "chiplet",
+        "hybrid bonding",
+        "silicon interposer",
+        "fan-out",
+        "info",
+        "CoWoS-S",
+        "CoWoS-L",
+        "CoWoS-R",
+        "OSAT",
+        "封测",
+        "封装测试",
+        "ASE",
+        "Amkor",
+        "长电科技",
+        "通富微电",
+        "日月光"
+      ],
+      "metrics": {
+        "table": "cowos_capacity",
+        "key_column": "period",
+        "columns": {
+          "total_wpm": {
+            "label": "总产能",
+            "entities": [],
+            "patterns": [
+              "总产能",
+              "total capacity",
+              "cowos产能",
+              "cowos.*capacity",
+              "total cowos"
+            ]
+          },
+          "effective_wpm": {
+            "label": "有效产能",
+            "entities": [],
+            "patterns": [
+              "有效产能",
+              "effective capacity",
+              "年产出"
+            ]
+          },
+          "nvidia_wpm": {
+            "label": "NVIDIA",
+            "entities": [
+              "nvidia",
+              "英伟达",
+              "nvda"
+            ],
+            "patterns": []
+          },
+          "google_wpm": {
+            "label": "Google",
+            "entities": [
+              "google",
+              "谷歌"
+            ],
+            "patterns": []
+          },
+          "broadcom_wpm": {
+            "label": "Broadcom",
+            "entities": [
+              "broadcom",
+              "博通",
+              "avgo"
+            ],
+            "patterns": []
+          },
+          "mediatek_wpm": {
+            "label": "MediaTek",
+            "entities": [
+              "mediatek",
+              "联发科",
+              "mtk"
+            ],
+            "patterns": []
+          },
+          "amd_wpm": {
+            "label": "AMD",
+            "entities": [
+              "amd",
+              "超威"
+            ],
+            "patterns": []
+          },
+          "intel_wpm": {
+            "label": "Intel",
+            "entities": [
+              "intel",
+              "英特尔",
+              "intc"
+            ],
+            "patterns": []
+          },
+          "other_wpm": {
+            "label": "其他",
+            "entities": [],
+            "patterns": [
+              "其他",
+              "other",
+              "剩余"
+            ]
+          }
+        }
+      }
+    },
+    "memory": {
+      "name": "HBM / Memory",
+      "companies": [
+        "Micron",
+        "SK Hynix",
+        "Samsung",
+        "Sandisk",
+        "兆易创新",
+        "Everpure",
+        "Kioxia Holdings"
+      ],
+      "keywords": [
+        "hbm",
+        "hbm3",
+        "hbm3e",
+        "hbm4",
+        "dram",
+        "nand",
+        "flash",
+        "memory",
+        "storage",
+        "ssd",
+        "ddr",
+        "lpddr",
+        "高带宽内存",
+        "存储",
+        "内存",
+        "memory chip",
+        "memory tech",
+        "memory outlook",
+        "Global Memory"
+      ],
+      "metrics": {
+        "table": "hbm_capacity",
+        "key_column": "vendor,year",
+        "columns": {
+          "vendor": {
+            "label": "厂商",
+            "entities": [],
+            "patterns": []
+          },
+          "year": {
+            "label": "年份",
+            "entities": [],
+            "patterns": []
+          },
+          "tsv_kwpm": {
+            "label": "TSV产能",
+            "entities": [],
+            "patterns": [
+              "tsv",
+              "tsv产能",
+              "tsv capacity",
+              "through-silicon via"
+            ]
+          },
+          "yield_pct": {
+            "label": "良率",
+            "entities": [],
+            "patterns": [
+              "良率",
+              "yield",
+              "yield rate"
+            ]
+          },
+          "utr_pct": {
+            "label": "利用率",
+            "entities": [],
+            "patterns": [
+              "利用率",
+              "utilization",
+              "utr",
+              "产能利用率"
+            ]
+          },
+          "hbm_output_mn_gb": {
+            "label": "HBM产出(MnGb)",
+            "entities": [],
+            "patterns": [
+              "hbm output",
+              "hbm产出",
+              "output.*gb"
+            ]
+          },
+          "hbm_output_tb": {
+            "label": "HBM产出(TB)",
+            "entities": [],
+            "patterns": [
+              "output.*tb",
+              "tb.*output"
+            ]
+          }
+        }
+      }
+    },
+    "ai-chip": {
+      "name": "AI Chip (GPU/TPU/ASIC)",
+      "companies": [
+        "MediaTek",
+        "NVIDIA",
+        "AMD",
+        "Broadcom",
+        "Qualcomm",
+        "Marvell",
+        "寒武纪",
+        "沐曦股份",
+        "摩尔线程"
+      ],
+      "keywords": [
+        "gpu",
+        "tpu",
+        "asic",
+        "ai chip",
+        "ai accelerator",
+        "ai semiconductor",
+        "ai芯片",
+        "training chip",
+        "inference chip",
+        "h100",
+        "h200",
+        "gb200",
+        "b100",
+        "b200",
+        "mi300",
+        "mi400",
+        "trainium",
+        "inferentia",
+        "maia",
+        "mtia",
+        "gaudi"
+      ],
+      "metrics": null
+    },
+    "foundry": {
+      "name": "Foundry / Capacity",
+      "companies": [
+        "Intel",
+        "SMIC",
+        "GlobalFoundries",
+        "TSM",
+        "TSMC",
+        "中芯国际",
+        "华虹半导体"
+      ],
+      "keywords": [
+        "foundry",
+        "wafer",
+        "capacity",
+        "utilization",
+        "capex",
+        "晶圆代工",
+        "产能",
+        "资本支出",
+        "3nm",
+        "2nm",
+        "n3",
+        "n2",
+        "fab",
+        "node",
+        "process technology"
+      ],
+      "metrics": null
+    },
+    "compute": {
+      "name": "Computing Power / Datacenter",
+      "companies": [],
+      "keywords": [
+        "datacenter",
+        "data center",
+        "server",
+        "computing power",
+        "算力",
+        "hyperscaler",
+        "cloud",
+        "inference",
+        "training",
+        "supercomputer",
+        "compute",
+        "rack",
+        "liquid cooling",
+        "cooling"
+      ],
+      "metrics": null
+    },
+    "power": {
+      "name": "Power / Energy",
+      "companies": [
+        "Bloom Energy",
+        "X-Energy"
+      ],
+      "keywords": [
+        "power semiconductor",
+        "power management",
+        "pmic",
+        "电源管理",
+        "功率半导体",
+        "sic",
+        "gan",
+        "mosfet",
+        "igbt",
+        "power supply",
+        "energy",
+        "renewable"
+      ],
+      "metrics": null
+    },
+    "interconnect": {
+      "name": "Interconnect / Optical",
+      "companies": [
+        "Lumentum",
+        "Coherent",
+        "Astera",
+        "Fabrinet",
+        "联特科技",
+        "新易盛",
+        "中际旭创"
+      ],
+      "keywords": [
+        "optical module",
+        "光模块",
+        "光通信",
+        "interconnect",
+        "connecting",
+        "transceiver",
+        "cpo",
+        "co-packaged optics",
+        "serdes",
+        "switch",
+        "networking",
+        "ethernet",
+        "infiniband"
+      ],
+      "metrics": null
+    },
+    "ai-infra": {
+      "name": "AI Infra Supply Chain",
+      "companies": [
+        "Wistron",
+        "英维克"
+      ],
+      "keywords": [
+        "ai datacenter",
+        "ai infrastructure",
+        "cloud",
+        "co-packaged optics",
+        "compute",
+        "computing power",
+        "connecting",
+        "cooling",
+        "cpo",
+        "data center",
+        "datacenter",
+        "energy",
+        "ethernet",
+        "gan",
+        "hdi",
+        "hyperscale",
+        "hyperscaler",
+        "igbt",
+        "inference",
+        "infiniband",
+        "interconnect",
+        "liquid cooling",
+        "mosfet",
+        "networking",
+        "optical interconnect",
+        "optical module",
+        "pcb",
+        "pmic",
+        "power management",
+        "power semiconductor",
+        "power supply",
+        "rack",
+        "renewable",
+        "scale-out",
+        "scale-up",
+        "serdes",
+        "server",
+        "sic",
+        "silicon photonics",
+        "sipho",
+        "substrate",
+        "supercomputer",
+        "supply chain",
+        "switch",
+        "thermal",
+        "training",
+        "transceiver",
+        "光模块",
+        "光通信",
+        "功率半导体",
+        "电源管理",
+        "算力",
+        "铜缆"
+      ],
+      "metrics": null
+    },
+    "MLCC": {
+      "name": "MLCC",
+      "companies": [
+        "国瓷材料",
+        "三环集团",
+        "Murata",
+        "风华高科",
+        "TDK",
+        "博迁新材",
+        "Taiyo Yufen"
+      ],
+      "keywords": [
+        "被动器件",
+        "陶瓷电容",
+        "贴片电容",
+        "Passive Components",
+        "Multi-layer Ceramic Capacitor"
+      ],
+      "metrics": {
+        "table": "mlcc_metrics",
+        "key_column": "company,period",
+        "columns": {
+          "company": {
+            "label": "公司",
+            "entities": [],
+            "patterns": []
+          },
+          "period": {
+            "label": "期间",
+            "entities": [],
+            "patterns": []
+          },
+          "mlcc_revenue_bn": {
+            "label": "MLCC营收(亿)",
+            "entities": [
+              "samsung electro",
+              "semco",
+              "murata",
+              "村田",
+              "tdk",
+              "国瓷",
+              "三环",
+              "风华"
+            ],
+            "patterns": [
+              "MLCC营收",
+              "MLCC.*revenue",
+              "component.*revenue",
+              "元器件营收"
+            ]
+          },
+          "mlcc_asp_qoq": {
+            "label": "MLCC ASP QoQ%",
+            "entities": [],
+            "patterns": [
+              "MLCC.*ASP",
+              "MLCC.*price",
+              "MLCC.*涨价",
+              "MLCC.*涨价",
+              "ceramic.*price",
+              "capacity.*shift"
+            ]
+          },
+          "mlcc_op_margin": {
+            "label": "MLCC 营业利润率%",
+            "entities": [],
+            "patterns": [
+              "MLCC.*margin",
+              "元器件.*利润率",
+              "component.*OPM",
+              "component.*margin"
+            ]
+          }
+        }
+      }
+    },
+    "abf-substrate": {
+      "name": "ABF Substrate / IC载板",
+      "companies": [
+        "兴森科技",
+        "博敏电子",
+        "Ajinomoto Fine-Techno",
+        "Ibiden",
+        "Shinko Electric",
+        "欣兴电子",
+        "南亚电路板",
+        "景硕科技",
+        "南亚塑料"
+      ],
+      "keywords": [
+        "ABF",
+        "IC substrate",
+        "IC载板",
+        "package substrate",
+        "FC-BGA",
+        "BT substrate",
+        "BT载板",
+        "build-up film",
+        "基板",
+        "substrate",
+        "Ibiden",
+        "Shinko",
+        "Unimicron",
+        "Ajinomoto",
+        "味之素",
+        "ABF膜",
+        "积层膜"
+      ],
+      "metrics": {
+        "table": "abf_metrics",
+        "key_column": "company,period",
+        "columns": {
+          "company": {
+            "label": "公司",
+            "entities": [],
+            "patterns": []
+          },
+          "period": {
+            "label": "期间",
+            "entities": [],
+            "patterns": []
+          },
+          "abf_revenue_bn": {
+            "label": "ABF营收(亿本币)",
+            "entities": [
+              "unimicron",
+              "欣兴",
+              "nanya",
+              "南电",
+              "ibiden",
+              "shinko",
+              "zhending",
+              "臻鼎",
+              "semco",
+              "kinsus",
+              "景硕"
+            ],
+            "patterns": [
+              "ABF.*营收",
+              "ABF.*revenue",
+              "IC载板.*营收",
+              "substrate.*revenue",
+              "FC-BGA.*收入"
+            ]
+          },
+          "abf_asp_yoy": {
+            "label": "ABF ASP YoY%",
+            "entities": [],
+            "patterns": [
+              "ABF.*ASP",
+              "ABF.*price",
+              "载板.*涨价",
+              "substrate.*price.*increase",
+              "ABF.*定价"
+            ]
+          },
+          "abf_op_margin": {
+            "label": "ABF 营业利润率%",
+            "entities": [],
+            "patterns": [
+              "ABF.*利润率",
+              "ABF.*margin",
+              "ABF.*OPM",
+              "载板.*利润率",
+              "substrate.*margin"
+            ]
+          },
+          "abf_supply_gap_pct": {
+            "label": "ABF供需缺口%",
+            "entities": [],
+            "patterns": [
+              "供需缺口",
+              "supply.*gap",
+              "supply.*shortage",
+              "供给不足",
+              "供给缺口",
+              "shortage.*percent"
+            ]
+          }
+        }
+      }
+    },
+    "pcb-ccl": {
+      "name": "PCB / CCL (印制电路板&覆铜板)",
+      "companies": [
+        "胜宏科技",
+        "深南电路",
+        "生益科技",
+        "沪电股份",
+        "鹏鼎控股",
+        "东山精密",
+        "景旺电子",
+        "南亚新材",
+        "台光电子",
+        "台燿科技",
+        "联茂电子",
+        "臻鼎科技",
+        "华通电脑",
+        "金像电子",
+        "健鼎科技"
+      ],
+      "keywords": [
+        "PCB",
+        "printed circuit board",
+        "印制电路板",
+        "CCL",
+        "copper clad",
+        "覆铜板",
+        "铜箔基板",
+        "FPC",
+        "HDI",
+        "高速PCB",
+        "server pcb",
+        "AI PCB"
+      ],
+      "metrics": {
+        "table": "pcb_ccl_metrics",
+        "key_column": "company,period",
+        "columns": {
+          "company": {
+            "label": "公司",
+            "entities": [],
+            "patterns": []
+          },
+          "period": {
+            "label": "期间",
+            "entities": [],
+            "patterns": []
+          },
+          "ai_pcb_revenue_pct": {
+            "label": "AI PCB收入占比%",
+            "entities": [
+              "victory giant",
+              "胜宏",
+              "tuc",
+              "台耀",
+              "emc",
+              "elite material",
+              "nypcb",
+              "楠梓电",
+              "shennan",
+              "深南"
+            ],
+            "patterns": [
+              "AI.*PCB.*收入.*占比",
+              "AI.*PCB.*revenue.*%",
+              "AI.*占比.*%",
+              "AI.*revenue.*share"
+            ]
+          },
+          "pcb_revenue_growth_mom": {
+            "label": "PCB营收环比%",
+            "entities": [],
+            "patterns": [
+              "PCB.*环比.*%",
+              "PCB.*MoM",
+              "PCB.*月增",
+              "PCB.*环比增长"
+            ]
+          },
+          "ccl_asp_trend": {
+            "label": "CCL ASP趋势",
+            "entities": [],
+            "patterns": [
+              "CCL.*ASP",
+              "CCL.*涨价",
+              "CCL.*price",
+              "覆铜板.*价格",
+              "CCL.*提价",
+              "CCL.*pricing"
+            ]
+          },
+          "ai_server_pcb_share_pct": {
+            "label": "AI服务器PCB份额%",
+            "entities": [],
+            "patterns": [
+              "AI.*server.*PCB.*share",
+              "AI服务器.*PCB.*份额",
+              "AI.*PCB.*market.*share",
+              "份额.*50%"
+            ]
+          }
+        }
+      }
+    },
+    "semicon-materials": {
+      "name_cn": "半导体材料",
+      "description": "光刻胶、前驱体、电子化学品等半导体制造材料"
+    }
+  },
+  "unmapped": [
+    {
+      "name": "Amazon",
+      "industry": "CSP"
+    },
+    {
+      "name": "Apple",
+      "industry": "Smartphone"
+    },
+    {
+      "name": "Palantir",
+      "industry": "AI Application"
+    },
+    {
+      "name": "Tesla",
+      "industry": "Auto"
+    },
+    {
+      "name": "ARM",
+      "industry": "Semiconductor IP"
+    },
+    {
+      "name": "Microchip Technology",
+      "industry": "Semiconductor"
+    },
+    {
+      "name": "小米集团",
+      "industry": "Smartphone"
+    },
+    {
+      "name": "腾讯控股",
+      "industry": "CSP"
+    }
+  ]
+}
