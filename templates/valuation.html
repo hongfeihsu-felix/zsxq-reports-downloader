@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{{ company }} 估值模型 — Hermes</title>
+<style>
+body{background:#0d1117;color:#e6edf3;font-family:'Helvetica Neue','PingFang SC',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:0;padding:0}
+.wrap{max-width:1100px;margin:0 auto;padding:24px}
+h1{font-size:20px;margin:0 0 4px}
+h2{font-size:15px;color:#58a6ff;border-bottom:1px solid #30363d;padding-bottom:6px;margin:24px 0 12px}
+.header-sub{color:#8b949e;font-size:12px;margin-bottom:20px}
+a{color:#58a6ff;text-decoration:none}
+a:hover{text-decoration:underline}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:20px;margin:0 0 16px}
+.card-title{font-size:14px;font-weight:700;color:#58a6ff;border-bottom:1px solid #30363d;padding-bottom:8px;margin:0 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th{background:#0d1117;color:#8b949e;font-weight:600;text-align:left;padding:8px 10px;border:1px solid #30363d;font-size:11px;text-transform:uppercase}
+td{padding:8px 10px;border:1px solid #30363d;vertical-align:top}
+tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+tr.highlight td{background:rgba(88,166,255,0.08);font-weight:700}
+.up{color:#3fb950;font-weight:600}
+.down{color:#f85149;font-weight:600}
+.warn{color:#d29922}
+.tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;margin:0 2px}
+.tag-buy{background:#1f3d2f;color:#3fb950}
+.tag-hold{background:#3d2f0f;color:#d29922}
+.tag-sell{background:#3d1f1f;color:#f85149}
+.note{font-size:11px;color:#8b949e;margin:8px 0}
+.formula{display:flex;align-items:center;justify-content:center;gap:16px;padding:20px 0;flex-wrap:wrap}
+.formula-block{text-align:center;min-width:100px}
+.formula-block .label{font-size:11px;color:#8b949e}
+.formula-block .value{font-size:24px;font-weight:800;color:#e6edf3;display:block}
+.formula-block .sub{font-size:10px;color:#8b949e}
+.formula-op{font-size:20px;color:#8b949e;font-weight:300}
+.pe-band{margin:16px 0}
+.pe-band-bar{position:relative;height:6px;background:#21262d;border-radius:3px;margin:8px 0 20px}
+.pe-band-fill{position:absolute;left:0;top:0;height:6px;background:linear-gradient(90deg,#3fb950,#d29922,#f85149);border-radius:3px}
+.pe-band-marker{position:absolute;top:-18px;transform:translateX(-50%);font-size:10px;color:#58a6ff;font-weight:700;white-space:nowrap}
+.pe-band-labels{display:flex;justify-content:space-between;font-size:10px;color:#8b949e;margin-top:4px}
+.warning-box{background:#3d2f0f;border:1px solid #d29922;border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12px;color:#d29922;line-height:1.6}
+select{background:#0d1117;border:1px solid #30363d;border-radius:4px;color:#e6edf3;padding:6px 10px;font-size:13px;font-family:inherit}
+select:focus{border-color:#58a6ff;outline:none}
+.quality-high{color:#3fb950}
+.quality-medium{color:#d29922}
+.quality-low{color:#f85149}
+.scroll-table{max-height:500px;overflow-y:auto}
+.scroll-table::-webkit-scrollbar{width:4px}
+.scroll-table::-webkit-scrollbar-thumb{background:#30363d;border-radius:2px}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>&#127809; {{ company }} — 估值模型 <span style="font-size:12px;color:#8b949e;font-weight:400">V0.1</span></h1>
+<div class="header-sub">
+  <a href="/">← Dashboard</a>
+  · 行业: <a href="/industry/{{ ind_slug }}">{{ ind_name }}</a>
+  · 估值方法: <span style="color:#58a6ff">{{ consensus.method }}</span>
+  · {{ reports|length }} 份报告
+</div>
+
+{% if consensus.warning %}
+<div class="warning-box">&#9888; {{ consensus.warning }}</div>
+{% endif %}
+
+<div class="grid2">
+  <div class="card">
+    <div class="card-title">&#128202; 估值快照</div>
+    <table>
+      <tr><td style="width:160px">投行共识目标价</td><td style="text-align:right;font-weight:700;font-size:16px" class="up">{{ "%.0f"|format(consensus.cs_tp) }} {{ consensus.currency }}</td></tr>
+      <tr><td>共识 PE</td><td style="text-align:right;font-weight:700">{{ consensus.cs_pe }}x</td></tr>
+      <tr>
+        <td>共识 EPS (最新FY) <span class="quality-{{ consensus.eps_quality }}">[{{ consensus.eps_quality }}]</span></td>
+        <td style="text-align:right;font-weight:700">
+          {% set latest = consensus.cs_eps.values()|list %}
+          {% if latest %}{{ "%.2f"|format(latest[-1]) }}{% else %}—{% endif %}
+        </td>
+      </tr>
+      <tr><td>评级分布</td><td style="text-align:right">
+        {% for rating, count in consensus.ratings.items() %}
+          {% set cls = "tag-buy" if rating in ("Buy","Overweight","Outperform") else ("tag-sell" if rating in ("Sell","Underperform") else "tag-hold") %}
+          <span class="tag {{ cls }}">{{ rating }} {{ count }}</span>
+        {% endfor %}
+        {% if not consensus.ratings %}—{% endif %}
+      </td></tr>
+      <tr><td>EPS 数据质量</td><td style="text-align:right">
+        <span class="quality-{{ consensus.eps_quality }}">{{ consensus.eps_quality|upper }}</span>
+        {% if consensus.eps_outliers %}<br><span class="note">已剔除异常值: {{ consensus.eps_outliers|join(", ") }}</span>{% endif %}
+      </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">&#128200; EPS 预测共识</div>
+    {% if consensus.cs_eps %}
+    <table>
+      <tr><th>Fiscal Year</th><th style="text-align:right">Consensus EPS</th></tr>
+      {% for yr, val in consensus.cs_eps|dictsort %}
+      <tr><td>{{ yr }}</td><td style="text-align:right;font-weight:700">{{ "%.2f"|format(val) }}</td></tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <div class="note">暂无 EPS 预测数据</div>
+    {% endif %}
+
+    {% if actuals %}
+    <div style="margin-top:16px;padding-top:12px;border-top:1px solid #30363d">
+    <div class="note" style="margin-bottom:8px">&#128202; 最近实际 EPS（财报数据）</div>
+    <table>
+      <tr><th>报告期</th><th style="text-align:right">实际 EPS</th><th style="text-align:right">市场预期</th><th style="text-align:right">Surprise</th></tr>
+      {% for a in actuals[:4] %}
+      <tr>
+        <td>{{ a.period }}</td>
+        <td style="text-align:right;font-weight:700">{{ "%.2f"|format(a.eps_actual) }}</td>
+        <td style="text-align:right">{{ "%.2f"|format(a.eps_estimate) if a.eps_estimate else '—' }}</td>
+        <td style="text-align:right" class="{% if a.surprise_pct and a.surprise_pct > 0 %}up{% else %}down{% endif %}">
+          {% if a.surprise_pct %}{{ "%+.1f"|format(a.surprise_pct) }}%{% else %}—{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">&#128203; 多投行共识</div>
+  <div class="scroll-table">
+  <table>
+    <tr><th>投行</th><th>评级</th><th>EPS 预测</th><th>PE</th><th style="text-align:right">目标价</th></tr>
+    {% for r in reports %}
+    <tr>
+      <td>{{ r.bank[:22] }}</td>
+      <td>
+        {% if r.rating %}
+        {% set cls = "tag-buy" if r.rating in ("Buy","Overweight","Outperform") else ("tag-sell" if r.rating in ("Sell","Underperform") else "tag-hold") %}
+        <span class="tag {{ cls }}">{{ r.rating }}</span>
+        {% else %}—{% endif %}
+      </td>
+      <td style="font-size:12px">
+        {% set eps_items = r.eps_forecast|dictsort if r.eps_forecast is mapping else [] %}
+        {% if eps_items %}
+          {% for yr, v in eps_items[:3] %}{{ yr }}E {{ "%.1f"|format(v) }}{% if not loop.last %} / {% endif %}{% endfor %}
+        {% else %}—{% endif %}
+      </td>
+      <td>{% if r.pe_current %}{{ "%.1f"|format(r.pe_current) }}x{% else %}—{% endif %}</td>
+      <td style="text-align:right">{% if r.tp_new %}{{ "%.0f"|format(r.tp_new) }} {{ r.tp_currency }}{% else %}—{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+  <div class="note">&#128161; 共识 PE 与目标价使用中位数；EPS 已做 IQR 异常值剔除</div>
+</div>
+
+<div class="card">
+  <div class="card-title">&#127984; 行业对标 — {{ ind_name }}</div>
+  <div class="scroll-table">
+  <table>
+    <tr><th>公司</th><th>EPS</th><th>PE</th><th style="text-align:right">目标价</th></tr>
+    <tr class="highlight">
+      <td>&#9654; {{ company }}</td>
+      <td>{% if latest %}{{ "%.2f"|format(latest[-1]) }}{% else %}—{% endif %}</td>
+      <td>{{ consensus.cs_pe }}x</td>
+      <td style="text-align:right">{{ "%.0f"|format(consensus.cs_tp) }} {{ consensus.currency }}</td>
+    </tr>
+    {% for p in peers %}
+    <tr>
+      <td><a href="/valuation?company={{ p.name }}">{{ p.name }}</a></td>
+      <td>{% if p.eps %}{{ "%.2f"|format(p.eps) }}{% else %}—{% endif %}</td>
+      <td>{% if p.pe %}{{ "%.1f"|format(p.pe) }}x{% else %}—{% endif %}</td>
+      <td style="text-align:right">{% if p.tp %}{{ "%.0f"|format(p.tp) }} {{ p.tp_currency }}{% else %}—{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+</div>
+
+</div></body></html>

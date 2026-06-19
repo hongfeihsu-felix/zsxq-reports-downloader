@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.daytrader.deploy-strategy</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3</string>
+        <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/scripts/deploy_strategy.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/hongfeihsu/ClaudeCode/QuanTrading</string>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>20</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/data/deploy_strategy.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/data/deploy_strategy_error.log</string>
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

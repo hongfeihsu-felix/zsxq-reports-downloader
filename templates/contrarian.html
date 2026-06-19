@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>反共识信号 — Hermes</title>
+<style>
+body{background:#0d1117;color:#e6edf3;font-family:'Helvetica Neue','PingFang SC',-apple-system,sans-serif;margin:0;padding:0}
+.wrap{max-width:1200px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 4px}
+.header-sub{color:#8b949e;font-size:12px;margin-bottom:20px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.nav a{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 14px;font-size:12px;color:#8b949e;text-decoration:none}
+.nav a:hover,.nav a.active{color:#58a6ff;border-color:#58a6ff}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin:0 0 12px}
+.card:hover{border-color:#58a6ff}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card-score{font-size:28px;font-weight:800;min-width:56px;text-align:center}
+.card-score.high{color:#f85149}.card-score.mid{color:#d29922}.card-score.low{color:#8b949e}
+.card-body{flex:1}
+.card-company{font-size:14px;font-weight:600;color:#58a6ff;margin-bottom:4px}
+.card-driver{font-size:13px;color:#e6edf3;margin-bottom:6px}
+.card-meta{font-size:11px;color:#8b949e;line-height:1.6}
+.badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
+.badge-bullish{background:#1f3d2f;color:#3fb950}.badge-bearish{background:#3d1f1f;color:#f85149}
+.badge-majority{font-size:10px;padding:1px 6px;border-radius:8px;background:#21262d;color:#8b949e;margin-left:4px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.stat{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;text-align:center}
+.stat .num{font-size:26px;font-weight:700;color:#d29922}
+.stat .lbl{font-size:11px;color:#8b949e;margin-top:4px}
+.detail-row{display:none;margin-top:12px;padding-top:12px;border-top:1px solid #21262d;font-size:12px;color:#8b949e}
+.detail-row.open{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="nav">
+  <a href="/">Dashboard</a>
+  <a href="/industry/chain">产业链矩阵</a>
+  <a href="/chokepoint">卡脖子 L4</a>
+  <a href="/contrarian" class="active">反共识信号</a>
+</div>
+
+<h1>反共识信号检测</h1>
+<div class="header-sub">从 {{ signals|length }} 条孤立观点中筛选——当单一投行逆势唱反调，且证据充分时，可能预示市场盲点</div>
+
+<div class="stats">
+  <div class="stat"><div class="num">{{ signals|length }}</div><div class="lbl">反共识信号 (score≥3)</div></div>
+  <div class="stat"><div class="num" style="color:#f85149">{{ signals|selectattr('contrarian_score', 'ge', 8)|list|length }}</div><div class="lbl">高分信号 (≥8)</div></div>
+  <div class="stat"><div class="num" style="color:#3fb950">{{ signals|selectattr('direction', 'eq', 'bullish')|list|length }}</div><div class="lbl">逆势看多</div></div>
+  <div class="stat"><div class="num" style="color:#f85149">{{ signals|selectattr('direction', 'eq', 'bearish')|list|length }}</div><div class="lbl">逆势看空</div></div>
+</div>
+
+{% for s in signals %}
+<div class="card" onclick="this.querySelector('.detail-row').classList.toggle('open')" style="cursor:pointer">
+  <div class="card-header">
+    <div class="card-score {{ 'high' if s.contrarian_score >= 8 else 'mid' if s.contrarian_score >= 5 else 'low' }}">{{ "%.1f"|format(s.contrarian_score) }}</div>
+    <div class="card-body">
+      <div class="card-company">{{ s.company }}
+        <span class="badge {{ 'badge-bullish' if s.direction == 'bullish' else 'badge-bearish' }}">
+          {{ '↑ 看多' if s.direction == 'bullish' else '↓ 看空' }}
+        </span>
+      </div>
+      <div class="card-driver">{{ s.driver_raw }}</div>
+      <div class="card-meta">
+        主流方向: <span class="badge-majority">{{ '↑' if s.majority_direction == 'bullish' else '↓' }} {{ s.majority_driver_count }} drivers</span>
+        &nbsp;|&nbsp; {{ s.source_bank }} 独唱反调
+        &nbsp;|&nbsp; evidence: {{ s.evidence_count }} &nbsp;|&nbsp; impacts: {{ s.impact_count }}
+      </div>
+    </div>
+  </div>
+  <div class="detail-row">
+    <strong>Driver Slug:</strong> {{ s.driver_slug }}<br>
+    <strong>Source Date:</strong> {{ s.source_date or 'N/A' }}<br>
+    <strong>Scoring:</strong> evidence({{ s.evidence_count }}) × direction_divergence({{ '↑' if s.direction == 'bullish' else '↓' }} vs {{ s.majority_driver_count }} {{ '↑' if s.majority_direction == 'bullish' else '↓' }}) × recency
+  </div>
+</div>
+{% endfor %}
+
+{% if not signals %}
+<div class="card" style="text-align:center;padding:40px;color:#8b949e">暂无反共识信号 — 先运行 python3 contrarian_signals.py --save 持久化数据</div>
+{% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,597 @@
+{
+  "last_updated": "2026-06-02",
+  "themes": [
+    {
+      "id": "humanoid-robots",
+      "name": "具身智能/人形机器人",
+      "icon": "🤖",
+      "subtitle": "Physical AI — 从\"会聊天\"到\"会做事\"，AI 进入真实物理世界",
+      "time_span": "2026-2030",
+      "overview": {
+        "logic": "虚拟AI红利已尽，物理AI才是未来三年最大的机会。AI从\"会聊天\"进化到\"会做事\"——进入真实世界的工厂、仓库、家庭，具备感知-推理-行动-反馈的完整闭环能力。",
+        "milestones": [
+          {"year": "2025", "event": "量产元年，全球出货约1.7万台（中国占84.7%）"},
+          {"year": "2026H1", "event": "特斯拉Optimus Gen3定型；宇树科技科创板IPO"},
+          {"year": "2026H2", "event": "特斯拉大规模制造启动；行业跨越\"1→10\"拐点"},
+          {"year": "2027-2028", "event": "规模化降本，单机成本降至$20K以下；工厂部署加速"},
+          {"year": "2029-2030", "event": "家庭场景渗透；全球年出货预计突破100万台"}
+        ]
+      },
+      "categories": [
+        {
+          "id": "actuators",
+          "name": "执行器（丝杠/减速器/关节模组）",
+          "icon": "⚙️",
+          "value_note": "单机价值量最高环节，占BOM成本约30-40%",
+          "key_tech": [
+            "谐波减速器精密加工（齿形设计、柔轮寿命）",
+            "行星滚柱丝杠微米级精度（螺距误差<2μm）",
+            "一体化关节模组集成（电机+减速器+编码器+驱动器）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Harmonic Drive Systems", "ticker": "6324.T", "note": "谐波减速器全球龙头，精度寿命行业标杆"},
+            {"rank": 2, "name": "Nabtesco", "ticker": "6268.T", "note": "RV减速器霸主，高刚性重载场景不可替代"},
+            {"rank": 3, "name": "SKF / THK", "ticker": "SKF-B.ST / 6481.T", "note": "精密丝杠&直线导轨，Optimus潜在供应商"}
+          ],
+          "china": [
+            {"rank": 1, "name": "绿的谐波", "ticker": "688017.SH", "note": "谐波减速器国内第一，机器人零部件收入+52.61% YoY"},
+            {"rank": 2, "name": "恒立液压", "ticker": "601100.SH", "note": "行星滚柱丝杠突破，国产替代核心标的"},
+            {"rank": 3, "name": "三花智控 / 拓普集团", "ticker": "002050.SZ / 601689.SH", "note": "关节模组集成（T链核心），零件→模块化升级"}
+          ]
+        },
+        {
+          "id": "motors",
+          "name": "电机（无框力矩/空心杯/伺服）",
+          "icon": "🔌",
+          "value_note": "单机需20-40个电机，占BOM成本约15-20%",
+          "key_tech": [
+            "无框力矩电机高扭矩密度（Nm/kg比）",
+            "空心杯电机微型化（灵巧手驱动，直径<10mm）",
+            "高精度伺服控制算法（力控/位置/速度三环）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Maxon Motor", "ticker": "Private", "note": "瑞士精密电机龙头，空心杯电机全球标杆"},
+            {"rank": 2, "name": "Faulhaber", "ticker": "Private", "note": "德国微型电机专家，灵巧手驱动核心供应商"},
+            {"rank": 3, "name": "Nidec", "ticker": "6594.T", "note": "全球综合电机巨头，积极布局人形关节电机"}
+          ],
+          "china": [
+            {"rank": 1, "name": "鸣志电器", "ticker": "603728.SH", "note": "空心杯电机全栈平台，灵巧手到上肢批量供货"},
+            {"rank": 2, "name": "步科股份", "ticker": "688160.SH", "note": "无框力矩电机Q1销量同增246%，头部客户批量订单"},
+            {"rank": 3, "name": "雷赛智能", "ticker": "002747.SZ", "note": "年交付超12万台，行星关节模组+灵巧手已获批量订单"}
+          ]
+        },
+        {
+          "id": "sensors",
+          "name": "传感器（六维力/视觉/电子皮肤/IMU）",
+          "icon": "📡",
+          "value_note": "单机价值约$3K-8K，灵巧手普及后占比持续提升",
+          "key_tech": [
+            "六维力/力矩传感器（解耦算法、温度补偿、微应变测量）",
+            "3D视觉+深度感知（结构光/ToF/双目立体）",
+            "电子皮肤/柔性触觉（ePTFE膜、压阻/电容阵列）",
+            "MEMS IMU惯性测量（姿态解算、零偏稳定性<1°/h）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "ATI Industrial Automation", "ticker": "Sub. of Novanta (NOVT)", "note": "六维力传感器全球标准，NASA/特斯拉供应商"},
+            {"rank": 2, "name": "Intel RealSense / Stereolabs", "ticker": "INTC / Private", "note": "3D深度相机，机器人视觉主流方案"},
+            {"rank": 3, "name": "SynTouch / Pressure Profile Systems", "ticker": "Private", "note": "电子皮肤/触觉传感器先驱，BioTac系列"}
+          ],
+          "china": [
+            {"rank": 1, "name": "柯力传感", "ticker": "603662.SH", "note": "六维力传感器月出货破千只，国内批量第一"},
+            {"rank": 2, "name": "奥比中光", "ticker": "688322.SH", "note": "3D视觉相机适配智元/优必选等多家人形整机"},
+            {"rank": 3, "name": "泛亚微透 / 汉威科技", "ticker": "688386.SH / 300007.SZ", "note": "ePTFE电子皮肤膜材料+柔性触觉传感器（能斯达）"}
+          ]
+        },
+        {
+          "id": "dexterous_hands",
+          "name": "灵巧手（末端执行器）",
+          "icon": "🖐️",
+          "value_note": "技术迭代最密集环节，自由度从6→22+，2030市场规模预计$50B+",
+          "key_tech": [
+            "高自由度手指机构（22+DOF，指尖精度<0.1mm）",
+            "微型执行器集成（空心杯电机+微型丝杠+腱绳传动）",
+            "多模态触觉感知（压力+温度+纹理+滑觉）",
+            "抓取规划与控制算法（RL-based dexterous manipulation）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Tesla Optimus Gen3 Hand", "ticker": "TSLA", "note": "22自由度，指尖精度0.08mm，腱绳+微型丝杠方案"},
+            {"rank": 2, "name": "Shadow Robot", "ticker": "Private", "note": "英国灵巧手先驱，Dexterous Hand系列24DOF"},
+            {"rank": 3, "name": "Schunk / Festo", "ticker": "Private", "note": "德国工业夹爪龙头，向人形灵巧手延伸"}
+          ],
+          "china": [
+            {"rank": 1, "name": "兆威机电", "ticker": "003021.SZ", "note": "灵巧手产品已落地，拟投8亿建产业园扩产"},
+            {"rank": 2, "name": "雷赛智能", "ticker": "002747.SZ", "note": "行星关节+灵巧手一体化方案，已获批量订单"},
+            {"rank": 3, "name": "曦诺未来", "ticker": "Private", "note": "25自由度灵巧手，A轮融资近10亿，技术领先"}
+          ]
+        },
+        {
+          "id": "structure_thermal",
+          "name": "结构件与热管理",
+          "icon": "🛡️",
+          "value_note": "轻量化+散热刚需，单机价值约$2K-5K",
+          "key_tech": [
+            "轻量化结构件（镁铝合金/碳纤维一体成型）",
+            "液冷散热方案（关节电机冷却、芯片均温板）",
+            "精密成型与表面处理（CNC+阳极氧化+PVD涂层）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Boyd Corp / Cooler Master", "ticker": "Private", "note": "液冷散热方案，数据中心→机器人延伸"},
+            {"rank": 2, "name": "Nemak / Constellium", "ticker": "NEMAKA.MX / CSTM", "note": "轻量化铝合金结构件，汽车→机器人复用"},
+            {"rank": 3, "name": "Henkel / 3M", "ticker": "HEN3.DE / MMM", "note": "导热界面材料/结构胶，关节密封粘接"}
+          ],
+          "china": [
+            {"rank": 1, "name": "蓝思科技", "ticker": "300433.SZ", "note": "\"部件→模组→整机\"垂直整合，年产50万台结构件产能"},
+            {"rank": 2, "name": "银轮股份", "ticker": "002126.SZ", "note": "液冷散热（Optimus V3灵巧手驱动前移→热管理刚需）"},
+            {"rank": 3, "name": "敏实集团 / 长盈精密", "ticker": "0425.HK / 300115.SZ", "note": "精密成型+关节铰链，汽车供应链复用"}
+          ]
+        },
+        {
+          "id": "integrators",
+          "name": "整机厂商（本体制造商）",
+          "icon": "🏭",
+          "value_note": "2026年全球出货预计突破5万台，2030年或超100万台",
+          "key_tech": [
+            "全身运动控制（MPC+WBC混合控制，动态平衡）",
+            "具身智能大模型（感知-推理-规划-执行闭环）",
+            "Sim-to-Real迁移（域随机化+系统辨识）",
+            "批量制造工艺（规模装配+标定+出厂测试）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Tesla (Optimus)", "ticker": "TSLA", "note": "Gen3定型，2026年8月大规模制造，远期百万台产能"},
+            {"rank": 2, "name": "Figure AI", "ticker": "Private", "note": "日产量提升至每小时1台，2026年底部署零售物流中心"},
+            {"rank": 3, "name": "Boston Dynamics / Agility Robotics", "ticker": "Sub. of Hyundai / Private", "note": "Atlas电动版+Digit物流机器人，工业场景先行"}
+          ],
+          "china": [
+            {"rank": 1, "name": "宇树科技", "ticker": "IPO审核中", "note": "出货约5000台全球第一，2026年6月科创板IPO上会"},
+            {"rank": 2, "name": "智元机器人", "ticker": "Private", "note": "出货约5000台，2026年3月达成万台下线里程碑"},
+            {"rank": 3, "name": "优必选", "ticker": "9880.HK", "note": "机器人收入8.2亿元，年化产能超6000台，港股上市"}
+          ]
+        }
+      ],
+      "notes": [
+        "⚠️ 高盛2025年11月调研：核心供应商均未获得大规模确定性订单，产能规划偏乐观",
+        "📌 T链（特斯拉Optimus）核心标的：三花智控、拓普集团、绿的谐波、鸣志电器",
+        "📌 关注2026年关键催化：宇树IPO（6月）、特斯拉Gen3定型（H1）、量产启动（8月）"
+      ]
+    },
+    {
+      "id": "low-altitude-economy",
+      "name": "无人机/低空经济",
+      "icon": "🛩️",
+      "subtitle": "千米以下空域为载体，融合制造、飞行服务与场景运营的战略性新兴产业",
+      "time_span": "2026-2030",
+      "overview": {
+        "logic": "低空经济2024年首次写入政府工作报告，2026年被明确为\"新兴支柱产业\"。核心逻辑：军贸出口爆发式增长（中国无人机占全球军用市场35%）+ 载人eVTOL商业化启动 + 低空基建\"十五五\"建设提速。动力系统+航电合计占航空器价值量50%-67%，是价值最密集环节。",
+        "milestones": [
+          {"year": "2024", "event": "低空经济首次写入政府工作报告"},
+          {"year": "2025", "event": "市场规模~7800亿元；亿航EH216-S全球首个四证齐全载人eVTOL"},
+          {"year": "2026", "event": "市场规模突破1万亿；\"十五五\"规划低空装备+基建两大方向；常态化商业运营元年"},
+          {"year": "2027-2028", "event": "eVTOL适航取证密集通过；低空智联网初步建成；物流配送规模化"},
+          {"year": "2029-2030", "event": "核心产业超3万亿；eVTOL城市空中交通（UAM）初步商业化"}
+        ]
+      },
+      "categories": [
+        {
+          "id": "le-airframe",
+          "name": "整机制造（无人机/eVTOL）",
+          "icon": "✈️",
+          "value_note": "产业链核心枢纽，2026年民用无人机登记突破1200万架",
+          "key_tech": [
+            "全栈飞控系统（姿态解算+导航融合+自主避障）",
+            "倾转旋翼/eVTOL构型设计（分布式电推进）",
+            "军贸无人机察打一体技术（长航时+卫星中继）",
+            "无人值守全自动起降系统"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "AeroVironment", "ticker": "AVAV", "note": "Switchblade巡飞弹，美军单兵精确打击标配"},
+            {"rank": 2, "name": "Kratos Defense", "ticker": "KTOS", "note": "忠诚僚机/靶机，XQ-58A Valkyrie已入役"},
+            {"rank": 3, "name": "Joby Aviation / Archer", "ticker": "JOBY / ACHR", "note": "美股eVTOL双龙头，FAA适航取证冲刺阶段"}
+          ],
+          "china": [
+            {"rank": 1, "name": "大疆创新", "ticker": "Private", "note": "全球市占超50%，工业营收800亿+，增速+120%"},
+            {"rank": 2, "name": "中航无人机 / 航天彩虹", "ticker": "600760.SH / 002389.SZ", "note": "翼龙+彩虹系列军贸双雄，彩虹获沙特40亿美元大单"},
+            {"rank": 3, "name": "亿航智能", "ticker": "EH", "note": "全球首个四证齐全载人eVTOL，2026年商业化运营"}
+          ]
+        },
+        {
+          "id": "le-propulsion",
+          "name": "动力系统（航空发动机/电机）",
+          "icon": "🔥",
+          "value_note": "动力+航电占航空器价值量50%-67%，国产替代最迫切方向",
+          "key_tech": [
+            "航空活塞/涡轴发动机小型化（推重比>10）",
+            "eVTOL高功率密度电机（>10kW/kg）",
+            "轴向磁通电机（高扭矩密度、扁平结构）",
+            "混合电推进系统（涡轮发电机+电池组）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Rolls-Royce", "ticker": "RR.L", "note": "航空发动机巨头，eVTOL电推进系统积极布局"},
+            {"rank": 2, "name": "Safran", "ticker": "SAF.PA", "note": "法国航空动力龙头，电动/混动推进系统"},
+            {"rank": 3, "name": "Honeywell", "ticker": "HON", "note": "航电+涡轴发动机，eVTOL飞控系统核心供应商"}
+          ],
+          "china": [
+            {"rank": 1, "name": "宗申动力", "ticker": "001696.SZ", "note": "无人机发动机市占60%+，绑定峰飞/沃飞长空"},
+            {"rank": 2, "name": "卧龙电驱", "ticker": "600580.SH", "note": "eVTOL电机达10kW/kg，2026年市占目标30%+"},
+            {"rank": 3, "name": "双林股份", "ticker": "300100.SZ", "note": "轴向磁通电机30-250KW系列，230KW样机已交付"}
+          ]
+        },
+        {
+          "id": "le-energy",
+          "name": "能源系统（电池/燃料电池）",
+          "icon": "🔋",
+          "value_note": "续航瓶颈——能量密度决定eVTOL商业化进度",
+          "key_tech": [
+            "凝聚态/固态电池（>450Wh/kg，目标600+Wh/kg）",
+            "高倍率放电电芯（持续5C+，峰值10C）",
+            "航空级电池包热管理（防热失控、冗余设计）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Samsung SDI / LG Energy", "ticker": "006400.KS / 373220.KS", "note": "高能量密度航空电芯研发，eVTOL电池送样测试"},
+            {"rank": 2, "name": "Electric Power Systems", "ticker": "Private", "note": "航空认证电池系统，NASA/Joby供应商"},
+            {"rank": 3, "name": "Amprius", "ticker": "AMPX", "note": "硅负极超高能量密度电池（500Wh/kg），无人机应用"}
+          ],
+          "china": [
+            {"rank": 1, "name": "宁德时代", "ticker": "300750.SZ", "note": "凝聚态电池450Wh/kg，2025年低空电池营收80亿+"},
+            {"rank": 2, "name": "国轩高科", "ticker": "002074.SZ", "note": "大圆柱电芯+集成电池包，为多家eVTOL企业配套"},
+            {"rank": 3, "name": "孚能科技", "ticker": "688567.SH", "note": "软包航空电芯，已配套多款eVTOL验证机"}
+          ]
+        },
+        {
+          "id": "le-infra",
+          "name": "低空基础设施（空管/通信/雷达）",
+          "icon": "📡",
+          "value_note": "\"十五五\"建设提速重点，低空智联网+反无人机成刚需",
+          "key_tech": [
+            "低空智联网（5G-A通感一体化+北斗厘米级导航）",
+            "Ku/S波段全极化有源相控阵雷达（同时追踪200+目标）",
+            "反无人机系统（激光/微波/电子干扰多手段融合）",
+            "城市空中交通管理（UTM/UAM）平台"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Thales", "ticker": "HO.PA", "note": "全球空管系统龙头，低空空域管理方案"},
+            {"rank": 2, "name": "Raytheon (RTX)", "ticker": "RTX", "note": "反无人机激光/微波武器系统，军方部署"},
+            {"rank": 3, "name": "Dedrone / Anduril", "ticker": "Private", "note": "AI无人机探测+自主防御系统，美军采购"}
+          ],
+          "china": [
+            {"rank": 1, "name": "莱斯信息", "ticker": "688631.SH", "note": "智慧空管系统龙头，上海/广东低空改革核心供应商"},
+            {"rank": 2, "name": "纳睿雷达 / 航天南湖", "ticker": "688522.SH / 688552.SH", "note": "相控阵雷达+低空安全管控，可追踪200架无人机"},
+            {"rank": 3, "name": "联创光电", "ticker": "600363.SH", "note": "\"光刃\"100kW激光武器，通过军方实战检验"}
+          ]
+        },
+        {
+          "id": "le-materials",
+          "name": "复合材料与制造工艺",
+          "icon": "🧪",
+          "value_note": "轻量化刚需，碳纤维占eVTOL结构重量60%+",
+          "key_tech": [
+            "T800/T1000级碳纤维预浸料（高强度+高模量）",
+            "金属3D打印（钛合金/铝合金复杂结构件）",
+            "镁合金大型薄壁件高压铸造"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Toray (东丽)", "ticker": "3402.T", "note": "全球碳纤维龙头，T1100级航空碳纤维"},
+            {"rank": 2, "name": "Hexcel", "ticker": "HXL", "note": "航空级复合材料预浸料，空客/波音Tier-1"},
+            {"rank": 3, "name": "Solvay / Teijin", "ticker": "SOLB.BR / 3401.T", "note": "航空热塑/热固性复合材料"}
+          ],
+          "china": [
+            {"rank": 1, "name": "光威复材", "ticker": "300699.SZ", "note": "T800级碳纤维，国内eVTOL碳纤维市占65%"},
+            {"rank": 2, "name": "铂力特", "ticker": "688333.SH", "note": "金属3D打印，为小鹏飞行汽车等多家eVTOL配套"},
+            {"rank": 3, "name": "万丰奥威", "ticker": "002085.SZ", "note": "镁合金大型薄壁件高压铸造，低空装备轻量化龙头"}
+          ]
+        },
+        {
+          "id": "le-operators",
+          "name": "运营服务与应用场景",
+          "icon": "🌐",
+          "value_note": "低空物流率先放量（大湾区日均6000+单），文旅/应急救援跟进",
+          "key_tech": [
+            "无人机智能接驳柜（自动充电/装卸/分拣）",
+            "低空物流航线规划与调度系统",
+            "通航应急救援体系（物资投送/医疗转运）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Amazon Prime Air / Wing (Alphabet)", "ticker": "AMZN / GOOGL", "note": "无人机配送先行者，美国/澳洲/欧洲多国运营"},
+            {"rank": 2, "name": "Zipline", "ticker": "Private", "note": "非洲/美国医疗无人机配送龙头，>100万次飞行"},
+            {"rank": 3, "name": "Skyports / Volocopter", "ticker": "Private", "note": "eVTOL垂直起降机场（Vertiport）建设运营"}
+          ],
+          "china": [
+            {"rank": 1, "name": "顺丰丰翼科技 / 美团无人机", "ticker": "002352.SZ / 3690.HK", "note": "大湾区日均超6000单，开通跨海峡19分钟航线"},
+            {"rank": 2, "name": "中信海直", "ticker": "000099.SZ", "note": "86架机队，粤港澳市占领先，已开通eVTOL货运航线"},
+            {"rank": 3, "name": "天虹数科 / 智莱科技", "ticker": "002419.SZ / 300771.SZ", "note": "低空零售+无人机接驳柜硬件，美团/顺丰核心供应商"}
+          ]
+        }
+      ],
+      "notes": [
+        "⚠️ 风险提示：空域开放进度不及预期；eVTOL适航取证周期长（通常3-5年）；军贸出口受地缘政治影响",
+        "📌 \"十五五\"规划专栏3（低空装备）+ 专栏7（低空基建），2026年为建设提速年",
+        "📌 动力系统为最高价值稀缺环节（平均PE 214），航电飞控紧随其后（平均PE 69）",
+        "📌 核心催化：亿航EH216-S商业化运营、彩虹40亿$大单交付、eVTOL适航证密集发放"
+      ]
+    },
+    {
+      "id": "spatial-computing",
+      "name": "空间计算",
+      "icon": "🥽",
+      "subtitle": "AI从理解文字到理解物理世界——端-云-网三位一体，让算力无界",
+      "time_span": "2026-2030",
+      "overview": {
+        "logic": "空间计算是机器人、无人机、自动驾驶的共性前提——让AI理解3D物理空间。2026年NVIDIA与Apple联手重塑格局：CloudXR 6.0 + Vision Pro实现RTX算力无线串流，端到端延迟<20ms。中国芯片自主突破（万有引力5nm MR芯片）与太空算力新赛道并行发展。全球AI眼镜2025年出货870万台（+322%），2030年预计达3500万台。",
+        "milestones": [
+          {"year": "2024", "event": "Apple Vision Pro发售；NVIDIA CloudXR生态成型"},
+          {"year": "2025", "event": "万有引力极智G-X100（5nm MR芯片）发布；全球AI眼镜出货870万台"},
+          {"year": "2026", "event": "NVIDIA×Apple深度协作（CloudXR 6.0+visionOS 26.4）；PICO Swan全球发售"},
+          {"year": "2027-2028", "event": "空间流传输成为标配；工业数字孪生规模化；AI眼镜突破2000万台"},
+          {"year": "2029-2030", "event": "空间计算与太空算力融合；AI眼镜达3500万台，消费级空间计算成熟"}
+        ]
+      },
+      "categories": [
+        {
+          "id": "sc-chips",
+          "name": "底层算力芯片（XR/MR/AI）",
+          "icon": "💾",
+          "value_note": "核心壁垒——头部厂商自研芯片成差异化关键",
+          "key_tech": [
+            "5nm/3nm XR专用SoC（CPU+GPU+NPU+ISP异构集成）",
+            "动态注视点渲染（焦点4K/120fps，边缘智能降级，带宽↓40-60%）",
+            "彩色透视（VST）低延迟处理（<10ms，光子级同步）",
+            "端侧AI推理（NPU >10 TOPS，实时SLAM+手势识别）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Apple (M5/R1)", "ticker": "AAPL", "note": "Vision Pro双芯片架构，R1处理12摄像头+5传感器12ms延迟"},
+            {"rank": 2, "name": "NVIDIA (RTX PRO 6000 Blackwell)", "ticker": "NVDA", "note": "CloudXR 6.0云端渲染核心，Omniverse生态"},
+            {"rank": 3, "name": "Qualcomm (骁龙XR2 Gen2)", "ticker": "QCOM", "note": "安卓系XR芯片主力，PICO/Meta等多款头显采用"}
+          ],
+          "china": [
+            {"rank": 1, "name": "万有引力 (GravityXR)", "ticker": "Private", "note": "极智G-X100 5nm MR芯片，VST延迟9ms/功耗3W，近300家合作伙伴"},
+            {"rank": 2, "name": "PICO (字节跳动)", "ticker": "Private", "note": "自研PICO Silicon协处理芯片，端到端延迟12ms"},
+            {"rank": 3, "name": "瑞芯微 / 全志科技", "ticker": "603893.SH / 300458.SZ", "note": "AI眼镜端侧芯片，低功耗推理方案"}
+          ]
+        },
+        {
+          "id": "sc-streaming",
+          "name": "空间流传输与中间件",
+          "icon": "🌊",
+          "value_note": "连接云端算力与终端显示的\"数字桥梁\"",
+          "key_tech": [
+            "低延迟空间流传输协议（端到端<20ms，5GHz WiFi可落地）",
+            "动态注视点流编码（注视区域无损/边缘压缩）",
+            "OpenXR统一运行时（跨设备/跨OS空间计算标准）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "NVIDIA CloudXR 6.0", "ticker": "NVDA", "note": "原生集成visionOS，通用OpenXR运行时，行业标准"},
+            {"rank": 2, "name": "Innoactive", "ticker": "Private", "note": "Spatial平台基于Omniverse+CloudXR，GTC 2026联合6家企业展示"},
+            {"rank": 3, "name": "Meta (Air Link / Quest)", "ticker": "META", "note": "自研无线串流方案，Quest生态闭环"}
+          ],
+          "china": [
+            {"rank": 1, "name": "华为（AR Engine / VR Glass）", "ticker": "Private", "note": "自研空间计算SDK，鸿蒙XR生态"},
+            {"rank": 2, "name": "PICO (Streaming Assistant)", "ticker": "Private", "note": "自研无线串流，PC VR游戏生态"},
+            {"rank": 3, "name": "Nreal /  Rokid", "ticker": "Private", "note": "AR空间计算SDK，多屏协作+3D空间锚点"}
+          ]
+        },
+        {
+          "id": "sc-digital-twin",
+          "name": "工业软件与数字孪生",
+          "icon": "🏗️",
+          "value_note": "工业场景是空间计算最早实现ROI的领域",
+          "key_tech": [
+            "USD（Universal Scene Description）3D资产互换标准",
+            "实时光线追踪设计评审（1:1物理级精度）",
+            "物理仿真与气流/热力学实时可视化"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "NVIDIA Omniverse", "ticker": "NVDA", "note": "数字孪生基础平台，OpenUSD生态核心"},
+            {"rank": 2, "name": "Autodesk VRED", "ticker": "ADSK", "note": "汽车1:1光线追踪设计评审，宝马/起亚/沃尔沃/Rivian在用"},
+            {"rank": 3, "name": "Synopsys (Ansys) / PTC / Siemens", "ticker": "SNPS / PTC / SIE.DE", "note": "实时气流仿真+工业数字孪生，向空间计算延伸"}
+          ],
+          "china": [
+            {"rank": 1, "name": "中望软件", "ticker": "688083.SH", "note": "国产CAx龙头，3D CAD向空间计算/VR评审延伸"},
+            {"rank": 2, "name": "广联达", "ticker": "002410.SZ", "note": "建筑数字孪生+BIM+VR施工模拟"},
+            {"rank": 3, "name": "恒华科技 / 盈建科", "ticker": "300365.SZ / 300935.SZ", "note": "基础设施数字孪生，BIM+GIS空间可视化"}
+          ]
+        },
+        {
+          "id": "sc-headsets",
+          "name": "终端硬件（头显/AI眼镜）",
+          "icon": "👓",
+          "value_note": "2026年全球AI眼镜出货预计突破1000万台（+322% YoY）",
+          "key_tech": [
+            "MicroOLED/MicroLED微显示屏（>45PPD，亮度>5000nit）",
+            "Pancake光学模组（轻薄化，<20mm厚度）",
+            "AI眼镜多模态交互（语音+手势+眼动+脑机接口）",
+            "全天候轻量化设计（<50g，>8h续航）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Apple (Vision Pro)", "ticker": "AAPL", "note": "空间计算标杆终端，visionOS 26.4+CloudXR直连RTX"},
+            {"rank": 2, "name": "Meta (Quest 4 / Ray-Ban Meta)", "ticker": "META", "note": "VR销量全球第一+AI眼镜爆款（年销>300万副）"},
+            {"rank": 3, "name": "Sony (PSVR2) / Samsung (Moohan)", "ticker": "SONY / 005930.KS", "note": "游戏VR+Android XR平台（与Google/Qualcomm合作）"}
+          ],
+          "china": [
+            {"rank": 1, "name": "PICO (字节跳动)", "ticker": "Private", "note": "Project Swan双芯片架构+MicroOLED，2026年全球发售"},
+            {"rank": 2, "name": "雷鸟创新 / Rokid", "ticker": "Private", "note": "AI眼镜双龙头，游戏登顶Vision Pro下载榜；MWC接入Gemini"},
+            {"rank": 3, "name": "歌尔股份", "ticker": "002241.SZ", "note": "全球XR代工龙头，Meta/Apple/PICO核心制造商"}
+          ]
+        },
+        {
+          "id": "sc-space-compute",
+          "name": "太空算力（天基计算）",
+          "icon": "🛰️",
+          "value_note": "空间计算的\"空间\"正在从室内走向轨道，新兴赛道",
+          "key_tech": [
+            "星载AI推理芯片（抗辐射加固，>700TOPS/星）",
+            "太空数据中心（太阳能+真空散热+工业级芯片）",
+            "星座级算力调度（星间激光链路+分布式推理）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "NVIDIA Space-1 (Vera Rubin)", "ticker": "NVDA", "note": "太空AI模块，GTC 2026发布，目标LEO轨道部署"},
+            {"rank": 2, "name": "SpaceX (Starlink)", "ticker": "Private (IPO中)", "note": "星链V2 Mini算力节点，百万颗卫星申请"},
+            {"rank": 3, "name": "Ramon.Space", "ticker": "Private", "note": "太空计算平台，与富士康合作制造太空数据中心"}
+          ],
+          "china": [
+            {"rank": 1, "name": "国星宇航 / 之江实验室", "ticker": "Private", "note": "\"三体计算星座\"12星在轨，单星744TOPS，目标2032年千星组网"},
+            {"rank": 2, "name": "芯际穿越 (追觅科技)", "ticker": "Private", "note": "宣布200万颗\"瑶台\"算力卫星规划"},
+            {"rank": 3, "name": "东方空间", "ticker": "Private", "note": "\"三重冗余架构\"工业级芯片替代航天级芯片"}
+          ]
+        }
+      ],
+      "notes": [
+        "⚠️ 风险提示：SpaceX内部化替代风险；AI眼镜销量不及预期；Vision Pro定价过高限制用户基数",
+        "📌 NVIDIA×Apple协作是2026年最大催化——Vision Pro变成RTX算力的\"无线瘦客户端\"",
+        "📌 工业数字孪生（汽车设计评审→医疗实验室预演→工厂布局优化）是最早实现ROI的场景",
+        "📌 中国突破：万有引力5nm MR芯片、PICO自研协处理器、太空算力星座12星在轨运行"
+      ]
+    },
+    {
+      "id": "space-exploration",
+      "name": "太空探索/商业航天",
+      "icon": "🚀",
+      "subtitle": "SpaceX IPO（2026）+ 中国星网星座 + 轨位资源争夺 —— 太空经济基础设施化",
+      "time_span": "2026-2030",
+      "overview": {
+        "logic": "SpaceX以商用现成组件（COTS）全面替代传统太空级元器件→规模效应摊薄成本→廉价大宗原料取代稀缺资源。通信载荷占整星BOM近50%并趋向70%。核心投资方向：直接绑定SpaceX/Kuiper卫星体系的Tier-1供应商 + 解决高频通信痛点的隐形冠军 + 以低成本工业级产品打破航天溢价的制造巨头。",
+        "milestones": [
+          {"year": "2025", "event": "SpaceX内部估值~8000亿美元；中国星网星座启动发射；全球商业航天收入突破$500B"},
+          {"year": "2026", "event": "SpaceX递交IPO（估值~1.75万亿$）；星舰常态化发射；星链V2 Mini部署加速"},
+          {"year": "2027-2028", "event": "中国星网加速（2029年底前1300颗入轨）；近地轨道约5.7万颗卫星到位"},
+          {"year": "2029-2030", "event": "轨位资源争夺白热化；太空数据中心初步商业运行；月球基地建设启动"}
+        ]
+      },
+      "categories": [
+        {
+          "id": "se-payload",
+          "name": "通信载荷（卫星核心价值环节）",
+          "icon": "📶",
+          "value_note": "占整星BOM近50%，趋向70%——价值量最大环节",
+          "key_tech": [
+            "E-band固态功率放大器（GaAs/GaN，高频大功率）",
+            "高频微波无源器件（波导/滤波器/天线馈源）",
+            "星间激光通信终端（>100Gbps，跨轨道）",
+            "星载相控阵天线（波束赋形+电子扫描）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "Filtronic", "ticker": "FTC.L", "note": "E-band固态功放，SpaceX贡献其83%年营收，获认股权证"},
+            {"rank": 2, "name": "STMicroelectronics", "ticker": "STM", "note": "STM32 MCU/MEMS/射频芯片，累计交付超50亿颗，LEO收入~$6B"},
+            {"rank": 3, "name": "昇达科技 (UMT)", "ticker": "UMT.TW", "note": "高频微波无源器件，SpaceX+Kuiper双料Tier-1"}
+          ],
+          "china": [
+            {"rank": 1, "name": "信维通信", "ticker": "300136.SZ", "note": "星链地面终端零部件独家供应商，连续多年供货"},
+            {"rank": 2, "name": "通宇通讯", "ticker": "002792.SZ", "note": "MacroWiFi卫星直连互联网产品，获SpaceX小批量订单"},
+            {"rank": 3, "name": "海格通信 / 盟升电子", "ticker": "002465.SZ / 688311.SH", "note": "卫星通信地面终端+天线，中国星网配套"}
+          ]
+        },
+        {
+          "id": "se-solar-power",
+          "name": "光伏与电源系统",
+          "icon": "☀️",
+          "value_note": "卫星\"血液\"——太阳能电池+电源管理芯片+推进器",
+          "key_tech": [
+            "高效太阳能电池裸片（GaAs多结，>30%效率）",
+            "工业级电源管理芯片替代抗辐射器件",
+            "氩气霍尔推进器（廉价氩气替代稀缺氪气/氙气）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "TSEC (元晶)", "ticker": "6443.TW", "note": "SpaceX星链当前主要外部硅基太阳能电池裸片供应商"},
+            {"rank": 2, "name": "Texas Instruments / MPS", "ticker": "TXN / MPWR", "note": "工业级PMIC替代抗辐射器件，SpaceX COTS策略核心"},
+            {"rank": 3, "name": "Linde (林德集团)", "ticker": "LIN", "note": "德州布朗斯维尔空气分离厂，管道直供液氧/液氮/氩气"}
+          ],
+          "china": [
+            {"rank": 1, "name": "天银机电", "ticker": "300342.SZ", "note": "恒星敏感器/陀螺仪，卫星姿态控制核心部件"},
+            {"rank": 2, "name": "航天电器 / 中航光电", "ticker": "002025.SZ / 002179.SZ", "note": "航天级连接器，卫星/火箭互连系统"},
+            {"rank": 3, "name": "阳光电源 / 固德威", "ticker": "300274.SZ / 688390.SH", "note": "航天器电源变换/逆变技术储备"}
+          ]
+        },
+        {
+          "id": "se-structures",
+          "name": "结构件与热防护",
+          "icon": "🛡️",
+          "value_note": "火箭发动机热端+卫星结构+地面终端壳体",
+          "key_tech": [
+            "航天级铌合金/钛合金（火箭发动机热端>2000°C）",
+            "高硅氧纤维热防护材料（再入大气层烧蚀防护）",
+            "金属3D打印推力室（复杂冷却流道一次成型）",
+            "低轨卫星精密机构件（轻量化+抗辐射）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "ATI / Carpenter Technology", "ticker": "ATI / CRS", "note": "航天级镍基/钛合金，SpaceX猛禽发动机供应商"},
+            {"rank": 2, "name": "Hexcel / Spirit AeroSystems", "ticker": "HXL / SPR", "note": "航天复合材料+结构件"},
+            {"rank": 3, "name": "乙盛-KY", "ticker": "5243.TW", "note": "低轨卫星60%关键机构件，最纯SpaceX机构件供应商"}
+          ],
+          "china": [
+            {"rank": 1, "name": "西部材料", "ticker": "002149.SZ", "note": "航天级铌合金（火箭发动机热端结构件）"},
+            {"rank": 2, "name": "再升科技 / 斯瑞新材", "ticker": "603601.SH / 688102.SH", "note": "高硅氧纤维热防护+液体火箭发动机推力室内壁"},
+            {"rank": 3, "name": "铂力特 / 宝钛股份", "ticker": "688333.SH / 600456.SH", "note": "金属3D打印钛合金零件+航天钛材"}
+          ]
+        },
+        {
+          "id": "se-launch",
+          "name": "运载火箭与发射服务",
+          "icon": "🚀",
+          "value_note": "2026年全球发射次数预计突破300次，SpaceX占60%+",
+          "key_tech": [
+            "可重复使用火箭（一级回收>20次，猛禽3全流量分级燃烧）",
+            "液氧甲烷发动机（清洁/低成本/可重复使用）",
+            "海上回收平台（\"Of Course I Still Love You\"级）",
+            "小型火箭快速响应发射（固体燃料+移动发射车）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "SpaceX (Falcon 9 / Starship)", "ticker": "Private (IPO中)", "note": "全球发射霸主，复用>400次，星舰超重型完全可复用"},
+            {"rank": 2, "name": "Rocket Lab (Neutron / Electron)", "ticker": "RKLB", "note": "小型发射龙头，Neutron中型可复用火箭2026首飞"},
+            {"rank": 3, "name": "Blue Origin (New Glenn)", "ticker": "Private", "note": "贝索斯旗下，New Glenn重型可复用火箭已入役"}
+          ],
+          "china": [
+            {"rank": 1, "name": "中国航天科技集团 (CASC)", "ticker": "State-owned", "note": "长征系列火箭，2025年发射60+次，占国内80%"},
+            {"rank": 2, "name": "蓝箭航天", "ticker": "Private", "note": "朱雀二号液氧甲烷火箭（全球首枚入轨甲烷火箭）"},
+            {"rank": 3, "name": "星河动力 / 深蓝航天", "ticker": "Private", "note": "谷神星一号固体火箭+星云一号可回收液氧煤油火箭"}
+          ]
+        },
+        {
+          "id": "se-ground",
+          "name": "地面终端与PCB/HDI",
+          "icon": "📡",
+          "value_note": "星链地面终端出货超500万台，PCB/HDI需求激增",
+          "key_tech": [
+            "低轨卫星用HDI/PCB板（高频高速/低损耗/抗辐射）",
+            "相控阵天线PCB（多波束/毫米波）",
+            "地面终端一体化设计（天线+modem+WiFi路由）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "华通 (Compeq)", "ticker": "2313.TW", "note": "低轨卫星用HDI/PCB全球最大供应商"},
+            {"rank": 2, "name": "TTM Technologies", "ticker": "TTMI", "note": "航天/国防PCB，美国本土制造"},
+            {"rank": 3, "name": "Molicel (台泥三元能源)", "ticker": "1101.TW", "note": "高阶锂电池已上太空，卫星储能"}
+          ],
+          "china": [
+            {"rank": 1, "name": "深南电路 / 沪电股份", "ticker": "002916.SZ / 002463.SZ", "note": "航天级PCB+高频高速板，卫星通信配套"},
+            {"rank": 2, "name": "信维通信", "ticker": "300136.SZ", "note": "星链地面终端天线/连接器/无线充电"},
+            {"rank": 3, "name": "景旺电子 / 东山精密", "ticker": "603228.SH / 002384.SZ", "note": "柔性PCB+精密结构件，卫星/终端双向配套"}
+          ]
+        },
+        {
+          "id": "se-constellation",
+          "name": "星座运营商/系统集成",
+          "icon": "🌐",
+          "value_note": "轨位+频谱资源争夺白热化，2029年LEO约5.7万颗卫星到位",
+          "key_tech": [
+            "巨型星座组网技术（星间链路+自主避撞+在轨加注）",
+            "卫星批量制造（流水线生产，日产6颗+）",
+            "星座频率/轨位国际协调（ITU规则/先登先占）"
+          ],
+          "overseas": [
+            {"rank": 1, "name": "SpaceX (Starlink)", "ticker": "Private (IPO中)", "note": "在轨6500+颗，用户400万+，2026年IPO估值1.75万亿$"},
+            {"rank": 2, "name": "Amazon (Project Kuiper)", "ticker": "AMZN", "note": "3236颗LEO宽带星座，ULA/Ariane/Blue Origin多箭发射"},
+            {"rank": 3, "name": "Eutelsat OneWeb / Telesat Lightspeed", "ticker": "ETL.PA / TSAT.TO", "note": "LEO宽带第二梯队，已部分在轨运营"}
+          ],
+          "china": [
+            {"rank": 1, "name": "中国星网 (SatNet)", "ticker": "State-owned", "note": "GW星座~1.3万颗卫星，2029年底前完成1300颗入轨"},
+            {"rank": 2, "name": "上海垣信 (G60星链)", "ticker": "Private", "note": "\"千帆星座\"计划，已发射首批组网星"},
+            {"rank": 3, "name": "长光卫星", "ticker": "Private", "note": "\"吉林一号\"遥感星座，在轨100+颗，全球最大亚米级商业遥感星座"}
+          ]
+        }
+      ],
+      "notes": [
+        "⚠️ 三大核心风险：(1)SpaceX内部化反噬（自建太阳能电池工厂等替代外部供应商）；(2)地缘政治供应链转移（2024年底已要求供应商迁至东南亚）；(3)技术路线踏空（如星链转向自研通信载荷）",
+        "📌 SpaceX 2026年IPO为行业最大催化剂（内部估值~8000亿$，上市估值~1.75万亿$），关注Tier-1供应商溢出效应",
+        "📌 中国星网GW星座2029年底前须完成1300颗入轨——未来3年发射密度将指数级提升",
+        "📌 关注\"COTS替代\"投资主线：以工业级器件替代航天级器件，用廉价大宗原料（氩气/铝合金）替代稀缺材料（氪气/钛合金）"
+      ]
+    }
+  ]
+}

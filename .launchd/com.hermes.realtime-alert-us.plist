@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.hermes.realtime-alert-us</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3</string>
+        <string>/Users/hongfeihsu/ClaudeCode/hermes/realtime_alert.py</string>
+        <string>--market</string>
+        <string>US</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>HTTPS_PROXY</key>
+        <string>socks5://127.0.0.1:7897</string>
+        <key>HTTP_PROXY</key>
+        <string>socks5://127.0.0.1:7897</string>
+        <key>NO_PROXY</key>
+        <string>124.220.26.164,localhost,127.0.0.1</string>
+    </dict>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>23</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes/realtime_alert_us.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes/realtime_alert_us_error.log</string>
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

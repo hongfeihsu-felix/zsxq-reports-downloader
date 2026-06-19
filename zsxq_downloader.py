@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-知识星球 投行报告下载器 v3
-支持行业/公司过滤、每日定时、邮件通知
+知识星球 投行报告下载器 v5
+通过 MCP HTTP 接口调用 API，支持行业/公司过滤、每日定时、邮件通知
 """
 
 import os
@@ -9,182 +9,228 @@ import re
 import json
 import time
 import random
+import fcntl
 import smtplib
 import sqlite3
-import requests
-from datetime import datetime, timedelta
+import subprocess
+import urllib.request
+import urllib.error
+from datetime import datetime
 from pathlib import Path
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from urllib.parse import urlparse, parse_qsl, unquote
-
-# 代理配置
-PROXY = {
-    "http": "socks5://127.0.0.1:7897",
-    "https": "socks5://127.0.0.1:7897"
-}
-
-# 全局 session
-session = requests.Session()
-session.proxies.update(PROXY)
-
 
 # ============ 配置区 ============
-COOKIE = "abtest_env=product; zsxq_access_token=51BF16B1-43E2-4E4B-B875-4A346A01BB2C_BF80320C8CF13163"
-GROUP_ID = "51111812185184"
+GROUPS = [
+    {"id": "51111812185184", "name": "Economic国际投行研报", "filter": True},
+    {"id": "88888812815442", "name": "半导体大佬的会议室", "filter": False},
+]
 SAVE_BASE_DIR = Path.home() / "hermes_reports" / "Investment_Banking_Report"
 
-# 邮件配置
+# ZSXQ API key — set via env var ZSXQ_API_KEY, or edit config.json
+_MCP_KEY = os.environ.get("ZSXQ_API_KEY", "")
+MCP_URL = f"https://mcp.zsxq.com/topic/mcp?api_key={_MCP_KEY}" if _MCP_KEY else ""
+
+# 邮件配置 — set via env vars, or edit config.json
 SMTP_SERVER = "smtp.qq.com"
 SMTP_PORT = 587
-SENDER_EMAIL = "hongfeihsu@foxmail.com"
-SENDER_PASSWORD = "hfedvenxbtsyebff"
-RECIPIENT_EMAIL = "hongfeihsu@foxmail.com"
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "")
+SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD", "")
+RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", "")
 
 # 延迟设置
-MIN_DELAY = 2.0
-MAX_DELAY = 5.0
-DOWNLOAD_INTERVAL = (30, 90)  # 秒
+DOWNLOAD_INTERVAL = (10, 30)  # 秒
 
-# ============ 行业/公司过滤列表 ============
-# 格式：行业关键词 -> 匹配关键词列表（匹配任一即下载）
-INDUSTRY_KEYWORDS = {
-    "AI_Core": [
-        "GPU", "TPU", "ASIC", "AI chip", "AI semiconductor", "AI芯片",
-        "H100", "H200", "GB200", "B100", "TPU","MTIA","Maia","MI300", "Gaudi", "Trainium"
-    ],
-    "Memory": [
-        "HBM", "DRAM", "SRAM", "NAND", "flash memory", "memory semiconductor",
-        "SK Hynix", "Samsung memory", "Micron memory", "SDNK", "WDC", "STX",
-        "兆易创新", "Gigadevice", "佰维存储", "江波龙", "长江存储"
-    ],
-    "Interconnect": [
-        "optical module", "光模块", "光通信", "interconnect", "connecting",
-        "Lumentum", "Coherent", "Fabrinet", "新易盛", "中际旭创", "联特科技",
-        "光迅科技", "剑桥科技"
-    ],
-    "Power": [
-        "power electronics", "power semiconductor", "电源管理", "功率半导体",
-        "X-Energy", "BE Inc", "Bloom Energy", "清洁能源", "氢能"
-    ],
-    "Fab": [
-        "foundry", "晶圆代工", "TSMC", "SMIC", "UMC", "Intel Foundry",
-        "Samsung Foundry", "GlobalFoundries", "TowerSemi", "PSMC", "Huahong"
-    ],
-    "Fabless": [
-        "Broadcom", "Qualcomm", "MediaTek", "Marvell", "fabless",
-        "NVIDIA", "AMD", "Xilinx", "Marvell"
-    ]
+# ============ 行业/公司过滤列表（从 config.json 加载）============
+
+# 弱信号关键词：这些词太通用，单独命中不足以判定相关。
+WEAK_SIGNAL_INDUSTRY_KW = {
+    "server", "cloud", "compute", "computing", "inference", "training",
+    "capacity", "utilization", "capex", "node",
+    "memory", "storage", "flash", "ssd", "ddr", "lpddr", "nand",
+    "switch", "networking", "ethernet", "infiniband", "serdes",
+    "energy", "renewable",
+    "rack", "liquid cooling",
+    "connecting", "interconnect",
+    "3D packaging", "fan-out", "info",
+    "foundry", "wafer", "fab",
+    "power semiconductor", "power management", "power supply", "pmic",
+    "电源管理", "功率半导体", "产能", "资本支出", "算力",
+    "光通信", "存储", "内存", "晶圆代工", "先进封装",
 }
 
-# 公司关键词（精确匹配）
-COMPANY_KEYWORDS = [
-    # Foundries
-    "TSMC", "SMIC", "UMC", "Intel Foundry", "Samsung Foundry", "Global Foundries",
-    "Tower Semiconductor", "PSMC", "Huahong Group", "华虹",
+# 弱信号公司关键词：太短或太通用的公司别名
+WEAK_SIGNAL_COMPANY_KW = {
+    "gf", "meta", "lite", "fn", "mu", "tsm",
+}
 
-    # Fabless
-    "Broadcom", "Qualcomm", "MediaTek", "Marvell",
+# 短关键词（≤3字符）必须做单词边界匹配
+SHORT_KW_MIN_LEN = 4
 
-    # Interconnect/Connecting
-    "Lumentum", "Coherent", "Fabrinet", "新易盛", "中际旭创", "联特科技",
+import re as _re
 
-    # Memory
-    "SK Hynix", "Samsung", "Micron", "SDNK", "WDC", "STX",
-    "兆易创新", "Gigadevice", "佰维存储", "江波龙",
-
-    # US Giant Tech
-    "NVDA", "AMZN", "MSFT", "META", "TSLA", "GOOGLE", "AAPL",
-    "AMD", "Intel", "MRVL", "ORCL", "AVGO", "NVIDIA",
-
-    # Power
-    "X-Energy", "BE Inc", "Bloom Energy",
-
-    # AI Application
-    "Palantir", "CoreWeave", "Tempus AI",
-
-    # MISC
-    "AMKR", "MPWR", "BABA", "阿里巴巴"
-]
-
-# 排除关键词（明确不要的）
-EXCLUDE_KEYWORDS = []  # 可添加排除词
-
-
-def match_industry(text):
-    """检查文本是否匹配行业关键词"""
+def _kw_match(kw: str, text: str) -> bool:
+    """关键词匹配：短词做单词边界匹配，长词做子串匹配"""
+    kw_lower = kw.lower()
     text_lower = text.lower()
-    matched = []
-    for category, keywords in INDUSTRY_KEYWORDS.items():
-        for kw in keywords:
-            if kw.lower() in text_lower:
-                matched.append(category)
-                break
-    return list(set(matched))
+    if len(kw) <= SHORT_KW_MIN_LEN:
+        pattern = r'(?<![a-zA-Z])' + _re.escape(kw_lower) + r'(?![a-zA-Z])'
+        return bool(_re.search(pattern, text_lower))
+    return kw_lower in text_lower
 
 
-def match_company(text):
-    """检查文本是否匹配公司关键词"""
-    text_lower = text.lower()
-    matched = []
-    for kw in COMPANY_KEYWORDS:
-        if kw.lower() in text_lower:
-            matched.append(kw)
-    return list(set(matched))
+# ============ MCP API 调用 ============
+
+def _call_api(method: str, path: str, query: dict = None) -> dict:
+    """通过 MCP HTTP 接口调用知识星球 API，返回 resp_data 内容"""
+    arguments = {"method": method, "path": path}
+    if query:
+        arguments["query"] = query
+
+    payload = {
+        "jsonrpc": "2.0",
+        "id": int(time.time() * 1000),
+        "method": "tools/call",
+        "params": {
+            "name": "call_zsxq_api",
+            "arguments": arguments
+        }
+    }
+
+    req = urllib.request.Request(
+        MCP_URL,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/event-stream"
+        },
+        method="POST"
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            body = resp.read().decode("utf-8")
+            for line in body.split("\n"):
+                if line.startswith("data: "):
+                    data = json.loads(line[6:])
+                    if "result" in data:
+                        result = json.loads(data["result"]["content"][0]["text"])
+                        if result.get("success"):
+                            return result.get("body", {}).get("resp_data", result)
+                        else:
+                            raise RuntimeError(f"API error: status={result.get('status_code')}")
+                    elif "error" in data:
+                        raise RuntimeError(f"MCP error: {data['error']}")
+            raise RuntimeError("No valid response from MCP")
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"HTTP error: {e.code} {e.reason}")
+    except urllib.error.URLError as e:
+        raise RuntimeError(f"Network error: {e.reason}")
 
 
-def should_download(file_name, text=""):
-    """判断是否应该下载此文件"""
-    # 如果有text，同时检查行业和公司
-    # 如果只有file_name，只检查公司（更宽松）
-
-    combined = file_name + " " + text
-    matched_industries = match_industry(combined)
-    matched_companies = match_company(combined)
-
-    # 有行业匹配或有公司匹配则下载
-    if matched_industries or matched_companies:
-        return True, matched_industries, matched_companies
-
-    return False, [], []
+def _download_file_content(url: str, save_path: Path) -> bool:
+    """下载文件内容（CDN URL）"""
+    result = subprocess.run(
+        ["curl", "-sS", "-o", str(save_path), "--max-time", "180", url],
+        capture_output=True, text=True, timeout=200
+    )
+    return result.returncode == 0 and save_path.exists() and save_path.stat().st_size > 0
 
 
-def get_stealth_headers():
-    """生成隐蔽请求头"""
-    user_agents = [
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Firefox/132.0",
-    ]
-    ua = random.choice(user_agents)
+# ============ 配置加载 ============
 
+def _load_config():
+    config_path = Path(__file__).parent / "config.json"
+    if config_path.exists():
+        try:
+            return json.loads(config_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, KeyError):
+            pass
+    return None
+
+
+def get_industry_keywords():
+    cfg = _load_config()
+    if cfg and "tracking" in cfg:
+        result = {}
+        for ind in cfg["tracking"].get("industries", []):
+            if ind.get("active", True):
+                result[ind["slug"]] = ind.get("keywords", [])
+        if result:
+            return result
     return {
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-CN,zh;q=0.9",
-        "Cookie": COOKIE,
-        "Origin": "https://wx.zsxq.com",
-        "Referer": "https://wx.zsxq.com/",
-        "Sec-Fetch-Dest": "empty",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-site",
-        "User-Agent": ua,
-        "X-Version": "2.91.0"
+        "ai-chip": ["GPU", "TPU", "ASIC", "AI chip", "AI semiconductor"],
+        "memory": ["memory", "hbm", "dram", "nand"],
+        "foundry": ["foundry", "TSMC", "SMIC", "GlobalFoundries"],
     }
 
 
-def smart_delay():
-    """智能延迟"""
-    delay = random.uniform(MIN_DELAY, MAX_DELAY)
-    time.sleep(delay)
+def get_company_keywords():
+    cfg = _load_config()
+    if cfg and "tracking" in cfg:
+        keywords = []
+        for c in cfg["tracking"].get("companies", []):
+            if c.get("active", True):
+                keywords.extend(c.get("keywords", []))
+                keywords.append(c["name"])
+                ticker = c.get("ticker", "")
+                if ticker:
+                    ticker_clean = ticker.split(".")[0].strip()
+                    if ticker_clean and len(ticker_clean) > 2 and ticker_clean not in keywords:
+                        keywords.append(ticker_clean)
+        if keywords:
+            return list(set(keywords))
+    return ["TSMC", "NVIDIA", "AMD", "MediaTek", "Broadcom", "Qualcomm", "Intel",
+            "Micron", "SK Hynix", "Samsung", "Marvell", "SMIC", "GlobalFoundries"]
 
+
+def _classify_matches(keywords, text):
+    strong = []
+    weak = []
+    for kw in keywords:
+        if _kw_match(kw, text):
+            if kw.lower() in WEAK_SIGNAL_INDUSTRY_KW or kw.lower() in WEAK_SIGNAL_COMPANY_KW:
+                weak.append(kw)
+            else:
+                strong.append(kw)
+    return strong, weak
+
+
+def match_industry(text):
+    strong_matched = set()
+    weak_matched = set()
+    for category, keywords in get_industry_keywords().items():
+        strong, weak = _classify_matches(keywords, text)
+        for kw in strong:
+            strong_matched.add(category)
+        for kw in weak:
+            weak_matched.add(category)
+    return list(strong_matched), list(weak_matched)
+
+
+def match_company(text):
+    company_kws = get_company_keywords()
+    strong, weak = _classify_matches(company_kws, text)
+    return strong, weak
+
+
+def should_download(file_name, text=""):
+    """判断是否应该下载此文件。必须至少命中一个强信号关键词。"""
+    combined = file_name + " " + text
+    ind_strong, ind_weak = match_industry(combined)
+    co_strong, co_weak = match_company(combined)
+    has_strong = bool(ind_strong or co_strong)
+    if has_strong:
+        return True, list(set(ind_strong + ind_weak)), list(set(co_strong + co_weak))
+    return False, [], []
+
+
+# ============ 数据库 ============
 
 def init_db():
-    """初始化SQLite数据库"""
     db_path = Path(__file__).parent / "zsxq_reports.db"
     conn = sqlite3.connect(str(db_path))
     cursor = conn.cursor()
-
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS downloaded_files (
             file_id INTEGER PRIMARY KEY,
@@ -196,173 +242,224 @@ def init_db():
             company_match TEXT
         )
     ''')
-
     conn.commit()
     return conn
 
 
 def is_already_downloaded(conn, file_id):
-    """检查文件是否已下载"""
     cursor = conn.cursor()
     cursor.execute("SELECT file_id FROM downloaded_files WHERE file_id = ?", (file_id,))
     return cursor.fetchone() is not None
 
 
-def record_download(conn, file_id, file_name, status, industry_match, company_match):
-    """记录下载结果"""
+def record_download(conn, file_id, file_name, status, industry_match, company_match,
+                    date_str: str = None):
     cursor = conn.cursor()
-    today = datetime.now().strftime("%Y%m%d")
+    if date_str:
+        today = date_str
+    else:
+        today = datetime.now().strftime("%Y%m%d")
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     cursor.execute('''
         INSERT OR REPLACE INTO downloaded_files
         (file_id, file_name, download_date, download_time, status, industry_match, company_match)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ''', (file_id, file_name, today, now, status,
           ",".join(industry_match), ",".join(company_match)))
-
     conn.commit()
 
 
-def get_today_dir():
-    """获取今天的保存目录"""
-    today_str = datetime.now().strftime("%Y%m%d")
-    save_dir = SAVE_BASE_DIR / today_str
+def get_today_dir(date_str: str = None):
+    if date_str is None:
+        date_str = datetime.now().strftime("%Y%m%d")
+    save_dir = SAVE_BASE_DIR / date_str
     save_dir.mkdir(parents=True, exist_ok=True)
     return save_dir
 
 
-def get_download_url(file_id):
-    """获取文件下载链接"""
-    url = f"https://api.zsxq.com/v2/files/{file_id}/download_url"
+# ============ 核心下载流程 ============
 
-    for attempt in range(5):
-        if attempt > 0:
-            wait = random.uniform(15, 30)
-            print(f"       🔄 重试 {attempt+1}/5，等待 {wait:.0f}秒...")
-            time.sleep(wait)
+def fetch_all_files(group_id: str, max_pages: int = 15, errors: list = None) -> list[dict]:
+    """获取指定星球所有文件列表（用于首次回填，不限制今日）"""
+    all_files = []
+    query = {"count": 30, "sort": "by_create_time"}
+    page = 0
+
+    while page < max_pages:
+        page += 1
+        time.sleep(random.uniform(2, 5))
 
         try:
-            headers = get_stealth_headers()
-            resp = session.get(url, headers=headers, timeout=30)
-            data = resp.json()
-
-            if data.get("succeeded"):
-                return data.get("resp_data", {}).get("download_url")
-
-            error_code = data.get("code")
-            if error_code == 1030:
-                print(f"       🚫 权限不足 (1030)")
-                return None
-
+            data = _call_api("GET", f"/v2/groups/{group_id}/files", query)
         except Exception as e:
-            print(f"       ❌ 请求异常: {e}")
+            msg = f"API 调用失败: {e}"
+            print(f"   ❌ {msg}")
+            if errors is not None:
+                errors.append(msg)
+            break
 
-    return None
+        files = data.get("files", [])
+        if not files:
+            break
+
+        for f in files:
+            finfo = f.get("file", {})
+            topic = f.get("topic", {})
+            talk = topic.get("talk", {})
+            finfo["_topic_text"] = talk.get("text", "")
+            all_files.append(finfo)
+
+        next_index = data.get("index")
+        if not next_index:
+            break
+        query["index"] = next_index
+
+    return all_files
 
 
-def download_file(file_id, file_name, save_dir, conn):
+def fetch_today_files(group_id: str, errors: list = None, date_str: str = None) -> list[dict]:
+    """获取指定星球今日文件列表（通过 MCP）"""
+    all_files = []
+    if date_str is None:
+        today_str = datetime.now().strftime("%Y-%m-%d")
+    else:
+        today_str = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+    query = {"count": 30, "sort": "by_create_time"}
+    page = 0
+
+    while page < 10:
+        page += 1
+        time.sleep(random.uniform(2, 5))
+
+        try:
+            data = _call_api("GET", f"/v2/groups/{group_id}/files", query)
+        except Exception as e:
+            msg = f"API 调用失败: {e}"
+            print(f"   ❌ {msg}")
+            if errors is not None:
+                errors.append(msg)
+            break
+
+        files = data.get("files", [])
+        if not files:
+            break
+
+        for f in files:
+            finfo = f.get("file", {})
+            create_time = finfo.get("create_time", "")
+            if today_str in create_time:
+                # Include topic text for better keyword matching
+                topic = f.get("topic", {})
+                talk = topic.get("talk", {})
+                finfo["_topic_text"] = talk.get("text", "")
+                all_files.append(finfo)
+            elif all_files and today_str not in create_time:
+                return all_files
+
+        next_index = data.get("index")
+        if not next_index:
+            break
+        query["index"] = next_index
+
+    return all_files
+
+
+def download_file(file_id, file_name, save_dir, conn, date_str: str = None) -> str:
     """下载单个文件"""
-    # 检查是否已下载
     if is_already_downloaded(conn, file_id):
         print(f"       ⏭️ 已下载过，跳过: {file_name[:40]}")
         return "skipped"
 
     # 获取下载链接
-    download_url = get_download_url(file_id)
+    for attempt in range(3):
+        if attempt > 0:
+            wait = random.uniform(15, 30)
+            print(f"       🔄 重试 {attempt+1}/3，等待 {wait:.0f}秒...")
+            time.sleep(wait)
+        try:
+            data = _call_api("GET", f"/v2/files/{file_id}/download_url")
+            download_url = data.get("download_url", "")
+            if download_url:
+                break
+        except Exception as e:
+            print(f"       ❌ 获取下载链接异常: {e}")
+            if attempt == 2:
+                return "failed"
+
     if not download_url:
+        print(f"       🚫 无下载链接")
         return "failed"
 
-    try:
-        resp = session.get(download_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=180, stream=True)
+    # 清理文件名
+    safe_name = "".join(c for c in file_name if c.isalnum() or c in '._- ()[]{}「」').strip()
+    if not safe_name.endswith('.pdf'):
+        safe_name += '.pdf'
+    save_path = save_dir / safe_name
 
-        if resp.status_code != 200:
-            print(f"       ❌ HTTP {resp.status_code}")
-            return "failed"
-
-        # 清理文件名
-        safe_name = "".join(c for c in file_name if c.isalnum() or c in '._- ()[]{}「」').strip()
-        if not safe_name.endswith('.pdf'):
-            safe_name += '.pdf'
-
-        save_path = save_dir / safe_name
-
-        with open(save_path, 'wb') as f:
-            for chunk in resp.iter_content(chunk_size=8192):
-                if chunk:
-                    f.write(chunk)
-
+    # 下载文件
+    print(f"       📥 下载中...")
+    if _download_file_content(download_url, save_path):
         size = os.path.getsize(save_path)
         print(f"       ✅ {size/1024/1024:.2f}MB -> {safe_name[:45]}")
-
-        # 匹配行业和公司
         _, industries, companies = should_download(file_name)
-        record_download(conn, file_id, file_name, "success", industries, companies)
-
+        record_download(conn, file_id, file_name, "success", industries, companies,
+                        date_str=date_str)
         return "success"
-
-    except Exception as e:
-        print(f"       ❌ 下载异常: {e}")
+    else:
+        print(f"       ❌ 下载失败")
         return "failed"
 
 
-def send_email(success_list, failed_list, total_processed, error_messages=None):
-    """发送邮件通知"""
-    if error_messages is None:
-        error_messages = []
+# ============ 邮件与摘要 ============
 
-    # 即使没有成功/失败也要发送（如果有错误信息）
-    if not success_list and not failed_list and not error_messages:
-        return
+def extract_summary_from_analysis(pdf_path: str) -> str:
+    pdf_path = Path(pdf_path)
+    md_path = pdf_path.parent / f"{pdf_path.stem}_analysis.md"
 
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    if not md_path.exists():
+        print(f"     🔬 Analyzing: {pdf_path.name[:50]}...")
+        try:
+            from pdf_vision_analyzer import PDFReportAnalyzer
+            pipeline = PDFReportAnalyzer()
+            pipeline.analyze_and_save(str(pdf_path), output_dir=str(pdf_path.parent))
+        except Exception as e:
+            print(f"     ❌ Analysis failed: {e}")
+            return "    [分析失败]"
 
-    # 构建邮件内容
-    body = f"""投行报告下载完成 - {today_str}
+    if md_path.exists():
+        md_text = md_path.read_text(encoding="utf-8")
+        lines = md_text.split("\n")
+        summary_lines = []
+        in_summary = False
+        for line in lines:
+            if "## 报告摘要" in line or "## 核心发现" in line:
+                in_summary = True
+                continue
+            if in_summary:
+                if line.startswith("## ") and "报告摘要" not in line and "核心发现" not in line:
+                    break
+                stripped = line.strip()
+                if stripped:
+                    summary_lines.append(stripped)
+        if not summary_lines:
+            for line in lines:
+                if line.startswith("- **"):
+                    stripped = line.strip()
+                    if stripped:
+                        summary_lines.append(stripped)
+        if summary_lines:
+            return "\n".join(f"    {s}" for s in summary_lines[:15])
+    return "    [摘要未生成]"
 
-处理文件数: {total_processed}
-成功: {len(success_list)}
-失败: {len(failed_list)}
-"""
 
-    # 错误/警告信息
-    if error_messages:
-        body += f"""
-⚠️ 注意/错误 ({len(error_messages)})：
-"""
-        for err in error_messages:
-            body += f"  - {err}\n"
-
-    if success_list:
-        body += f"""
-=== 成功下载 ({len(success_list)}) ===
-"""
-        for f in success_list:
-            body += f"  - {f}\n"
-
-    if failed_list:
-        body += f"""
-=== 下载失败 ({len(failed_list)}) ===
-"""
-        for f in failed_list:
-            body += f"  - {f}\n"
-
-    # 创建邮件
+def _send_notification(body: str, today_str: str, stats: str):
+    """Send a lightweight notification email (no analysis summaries)."""
     msg = MIMEMultipart()
     msg['From'] = SENDER_EMAIL
     msg['To'] = RECIPIENT_EMAIL
-
-    # 如果有错误，邮件主题加前缀
-    if error_messages:
-        subject_prefix = "⚠️"
-    else:
-        subject_prefix = "📥"
-
-    msg['Subject'] = f"{subject_prefix} 投行报告下载完成 - {today_str} ({len(success_list)}/{total_processed})"
-
+    msg['Subject'] = f"每日投行报告总结 - {today_str} ({stats})"
     msg.attach(MIMEText(body, 'plain', 'utf-8'))
 
-    # 发送
     try:
         server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
         server.starttls()
@@ -370,173 +467,177 @@ def send_email(success_list, failed_list, total_processed, error_messages=None):
         server.send_message(msg)
         server.quit()
         print(f"📧 邮件已发送至 {RECIPIENT_EMAIL}")
+        return True
+    except Exception as e:
+        print(f"❌ 邮件发送失败: {e}")
+        return False
+
+
+def send_email(success_list, failed_list, total_processed,
+               summaries: dict = None, error_messages=None):
+    if error_messages is None:
+        error_messages = []
+    if summaries is None:
+        summaries = {}
+
+    today_str = datetime.now().strftime("%Y-%m-%d")
+
+    if not success_list and not failed_list and not error_messages:
+        # All files were already downloaded — send a brief notification
+        body = f"每日投行报告总结 - {today_str}\n\n"
+        body += f"处理文件数: {total_processed}\n"
+        body += "状态: 全部已下载过，无新文件\n"
+        _send_notification(body, today_str, "0/0")
+        return
+
+    body = f"每日投行报告总结 - {today_str}\n\n"
+    body += f"处理文件数: {total_processed}\n"
+    body += f"成功: {len(success_list)}\n"
+    body += f"失败: {len(failed_list)}\n"
+
+    if error_messages:
+        body += f"\n⚠️ 注意/错误 ({len(error_messages)})：\n"
+        for err in error_messages:
+            body += f"  - {err}\n"
+
+    if success_list:
+        body += f"\n{'─' * 50}\n"
+        from utils import extract_bank_from_filename
+        by_bank: dict[str, list[str]] = {}
+        for f in success_list:
+            bank = extract_bank_from_filename(f)
+            by_bank.setdefault(bank, []).append(f)
+        for bank in sorted(by_bank.keys()):
+            for f in by_bank[bank]:
+                body += f"\n  📄 {bank} — {f}\n"
+                summary = summaries.get(f, "")
+                if summary:
+                    body += f"{summary}\n"
+                else:
+                    body += f"    [等待分析]\n"
+
+    if failed_list:
+        body += f"\n{'─' * 50}\n"
+        body += f"=== 下载失败 ({len(failed_list)}) ===\n"
+        for f in failed_list:
+            body += f"  - {f}\n"
+
+    msg = MIMEMultipart()
+    msg['From'] = SENDER_EMAIL
+    msg['To'] = RECIPIENT_EMAIL
+    msg['Subject'] = f"每日投行报告总结 - {today_str} ({len(success_list)}/{total_processed})"
+    msg.attach(MIMEText(body, 'plain', 'utf-8'))
+
+    try:
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        server.starttls()
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+        server.send_message(msg)
+        server.quit()
+        print(f"📧 邮件已发送至 {RECIPIENT_EMAIL}")
+        return True
     except Exception as e:
         print(f"❌ 邮件发送失败: {e}")
 
 
-def fetch_files_by_date(target_date):
-    """获取指定日期的文件列表"""
-    headers = get_stealth_headers()
+# ============ Lock ============
 
-    url = f"https://api.zsxq.com/v2/groups/{GROUP_ID}/files"
-    params = {"count": 30, "sort": "by_create_time"}
-
-    all_files = []
-    page = 0
-
-    while page < 5:  # 最多5页
-        page += 1
-        smart_delay()
-
-        try:
-            resp = session.get(url, headers=headers, params=params, timeout=30)
-            data = resp.json()
-
-            if not data.get("succeeded"):
-                break
-
-            files = data.get("resp_data", {}).get("files", [])
-            if not files:
-                break
-
-            for f in files:
-                finfo = f.get("file", {})
-                create_time = finfo.get("create_time", "")
-
-                # 检查是否为目标日期
-                if target_date in create_time:
-                    all_files.append(finfo)
-                elif len(all_files) > 0:
-                    # 假设文件按时间排序，遇到更早的日期就停止
-                    break
-
-            # 获取下一页
-            index = data.get("resp_data", {}).get("index")
-            if index:
-                params["index"] = index
-            else:
-                break
-
-        except Exception as e:
-            print(f"   ❌ 获取文件列表异常: {e}")
-            break
-
-    return all_files
+DOWNLOADER_LOCK = Path(__file__).parent / ".zsxq_downloader.lock"
 
 
-def run_daily():
-    """每日运行主函数"""
-    print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 投行报告下载器启动")
+def _acquire_lock():
+    fd = os.open(str(DOWNLOADER_LOCK), os.O_CREAT | os.O_RDWR, 0o644)
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return fd
+    except (IOError, OSError):
+        os.close(fd)
+        return None
+
+
+# ============ 主入口 ============
+
+def run_daily(date_str: str = None):
+    lock_fd = _acquire_lock()
+    if lock_fd is None:
+        print("❌ Downloader lock held by another instance, exiting.")
+        return
+
+    print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 投行报告下载器 v5 启动")
     print(f"📁 保存目录: {SAVE_BASE_DIR}")
-    print(f"🏠 星球ID: {GROUP_ID}")
+    print(f"🔐 认证方式: MCP HTTP")
+    print(f"📡 覆盖星球: {len(GROUPS)} 个")
+    if date_str:
+        print(f"📅 指定日期: {date_str}")
 
-    # 初始化数据库
     conn = init_db()
-
-    # 获取今天的保存目录
-    today_dir = get_today_dir()
+    today_dir = get_today_dir(date_str)
     print(f"📂 今日目录: {today_dir}")
 
-    # 获取今天的日期字符串
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    error_messages = []
 
-    # 获取文件列表（翻页直到不是今天的文件）
-    print("\n📡 获取文件列表...")
-    headers = get_stealth_headers()
-
-    url = f"https://api.zsxq.com/v2/groups/{GROUP_ID}/files"
-    params = {"count": 30, "sort": "by_create_time"}
-
+    # 收集所有星球今日文件
     all_files = []
-    page = 0
-    error_messages = []  # 收集错误信息
-
-    while page < 10:  # 最多10页
-        page += 1
-        smart_delay()
-
+    for g in GROUPS:
+        print(f"\n📡 [{g['name']}] 获取文件列表...")
         try:
-            resp = session.get(url, headers=headers, params=params, timeout=30)
-            data = resp.json()
-
-            # 检查 API 是否成功
-            if not data.get("succeeded"):
-                error_code = data.get("code")
-                error_info = data.get("error", data.get("info", "未知错误"))
-
-                # 检查是否是 Cookie/Token 过期问题
-                if error_code in [14001, 401, 403]:
-                    cookie_error = f"⚠️ Cookie/Token 可能已过期 (code={error_code})，请更新 cookie"
-                    print(f"   ❌ {cookie_error}")
-                    error_messages.append(cookie_error)
-                elif error_code == 1059:
-                    # 反爬/限流
-                    warning = f"⚠️ 触发反爬机制 (code=1059)，请求被限制"
-                    print(f"   ⚠️ {warning}")
-                    error_messages.append(warning)
-                else:
-                    general_error = f"⚠️ API 请求失败 (code={error_code}): {error_info}"
-                    print(f"   ❌ {general_error}")
-                    error_messages.append(general_error)
-                break
-
-            files = data.get("resp_data", {}).get("files", [])
-            if not files:
-                print(f"   📭 没有更多文件")
-                break
-
-            # 筛选今天的文件
-            for f in files:
-                finfo = f.get("file", {})
-                create_time = finfo.get("create_time", "")
-
-                if today_str in create_time:
-                    all_files.append(finfo)
-                elif all_files and today_str not in create_time:
-                    # 遇到更早的日期，停止
-                    break
-
-            # 检查是否需要继续获取
-            if len(all_files) == 0:
-                pass  # 继续获取
-
-            # 获取下一页
-            index = data.get("resp_data", {}).get("index")
-            if index:
-                params["index"] = index
+            if g["filter"]:
+                # 投行频道：只取今日文件 + 关键词过滤
+                files = fetch_today_files(g["id"], errors=error_messages, date_str=date_str)
             else:
-                break
+                # 半导体频道：拉全部历史文件，is_already_downloaded 去重
+                files = fetch_all_files(g["id"], max_pages=5, errors=error_messages)
 
+            print(f"   📋 {g['name']}: {len(files)} 个文件")
+            for finfo in files:
+                finfo["_group_name"] = g["name"]
+                finfo["_filter"] = g["filter"]
+            all_files.extend(files)
         except Exception as e:
-            error_msg = f"⚠️ 网络请求异常: {str(e)}"
-            print(f"   ❌ {error_msg}")
-            error_messages.append(error_msg)
-            continue
+            msg = f"获取文件列表失败 [{g['name']}]: {e}"
+            print(f"   ❌ {msg}")
+            error_messages.append(msg)
 
-    print(f"📋 今日文件: {len(all_files)} 个")
+    print(f"\n📋 今日总计: {len(all_files)} 个文件")
 
-    # 过滤匹配的文件
+    # 过滤 + 匹配
     matched_files = []
+    skipped_filter = 0
+    skipped_nomatch = 0
+
     for finfo in all_files:
         file_name = finfo.get("name", "")
-        should_down, industries, companies = should_download(file_name)
+        topic_text = finfo.get("_topic_text", "")
+        do_filter = finfo.get("_filter", True)
 
-        if should_down:
-            matched_files.append({
-                "file_id": finfo.get("file_id"),
-                "name": file_name,
-                "size": finfo.get("size", 0),
-                "industries": industries,
-                "companies": companies
-            })
-            print(f"   ✅ 匹配: {file_name[:50]}")
-            print(f"      行业: {industries}, 公司: {companies}")
+        if do_filter:
+            should_down, industries, companies = should_download(file_name, topic_text)
+            if not should_down:
+                skipped_nomatch += 1
+                continue
         else:
-            print(f"   ⏭️ 跳过: {file_name[:50]}")
+            # 半导体频道：全部下载，简单匹配行业标签
+            industries, _ = match_industry(file_name + " " + topic_text)
+            _, companies = match_company(file_name + " " + topic_text)
+            if not companies:
+                companies = [finfo.get("_group_name", "")]
+
+        matched_files.append({
+            "file_id": finfo.get("file_id"),
+            "name": file_name,
+            "size": finfo.get("size", 0),
+            "industries": list(set(industries)) if isinstance(industries, list) else [],
+            "companies": list(set(companies)) if isinstance(companies, list) else [],
+            "group": finfo.get("_group_name", ""),
+        })
+        print(f"   ✅ [{finfo.get('_group_name', '')}] {file_name[:50]}")
+
+    if skipped_nomatch > 0:
+        print(f"   ⏭️ 关键词不匹配跳过: {skipped_nomatch} 个")
 
     print(f"\n🎯 匹配文件: {len(matched_files)} 个")
 
-    # 下载匹配的文件
+    # 下载
     success_list = []
     failed_list = []
 
@@ -545,24 +646,24 @@ def run_daily():
         file_name = f["name"]
         size_kb = f["size"] / 1024
 
-        print(f"\n[{i}/{len(matched_files)}] {file_name[:50]}... ({size_kb:.0f}KB)")
+        print(f"\n[{i}/{len(matched_files)}] [{f['group']}] {file_name[:50]}... ({size_kb:.0f}KB)")
 
-        result = download_file(file_id, file_name, today_dir, conn)
+        result = download_file(file_id, file_name, today_dir, conn, date_str=date_str)
 
         if result == "success":
             success_list.append(file_name)
         elif result == "failed":
             failed_list.append(file_name)
 
-        # 下载间隔
         if i < len(matched_files):
             wait = random.uniform(*DOWNLOAD_INTERVAL)
             print(f"   ⏱️ 等待 {wait:.0f}秒...")
             time.sleep(wait)
 
-    # 发送邮件通知
+    # 邮件通知（不含分析摘要，分析由 pipeline 在 5:00 执行）
     print("\n📧 发送邮件通知...")
-    send_email(success_list, failed_list, len(matched_files), error_messages)
+    send_email(success_list, failed_list, len(matched_files),
+               summaries={}, error_messages=error_messages)
 
     # 总结
     print(f"\n{'='*60}")
@@ -577,4 +678,8 @@ def run_daily():
 
 
 if __name__ == "__main__":
-    run_daily()
+    import argparse
+    parser = argparse.ArgumentParser(description="知识星球投行报告下载器")
+    parser.add_argument("--date", help="Target date (YYYYMMDD), default: today")
+    args = parser.parse_args()
+    run_daily(date_str=args.date)

@@ -1,0 +1,4172 @@
+{
+  "meta": {
+    "version": "4.0",
+    "description": "AI 产业链十二层矩阵 — NVDA vs Google TPU vs 华为昇腾 三条线供应商、市占率、关键竞争力、国产化状态",
+    "last_updated": "2026-06-07",
+    "data_sources": [
+      "Morgan Stanley Global Tech Outlook 2026",
+      "JPM CoWoS Report May-26",
+      "TrendForce 2026",
+      "Bernstein Memory Tracker Apr-26",
+      "BofA Global Semiconductor 2026",
+      "CLSA Asia Pac Tech 2026",
+      "Goldman Sachs AI Infrastructure 2026",
+      "华为昇腾产业链调研 2026 (内部)"
+    ],
+    "updated": "2026-06-13",
+    "naming": {
+      "x_axis": "P0-P11 (System Parts)",
+      "y_axis": "L1-L5 (Supply Chain Depth per Part)"
+    }
+  },
+  "layers": [
+    {
+      "id": "P0",
+      "slug": "ai-applications",
+      "name": "AI 应用与模型",
+      "name_en": "AI Applications & Models",
+      "description": "AI 模型的训练与推理需求驱动全产业链。LLM 军备竞赛 + CSP 资本开支是产业链最上游的需求锚点。",
+      "upstream": [],
+      "downstream": [
+        1
+      ],
+      "key_competitiveness": [
+        "模型能力 (benchmark 分数、推理效率)",
+        "算力储备 (GPU 集群规模)",
+        "CSP 客户锁定与云生态",
+        "数据飞轮与用户反馈闭环"
+      ],
+      "market_share": [
+        {
+          "entity": "Google (Gemini + GCP)",
+          "share_pct": 22,
+          "note": "TPU 自研 + GCP 推理规模；Gemini 3 追赶 GPT-5"
+        },
+        {
+          "entity": "Microsoft/OpenAI (Azure)",
+          "share_pct": 28,
+          "note": "GPT-5 训练领先 + Azure 独占推理；最大 GPU 集群"
+        },
+        {
+          "entity": "Amazon (AWS + Anthropic)",
+          "share_pct": 18,
+          "note": "Trainium2 自研推理 + Claude 模型"
+        },
+        {
+          "entity": "Meta (LLaMA)",
+          "share_pct": 12,
+          "note": "开源路线 + 广告推荐推理需求"
+        },
+        {
+          "entity": "Other CSP (Oracle/腾讯/阿里)",
+          "share_pct": 10,
+          "note": "区域市场 + 垂直行业定制"
+        },
+        {
+          "entity": "AI Labs (DeepSeek/Kimi/Minimax)",
+          "share_pct": 10,
+          "note": "国产替代 + 极致效率路线"
+        }
+      ],
+      "nvidia_suppliers": [],
+      "google_tpu_suppliers": [],
+      "linked_industry_slugs": [
+        "llm"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "华为云",
+          "role": "盘古大模型 + ModelArts平台",
+          "note": "自研盘古大模型5.0，NLP/CV/多模态全栈。昇腾原生优化",
+          "localization": "✓"
+        },
+        {
+          "name": "科大讯飞",
+          "role": "星火大模型 + 教育/医疗场景",
+          "note": "昇腾910B集群训练，国产模型+国产算力闭环",
+          "localization": "✓"
+        }
+      ]
+    },
+    {
+      "id": "P1",
+      "slug": "ai-chip-design",
+      "name": "AI 芯片设计",
+      "name_en": "AI Chip Design",
+      "description": "GPU/TPU/ASIC 是 AI 算力的物理载体。NVDA GPU 占据绝对主导，Google TPU 通过自研+博通合作开辟第二路线。训练芯片要求高算力+高带宽，推理芯片要求低延迟+低功耗。",
+      "upstream": [
+        0
+      ],
+      "downstream": [
+        2,
+        3
+      ],
+      "key_competitiveness": [
+        "架构迭代速度 (每年一代 vs 两年一代)",
+        "CUDA 生态锁定 (软件栈护城河)",
+        "NVLink/InfiniBand 片间互联能力",
+        "先进封装与 HBM 集成能力",
+        "从训练到推理的全栈覆盖"
+      ],
+      "market_share": [
+        {
+          "entity": "NVIDIA",
+          "share_pct": 85,
+          "note": "H200/B200/GB300 全产品线；CUDA 生态不可替代"
+        },
+        {
+          "entity": "Google TPU",
+          "share_pct": 8,
+          "note": "v6e Trillium 量产；仅内部 + GCP 可用，不对外销售"
+        },
+        {
+          "entity": "AMD",
+          "share_pct": 4,
+          "note": "MI300X/350X；ROCm 生态追赶中"
+        },
+        {
+          "entity": "AWS Trainium",
+          "share_pct": 2,
+          "note": "Trainium2 自研 ASIC；仅 AWS 内部"
+        },
+        {
+          "entity": "Others (Intel/Cerebras/寒武纪)",
+          "share_pct": 1,
+          "note": "Gaudi 3 挣扎；国产替代起步"
+        },
+        {
+          "entity": "Huawei Ascend",
+          "share_pct": 8,
+          "note": "中国AI芯片市占率~39%，2026年预计突破50%；910C出货目标1M/3M/8M(26-28)"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "NVIDIA",
+          "role": "芯片设计 (in-house)",
+          "note": "全栈自研：GPU架构+CUDA+NVLink+InfiniBand"
+        },
+        {
+          "name": "ARM",
+          "role": "CPU IP 授权",
+          "note": "Grace CPU (Neoverse V2)，NVLink-C2C 互联"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "Google",
+          "role": "TPU 架构设计 (in-house)",
+          "note": "v5p→v6e→v7 三代迭代，脉动阵列架构"
+        },
+        {
+          "name": "Broadcom",
+          "role": "ASIC 设计服务 + SerDes IP",
+          "note": "TPU 唯一 ASIC 设计合作伙伴；提供关键 SerDes/PHY IP"
+        }
+      ],
+      "linked_industry_slugs": [
+        "ai-chip"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "华为海思",
+          "role": "昇腾910B/910C/950芯片设计 (in-house)",
+          "note": "Da Vinci Core自研架构。910C: BF16≈280-320 TFLOPS(约H100的80%)，功耗仅310W。2026目标出货1M颗，2027 3M，2028 8M",
+          "localization": "✓"
+        },
+        {
+          "name": "华为",
+          "role": "MindSpore框架 + CANN算子库",
+          "note": "全栈自研AI框架，昇腾原生优化。CANN提供2000+算子",
+          "localization": "✓"
+        },
+        {
+          "name": "ARM",
+          "role": "AArch64 CPU IP授权",
+          "note": "Neoverse V2架构，但美国出口管制下未来授权存在政策风险。华为已在探索RISC-V替代",
+          "localization": "△"
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "slug": "semiconductor-ip",
+      "name": "半导体 IP 授权",
+      "name_en": "Semiconductor IP",
+      "description": "芯片设计的基础构件：CPU 指令集 (ARM/x86)、高速 SerDes PHY、DDR/HBM 控制器、PCIe 接口 IP。AI 芯片依赖第三方 IP 加速开发周期。",
+      "upstream": [],
+      "downstream": [
+        1,
+        3
+      ],
+      "key_competitiveness": [
+        "IP 性能/功耗/面积 (PPA) 领先性",
+        "先进制程适配速度 (N3/N2 就绪时间)",
+        "生态完整度 (CPU + GPU + NPU + ISP 全栈)",
+        "SerDes 速率竞赛 (224G→448G PAM4)"
+      ],
+      "market_share": [
+        {
+          "entity": "ARM",
+          "share_pct": 50,
+          "note": "移动/服务器 CPU 架构垄断；Neoverse 覆盖 AI 边缘/云端"
+        },
+        {
+          "entity": "Synopsys",
+          "share_pct": 25,
+          "note": "HBM/DDR/PCIe 控制器 IP 主导；3nm 就绪"
+        },
+        {
+          "entity": "Cadence",
+          "share_pct": 20,
+          "note": "SerDes/PHY + Tensilica DSP IP"
+        },
+        {
+          "entity": "Others (CEVA/Rambus)",
+          "share_pct": 5,
+          "note": "细分市场"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "ARM",
+          "role": "CPU IP (Grace)",
+          "note": "Neoverse V2 架构授权"
+        },
+        {
+          "name": "Synopsys/Cadence",
+          "role": "EDA + 接口 IP",
+          "note": "HBM/DDR/PCIe 控制器 IP"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "ARM",
+          "role": "CPU IP (TPU 配套)",
+          "note": "服务器端 Arm 核心"
+        },
+        {
+          "name": "Broadcom",
+          "role": "SerDes IP (捆绑 ASIC 服务)",
+          "note": "高速互联 SerDes"
+        }
+      ],
+      "linked_industry_slugs": [],
+      "ascend_suppliers": [
+        {
+          "name": "华为海思 (in-house)",
+          "role": "自研IP：Da Vinci NPU + 昆仑 VPU + 高速SerDes",
+          "note": "昇腾芯片内部IP大部分自研，减少对外授权依赖",
+          "localization": "✓"
+        },
+        {
+          "name": "华大九天",
+          "role": "国产EDA — 模拟/数字全流程",
+          "note": "国产EDA龙头，模拟约60%覆盖率，数字前端约35%，物理实现约25%。华为部分流程已切换",
+          "localization": "△"
+        },
+        {
+          "name": "概伦电子",
+          "role": "国产EDA — SPICE仿真 + 良率分析",
+          "note": "SPICE仿真工具国产替代主力。高端签核(Signoff)仍依赖Synopsys PrimeTime",
+          "localization": "△"
+        },
+        {
+          "name": "Synopsys/Cadence",
+          "role": "EDA工具 — 前端综合/布局布线",
+          "note": "高端节点(7nm以下)仍依赖。美国出口管制下存在断供风险",
+          "localization": "✗"
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "slug": "foundry",
+      "name": "晶圆代工",
+      "name_en": "Wafer Foundry",
+      "description": "将芯片设计转化为物理芯片。先进制程 (≤7nm) 是 AI 芯片的性能基础。TSMC 垄断 N3/N2 节点，是产业链最稀缺的供给瓶颈。",
+      "upstream": [
+        1,
+        2
+      ],
+      "downstream": [
+        4
+      ],
+      "key_competitiveness": [
+        "先进制程密度/功耗/性能 (N3E→N3P→N2)",
+        "产能规模 + 良率 (年产出 1.5M+ 12寸晶圆)",
+        "3D 封装集成 (CoWoS/SoIC 是 N2 标配)",
+        "客户锁定 (单一来源风险 vs 议价能力)"
+      ],
+      "market_share": [
+        {
+          "entity": "TSMC",
+          "share_pct": 61,
+          "note": "全球整体；先进制程 ≤7nm 占 90%+; N3/N2 唯一量产"
+        },
+        {
+          "entity": "Samsung Foundry",
+          "share_pct": 11,
+          "note": "GAA 3nm 良率低，AI 芯片订单少"
+        },
+        {
+          "entity": "Intel Foundry",
+          "share_pct": 1,
+          "note": "18A 追赶中; AWS/Qualcomm 签约但未量产"
+        },
+        {
+          "entity": "SMIC/华虹 (成熟制程)",
+          "share_pct": 8,
+          "note": "28nm+ 成熟制程; AI 芯片无直接份额"
+        },
+        {
+          "entity": "UMC/GlobalFoundries",
+          "share_pct": 10,
+          "note": "成熟制程; 车用/工业"
+        },
+        {
+          "entity": "Others",
+          "share_pct": 9,
+          "note": ""
+        },
+        {
+          "entity": "SMIC (昇腾线)",
+          "share_pct": 5,
+          "note": "仅计算昇腾相关先进制程(≤14nm)产能。全球先进制程份额约5%"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "TSMC",
+          "role": "唯一代工厂",
+          "note": "N4 (H200/B200) → N3P (GB300/Vera) → N2 (Rubin); 占 TSMC 先进制程营收 25%+"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "TSMC",
+          "role": "唯一代工厂",
+          "note": "N4 (v5p) → N3 (v6e Trillium) → N2 (v8 预计)"
+        }
+      ],
+      "linked_industry_slugs": [
+        "foundry"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "SMIC/中芯国际",
+          "role": "昇腾910B/C 核心代工厂",
+          "note": "N+2/N+3工艺(等效7nm)。2026E月产能1-1.5万片晶圆，良率40-50%。Q3两座新晶圆厂投产。受限于DUV多重曝光无EUV，无法进入3nm",
+          "localization": "△"
+        },
+        {
+          "name": "—",
+          "role": "3nm及以下：无国产方案",
+          "note": "EUV光刻机被管制，3nm节点在2028年前无解。这是昇腾产业链最硬的结构性瓶颈",
+          "localization": "✗"
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "slug": "advanced-packaging",
+      "name": "先进封装 (CoWoS)",
+      "name_en": "Advanced Packaging (CoWoS)",
+      "description": "将 GPU/TPU 芯片与 HBM 内存在硅中介层上集成封装。CoWoS 是 AI 芯片最关键的产能瓶颈——没有 CoWoS 就没有 H200/B200。2026 年仍有 20% 供需缺口。",
+      "upstream": [
+        3,
+        5,
+        6
+      ],
+      "downstream": [
+        11
+      ],
+      "key_competitiveness": [
+        "中介层面积 (CoWoS-L 可达 14x 光罩 → 8000mm²+)",
+        "HBM 堆叠层数 (8Hi→12Hi→16Hi)",
+        "产能扩张速度 (年增 70%+ 仍供不应求)",
+        "良率管理 (CoWoS-L ~85% vs CoWoS-S ~95%)"
+      ],
+      "market_share": [
+        {
+          "entity": "TSMC CoWoS",
+          "share_pct": 98,
+          "note": "唯一大规模量产；2026E 115K wpm → 2027E 175K wpm → 2028E 220K wpm"
+        },
+        {
+          "entity": "Samsung I-Cube/H-Cube",
+          "share_pct": 1,
+          "note": "小规模，用于自家 Exynos"
+        },
+        {
+          "entity": "Intel EMIB",
+          "share_pct": 1,
+          "note": "用于自家 GPU/CPU，不对外代工"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "TSMC CoWoS",
+          "role": "独家先进封装",
+          "note": "2026E: ~60K wpm 给 NVDA（占 CoWoS 总产能 52%）; CoWoS-L 用于 GB300",
+          "deep_chain": [
+            {
+              "component": "硅中介层 (Si Interposer)",
+              "description": "CoWoS核心——GPU/HBM通过中介层互联，面积可达14x光罩(8000mm²+)",
+              "suppliers": [
+                {
+                  "name": "TSMC (in-house)",
+                  "share_pct": 95,
+                  "note": "自产65nm+中介层，2026产能115Kwpm"
+                },
+                {
+                  "name": "欣兴/Unimicron",
+                  "share_pct": 5,
+                  "note": "部分中介层外包，产能爬坡"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "中介层是CoWoS第一瓶颈，大尺寸良率仅~85%",
+              "materials": [
+                {
+                  "material": "EUV光源与反射镜",
+                  "type": "精密设备",
+                  "description": "中介层光刻依赖EUV光源与蔡司反射镜——通快激光器激发锡滴产生13.5nm极紫外光，蔡司多层膜反射镜将光聚焦到晶圆。全球唯一EUV光源和光学系统供应商",
+                  "suppliers": [
+                    {
+                      "name": "TRUMPF",
+                      "name_cn": "通快",
+                      "country": "DE",
+                      "monopoly_level": "absolute",
+                      "share_pct": 100,
+                      "note": "全球唯一EUV激光驱动光源供应商"
+                    },
+                    {
+                      "name": "ZEISS",
+                      "name_cn": "蔡司",
+                      "country": "DE",
+                      "monopoly_level": "absolute",
+                      "share_pct": 100,
+                      "note": "全球唯一EUV光学反射镜系统供应商"
+                    }
+                  ]
+                },
+                {
+                  "material": "光刻胶 (EUV Photoresist)",
+                  "type": "化学配方",
+                  "description": "EUV光刻必需的高端光刻胶，全球90%+依赖日系。金属氧化物光刻胶(MOR)是N2以下节点关键",
+                  "suppliers": [
+                    {
+                      "name": "Shin-Etsu Chemical",
+                      "name_cn": "信越化学",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "EUV光刻胶全球龙头"
+                    },
+                    {
+                      "name": "TOK",
+                      "name_cn": "东京应化",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "EUV光刻胶第二，与信越双寡头"
+                    },
+                    {
+                      "name": "JSR",
+                      "name_cn": "JSR",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "EUV光刻胶第三，被JIC收购中"
+                    },
+                    {
+                      "name": "DuPont",
+                      "name_cn": "杜邦",
+                      "country": "US",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "MOR金属氧化物光刻胶路线"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "微凸块 (Micro-bump)",
+              "description": "die-to-interposer连接，间距从40μm缩至20μm，每GPU需数万微凸块",
+              "suppliers": [
+                {
+                  "name": "TSMC (in-house)",
+                  "share_pct": 80,
+                  "note": "自研微凸块工艺"
+                },
+                {
+                  "name": "Amkor",
+                  "share_pct": 15,
+                  "note": "后段OSAT微凸块"
+                },
+                {
+                  "name": "ASE/日月光",
+                  "share_pct": 5,
+                  "note": "后段OSAT微凸块"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": null,
+              "materials": [
+                {
+                  "material": "铜柱电镀液 (Cu Pillar Electroplating Chemistry)",
+                  "type": "化学配方",
+                  "description": "微凸块核心——20μm间距铜柱电镀要求极高的均匀性和纯度。电镀液配方直接影响凸块高度一致性和空洞率，是微凸块良率的化学基础",
+                  "suppliers": [
+                    {
+                      "name": "Atotech/MKS",
+                      "name_cn": "安美特/MKS",
+                      "country": "DE/US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 40,
+                      "note": "全球半导体电镀液龙头，铜柱电镀配方领先"
+                    },
+                    {
+                      "name": "Uyemura",
+                      "name_cn": "上村工业",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "日系电镀化学品巨头，先进封装电镀液"
+                    },
+                    {
+                      "name": "MacDermid Alpha",
+                      "name_cn": "麦德美阿尔法",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "先进封装电镀液+化镀方案"
+                    },
+                    {
+                      "name": "DuPont",
+                      "name_cn": "杜邦",
+                      "country": "US",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "半导体电镀化学品"
+                    }
+                  ]
+                },
+                {
+                  "material": "微凸块光刻对准技术",
+                  "type": "精密设备",
+                  "description": "20-10μm间距微凸块需要亚微米级对准精度——步进式光刻机(Stepper)在晶圆级封装的套刻精度是良率天花板",
+                  "suppliers": [
+                    {
+                      "name": "ASML",
+                      "name_cn": "阿斯麦",
+                      "country": "NL",
+                      "monopoly_level": "absolute",
+                      "share_pct": 80,
+                      "note": "先进封装光刻设备垄断，与EUV形成全套光刻锁定"
+                    },
+                    {
+                      "name": "Canon",
+                      "name_cn": "佳能",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "后段封装光刻机第二"
+                    },
+                    {
+                      "name": "Nikon",
+                      "name_cn": "尼康",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "封装光刻设备"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "底部填充胶 (Underfill)",
+              "description": "保护微凸块免受热应力，CAPUF(Capillary Underfill)→MUF(Molded Underfill)",
+              "suppliers": [
+                {
+                  "name": "Namics/日立化成",
+                  "share_pct": 50,
+                  "note": "日本，CAPUF全球龙头"
+                },
+                {
+                  "name": "Henkel/汉高",
+                  "share_pct": 30,
+                  "note": "德国，MUF方案领先"
+                },
+                {
+                  "name": "Nagase/长濑",
+                  "share_pct": 18,
+                  "note": "日本，CAPUF"
+                },
+                {
+                  "name": "德邦科技/Darbond",
+                  "share_pct": 2,
+                  "note": "国产，送样TSMC验证中，未量产"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "TSMC Underfill以日系为主。德邦科技若通过验证，国产替代空间打开",
+              "materials": [
+                {
+                  "material": "特种环氧树脂配方",
+                  "type": "化学配方",
+                  "description": "Underfill核心——环氧树脂配方的热膨胀系数(CTE)必须与硅晶圆精确匹配，否则发热时芯片崩裂。全球最顶尖配方掌握在日系实验室",
+                  "suppliers": [
+                    {
+                      "name": "NAMICS",
+                      "name_cn": "纳米克斯",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 50,
+                      "note": "环氧树脂Underfill全球配方龙头，CTE匹配技术壁垒极高"
+                    },
+                    {
+                      "name": "HD MicroSystems",
+                      "name_cn": "HD微系统",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 30,
+                      "note": "日立化成+杜邦合资，液态聚酰亚胺+Underfill双料垄断"
+                    },
+                    {
+                      "name": "Henkel",
+                      "name_cn": "汉高",
+                      "country": "DE",
+                      "monopoly_level": "dominant",
+                      "share_pct": 18,
+                      "note": "德国化工巨头，MUF方案"
+                    },
+                    {
+                      "name": "Darbond",
+                      "name_cn": "德邦科技",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 2,
+                      "note": "国产唯一送样TSMC验证，若通过则替代空间巨大"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "先进封装设备",
+              "description": "CoWoS产线设备：临时键合/解键合、CMP、检测",
+              "suppliers": [
+                {
+                  "name": "DISCO",
+                  "share_pct": 35,
+                  "note": "日本，划片/研磨全球龙头"
+                },
+                {
+                  "name": "Tokyo Electron/TEL",
+                  "share_pct": 20,
+                  "note": "日本，涂胶显影+等离子"
+                },
+                {
+                  "name": "ASMPT",
+                  "share_pct": 15,
+                  "note": "香港，TCB热压键合"
+                },
+                {
+                  "name": "Besi/ASM Pacific",
+                  "share_pct": 15,
+                  "note": "荷兰/香港，Hybrid Bonding"
+                },
+                {
+                  "name": "KLA/Lam Research",
+                  "share_pct": 15,
+                  "note": "美国，检测+刻蚀"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": null,
+              "materials": [
+                {
+                  "material": "临时键合胶 (Temporary Bonding Adhesive)",
+                  "type": "化学配方",
+                  "description": "晶圆减薄前将器件晶圆临时粘合到载板上的关键材料——要求高温稳定+易解键合无残留。每片CoWoS晶圆都需经过此工序",
+                  "suppliers": [
+                    {
+                      "name": "3M",
+                      "name_cn": "3M",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "半导体临时键合胶全球龙头"
+                    },
+                    {
+                      "name": "Brewer Science",
+                      "name_cn": "布鲁尔科技",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "ZoneBOND激光解键合方案，先进封装标配"
+                    },
+                    {
+                      "name": "HD MicroSystems",
+                      "name_cn": "HD微系统",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "聚酰亚胺基键合材料"
+                    },
+                    {
+                      "name": "Daxin Materials",
+                      "name_cn": "达兴材料",
+                      "country": "TW",
+                      "monopoly_level": "entrant",
+                      "share_pct": 5,
+                      "note": "台系键合胶，送样验证中"
+                    }
+                  ]
+                },
+                {
+                  "material": "超薄晶圆减薄技术",
+                  "type": "精密设备",
+                  "description": "3D封装需要将晶圆减薄至50μm以下——物理切削极限。DISCO垄断全球超薄减薄与激光划片设备",
+                  "suppliers": [
+                    {
+                      "name": "DISCO",
+                      "name_cn": "迪思科",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 75,
+                      "note": "垄断全球超薄晶圆减薄+激光划片，市占率绝对领先"
+                    },
+                    {
+                      "name": "Tokyo Seimitsu",
+                      "name_cn": "东京精密",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "减薄设备第二，日系双寡头"
+                    },
+                    {
+                      "name": "Okamoto",
+                      "name_cn": "冈本工作机械",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "精密磨床为基础，部分半导体减薄"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ASE (日月光)",
+          "role": "后段 OSAT",
+          "note": "CoWoS 后段封装外包；月产能 5K+ wpm",
+          "deep_chain": [
+            {
+              "component": "封装基板 (IC Substrate)",
+              "description": "FC-BGA基板，CoWoS后段必需，大尺寸(100mm+)高多层(16L+)",
+              "suppliers": [
+                {
+                  "name": "Ibiden/揖斐电",
+                  "share_pct": 35,
+                  "note": "日本，AI载板龙头"
+                },
+                {
+                  "name": "欣兴/Unimicron",
+                  "share_pct": 30,
+                  "note": "台湾，全球最大ABF载板厂"
+                },
+                {
+                  "name": "AT&S",
+                  "share_pct": 15,
+                  "note": "奥地利，欧洲唯一ABF供应商"
+                },
+                {
+                  "name": "Shinko/新光电气",
+                  "share_pct": 10,
+                  "note": "日本，被JIC收购中"
+                },
+                {
+                  "name": "欣兴/南电/Kinsus",
+                  "share_pct": 10,
+                  "note": "台系ABF扩产"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "大尺寸FC-BGA基板全球仅~5家能量产，产能紧张至2027",
+              "materials": [
+                {
+                  "material": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+                  "type": "化学配方",
+                  "description": "所有AI芯片做高密度封装时唯一能用的绝缘载板核心层材料——全球只有日本味之素一家供应。味之素断供=全球先进封装归零",
+                  "suppliers": [
+                    {
+                      "name": "Ajinomoto",
+                      "name_cn": "味之素",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 100,
+                      "note": "百年味精企业，氨基酸副产品ABF膜垄断全球先进封装绝缘层。没有它，NVIDIA B200等所有AI芯片无法封装"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "焊线 (Wire Bonding)",
+              "description": "CoWoS后段die-to-substrate连接，铜线逐步替代金线",
+              "suppliers": [
+                {
+                  "name": "ASE (in-house)",
+                  "share_pct": 60,
+                  "note": "自研焊线工艺"
+                },
+                {
+                  "name": "K&S/Kulicke & Soffa",
+                  "share_pct": 25,
+                  "note": "美国，焊线机龙头"
+                },
+                {
+                  "name": "ASMPT",
+                  "share_pct": 15,
+                  "note": "香港，焊线+先进封装设备"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": null,
+              "materials": [
+                {
+                  "material": "精密陶瓷劈刀 (Ceramic Capillary)",
+                  "type": "精密设备",
+                  "description": "焊线机核心耗材——陶瓷劈刀引导铜/金线在芯片和基板间形成焊点。20μm以下细间距焊线要求劈刀内孔精度达到亚微米级，全球仅3-4家可量产",
+                  "suppliers": [
+                    {
+                      "name": "K&S (in-house)",
+                      "name_cn": "库力索法",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 40,
+                      "note": "自研焊线劈刀，与焊线机捆绑"
+                    },
+                    {
+                      "name": "PECO",
+                      "name_cn": "PECO",
+                      "country": "KR",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "韩国陶瓷劈刀龙头，全球半导体封装耗材"
+                    },
+                    {
+                      "name": "GAISER",
+                      "name_cn": "GAISER",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "美国劈刀专业厂，被CoorsTek收购"
+                    },
+                    {
+                      "name": "潮州三环/Three-Circle",
+                      "name_cn": "潮州三环",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 10,
+                      "note": "国产陶瓷劈刀，中低端量产，高端送样"
+                    },
+                    {
+                      "name": "Small Precision Tools",
+                      "name_cn": "SPT",
+                      "country": "US",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "精密劈刀+吸嘴"
+                    }
+                  ]
+                },
+                {
+                  "material": "高纯度键合铜线 (High Purity Bonding Copper Wire)",
+                  "type": "物理材料",
+                  "description": "铜线键合逐步替代金线以降低成本——要求5N+(99.999%)纯度，表面均匀镀钯防止氧化，线径已缩至15μm以下",
+                  "suppliers": [
+                    {
+                      "name": "TANAKA",
+                      "name_cn": "田中贵金属",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "日系键合线全球龙头，铜线+镀钯线"
+                    },
+                    {
+                      "name": "Heraeus",
+                      "name_cn": "贺利氏",
+                      "country": "DE",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "德国贵金属巨头，键合铜线"
+                    },
+                    {
+                      "name": "MK Electron",
+                      "name_cn": "MK电子",
+                      "country": "KR",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "韩国键合线龙头，三星供应链"
+                    },
+                    {
+                      "name": "康强电子/Kangqiang",
+                      "name_cn": "康强电子",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 10,
+                      "note": "国产键合线，中低端量产"
+                    },
+                    {
+                      "name": "Nippon Micrometal",
+                      "name_cn": "日本微金属",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "日系镀钯铜线"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "测试设备 (ATE)",
+              "description": "CoWoS成品测试：系统级测试(SLT)+最终测试(FT)",
+              "suppliers": [
+                {
+                  "name": "Advantest",
+                  "share_pct": 45,
+                  "note": "日本，SoC测试机龙头，AI芯片测试需求激增"
+                },
+                {
+                  "name": "Teradyne",
+                  "share_pct": 30,
+                  "note": "美国，SLT系统级测试"
+                },
+                {
+                  "name": "Cohu/Xcerra",
+                  "share_pct": 20,
+                  "note": "美国，Handler+测试座"
+                },
+                {
+                  "name": "Chroma/致茂",
+                  "share_pct": 5,
+                  "note": "台湾，ATE+handler，ASE本地供应链"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "Advantest V93000交期26周+，AI芯片测试产能紧张",
+              "materials": [
+                {
+                  "material": "MEMS探针卡 (MEMS Probe Card)",
+                  "type": "精密设备",
+                  "description": "ATE核心耗材——MEMS探针卡将测试信号从ATE接入芯片微凸块。AI芯片(2080亿晶体管)需要数万根探针同时接触，间距缩至60μm以下，单卡售价可达$50-100万",
+                  "suppliers": [
+                    {
+                      "name": "FormFactor",
+                      "name_cn": "FormFactor",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "全球MEMS探针卡龙头，AI芯片测试首选"
+                    },
+                    {
+                      "name": "Technoprobe",
+                      "name_cn": "Technoprobe",
+                      "country": "IT",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "意大利探针卡巨头，Teradyne持股~10%"
+                    },
+                    {
+                      "name": "旺矽/MPI",
+                      "name_cn": "旺矽科技",
+                      "country": "TW",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "台湾探针卡龙头，AI芯片探针卡份额攀升"
+                    },
+                    {
+                      "name": "JEM",
+                      "name_cn": "日本电子材料",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "日系探针卡"
+                    },
+                    {
+                      "name": "精测/CHPT",
+                      "name_cn": "中华精测",
+                      "country": "TW",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "台系探针卡，HBM测试探针卡布局"
+                    }
+                  ]
+                },
+                {
+                  "material": "高精度ATE电源模块与高速通道板卡",
+                  "type": "精密设备",
+                  "description": "AI芯片测试需支持1200W+功耗和112Gbps PAM4高速信号——ATE内部电源模块和信号通道板卡的技术门槛决定了测试覆盖率和吞吐量",
+                  "suppliers": [
+                    {
+                      "name": "Advantest (in-house)",
+                      "name_cn": "爱德万",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 60,
+                      "note": "V93000平台自研电源+高速通道，交期26周+"
+                    },
+                    {
+                      "name": "Teradyne (in-house)",
+                      "name_cn": "泰瑞达",
+                      "country": "US",
+                      "monopoly_level": "absolute",
+                      "share_pct": 35,
+                      "note": "UltraFLEX平台自研，SLT系统级测试"
+                    },
+                    {
+                      "name": "NI/Emerson",
+                      "name_cn": "NI/艾默生",
+                      "country": "US",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "模块化ATE仪器，部分高速通道"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Amkor",
+          "role": "后段 OSAT (美国本土)",
+          "note": "亚利桑那工厂，地缘政治对冲产能"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "TSMC CoWoS",
+          "role": "独家先进封装",
+          "note": "2026E: ~12K wpm 给 Google TPU（占 CoWoS 总产能 10%）; 增长最快客户之一"
+        },
+        {
+          "name": "ASE (日月光)",
+          "role": "后段 OSAT",
+          "note": "TPU 后段封测"
+        }
+      ],
+      "linked_industry_slugs": [
+        "cowos"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "通富微电/TFME",
+          "role": "昇腾2.5D封装主力 (>60%份额)",
+          "note": "提供基板2.5D封装(非CoWoS，无硅中介层)。产能已被华为预订至2027年。回避硅中介层但代价是无法集成HBM",
+          "localization": "△"
+        },
+        {
+          "name": "长电科技/JCET",
+          "role": "XDFOI Chiplet + Fanout-WLP",
+          "note": "全球第三大封测厂。XDFOI三维堆叠用于HBM配套封装。Fanout-WLP良率约75% vs TSMC CoWoS ~85-95%",
+          "localization": "△"
+        },
+        {
+          "name": "盛合晶微",
+          "role": "2.5D先进封装 (华为哈勃持股)",
+          "note": "国内唯一大规模量产2.5D封装企业，昇腾950核心封测。华为哈勃投资绑定",
+          "localization": "△"
+        },
+        {
+          "name": "—",
+          "role": "Si Interposer 硅中介层量产：2026-27预期",
+          "note": "国内无大尺寸硅中介层量产能力，这是昇腾无法使用CoWoS级封装的物理制约",
+          "localization": "✗"
+        }
+      ]
+    },
+    {
+      "id": "P5",
+      "slug": "hbm-memory",
+      "name": "HBM 高带宽内存",
+      "name_en": "HBM Memory",
+      "description": "HBM (High Bandwidth Memory) 是 AI 芯片的「燃料」——每颗 GPU 需 6-8 颗 HBM 堆叠。HBM3e 12Hi→HBM4 16Hi 是 2026-2027 最大升级。供需紧张将持续到 2027。",
+      "upstream": [
+        6
+      ],
+      "downstream": [
+        4
+      ],
+      "key_competitiveness": [
+        "TSV 产能 (Through-Silicon Via 堆叠能力)",
+        "堆叠层数 (8Hi→12Hi→16Hi 路线图)",
+        "散热与功耗 (HBM4 基座 die 从 2.5D 变 3D)",
+        "NVIDIA 认证进度 (HBM3e 资格认证是关键壁垒)"
+      ],
+      "market_share": [
+        {
+          "entity": "SK Hynix",
+          "share_pct": 55,
+          "note": "唯一量产 HBM3e 12Hi；NVDA 首要供应商；2025 TSV 150K wpm→2026 200K wpm"
+        },
+        {
+          "entity": "Samsung",
+          "share_pct": 35,
+          "note": "HBM3e 8Hi 量产，12Hi 认证中；2025 TSV 150K→2026 220K wpm"
+        },
+        {
+          "entity": "Micron",
+          "share_pct": 10,
+          "note": "HBM3e 8Hi 认证通过；跳过 12Hi 直追 HBM4；2025 TSV 60K→2026 90K wpm"
+        },
+        {
+          "entity": "CXMT (昇腾线)",
+          "share_pct": 0,
+          "note": "HBM2e小批量交付，技术差2-3年。预计2027年HBM3量产，2028年规模放量。灰色渠道补充三星/SK Hynix HBM"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "SK Hynix",
+          "role": "首要 HBM3e 供应商",
+          "note": "独家供应 HBM3e 12Hi 给 B200/GB300；HBM4 样品 2026H2",
+          "deep_chain": [
+            {
+              "component": "TSV蚀刻设备 (Through-Silicon Via)",
+              "description": "HBM堆叠核心工艺——在DRAM die上蚀刻微孔并填充铜，12Hi需12层TSV对准，精度<1μm",
+              "suppliers": [
+                {
+                  "name": "Lam Research",
+                  "share_pct": 45,
+                  "note": "美国，深硅蚀刻龙头，HBM TSV首选"
+                },
+                {
+                  "name": "Tokyo Electron/TEL",
+                  "share_pct": 28,
+                  "note": "日本，蚀刻+沉积一体方案"
+                },
+                {
+                  "name": "Applied Materials/AMAT",
+                  "share_pct": 22,
+                  "note": "美国，CMP+沉积"
+                },
+                {
+                  "name": "SPTS/KLA",
+                  "share_pct": 5,
+                  "note": "英国/美国，DRIE深硅蚀刻"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "TSV蚀刻设备交期12-18个月，Lam占主导。日系/美系三足鼎立，国产暂未进入",
+              "materials": [
+                {
+                  "material": "TSV绝缘应力材料 (液态聚酰亚胺)",
+                  "type": "化学配方",
+                  "description": "TSV穿孔后需填充绝缘层——液态聚酰亚胺(Polyimide)是唯一能满足12Hi/16Hi垂直堆叠热应力要求的绝缘材料，全球仅HD MicroSystems有量产配方",
+                  "suppliers": [
+                    {
+                      "name": "HD MicroSystems",
+                      "name_cn": "HD微系统",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 90,
+                      "note": "日立化成+杜邦合资，液态聚酰亚胺全球垄断"
+                    }
+                  ]
+                },
+                {
+                  "material": "高能等离子深孔刻蚀气体",
+                  "type": "特种气体",
+                  "description": "200层以上3D NAND和HBM TSV深孔刻蚀所需的高选择性氟基等离子气体配方——Lam Research核心工艺气体",
+                  "suppliers": [
+                    {
+                      "name": "Lam Research (in-house process)",
+                      "name_cn": "泛林半导体",
+                      "country": "US",
+                      "monopoly_level": "absolute",
+                      "share_pct": 60,
+                      "note": "深硅刻蚀工艺+气体集成方案，技术黑箱"
+                    }
+                  ]
+                },
+                {
+                  "material": "超薄晶圆解键合技术",
+                  "type": "精密设备",
+                  "description": "HBM3e 12Hi/HBM4 16Hi需要将DRAM晶圆减薄至30μm以下后解键合——决定堆叠良率的微米级减薄工艺",
+                  "suppliers": [
+                    {
+                      "name": "DISCO",
+                      "name_cn": "迪思科",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 75,
+                      "note": "垄断全球超薄晶圆减薄+激光划片+解键合全流程"
+                    },
+                    {
+                      "name": "Tokyo Seimitsu",
+                      "name_cn": "东京精密",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "日系第二"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "MR-MUF材料 (Mass Reflow-Molded Underfill)",
+              "description": "SK Hynix独家MR-MUF封装——将DRAM die堆叠后一体成型填充，散热优于NCF路线",
+              "suppliers": [
+                {
+                  "name": "SK Hynix (自研MR-MUF)",
+                  "share_pct": 80,
+                  "note": "自研配方，关键专利壁垒"
+                },
+                {
+                  "name": "Namics/日立化成",
+                  "share_pct": 12,
+                  "note": "日本，MUF材料供应商"
+                },
+                {
+                  "name": "Nagase/长濑",
+                  "share_pct": 8,
+                  "note": "日本，封装材料"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "MR-MUF是SK Hynix vs Samsung竞争的关键差异化技术",
+              "materials": [
+                {
+                  "material": "环氧树脂MUF配方",
+                  "type": "化学配方",
+                  "description": "MR-MUF核心——一体成型填充环氧树脂，要求热膨胀系数(CTE)与硅晶圆/DRAM die精确匹配，高温下零翘曲。SK Hynix自研为主+日系辅助",
+                  "suppliers": [
+                    {
+                      "name": "SK Hynix (in-house)",
+                      "name_cn": "SK海力士",
+                      "country": "KR",
+                      "monopoly_level": "absolute",
+                      "share_pct": 80,
+                      "note": "自研MR-MUF配方，核心专利壁垒"
+                    },
+                    {
+                      "name": "NAMICS",
+                      "name_cn": "纳米克斯",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 12,
+                      "note": "环氧树脂MUF全球配方龙头"
+                    },
+                    {
+                      "name": "Nagase",
+                      "name_cn": "长濑",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 8,
+                      "note": "日系封装材料"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "HBM测试设备",
+              "description": "HBM堆叠后需逐层测试，12Hi测试时间是8Hi的3x+，测试产能是主要瓶颈",
+              "suppliers": [
+                {
+                  "name": "Advantest",
+                  "share_pct": 55,
+                  "note": "日本，HBM测试机近乎垄断，V93000 HBM专用"
+                },
+                {
+                  "name": "Teradyne",
+                  "share_pct": 25,
+                  "note": "美国，HBM SLT系统级测试"
+                },
+                {
+                  "name": "YIKC/东京精密",
+                  "share_pct": 20,
+                  "note": "日本，DRAM晶圆测试+handler"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "HBM测试时间远超DRAM，Advantest近乎垄断，产能紧张至2027+",
+              "materials": [
+                {
+                  "material": "MEMS探针卡 (HBM专用)",
+                  "type": "精密设备",
+                  "description": "HBM测试核心耗材——12Hi/16Hi垂直堆叠需在晶圆级和封装级分别测试每层DRAM die。HBM专用探针卡需支持数千根微探针同时接触TSV微孔，间距<40μm，单卡售价$30-80万",
+                  "suppliers": [
+                    {
+                      "name": "FormFactor",
+                      "name_cn": "FormFactor",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "HBM探针卡全球龙头，SK Hynix/Samsung核心供应商"
+                    },
+                    {
+                      "name": "Technoprobe",
+                      "name_cn": "Technoprobe",
+                      "country": "IT",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "MEMS探针卡，HBM领域份额攀升"
+                    },
+                    {
+                      "name": "旺矽/MPI",
+                      "name_cn": "旺矽科技",
+                      "country": "TW",
+                      "monopoly_level": "dominant",
+                      "share_pct": 18,
+                      "note": "HBM探针卡新锐，打入SK Hynix供应链"
+                    },
+                    {
+                      "name": "精测/CHPT",
+                      "name_cn": "中华精测",
+                      "country": "TW",
+                      "monopoly_level": "entrant",
+                      "share_pct": 10,
+                      "note": "HBM探针卡研发中"
+                    },
+                    {
+                      "name": "JEM",
+                      "name_cn": "日本电子材料",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 7,
+                      "note": "日系探针卡"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Samsung",
+          "role": "第二 HBM3e 供应商",
+          "note": "HBM3e 8Hi 用于 H200；12Hi 资格认证阶段",
+          "deep_chain": [
+            {
+              "component": "TSV蚀刻设备",
+              "description": "Samsung在TSV领域自研程度较高，与SK Hynix共用设备生态",
+              "suppliers": [
+                {
+                  "name": "Lam Research",
+                  "share_pct": 40,
+                  "note": "美国，深硅蚀刻"
+                },
+                {
+                  "name": "Tokyo Electron/TEL",
+                  "share_pct": 25,
+                  "note": "日本"
+                },
+                {
+                  "name": "Applied Materials/AMAT",
+                  "share_pct": 20,
+                  "note": "美国"
+                },
+                {
+                  "name": "SEMES (Samsung子公司)",
+                  "share_pct": 15,
+                  "note": "Samsung自研设备，份额爬升"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "TSV设备与SK Hynix共享瓶颈，Lam扩产速度决定HBM总供给",
+              "materials": [
+                {
+                  "material": "TSV绝缘应力材料 (液态聚酰亚胺)",
+                  "type": "化学配方",
+                  "description": "同SK Hynix——12Hi/16Hi垂直堆叠热应力必须用液态聚酰亚胺填充TSV孔",
+                  "suppliers": [
+                    {
+                      "name": "HD MicroSystems",
+                      "name_cn": "HD微系统",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 90,
+                      "note": "日立化成+杜邦合资，液态聚酰亚胺全球垄断"
+                    }
+                  ]
+                },
+                {
+                  "material": "超薄晶圆解键合技术",
+                  "type": "精密设备",
+                  "description": "DRAM晶圆减薄至30μm以下后解键合——决定12Hi/16Hi堆叠良率",
+                  "suppliers": [
+                    {
+                      "name": "DISCO",
+                      "name_cn": "迪思科",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 75,
+                      "note": "垄断全球超薄晶圆减薄+解键合全流程"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "NCF材料 (Non-Conductive Film)",
+              "description": "Samsung独有NCF热压路线——die间夹NCF膜后热压键合，与SK Hynix MR-MUF竞争",
+              "suppliers": [
+                {
+                  "name": "Samsung SDI (自研NCF)",
+                  "share_pct": 70,
+                  "note": "Samsung子公司，NCF膜独家供应"
+                },
+                {
+                  "name": "Sekisui Chemical/积水化学",
+                  "share_pct": 15,
+                  "note": "日本，NCF膜第二供应商"
+                },
+                {
+                  "name": "Toray/东丽",
+                  "share_pct": 10,
+                  "note": "日本，电子材料"
+                },
+                {
+                  "name": "Others",
+                  "share_pct": 5,
+                  "note": "日系材料"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "NCF散热不如MR-MUF，Samsung在HBM4可能转MUF路线",
+              "materials": [
+                {
+                  "material": "NCF绝缘膜配方",
+                  "type": "化学配方",
+                  "description": "非导电薄膜(NCF)——Samsung独创HBM堆叠路线所需的关键膜材料。热压时需同时满足绝缘+导热+不产生气泡，配方难度极高",
+                  "suppliers": [
+                    {
+                      "name": "Samsung SDI",
+                      "name_cn": "三星SDI",
+                      "country": "KR",
+                      "monopoly_level": "absolute",
+                      "share_pct": 70,
+                      "note": "独家NCF膜配方，Samsung子公司"
+                    },
+                    {
+                      "name": "Sekisui Chemical",
+                      "name_cn": "积水化学",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "日系NCF膜第二供应商"
+                    },
+                    {
+                      "name": "Toray",
+                      "name_cn": "东丽",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "日系电子材料巨头"
+                    },
+                    {
+                      "name": "HD MicroSystems",
+                      "name_cn": "HD微系统",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 5,
+                      "note": "聚酰亚胺基薄膜方案"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "HBM测试设备",
+              "description": "同SK Hynix——测试时间是8Hi的3x+，测试产能瓶颈行业共通",
+              "suppliers": [
+                {
+                  "name": "Advantest",
+                  "share_pct": 50,
+                  "note": "日本，HBM测试机主导"
+                },
+                {
+                  "name": "YIKC/东京精密",
+                  "share_pct": 25,
+                  "note": "日本，Samsung传统ATE供应商"
+                },
+                {
+                  "name": "Teradyne",
+                  "share_pct": 20,
+                  "note": "美国，SLT系统级测试"
+                },
+                {
+                  "name": "SEMES (Samsung子公司)",
+                  "share_pct": 5,
+                  "note": "Samsung自研测试设备"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "Advantest产能紧张，HBM测试是三星+SK Hynix共同瓶颈",
+              "materials": [
+                {
+                  "material": "MEMS探针卡 (HBM专用)",
+                  "type": "精密设备",
+                  "description": "同SK Hynix——HBM堆叠每层DRAM die需晶圆级+封装级分别测试，HBM专用探针卡需数千根微探针同时接触TSV微孔",
+                  "suppliers": [
+                    {
+                      "name": "FormFactor",
+                      "name_cn": "FormFactor",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "HBM探针卡全球龙头"
+                    },
+                    {
+                      "name": "Technoprobe",
+                      "name_cn": "Technoprobe",
+                      "country": "IT",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "MEMS探针卡第二"
+                    },
+                    {
+                      "name": "旺矽/MPI",
+                      "name_cn": "旺矽科技",
+                      "country": "TW",
+                      "monopoly_level": "dominant",
+                      "share_pct": 18,
+                      "note": "HBM探针卡新锐"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Micron",
+          "role": "第三 HBM3e 供应商",
+          "note": "HBM3e 8Hi 认证完成；份额快速爬升",
+          "deep_chain": [
+            {
+              "component": "TSV蚀刻设备",
+              "description": "Micron TSV产能2026E 90Kwpm，是扩产最快的HBM供应商",
+              "suppliers": [
+                {
+                  "name": "Lam Research",
+                  "share_pct": 45,
+                  "note": "美国，Micron美系供应链优势"
+                },
+                {
+                  "name": "Applied Materials/AMAT",
+                  "share_pct": 30,
+                  "note": "美国"
+                },
+                {
+                  "name": "Tokyo Electron/TEL",
+                  "share_pct": 18,
+                  "note": "日本"
+                },
+                {
+                  "name": "SPTS/KLA",
+                  "share_pct": 7,
+                  "note": "英国/美国"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "Micron跳过12Hi直追HBM4，TSV设备投资倍增",
+              "materials": [
+                {
+                  "material": "TSV绝缘应力材料 (液态聚酰亚胺)",
+                  "type": "化学配方",
+                  "description": "同SK Hynix——12Hi/16Hi垂直堆叠热应力必须用液态聚酰亚胺填充TSV孔",
+                  "suppliers": [
+                    {
+                      "name": "HD MicroSystems",
+                      "name_cn": "HD微系统",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 90,
+                      "note": "全球唯一液态聚酰亚胺量产供应商"
+                    }
+                  ]
+                },
+                {
+                  "material": "超薄晶圆解键合技术",
+                  "type": "精密设备",
+                  "description": "Micron跳过12Hi直追HBM4，减薄至30μm以下的解键合工艺更关键",
+                  "suppliers": [
+                    {
+                      "name": "DISCO",
+                      "name_cn": "迪思科",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 75,
+                      "note": "垄断全球超薄晶圆减薄+解键合"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "HBM测试设备",
+              "description": "Micron作为第三供应商，测试设备以Advantest+Teradyne为主",
+              "suppliers": [
+                {
+                  "name": "Advantest",
+                  "share_pct": 45,
+                  "note": "日本，V93000 HBM测试"
+                },
+                {
+                  "name": "Teradyne",
+                  "share_pct": 35,
+                  "note": "美国，Micron美系供应链优势"
+                },
+                {
+                  "name": "YIKC/东京精密",
+                  "share_pct": 20,
+                  "note": "日本"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "Micron HBM4跳过12Hi直接量产，测试需求更加集中",
+              "materials": [
+                {
+                  "material": "MEMS探针卡 (HBM专用)",
+                  "type": "精密设备",
+                  "description": "同SK Hynix——Micron HBM4跳过12Hi量产，探针卡需求更集中",
+                  "suppliers": [
+                    {
+                      "name": "FormFactor",
+                      "name_cn": "FormFactor",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "HBM探针卡全球龙头，Micron核心供应商"
+                    },
+                    {
+                      "name": "Technoprobe",
+                      "name_cn": "Technoprobe",
+                      "country": "IT",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "MEMS探针卡，Teradyne持股~10%"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "SK Hynix",
+          "role": "HBM3e 供应商",
+          "note": "TPU v6e Trillium 用 HBM3e；量小于 NVDA"
+        },
+        {
+          "name": "Samsung",
+          "role": "HBM3e 第二供应商",
+          "note": "TPU v6 认证中"
+        }
+      ],
+      "linked_industry_slugs": [
+        "memory"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "CXMT/长鑫存储",
+          "role": "国产HBM — 小批量交付，技术差2-3年",
+          "note": "HBM2e已小批量交付，HBM3研发中。与国际先进水平差距约2-3年（良率65-70% vs 海外>90%）。TSV设备仍受管制，扩产受限。2026Q3若良率突破80%则为产业链'胜负手'",
+          "localization": "△"
+        },
+        {
+          "name": "海外灰色渠道",
+          "role": "HBM2e/HBM3 灰色进口",
+          "note": "业界普遍猜测昇腾通过第三地转口获取三星/SK Hynix HBM。量小、价高、不稳定，但可填补CXMT量产前的关键缺口。美国持续加码管制下此渠道风险上升",
+          "localization": "✗"
+        },
+        {
+          "name": "雅克科技",
+          "role": "HBM前驱体材料",
+          "note": "HBM TSV填充所需的高K介质前驱体，国产替代先锋。若Q1业绩同比+150%则预示产业链打通",
+          "localization": "△"
+        },
+        {
+          "name": "赛腾股份",
+          "role": "HBM检测设备",
+          "note": "半导体检测设备国产龙头，HBM晶圆级/封装级检测设备研发中",
+          "localization": "△"
+        }
+      ]
+    },
+    {
+      "id": "P6",
+      "slug": "abf-substrate",
+      "name": "ABF 载板",
+      "name_en": "ABF Substrate",
+      "description": "ABF (Ajinomoto Build-up Film) 载板是连接 GPU/TPU die 与 PCB 的关键基板。AI 芯片面积增大 (2x→4x reticle) 推动大尺寸 ABF 需求激增。Ajinomoto 是唯一 ABF 膜供应商。",
+      "upstream": [],
+      "downstream": [
+        7,
+        8
+      ],
+      "key_competitiveness": [
+        "大尺寸 (100mm+ × 100mm+) 载板能力",
+        "层数 (14→18→22 layers 路线图)",
+        "Ajinomoto ABF 膜供应保障（唯一来源风险）",
+        "FC-BGA 良率 (大尺寸良率是核心壁垒)"
+      ],
+      "market_share": [
+        {
+          "entity": "Unimicron/欣兴电子",
+          "share_pct": 25,
+          "note": "全球最大 ABF 载板厂；NVDA+Intel 主力"
+        },
+        {
+          "entity": "Ibiden/揖斐电",
+          "share_pct": 22,
+          "note": "Intel/AMD 传统核心；切入 NVDA AI 载板"
+        },
+        {
+          "entity": "Shinko Electric/新光电气",
+          "share_pct": 15,
+          "note": "Intel 核心供应商；被 JIC 收购中"
+        },
+        {
+          "entity": "AT&S",
+          "share_pct": 10,
+          "note": "欧洲唯一 ABF 供应商；Intel/AMD 客户"
+        },
+        {
+          "entity": "Kinsus/景硕",
+          "share_pct": 8,
+          "note": "BT→ABF 转型中；MTK/Qualcomm 客户"
+        },
+        {
+          "entity": "Nanya/南电",
+          "share_pct": 7,
+          "note": "台塑集团；ABF 产能扩充中"
+        },
+        {
+          "entity": "Others (SEMCO/臻鼎/兴森)",
+          "share_pct": 13,
+          "note": "新进入者，产能爬坡期"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "Ibiden",
+          "role": "首要 ABF 载板供应商",
+          "note": "NVDA AI GPU 大尺寸载板核心供应商",
+          "deep_chain": [
+            {
+              "component": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+              "description": "FC-BGA载板核心——AI GPU(面积>2500mm²)需18-22层ABF膜堆积，线宽/线距缩至8/8μm。ABF膜是味之素氨基酸副产品中提取的绝缘树脂，全球唯一供应。低端GPU用BT树脂载板(层数4-8层)，AI芯片则100%依赖ABF",
+              "suppliers": [
+                {
+                  "name": "Ajinomoto/味之素",
+                  "share_pct": 100,
+                  "note": "日本百年味精企业，氨基酸副产品ABF膜全球独家垄断。断供=全球AI芯片封装归零"
+                },
+                {
+                  "name": "Shinko Electric/新光电气",
+                  "share_pct": 0,
+                  "note": "日本ABF载板重要供应商(被JIC收购中)，虽不自产ABF膜但在载板制造端份额~15%。Ibiden/欣兴/Shinko三家合计占ABF载板~60%"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "全球唯一ABF膜供应商(味之素)+仅3-5家ABF载板厂能量产大尺寸(100mm+)FC-BGA。22层板交期已拉长至12周+",
+              "materials": [
+                {
+                  "material": "ABF氨基酸衍生绝缘树脂",
+                  "type": "化学配方",
+                  "description": "味之素堆积膜核心配方——从味精氨基酸副产品中提取的特种绝缘树脂。全球仅味之素掌握量产工艺，是AI先进封装载板的唯一绝缘堆积层材料。一旦断供，NVIDIA B200/GB300、Google TPU等所有AI芯片封装一秒钟归零",
+                  "suppliers": [
+                    {
+                      "name": "Ajinomoto",
+                      "name_cn": "味之素",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 100,
+                      "note": "百年味精企业，ABF膜全球独家垄断。没有它，台积电CoWoS产出的芯片也无法封装到载板上"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Unimicron/欣兴",
+          "role": "第二 ABF 载板供应商",
+          "note": "GB300 平台载板认证通过",
+          "deep_chain": [
+            {
+              "component": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+              "description": "与Ibiden共用同一ABF膜供应源。欣兴虽为全球最大ABF载板厂，核心材料ABF膜100%依赖味之素",
+              "suppliers": [
+                {
+                  "name": "Ajinomoto/味之素",
+                  "share_pct": 100,
+                  "note": "日本，全球唯一ABF膜供应商"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "所有ABF载板厂共享同一上游瓶颈——味之素ABF膜产能=AI芯片总出货硬顶",
+              "materials": [
+                {
+                  "material": "ABF氨基酸衍生绝缘树脂",
+                  "type": "化学配方",
+                  "description": "味之素堆积膜——全球所有AI芯片高密度封装载板的唯一绝缘层材料",
+                  "suppliers": [
+                    {
+                      "name": "Ajinomoto",
+                      "name_cn": "味之素",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 100,
+                      "note": "独家垄断，扩产周期2-3年"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "Ibiden",
+          "role": "首要 ABF 载板供应商",
+          "note": "TPU 载板与小尺寸 GPU 类似规格"
+        },
+        {
+          "name": "Unimicron/欣兴",
+          "role": "第二 ABF 载板供应商",
+          "note": "TPU v7 平台认证中"
+        }
+      ],
+      "linked_industry_slugs": [
+        "abf-substrate"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "深南电路",
+          "role": "ABF载板 — 14层+ FC-BGA",
+          "note": "国内唯一量产14层以上FC-BGA基板。昇腾910C基板份额约60%",
+          "localization": "✓"
+        },
+        {
+          "name": "兴森科技",
+          "role": "ABF载板 — 20层+ ABF，约70%昇腾份额",
+          "note": "珠海基地72亿元产能专为昇腾定制，成本较海外低30%",
+          "localization": "✓"
+        },
+        {
+          "name": "华正新材",
+          "role": "CBF膜 (ABF替代方案)",
+          "note": "CBF膜已通过昇腾910C验证，6亿产能产线投用。ABF膜国产替代关键标的",
+          "localization": "△"
+        },
+        {
+          "name": "味之素 (Ajinomoto)",
+          "role": "ABF薄膜材料 — 100%进口依赖",
+          "note": "载板加工已国产化，但ABF膜本身仍100%依赖味之素。'壳国产、芯进口'",
+          "localization": "✗"
+        }
+      ]
+    },
+    {
+      "id": "P7",
+      "slug": "optical-transceivers",
+      "name": "光模块与激光器",
+      "name_en": "Optical Transceivers & Lasers",
+      "description": "800G→1.6T→3.2T 光模块是 GPU 集群 Scale-out 的带宽基础。EML/CWDM/VCSEL 激光器 + DSP 芯片 + 硅光子集成三条技术路线共同决定光互联带宽天花板。",
+      "upstream": [
+        9
+      ],
+      "downstream": [
+        8,
+        11
+      ],
+      "key_competitiveness": [
+        "光模块速率迭代 (800G→1.6T→3.2T PAM4)",
+        "EML/CWDM/VCSEL 激光器产能与良率",
+        "硅光子集成度 (CPO 2027-2028 商用)",
+        "DSP 芯片供应 (224G→448G PAM4)",
+        "NVDA/Google 认证壁垒 (6-12 月资格周期)"
+      ],
+      "market_share": [
+        {
+          "entity": "中际旭创/Innolight",
+          "share_pct": 30,
+          "note": "800G/1.6T 光模块出货量全球第一；NVDA+Google 双客户"
+        },
+        {
+          "entity": "Coherent",
+          "share_pct": 15,
+          "note": "VCSEL+EML 激光器 + 800G 光模块"
+        },
+        {
+          "entity": "新易盛/Eoptolink",
+          "share_pct": 10,
+          "note": "800G LPO 方案领先；NVDA 供应商"
+        },
+        {
+          "entity": "Fabrinet",
+          "share_pct": 8,
+          "note": "NVDA 光模块 L1 代工 (800G 硅光子)"
+        },
+        {
+          "entity": "Hisense/海信宽带",
+          "share_pct": 8,
+          "note": "800G 批量出货"
+        },
+        {
+          "entity": "Lumentum",
+          "share_pct": 12,
+          "note": "EML 35%全球份额(800G/1.6T瓶颈)+VCSEL 25%+CPO ELS龙头。NVDA $20亿投资锁定产能。组件级但议价权极高"
+        },
+        {
+          "entity": "Others (天孚/联特/源杰)",
+          "share_pct": 22,
+          "note": "光引擎 FAU + 光芯片 + 器件"
+        },
+        {
+          "entity": "Corning/康宁",
+          "share_pct": 0,
+          "note": "被动光学层(光纤/玻璃/连接器)。NVDA $32亿采购承诺+Meta $60亿长协。'卖铲人'定位，不受CPO架构之争影响"
+        },
+        {
+          "entity": "华为 (昇腾线光模块)",
+          "share_pct": 0,
+          "note": "自研光交换+光模块，不对外销售。生态内闭环"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "中际旭创/Innolight",
+          "role": "首要光模块供应商",
+          "note": "800G/1.6T 光模块；GB300 Spectrum-X 配套",
+          "deep_chain": [
+            {
+              "component": "EML激光器 (800G/1.6T)",
+              "description": "电吸收调制激光器，800G DR4/FR4核心光芯片，每光模块需4-8颗EML",
+              "suppliers": [
+                {
+                  "name": "Lumentum",
+                  "share_pct": 35,
+                  "note": "美国，800G EML产能全球最大，NVDA首选"
+                },
+                {
+                  "name": "三菱电机",
+                  "share_pct": 25,
+                  "note": "日本，传统EML大厂，产能稳定"
+                },
+                {
+                  "name": "Broadcom",
+                  "share_pct": 20,
+                  "note": "美国，自供+外售，垂直整合"
+                },
+                {
+                  "name": "Coherent (in-house)",
+                  "share_pct": 10,
+                  "note": "自研EML，部分自供"
+                },
+                {
+                  "name": "源杰科技",
+                  "share_pct": 5,
+                  "note": "国产CWDM/EML，100G EML量产，200G送样"
+                },
+                {
+                  "name": "光迅科技/Accelink",
+                  "share_pct": 5,
+                  "note": "国产光芯片，25G/50G EML"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "Lumentum EML产能紧张至2027，扩产周期12-18月。国产源杰/光迅替代空间大",
+              "materials": [
+                {
+                  "material": "磷化铟外延片 (InP Epi-Wafer)",
+                  "type": "光学材料",
+                  "description": "EML激光器核心衬底——磷化铟(InP)外延片是800G/1.6T长距光芯片的必需材料。全球InP外延产能高度集中，扩产周期18-24个月",
+                  "suppliers": [
+                    {
+                      "name": "IQE",
+                      "name_cn": "IQE",
+                      "country": "UK",
+                      "monopoly_level": "dominant",
+                      "share_pct": 40,
+                      "note": "英国，全球最大化合物半导体外延片代工厂"
+                    },
+                    {
+                      "name": "Sumitomo Electric",
+                      "name_cn": "住友电工",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "日本，InP衬底+外延垂直整合"
+                    },
+                    {
+                      "name": "Landmark Photonics",
+                      "name_cn": "朗达光子",
+                      "country": "UK",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 15,
+                      "note": "InP外延片专业厂"
+                    },
+                    {
+                      "name": "IntelliEPI",
+                      "name_cn": "英特磊",
+                      "country": "TW",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 12,
+                      "note": "台系MBE外延片，光通信客户"
+                    },
+                    {
+                      "name": "全磊光电",
+                      "name_cn": "全磊光电",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 8,
+                      "note": "国产InP外延，送样验证中"
+                    }
+                  ]
+                },
+                {
+                  "material": "砷化镓衬底 (GaAs Substrate)",
+                  "type": "光学材料",
+                  "description": "VCSEL和短距光芯片的基础衬底材料——GaAs晶圆是光通信和3D感测的共同上游瓶颈",
+                  "suppliers": [
+                    {
+                      "name": "Freiberger",
+                      "name_cn": "费里伯格",
+                      "country": "DE",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "德国，全球最大GaAs衬底厂"
+                    },
+                    {
+                      "name": "Sumitomo Electric",
+                      "name_cn": "住友电工",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "日本，GaAs衬底龙头"
+                    },
+                    {
+                      "name": "AXT",
+                      "name_cn": "AXT",
+                      "country": "US/CN",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "美国公司，中国生产，GaAs衬底第三"
+                    },
+                    {
+                      "name": "云南锗业",
+                      "name_cn": "云南锗业",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 10,
+                      "note": "国产GaAs/InP衬底，产能爬坡"
+                    },
+                    {
+                      "name": "Others",
+                      "name_cn": "其他",
+                      "country": "JP/DE",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "Dowa等日系"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "DSP芯片 (224G PAM4)",
+              "description": "数字信号处理器——800G/1.6T光模块的核心电芯片，占BOM 20-25%",
+              "suppliers": [
+                {
+                  "name": "Marvell",
+                  "share_pct": 40,
+                  "note": "美国，800G/1.6T DSP领先，Orion平台；NVDA 2026年3月投资$20亿+NVLink Fusion合作"
+                },
+                {
+                  "name": "Broadcom",
+                  "share_pct": 30,
+                  "note": "美国，Tomahawk+DSP垂直整合"
+                },
+                {
+                  "name": "Credo Technology",
+                  "share_pct": 20,
+                  "note": "美国/上海，224G SerDes DSP，NVDA AEC核心"
+                },
+                {
+                  "name": "MaxLinear",
+                  "share_pct": 5,
+                  "note": "美国，DSP追赶者"
+                },
+                {
+                  "name": "Others",
+                  "share_pct": 5,
+                  "note": "国产DSP几乎空白，最大国产替代缺口"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "DSP是光模块BOM最贵单一器件，国产为零。最大国产替代空间但技术门槛极高",
+              "materials": [
+                {
+                  "material": "5nm/3nm先进制程代工产能",
+                  "type": "物理材料",
+                  "description": "224G DSP芯片已推进至5nm甚至3nm工艺——台积电先进制程产能被GPU/ASIC包圆，DSP厂拿到的晶圆配额极为有限。博通/Marvell虽有设计能力但流片排期已到2028年。这是产能分配问题而非技术问题",
+                  "suppliers": [
+                    {
+                      "name": "TSMC",
+                      "name_cn": "台积电",
+                      "country": "TW",
+                      "monopoly_level": "absolute",
+                      "share_pct": 90,
+                      "note": "5nm/3nm先进制程垄断，DSP晶圆配额被GPU严重挤占"
+                    },
+                    {
+                      "name": "Samsung Foundry",
+                      "name_cn": "三星代工",
+                      "country": "KR",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "GAA 3nm良率低，DSP客户极少"
+                    }
+                  ]
+                },
+                {
+                  "material": "224G SerDes PHY IP",
+                  "type": "精密设备",
+                  "description": "224G PAM4 SerDes是DSP芯片的核心IP模块——需在5nm以下节点实现224Gbps信号调制和CDR时钟恢复。全球仅Broadcom/Marvell/Credo三家掌握",
+                  "suppliers": [
+                    {
+                      "name": "Broadcom (in-house)",
+                      "name_cn": "博通",
+                      "country": "US",
+                      "monopoly_level": "absolute",
+                      "share_pct": 35,
+                      "note": "自研SerDes IP，Tomahawk+DSP垂直整合"
+                    },
+                    {
+                      "name": "Marvell (in-house)",
+                      "name_cn": "Marvell",
+                      "country": "US",
+                      "monopoly_level": "absolute",
+                      "share_pct": 35,
+                      "note": "收购Inphi获得224G SerDes IP，Orion平台"
+                    },
+                    {
+                      "name": "Credo Technology",
+                      "name_cn": "Credo",
+                      "country": "US/CN",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "唯一第三方224G SerDes IP供应商，NVDA AEC认证"
+                    },
+                    {
+                      "name": "Alphawave Semi",
+                      "name_cn": "Alphawave",
+                      "country": "UK",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "SerDes IP新锐，112G量产/224G研发"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "硅光子集成 (SiPh)",
+              "description": "将光器件集成在硅基芯片上，CPO/LPO核心使能技术，2027-28商用",
+              "suppliers": [
+                {
+                  "name": "Intel",
+                  "share_pct": 30,
+                  "note": "硅光子 pioneer，100G/400G CWDM"
+                },
+                {
+                  "name": "GlobalFoundries",
+                  "share_pct": 25,
+                  "note": "美国，硅光子代工 (Ayar Labs/Cisco)"
+                },
+                {
+                  "name": "TSMC",
+                  "share_pct": 20,
+                  "note": "COUPE硅光子平台，NVDA Rubin参考设计"
+                },
+                {
+                  "name": "Tower Semiconductor",
+                  "share_pct": 10,
+                  "note": "以色列，硅光子代工"
+                },
+                {
+                  "name": "中际旭创 (in-house)",
+                  "share_pct": 10,
+                  "note": "自研硅光子引擎，Fabrinet代工"
+                },
+                {
+                  "name": "Silex/中芯集成",
+                  "share_pct": 5,
+                  "note": "国产硅光代工，起步阶段"
+                },
+                {
+                  "name": "Ayar Labs",
+                  "share_pct": 0,
+                  "note": "美国，CPO芯粒先驱，NVDA/AMD/联发科参与$5亿E轮融资。TeraPHY光I/O芯粒，2027-28量产"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "硅光子仍在早期，TSMC COUPE是2027最大变量",
+              "materials": [
+                {
+                  "material": "外置激光源 (External Laser Source, ELS)",
+                  "type": "光学材料",
+                  "description": "CPO硅光子核心——光源外置设计需要高功率CW激光器通过光纤耦合进硅光芯片。TSMC COUPE/Intel均依赖ELS",
+                  "suppliers": [
+                    {
+                      "name": "Lumentum",
+                      "name_cn": "Lumentum",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 40,
+                      "note": "CPO ELS激光器龙头，NVDA参考设计"
+                    },
+                    {
+                      "name": "Coherent",
+                      "name_cn": "Coherent",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "高功率CW激光器"
+                    },
+                    {
+                      "name": "三菱电机",
+                      "name_cn": "三菱电机",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "日系CW激光器"
+                    },
+                    {
+                      "name": "源杰科技",
+                      "name_cn": "源杰科技",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 5,
+                      "note": "国产CW激光器研发中"
+                    },
+                    {
+                      "name": "仕佳光子",
+                      "name_cn": "仕佳光子",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 5,
+                      "note": "国产PLC+AWG芯片，硅光子配套"
+                    }
+                  ]
+                },
+                {
+                  "material": "3D光电混合键合 (3D Opto-Electrical Hybrid Bonding)",
+                  "type": "精密设备",
+                  "description": "TSMC COUPE平台核心工艺——将电芯片(EIC)与光芯片(PIC)通过硅通孔进行三维混合键合，是CPO量产的终极工艺壁垒",
+                  "suppliers": [
+                    {
+                      "name": "TSMC",
+                      "name_cn": "台积电",
+                      "country": "TW",
+                      "monopoly_level": "absolute",
+                      "share_pct": 100,
+                      "note": "COUPE平台独有3D光电混合键合工艺，无第二家可量产"
+                    },
+                    {
+                      "name": "Corning",
+                      "name_cn": "康宁",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 0,
+                      "note": "玻璃基板/光纤材料龙头。NVDA $32亿采购承诺锁定光学连接产能"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "新易盛/Eoptolink",
+          "role": "光模块供应商",
+          "note": "800G LPO；NVDA 认证通过",
+          "deep_chain": [
+            {
+              "component": "EML激光器",
+              "description": "800G DR4/FR4核心光芯片，新易盛外购为主，单模块需4-8颗",
+              "suppliers": [
+                {
+                  "name": "Lumentum",
+                  "share_pct": 35,
+                  "note": "美国，800G EML产能最大"
+                },
+                {
+                  "name": "三菱电机",
+                  "share_pct": 25,
+                  "note": "日本，EML稳定供应商"
+                },
+                {
+                  "name": "Broadcom",
+                  "share_pct": 15,
+                  "note": "美国"
+                },
+                {
+                  "name": "源杰科技",
+                  "share_pct": 10,
+                  "note": "国产CWDM/EML，100G CWDM4批量，200G送样"
+                },
+                {
+                  "name": "光迅科技/Accelink",
+                  "share_pct": 10,
+                  "note": "国产光芯片，50G/100G EML"
+                },
+                {
+                  "name": "Others",
+                  "share_pct": 5,
+                  "note": "日系/台系"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "EML高端由美日垄断。源杰科技若200G EML验证通过将受益于新易盛产能扩张",
+              "materials": [
+                {
+                  "material": "磷化铟外延片 (InP Epi-Wafer)",
+                  "type": "光学材料",
+                  "description": "EML激光器核心衬底——全球InP外延产能高度集中，扩产周期18-24个月。2026年供需缺口超70%",
+                  "suppliers": [
+                    {
+                      "name": "IQE",
+                      "name_cn": "IQE",
+                      "country": "UK",
+                      "monopoly_level": "dominant",
+                      "share_pct": 40,
+                      "note": "全球最大化合物半导体外延片代工厂"
+                    },
+                    {
+                      "name": "Sumitomo Electric",
+                      "name_cn": "住友电工",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "InP衬底+外延垂直整合"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "DSP芯片 (224G PAM4)",
+              "description": "光模块核心电芯片，信号补偿+CDR，占BOM成本~20%",
+              "suppliers": [
+                {
+                  "name": "Marvell",
+                  "share_pct": 40,
+                  "note": "美国，800G/1.6T DSP首选；NVDA 2026年3月投资$20亿+NVLink Fusion合作"
+                },
+                {
+                  "name": "Broadcom",
+                  "share_pct": 30,
+                  "note": "美国"
+                },
+                {
+                  "name": "Credo Technology",
+                  "share_pct": 25,
+                  "note": "美国/上海，224G SerDes，NVDA认证AEC DSP"
+                },
+                {
+                  "name": "Others",
+                  "share_pct": 5,
+                  "note": "国产DSP近乎空白"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "DSP国产化率≈0%，光模块最卡脖子环节，但技术门槛极高",
+              "materials": [
+                {
+                  "material": "5nm/3nm先进制程代工产能",
+                  "type": "物理材料",
+                  "description": "224G DSP需5nm以下工艺——台积电先进产能被GPU/ASIC挤占，DSP晶圆配额极为有限，流片排期至2028年",
+                  "suppliers": [
+                    {
+                      "name": "TSMC",
+                      "name_cn": "台积电",
+                      "country": "TW",
+                      "monopoly_level": "absolute",
+                      "share_pct": 90,
+                      "note": "5nm/3nm垄断，DSP晶圆配额被GPU严重挤占"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "FAU光引擎 (Fiber Array Unit)",
+              "description": "光纤阵列单元——光模块的光学耦合组件，影响插损和良率",
+              "suppliers": [
+                {
+                  "name": "天孚通信/TFC",
+                  "share_pct": 50,
+                  "note": "国产FAU龙头，独家供应NVDA光引擎FAU"
+                },
+                {
+                  "name": "潮州三环/Three-Circle",
+                  "share_pct": 20,
+                  "note": "国产陶瓷插芯+FAU，产能爬坡"
+                },
+                {
+                  "name": "Senko/扇港",
+                  "share_pct": 15,
+                  "note": "日本，光纤连接器龙头"
+                },
+                {
+                  "name": "US Conec",
+                  "share_pct": 10,
+                  "note": "美国，MTP/MPO连接器"
+                },
+                {
+                  "name": "太辰光/T&S",
+                  "share_pct": 5,
+                  "note": "国产光纤连接器+FAU"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "天孚通信近乎垄断NVDA FAU，产能扩张带来确定性增长",
+              "materials": [
+                {
+                  "material": "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)",
+                  "type": "物理材料",
+                  "description": "FAU核心——每根光纤需穿过亚微米级精度的氧化锆陶瓷插芯进行对准。插芯内孔精度±0.5μm，全球仅3-4家可量产",
+                  "suppliers": [
+                    {
+                      "name": "潮州三环/Three-Circle",
+                      "name_cn": "潮州三环",
+                      "country": "CN",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "全球最大陶瓷插芯厂，光纤连接器陶瓷件市占率超50%"
+                    },
+                    {
+                      "name": "TOTO",
+                      "name_cn": "东陶",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "日系精密陶瓷巨头，氧化锆陶瓷插芯"
+                    },
+                    {
+                      "name": "Kyocera",
+                      "name_cn": "京瓷",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "日系精密陶瓷，插芯+陶瓷套管"
+                    },
+                    {
+                      "name": "Adamant",
+                      "name_cn": "Adamant",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "日系精密陶瓷插芯"
+                    },
+                    {
+                      "name": "Corning",
+                      "name_cn": "康宁",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 0,
+                      "note": "光纤/玻璃基板龙头。NVDA $5亿投资+$32亿采购承诺锁定光学连接产能"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Coherent",
+          "role": "光模块+激光器供应商",
+          "note": "800G 光模块 + EML 激光器。NVDA 2026年3月投资$20亿+数十亿采购承诺锁定激光器产能",
+          "deep_chain": [
+            {
+              "component": "VCSEL激光器",
+              "description": "垂直腔面发射激光器，短距(SR)光模块核心光源，Coherent是全球VCSEL龙头",
+              "suppliers": [
+                {
+                  "name": "Coherent (in-house)",
+                  "share_pct": 60,
+                  "note": "自研VCSEL，全球最大供应商，iPhone Face ID+数通"
+                },
+                {
+                  "name": "Lumentum",
+                  "share_pct": 25,
+                  "note": "美国，VCSEL第二供应商"
+                },
+                {
+                  "name": "Trumpf/通快",
+                  "share_pct": 10,
+                  "note": "德国，VCSEL"
+                },
+                {
+                  "name": "Others (三安/乾照)",
+                  "share_pct": 5,
+                  "note": "国产VCSEL，消费电子为主，数通验证中"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "Coherent VCSEL自供为主，格局稳定",
+              "materials": [
+                {
+                  "material": "GaAs外延片与MOCVD设备",
+                  "type": "光学材料",
+                  "description": "VCSEL核心——GaAs衬底上通过MOCVD外延生长数十层DBR反射镜和有源区。MOCVD设备交期长+GaAs衬底产能紧张双重约束",
+                  "suppliers": [
+                    {
+                      "name": "IQE",
+                      "name_cn": "IQE",
+                      "country": "UK",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "全球最大VCSEL外延片代工厂，Coherent/Lumentum核心供应商"
+                    },
+                    {
+                      "name": "AIXTRON",
+                      "name_cn": "爱思强",
+                      "country": "DE",
+                      "monopoly_level": "absolute",
+                      "share_pct": 45,
+                      "note": "德国MOCVD设备龙头，GaAs/InP外延设备近乎垄断"
+                    },
+                    {
+                      "name": "Veeco",
+                      "name_cn": "Veeco",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "MOCVD设备第二"
+                    },
+                    {
+                      "name": "全新光电/VPEC",
+                      "name_cn": "全新光电",
+                      "country": "TW",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "台系VCSEL外延片，400G VCSEL 2026Q2量产"
+                    },
+                    {
+                      "name": "中微公司/AMEC",
+                      "name_cn": "中微公司",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 5,
+                      "note": "国产MOCVD设备，GaAs/InP外延追赶中"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "EML激光器",
+              "description": "长距(LR/ER)光模块光源，Coherent自研+外购混合",
+              "suppliers": [
+                {
+                  "name": "Coherent (in-house)",
+                  "share_pct": 40,
+                  "note": "自研EML，Finisar技术遗产"
+                },
+                {
+                  "name": "Lumentum",
+                  "share_pct": 30,
+                  "note": "美国"
+                },
+                {
+                  "name": "三菱电机",
+                  "share_pct": 20,
+                  "note": "日本"
+                },
+                {
+                  "name": "Broadcom",
+                  "share_pct": 10,
+                  "note": "美国"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": null,
+              "materials": [
+                {
+                  "material": "磷化铟外延片 (InP Epi-Wafer)",
+                  "type": "光学材料",
+                  "description": "同中际旭创——InP外延片是EML核心衬底，2026年供需缺口超70%",
+                  "suppliers": [
+                    {
+                      "name": "IQE",
+                      "name_cn": "IQE",
+                      "country": "UK",
+                      "monopoly_level": "dominant",
+                      "share_pct": 40,
+                      "note": "全球最大化合物半导体外延片代工厂"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "DSP芯片",
+              "description": "800G/1.6T光模块DSP，Coherent全部外购",
+              "suppliers": [
+                {
+                  "name": "Marvell",
+                  "share_pct": 45,
+                  "note": "美国；NVDA 2026年3月投资$20亿+NVLink Fusion合作"
+                },
+                {
+                  "name": "Broadcom",
+                  "share_pct": 30,
+                  "note": "美国"
+                },
+                {
+                  "name": "Credo Technology",
+                  "share_pct": 20,
+                  "note": "美国/上海"
+                },
+                {
+                  "name": "MaxLinear",
+                  "share_pct": 5,
+                  "note": "美国"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "Coherent DSP全部外购，受制于Marvell/Broadcom供应",
+              "materials": [
+                {
+                  "material": "5nm/3nm先进制程代工产能",
+                  "type": "物理材料",
+                  "description": "同中际旭创——DSP晶圆被台积电先进产能配额制约，Coherent作为光模块厂毫无议价权",
+                  "suppliers": [
+                    {
+                      "name": "TSMC",
+                      "name_cn": "台积电",
+                      "country": "TW",
+                      "monopoly_level": "absolute",
+                      "share_pct": 90,
+                      "note": "5nm/3nm垄断，DSP晶圆配额被GPU严重挤占"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fabrinet",
+          "role": "光模块 L1 代工",
+          "note": "NVDA 硅光子模块核心代工厂",
+          "deep_chain": [
+            {
+              "component": "硅光子晶圆 (SiPh Wafer)",
+              "description": "Fabrinet代工NVDA硅光子模块，核心硅光晶圆由NVDA设计+Tier1代工",
+              "suppliers": [
+                {
+                  "name": "TSMC (COUPE)",
+                  "share_pct": 40,
+                  "note": "NVDA Rubin硅光子代工，COUPE平台"
+                },
+                {
+                  "name": "GlobalFoundries",
+                  "share_pct": 30,
+                  "note": "美国，硅光子代工Fab"
+                },
+                {
+                  "name": "Tower Semiconductor",
+                  "share_pct": 15,
+                  "note": "以色列，硅光子代工"
+                },
+                {
+                  "name": "Intel Foundry",
+                  "share_pct": 10,
+                  "note": "美国，硅光子自研+代工"
+                },
+                {
+                  "name": "Silex/中芯集成",
+                  "share_pct": 5,
+                  "note": "国产硅光代工"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": "硅光子代工仍分散，TSMC COUPE规模化后可能集中",
+              "materials": [
+                {
+                  "material": "SOI晶圆 (Silicon-on-Insulator Wafer)",
+                  "type": "物理材料",
+                  "description": "硅光子芯片基础衬底——SOI晶圆顶层硅薄膜用于光波导，埋氧层提供光学隔离。全球SOI产能由法国Soitec主导",
+                  "suppliers": [
+                    {
+                      "name": "Soitec",
+                      "name_cn": "Soitec",
+                      "country": "FR",
+                      "monopoly_level": "absolute",
+                      "share_pct": 70,
+                      "note": "法国SOI晶圆垄断巨头，Smart Cut技术专利，硅光子SOI首选"
+                    },
+                    {
+                      "name": "Shin-Etsu Chemical",
+                      "name_cn": "信越化学",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "日系SOI晶圆第二"
+                    },
+                    {
+                      "name": "GlobalWafers",
+                      "name_cn": "环球晶圆",
+                      "country": "TW",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 10,
+                      "note": "台系SOI晶圆，产能扩充中"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "光纤阵列 (FAU)",
+              "description": "Fabrinet组装光模块的FAU全部外购",
+              "suppliers": [
+                {
+                  "name": "天孚通信/TFC",
+                  "share_pct": 60,
+                  "note": "FAU全球龙头"
+                },
+                {
+                  "name": "Senko/扇港",
+                  "share_pct": 20,
+                  "note": "日本"
+                },
+                {
+                  "name": "US Conec",
+                  "share_pct": 15,
+                  "note": "美国"
+                },
+                {
+                  "name": "太辰光/T&S",
+                  "share_pct": 5,
+                  "note": "国产"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": null,
+              "materials": [
+                {
+                  "material": "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)",
+                  "type": "物理材料",
+                  "description": "同新易盛FAU——光纤对准核心元件，内孔精度±0.5μm",
+                  "suppliers": [
+                    {
+                      "name": "潮州三环/Three-Circle",
+                      "name_cn": "潮州三环",
+                      "country": "CN",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "全球最大陶瓷插芯厂"
+                    },
+                    {
+                      "name": "TOTO",
+                      "name_cn": "东陶",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "日系精密陶瓷插芯"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "精密耦合设备",
+              "description": "硅光子耦合设备——光纤到硅光芯片的亚微米对准，是Fabrinet核心工艺壁垒",
+              "suppliers": [
+                {
+                  "name": "ficonTEC",
+                  "share_pct": 40,
+                  "note": "德国，硅光子耦合设备龙头"
+                },
+                {
+                  "name": "Aerotech",
+                  "share_pct": 25,
+                  "note": "美国，精密运动控制"
+                },
+                {
+                  "name": "PI (Physik Instrumente)",
+                  "share_pct": 20,
+                  "note": "德国，纳米定位"
+                },
+                {
+                  "name": "艾微视/Aiwei",
+                  "share_pct": 10,
+                  "note": "国产，光模块耦合设备，追赶中"
+                },
+                {
+                  "name": "Others",
+                  "share_pct": 5,
+                  "note": "日系"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "硅光子耦合设备交期长，ficonTEC几乎垄断。Fabrinet产能扩张受设备约束",
+              "materials": [
+                {
+                  "material": "纳米定位压电系统 (Nanopositioning Piezo System)",
+                  "type": "精密设备",
+                  "description": "硅光子耦合核心——光纤与硅光芯片亚微米对准需要压电驱动纳米定位台，重复定位精度<10nm。德国PI近乎垄断",
+                  "suppliers": [
+                    {
+                      "name": "PI (Physik Instrumente)",
+                      "name_cn": "PI",
+                      "country": "DE",
+                      "monopoly_level": "absolute",
+                      "share_pct": 50,
+                      "note": "德国纳米定位垄断，压电陶瓷+柔性铰链+控制器全自研"
+                    },
+                    {
+                      "name": "Aerotech",
+                      "name_cn": "Aerotech",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "精密运动控制，光模块耦合平台"
+                    },
+                    {
+                      "name": "Newport/MKS",
+                      "name_cn": "Newport/MKS",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "光机组件+精密位移台"
+                    },
+                    {
+                      "name": "艾微视/Aiwei",
+                      "name_cn": "艾微视",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 10,
+                      "note": "国产光模块耦合设备，精度追赶中"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Lumentum",
+          "role": "EML/VCSEL/ELS 激光器核心供应商",
+          "note": "NVDA 2026年投资$20亿锁定产能。EML全球35%份额(800G/1.6T首选)，VCSEL 25%，CPO外置激光源(ELS)龙头"
+        },
+        {
+          "name": "Corning/康宁",
+          "role": "光纤/玻璃基板/光学连接器",
+          "note": "NVDA 2026年5月投资$5亿股权+最高$32亿总采购承诺。Meta同步签署至2030年$60亿光纤长期协议。被动光学层'卖铲人'，不受CPO vs 可插拔架构之争影响"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "中际旭创/Innolight",
+          "role": "光模块供应商",
+          "note": "800G CWDM4 光模块；Google 定制"
+        },
+        {
+          "name": "Lumentum",
+          "role": "光开关/激光器",
+          "note": "Google OCS 用 MEMS 光开关"
+        }
+      ],
+      "linked_industry_slugs": [
+        "interconnect"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "华为 (in-house)",
+          "role": "OptiXtrans光交换 + 400G/800G光模块",
+          "note": "华为自研光通信全栈方案，DCI/光传送网完整生态",
+          "localization": "✓"
+        },
+        {
+          "name": "中际旭创/Innolight",
+          "role": "800G/1.6T光模块",
+          "note": "同时供应NVDA/TPU/昇腾三条线，全球光模块出货第一",
+          "localization": "✓"
+        },
+        {
+          "name": "海信宽带",
+          "role": "400G/800G光模块",
+          "note": "中国光模块第二梯队龙头，昇腾集群配套",
+          "localization": "✓"
+        },
+        {
+          "name": "光迅科技/Accelink",
+          "role": "光芯片 + 光模块",
+          "note": "国产光芯片龙头，CWDM/EML替代。100G EML量产，200G送样",
+          "localization": "△"
+        }
+      ],
+      "depth_layers": {
+        "L1": {
+          "name": "光模块成品",
+          "companies": [
+            {
+              "name": "中际旭创/Innolight",
+              "ticker": "300308.SZ",
+              "share_pct": 30,
+              "note": "800G/1.6T全球第一，NVDA+Google双客户"
+            },
+            {
+              "name": "新易盛/Eoptolink",
+              "ticker": "300502.SZ",
+              "share_pct": 10,
+              "note": "800G LPO领先，NVDA供应商"
+            },
+            {
+              "name": "Coherent",
+              "ticker": "COHR",
+              "share_pct": 15,
+              "note": "VCSEL+EML激光器+800G光模块垂直整合"
+            }
+          ]
+        },
+        "L2": {
+          "name": "光芯片/激光器",
+          "companies": [
+            {
+              "name": "Coherent",
+              "ticker": "COHR",
+              "note": "EML+VCSEL自研，6英寸InP量产"
+            },
+            {
+              "name": "Lumentum",
+              "ticker": "LITE",
+              "note": "EML激光器，800G/1.6T核心供应商"
+            },
+            {
+              "name": "光迅科技",
+              "ticker": "002281.SZ",
+              "note": "国产EML激光器，华为供应链"
+            },
+            {
+              "name": "源杰科技",
+              "ticker": "688498.SH",
+              "note": "国产EML/CWDM激光器"
+            }
+          ]
+        },
+        "L3": {
+          "name": "InP外延片 (Epi-Wafer)",
+          "companies": [
+            {
+              "name": "IQE plc",
+              "ticker": "IQE.L",
+              "share_pct": 40,
+              "note": "全球最大独立InP外延片厂"
+            },
+            {
+              "name": "VPEC/全新光电",
+              "ticker": "2455.TW",
+              "share_pct": 25,
+              "note": "全球第二，台湾龙头"
+            },
+            {
+              "name": "IntelliEPI",
+              "ticker": "4971.TW",
+              "share_pct": 15,
+              "note": "台湾InP外延厂"
+            },
+            {
+              "name": "Landmark Photonics",
+              "ticker": "",
+              "note": "英国InP外延专业厂"
+            },
+            {
+              "name": "全磊光电",
+              "ticker": "",
+              "note": "中国大陆唯一规模化InP外延厂"
+            }
+          ]
+        },
+        "L4": {
+          "name": "InP衬底晶圆",
+          "companies": [
+            {
+              "name": "Sumitomo Electric",
+              "ticker": "5802.T",
+              "share_pct": 42,
+              "note": "全球龙头，年产80万片"
+            },
+            {
+              "name": "AXT Inc",
+              "ticker": "AXTI",
+              "share_pct": 25,
+              "note": "美资北京制造，2026-27连年扩产"
+            },
+            {
+              "name": "JX Nippon Mining",
+              "ticker": "5012.T",
+              "share_pct": 18,
+              "note": "日本老牌，全球第三"
+            },
+            {
+              "name": "云南锗业(鑫耀)",
+              "ticker": "002428.SZ",
+              "share_pct": 5,
+              "note": "华为锁定53%产能"
+            }
+          ]
+        },
+        "L5": {
+          "name": "战略元素: 铟 (In)",
+          "companies": [
+            {
+              "name": "云南锗业",
+              "ticker": "002428.SZ",
+              "note": "国内最大铟生产商，伴生锗矿"
+            },
+            {
+              "name": "株冶集团",
+              "ticker": "600961.SH",
+              "note": "铅锌冶炼副产铟"
+            },
+            {
+              "name": "Korea Zinc",
+              "ticker": "010130.KS",
+              "note": "全球最大铟冶炼商"
+            },
+            {
+              "name": "Teck Resources",
+              "ticker": "TECK",
+              "note": "加拿大矿企，铟伴生矿"
+            }
+          ]
+        }
+      },
+      "depth_naming": "L1=成品 L2=器件 L3=材料 L4=衬底 L5=元素"
+    },
+    {
+      "id": "P8",
+      "slug": "network-interconnect",
+      "name": "网络互连与交换",
+      "name_en": "Network Interconnect & Switching",
+      "description": "GPU-to-GPU 互联的物理层：InfiniBand/Ethernet 交换芯片、SerDes/Retimer、高速连接器。NVDA 以 Mellanox(Spectrum-X/Quantum-3) 自研闭环，Google 以 Jupiter OCS 光交换突围。",
+      "upstream": [
+        7
+      ],
+      "downstream": [
+        11
+      ],
+      "key_competitiveness": [
+        "交换芯片带宽 (51.2T→102.4T)",
+        "InfiniBand vs Ethernet 路线之争",
+        "SerDes 速率竞赛 (224G→448G PAM4)",
+        "PCIe/CXL Retimer (PCIe 6.0/7.0)",
+        "高速连接器 (224G 背板/Overpass)"
+      ],
+      "market_share": [
+        {
+          "entity": "NVIDIA (Mellanox)",
+          "share_pct": 60,
+          "note": "InfiniBand Quantum-3 + Spectrum-X Ethernet；NVDA 生态锁定"
+        },
+        {
+          "entity": "Broadcom (Tomahawk)",
+          "share_pct": 15,
+          "note": "Tomahawk 5/6 交换芯片；Google Jupiter 外部网络"
+        },
+        {
+          "entity": "Arista",
+          "share_pct": 10,
+          "note": "AI 数据中心交换机；SONiC 开源"
+        },
+        {
+          "entity": "Cisco",
+          "share_pct": 8,
+          "note": "Silicon One 交换芯片；企业级 AI 网络"
+        },
+        {
+          "entity": "Astera Labs",
+          "share_pct": 4,
+          "note": "PCIe 6.0/CXL 3.0 Retimer；每GPU配4-8颗"
+        },
+        {
+          "entity": "Credo Technology",
+          "share_pct": 3,
+          "note": "224G SerDes + AEC 有源铜缆 DSP"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "NVIDIA Mellanox",
+          "role": "InfiniBand 交换芯片 (in-house)",
+          "note": "Quantum-3 400G + Spectrum-X Ethernet 800G"
+        },
+        {
+          "name": "Credo Technology",
+          "role": "DSP/Retimer 供应商",
+          "note": "224G SerDes + 有源铜缆 DSP"
+        },
+        {
+          "name": "Astera Labs",
+          "role": "PCIe Retimer 供应商",
+          "note": "PCIe 6.0/CXL 3.0 Retimer；每 GPU 配 4-8 颗"
+        },
+        {
+          "name": "Amphenol",
+          "role": "高速连接器供应商",
+          "note": "224G PAM4 背板连接器；GPU 底座插槽"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "Google Jupiter",
+          "role": "数据中心交换 (in-house)",
+          "note": "光电路交换机 (OCS)；TPU Pod 内部互联"
+        },
+        {
+          "name": "Credo Technology",
+          "role": "SerDes/DSP 供应商",
+          "note": "TPU 互联用高速 SerDes"
+        },
+        {
+          "name": "Broadcom",
+          "role": "Tomahawk 交换芯片",
+          "note": "Google Jupiter 外部网络用 Tomahawk 5/6"
+        }
+      ],
+      "linked_industry_slugs": [
+        "interconnect"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "华为 (in-house)",
+          "role": "CloudEngine数据中心交换机 + 自研交换芯片",
+          "note": "华为自研交换芯片(Solar系列)+CloudEngine交换机，全栈自研",
+          "localization": "✓"
+        },
+        {
+          "name": "盛科通信",
+          "role": "国产交换芯片",
+          "note": "中国唯一商用交换芯片公司，但性能与Broadcom Tomahawk差距较大",
+          "localization": "△"
+        },
+        {
+          "name": "华丰科技",
+          "role": "高速背板连接器 (华为哈勃持股2.95%)",
+          "note": "国产高速连接器龙头，市占率超70%。224G PAM4连接器送样中",
+          "localization": "✓"
+        }
+      ]
+    },
+    {
+      "id": "P9",
+      "slug": "pcb-ccl",
+      "name": "PCB/CCL 电路板",
+      "name_en": "PCB & CCL",
+      "description": "AI 服务器 PCB 价值量是传统服务器的 5-8 倍（UBB+OAM+Switch Board）。高速 CCL (M7/M8 等级) 是信号完整性的基础材料。NVDA GB300 OAM 板面积扩大 40%。",
+      "upstream": [],
+      "downstream": [
+        7,
+        8
+      ],
+      "key_competitiveness": [
+        "高速材料等级 (M6→M7→M8 CCL 路线图)",
+        "超大尺寸 PCB 加工能力 (28层+ 通孔)",
+        "HDI 高密度互连 (OAM 板 20+ 层 HDI)",
+        "NVDA/Google 认证壁垒 (6-12 个月资格周期)"
+      ],
+      "market_share": [
+        {
+          "entity": "胜宏科技/Victory Giant",
+          "share_pct": 25,
+          "note": "NVDA GB300 OAM+UBB 核心供应商；AI PCB 第一名"
+        },
+        {
+          "entity": "沪电股份/WUS",
+          "share_pct": 15,
+          "note": "AI 服务器高速 PCB；NVDA/Google 双认证"
+        },
+        {
+          "entity": "深南电路/Shennan",
+          "share_pct": 10,
+          "note": "AI 服务器 PCB + ABF 载板双布局"
+        },
+        {
+          "entity": "台燿科技/TUC",
+          "share_pct": 10,
+          "note": "AI 服务器 PCB；NVDA 供应链"
+        },
+        {
+          "entity": "健鼎科技/Tripod",
+          "share_pct": 8,
+          "note": "AI 加速卡 PCB；Google TPU 供应商"
+        },
+        {
+          "entity": "Others (臻鼎/金像/鹏鼎)",
+          "share_pct": 32,
+          "note": "PCB+CCL 细分领域"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "胜宏科技/Victory Giant",
+          "role": "首要 AI PCB 供应商",
+          "note": "GB300 平台 OAM+UBB 主供；UQD 认证中"
+        },
+        {
+          "name": "沪电股份/WUS",
+          "role": "AI 服务器 PCB 供应商",
+          "note": "高速 PCB；NVDA 资格认证"
+        },
+        {
+          "name": "台光电子/EMC",
+          "role": "CCL 材料供应商",
+          "note": "M7/M8 级高速 CCL；NVDA 认证材料",
+          "deep_chain": [
+            {
+              "component": "M8/M9级高速CCL (铜箔基板)",
+              "description": "AI服务器28层+超高层板的核心基材，224G信号传输要求Dk≤3.0/Df≤0.001级别",
+              "suppliers": [
+                {
+                  "name": "台光电子/EMC",
+                  "share_pct": 35,
+                  "note": "台湾，M8 CCL龙头，NVDA认证"
+                },
+                {
+                  "name": "台燿科技/TUC",
+                  "share_pct": 25,
+                  "note": "台湾，M7/M8 CCL"
+                },
+                {
+                  "name": "Isola",
+                  "share_pct": 15,
+                  "note": "美国，高速CCL"
+                },
+                {
+                  "name": "Panasonic/松下",
+                  "share_pct": 12,
+                  "note": "日本，Megtron 8系列，M9验证中"
+                },
+                {
+                  "name": "Rogers Corporation",
+                  "share_pct": 5,
+                  "note": "美国，碳氢树脂CCL，高端射频/高速PCB"
+                },
+                {
+                  "name": "生益科技/Shengyi",
+                  "share_pct": 8,
+                  "note": "国产，M6/M7 CCL，M8送样"
+                },
+                {
+                  "name": "南亚新材/Nanya",
+                  "share_pct": 5,
+                  "note": "台系，M6/M7 CCL"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "M9级CCL全球仅台光+台燿+松下3家能量产，产能严重紧张",
+              "materials": [
+                {
+                  "material": "Q-glass石英玻璃布 (Quartz Glass Fabric)",
+                  "type": "物理材料",
+                  "description": "M9级CCL必须使用介电常数~2.2的石英玻纤布——普通E-glass Dk~6.5无法满足224G信号要求。全球仅日系2-3家能量产，采用棒拉丝法，良率极低，严重短缺",
+                  "suppliers": [
+                    {
+                      "name": "Shin-Etsu Chemical",
+                      "name_cn": "信越化学",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 45,
+                      "note": "日本，石英玻纤布全球龙头，棒拉丝法独家工艺"
+                    },
+                    {
+                      "name": "Asahi Kasei",
+                      "name_cn": "旭化成",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 30,
+                      "note": "日本，Q-glass第二供应商，产能极度紧张"
+                    },
+                    {
+                      "name": "Nittobo",
+                      "name_cn": "日东纺",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "日本，石英玻纤布第三，扩产中"
+                    },
+                    {
+                      "name": "泰山玻纤/Taishan",
+                      "name_cn": "泰山玻纤",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 10,
+                      "note": "国产唯一送样Q-glass，棒拉丝良率爬坡中，替代空间巨大但技术差距明显"
+                    }
+                  ]
+                },
+                {
+                  "material": "特种低损耗树脂系统",
+                  "type": "化学配方",
+                  "description": "M8/M9 CCL的核心树脂配方——聚苯醚(PPE)/碳氢树脂/PTFE改性配方，要求Dk超低且与石英布匹配",
+                  "suppliers": [
+                    {
+                      "name": "MGC/三菱瓦斯化学",
+                      "name_cn": "三菱瓦斯化学",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "PPE树脂全球龙头，BT树脂发明者"
+                    },
+                    {
+                      "name": "SABIC",
+                      "name_cn": "沙比克",
+                      "country": "SA",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "PPE/PPO树脂，全球最大工程塑料供应商"
+                    },
+                    {
+                      "name": "Daikin",
+                      "name_cn": "大金",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "PTFE氟树脂改性配方，低介电常数无可替代"
+                    },
+                    {
+                      "name": "Rogers Corporation",
+                      "name_cn": "罗杰斯",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "碳氢树脂CCL配方，高端射频PCB"
+                    },
+                    {
+                      "name": "DuPont",
+                      "name_cn": "杜邦",
+                      "country": "US",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "氟塑料/聚酰亚胺树脂"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "HVLP4极低轮廓铜箔",
+              "description": "224G信号传输关键——电信号只在铜线表面薄层跑(集肤效应)，铜箔表面粗糙度Rz≤0.5μm是信号完整性的物理前提",
+              "suppliers": [
+                {
+                  "name": "三井金属/Mitsui Kinzoku",
+                  "share_pct": 60,
+                  "note": "日本，HVLP4铜箔近乎垄断，Rz≤0.5μm全球唯一稳定量产"
+                },
+                {
+                  "name": "古河电工/Furukawa",
+                  "share_pct": 20,
+                  "note": "日本，HVLP铜箔第二"
+                },
+                {
+                  "name": "JX金属/JX Nippon",
+                  "share_pct": 15,
+                  "note": "日本，电子铜箔传统大厂"
+                },
+                {
+                  "name": "建滔化工/Kingboard",
+                  "share_pct": 5,
+                  "note": "国产，HVLP铜箔送样，粗糙度仍≥1.5μm"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "三井金属HVLP4铜箔是安费诺/台光电都要抢的祖宗级原材料，议价权极高",
+              "materials": [
+                {
+                  "material": "极低轮廓铜箔表面处理技术",
+                  "type": "物理材料",
+                  "description": "224G信号下集肤效应——电信号仅在铜箔表面亚微米层传输。铜箔表面粗糙度(Rz)从HVLP3的1.5μm降至HVLP4的≤0.5μm是物理极限挑战",
+                  "suppliers": [
+                    {
+                      "name": "三井金属",
+                      "name_cn": "三井金属",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 60,
+                      "note": "HVLP4铜箔Rz≤0.5μm全球唯一稳定量产，市占率绝对主导"
+                    },
+                    {
+                      "name": "古河电工",
+                      "name_cn": "古河电工",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "日系HVLP铜箔第二"
+                    },
+                    {
+                      "name": "JX金属",
+                      "name_cn": "JX日矿金属",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "日系电子铜箔传统大厂"
+                    }
+                  ]
+                },
+                {
+                  "material": "高频极低损耗氟塑料绝缘皮",
+                  "type": "化学配方",
+                  "description": "224G铜缆外壳绝缘皮需要Dk≤2.1的超低介电常数材料，氟塑料(PTFE/FEP)唯一满足要求",
+                  "suppliers": [
+                    {
+                      "name": "Daikin",
+                      "name_cn": "大金",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 40,
+                      "note": "日本氟化工龙头，低介电常数氟塑料全球垄断"
+                    },
+                    {
+                      "name": "DuPont",
+                      "name_cn": "杜邦",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "Teflon氟塑料发明者，高频线缆绝缘皮"
+                    },
+                    {
+                      "name": "Chemours",
+                      "name_cn": "科慕",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "杜邦分拆氟化工，Teflon品牌持有"
+                    },
+                    {
+                      "name": "AGC",
+                      "name_cn": "旭硝子",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "日系氟树脂"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "健鼎科技/Tripod",
+          "role": "TPU PCB 供应商",
+          "note": "TPU 加速卡 PCB 长期供应商"
+        },
+        {
+          "name": "沪电股份/WUS",
+          "role": "TPU 服务器 PCB",
+          "note": "Google 服务器 PCB"
+        }
+      ],
+      "linked_industry_slugs": [
+        "pcb-ccl"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "深南电路",
+          "role": "AI服务器高速PCB",
+          "note": "昇腾平台认证PCB供应商，与NVDA线共享产线",
+          "localization": "✓"
+        },
+        {
+          "name": "沪电股份/WUS",
+          "role": "AI服务器PCB",
+          "note": "昇腾+NVDA双平台认证",
+          "localization": "✓"
+        },
+        {
+          "name": "胜宏科技/Victory Giant",
+          "role": "AI PCB (NVDA线为主)",
+          "note": "昇腾平台PCB认证中，产线复用",
+          "localization": "✓"
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "slug": "power-cooling",
+      "name": "电力与散热",
+      "name_en": "Power & Cooling",
+      "description": "【散热子系统】单机架 40kW→200kW，液冷从可选变刚需。CDU+冷板+快换接头+冷却液构成散热链。【电力子系统】AI DC 需 8kW+ 高功率密度电源(GaN/SiC)+PDU/UPS+备用电源(SOFC/SMR)。两大子系统独立采购，共同决定数据中心 PUE 上限。",
+      "upstream": [],
+      "downstream": [
+        11
+      ],
+      "key_competitiveness": [
+        "【散热】液冷方案 (Direct-to-Chip → Immersion → 两相浸没)",
+        "【散热】CDU 冷却分配单元 (单机架 200kW+ 能力)",
+        "【散热】快换接头零泄漏密封 (Stäubli/CPC FFKM)",
+        "【电力】高功率密度电源 (GaN/SiC，8kW+ PSU)",
+        "【电力】电力密度 (MW/acre) + 可再生能源配套",
+        "【电力】SMR/燃料电池备用电源 (Bloom SOFC/X-Energy)"
+      ],
+      "market_share": [
+        {
+          "entity": "Vertiv",
+          "share_pct": 30,
+          "note": "液冷 CDU + 精密空调；NVDA GB300 参考设计"
+        },
+        {
+          "entity": "英维克/Envicool",
+          "share_pct": 15,
+          "note": "Coolinside 全链液冷；NVDA 认证中国供应商"
+        },
+        {
+          "entity": "Boyd Corporation",
+          "share_pct": 12,
+          "note": "液冷冷板 + 换热器；NVDA 参考设计"
+        },
+        {
+          "entity": "Schneider Electric",
+          "share_pct": 10,
+          "note": "数据中心电力分配 + UPS"
+        },
+        {
+          "entity": "Bloom Energy",
+          "share_pct": 5,
+          "note": "固体氧化物燃料电池 SOFC；AI DC 备用电源"
+        },
+        {
+          "entity": "Others",
+          "share_pct": 28,
+          "note": "X-Energy (SMR)/Eaton/Delta 等"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "Vertiv",
+          "role": "液冷 CDU 参考设计",
+          "note": "GB300 NVL72 液冷系统核心供应商",
+          "deep_chain": [
+            {
+              "component": "液冷CDU (Coolant Distribution Unit)",
+              "description": "CDU是液冷系统心脏——精确控制冷却液温度/压力/流量分配到每个冷板。NVL72单机架需120kW+散热能力",
+              "suppliers": [
+                {
+                  "name": "Vertiv",
+                  "share_pct": 35,
+                  "note": "美国，NVL72参考设计，CDU全球龙头"
+                },
+                {
+                  "name": "Schneider Electric",
+                  "share_pct": 25,
+                  "note": "法国，数据中心电力+冷却一体方案"
+                },
+                {
+                  "name": "英维克/Envicool",
+                  "share_pct": 20,
+                  "note": "国产，Coolinside全链液冷"
+                },
+                {
+                  "name": "CoolIT Systems",
+                  "share_pct": 15,
+                  "note": "加拿大，Direct-to-Chip液冷"
+                },
+                {
+                  "name": "双鸿/Auras",
+                  "share_pct": 5,
+                  "note": "台湾，液冷模块+冷板"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "CDU产能跟不上NVL72出货节奏，Vertiv交期已拉长至26周+",
+              "materials": [
+                {
+                  "material": "低流阻高寿命水泵陶瓷轴承",
+                  "type": "精密设备",
+                  "description": "CDU核心——冷却液循环泵需维持数万小时不间断运转且绝对零泄漏。陶瓷轴承+防腐蚀密封是物理极限挑战",
+                  "suppliers": [
+                    {
+                      "name": "Nidec",
+                      "name_cn": "日本电产",
+                      "country": "JP",
+                      "monopoly_level": "absolute",
+                      "share_pct": 55,
+                      "note": "全球液冷泵陶瓷轴承+精密密封技术垄断，原为硬盘马达和微型电机巨头"
+                    },
+                    {
+                      "name": "Grundfos",
+                      "name_cn": "格兰富",
+                      "country": "DK",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "丹麦泵业巨头，数据中心液冷泵"
+                    },
+                    {
+                      "name": "Ebara",
+                      "name_cn": "荏原",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "日系精密泵，半导体+液冷"
+                    },
+                    {
+                      "name": "新界泵业/Shimge",
+                      "name_cn": "新界泵业",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 5,
+                      "note": "国产液冷泵研发中，精度差距大"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "快换接头 (UQD Quick Disconnect)",
+              "description": "液冷系统关键安全件——GPU冷板与管路连接处需支持数万次插拔且绝对零渗漏。漏一滴液可能烧毁整机架GB300",
+              "suppliers": [
+                {
+                  "name": "Stäubli",
+                  "share_pct": 40,
+                  "note": "瑞士，快换接头全球垄断龙头，特种阀门结构专利"
+                },
+                {
+                  "name": "CPC (Colder Products)",
+                  "share_pct": 35,
+                  "note": "美国，快换接头第二，数据中心液冷专用"
+                },
+                {
+                  "name": "Parker Hannifin",
+                  "share_pct": 20,
+                  "note": "美国，流体连接件巨头"
+                },
+                {
+                  "name": "日东工器/Nitto Kohki",
+                  "share_pct": 5,
+                  "note": "日本，快换接头"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "UQD是液冷最卡脖子单一器件——Stäubli+CPC近乎完全垄断，交期20周+",
+              "materials": [
+                {
+                  "material": "特种全氟醚橡胶O型圈 (FFKM O-Ring)",
+                  "type": "化学配方",
+                  "description": "快换接头核心密封件——需在5年内数万次插拔中保持绝对零渗漏。全氟醚橡胶(FFKM)是唯一能耐高温冷却液+长寿命的弹性体配方，全球仅2-3家可量产",
+                  "suppliers": [
+                    {
+                      "name": "DuPont (Kalrez)",
+                      "name_cn": "杜邦(Kalrez)",
+                      "country": "US",
+                      "monopoly_level": "absolute",
+                      "share_pct": 45,
+                      "note": "FFKM全氟醚橡胶发明者，Kalrez品牌，单价极高但对液冷不可或缺"
+                    },
+                    {
+                      "name": "Parker (Parofluor)",
+                      "name_cn": "派克(Parofluor)",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "FFKM O型圈第二，Parker流体+密封垂直整合"
+                    },
+                    {
+                      "name": "Greene Tweed (Chemraz)",
+                      "name_cn": "格林特威德(Chemraz)",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "FFKM第三品牌"
+                    },
+                    {
+                      "name": "Daikin",
+                      "name_cn": "大金",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "日系氟弹性体，半导体密封件"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "component": "特殊冷却液 (Dielectric Coolant)",
+              "description": "浸没式/直接液冷所需的不导电冷却液——要求高比热+低粘度+不导电+不腐蚀+环保",
+              "suppliers": [
+                {
+                  "name": "Chemours (Opteon)",
+                  "share_pct": 45,
+                  "note": "美国，杜邦分拆，Opteon氟化液全球龙头"
+                },
+                {
+                  "name": "3M (Novec)",
+                  "share_pct": 35,
+                  "note": "美国，Novec氟化液，但2025年退出部分产线引发供应危机"
+                },
+                {
+                  "name": "Solvay (Galden)",
+                  "share_pct": 15,
+                  "note": "比利时，Galden PFPE氟化液"
+                },
+                {
+                  "name": "巨化股份/Juhua",
+                  "share_pct": 5,
+                  "note": "国产氟化液研发中，替代3M退出缺口"
+                }
+              ],
+              "bottleneck": true,
+              "bottleneck_note": "3M Novec退出引发冷却液供应危机，Chemours+Solvay产能难以填补，国产替代急迫",
+              "materials": [
+                {
+                  "material": "氟化液配方 (Fluorinated Coolant Formula)",
+                  "type": "化学配方",
+                  "description": "浸没式液冷必需——氟化液需同时满足不导电+高比热+低GWP(全球变暖潜值)。PFAS环保法规收紧限制扩产",
+                  "suppliers": [
+                    {
+                      "name": "Chemours",
+                      "name_cn": "科慕",
+                      "country": "US",
+                      "monopoly_level": "absolute",
+                      "share_pct": 45,
+                      "note": "Opteon氟化液，杜邦分拆，全球数据中心液冷首选"
+                    },
+                    {
+                      "name": "3M",
+                      "name_cn": "3M",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "Novec品牌，退出部分产线后供给紧张"
+                    },
+                    {
+                      "name": "Solvay",
+                      "name_cn": "索尔维",
+                      "country": "BE",
+                      "monopoly_level": "dominant",
+                      "share_pct": 15,
+                      "note": "Galden PFPE氟化液，高性能但有PFAS合规风险"
+                    },
+                    {
+                      "name": "Daikin",
+                      "name_cn": "大金",
+                      "country": "JP",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 3,
+                      "note": "日系氟化工"
+                    },
+                    {
+                      "name": "巨化股份",
+                      "name_cn": "巨化股份",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 2,
+                      "note": "国产氟化液唯一玩家，替代空间大但技术差距明显"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "英维克/Envicool",
+          "role": "液冷解决方案 (中国)",
+          "note": "Coolinside 全链液冷；NVDA 认证"
+        },
+        {
+          "name": "Boyd",
+          "role": "冷板/换热器",
+          "note": "Direct-to-Chip 液冷冷板",
+          "deep_chain": [
+            {
+              "component": "液冷冷板 (Cold Plate)",
+              "description": "Direct-to-Chip液冷——铜/铝冷板直接贴GPU/CPU die顶盖散热，需微米级平整度以确保热界面效率",
+              "suppliers": [
+                {
+                  "name": "Boyd Corporation",
+                  "share_pct": 35,
+                  "note": "美国，液冷冷板全球龙头，NVDA参考设计"
+                },
+                {
+                  "name": "双鸿/Auras",
+                  "share_pct": 25,
+                  "note": "台湾，冷板+液冷模块"
+                },
+                {
+                  "name": "奇鋐/AVC",
+                  "share_pct": 20,
+                  "note": "台湾，冷板+风冷混合方案"
+                },
+                {
+                  "name": "CoolIT Systems",
+                  "share_pct": 15,
+                  "note": "加拿大，Direct-to-Chip冷板"
+                },
+                {
+                  "name": "高力/Kool Kraft",
+                  "share_pct": 5,
+                  "note": "台湾，真空钎焊冷板"
+                }
+              ],
+              "bottleneck": false,
+              "bottleneck_note": null,
+              "materials": [
+                {
+                  "material": "GaN/SiC第三代半导体功率器件",
+                  "type": "物理材料",
+                  "description": "AI服务器8kW+电源必须用GaN/SiC替代硅MOSFET——开关频率提升10x+，将电能转换损耗降至1.5%以下",
+                  "suppliers": [
+                    {
+                      "name": "Infineon",
+                      "name_cn": "英飞凌",
+                      "country": "DE",
+                      "monopoly_level": "dominant",
+                      "share_pct": 35,
+                      "note": "SiC/GaN功率器件全球龙头，AI服务器电源首选"
+                    },
+                    {
+                      "name": "STMicroelectronics",
+                      "name_cn": "意法半导体",
+                      "country": "CH/FR",
+                      "monopoly_level": "dominant",
+                      "share_pct": 25,
+                      "note": "SiC MOSFET，Tesla+AI服务器双驱动"
+                    },
+                    {
+                      "name": "Wolfspeed",
+                      "name_cn": "狼速",
+                      "country": "US",
+                      "monopoly_level": "dominant",
+                      "share_pct": 20,
+                      "note": "SiC衬底+器件垂直整合，纽约州Fab扩产"
+                    },
+                    {
+                      "name": "ROHM",
+                      "name_cn": "罗姆",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 12,
+                      "note": "日系SiC，Tier1汽车+工业"
+                    },
+                    {
+                      "name": "Navitas",
+                      "name_cn": "纳微半导体",
+                      "country": "US",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 5,
+                      "note": "GaN功率IC新锐，高功率密度方案"
+                    },
+                    {
+                      "name": "三安光电/Sanan",
+                      "name_cn": "三安光电",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 3,
+                      "note": "国产SiC衬底+器件，产能爬坡"
+                    }
+                  ]
+                },
+                {
+                  "material": "高饱和磁通密度金属磁粉芯",
+                  "type": "物理材料",
+                  "description": "8kW AI电源必需的高频磁性材料——要求高饱和磁通密度+低磁芯损耗以缩小电感尺寸、提升功率密度",
+                  "suppliers": [
+                    {
+                      "name": "Cyntec/乾坤科技",
+                      "name_cn": "乾坤科技",
+                      "country": "TW",
+                      "monopoly_level": "dominant",
+                      "share_pct": 45,
+                      "note": "台达子公司，金属磁粉芯全球龙头"
+                    },
+                    {
+                      "name": "TDK",
+                      "name_cn": "TDK",
+                      "country": "JP",
+                      "monopoly_level": "dominant",
+                      "share_pct": 30,
+                      "note": "日系磁性材料巨头"
+                    },
+                    {
+                      "name": "Ferrite Core Enterprise",
+                      "name_cn": "磁芯企业",
+                      "country": "CN",
+                      "monopoly_level": "entrant",
+                      "share_pct": 10,
+                      "note": "国产磁粉芯，AI服务器电源送样"
+                    },
+                    {
+                      "name": "Others",
+                      "name_cn": "其他",
+                      "country": "JP/US",
+                      "monopoly_level": "oligopoly",
+                      "share_pct": 15,
+                      "note": "日立金属/Micrometal等"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Bloom Energy",
+          "role": "燃料电池 SOFC",
+          "note": "AI DC 备用/基荷电源 SOFC 方案"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "Google",
+          "role": "液冷设计 (in-house)",
+          "note": "自研 TPU Pod 液冷架构；浸没式冷却"
+        },
+        {
+          "name": "Vertiv/Schneider",
+          "role": "数据中心基础设施",
+          "note": "电力分配 + 冷却设备"
+        }
+      ],
+      "linked_industry_slugs": [
+        "power",
+        "ai-infra"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "华为 (in-house)",
+          "role": "iCooling液冷方案",
+          "note": "华为自研AI数据中心液冷，昇腾384超节点标配",
+          "localization": "✓"
+        },
+        {
+          "name": "英维克/Envicool",
+          "role": "Coolinside全链液冷",
+          "note": "同时供应NVDA+昇腾液冷方案，国产液冷龙头",
+          "localization": "✓"
+        },
+        {
+          "name": "高澜股份",
+          "role": "液冷冷板 + CDU",
+          "note": "昇腾384超节点液冷配套，华为核心供应商",
+          "localization": "✓"
+        },
+        {
+          "name": "科华数据",
+          "role": "UPS + 数据中心电力",
+          "note": "国产UPS龙头，华为数据中心电力配套",
+          "localization": "✓"
+        }
+      ]
+    },
+    {
+      "id": "P11",
+      "slug": "server-integration",
+      "name": "服务器与系统集成",
+      "name_en": "Server & System Integration",
+      "description": "将 GPU/TPU、网络、存储、电源、散热集成为可部署的 AI 服务器机架。NVL72 (72 GPU 单机架) 将集成难度推向新高度。ODM Direct 模式 (跳过品牌) 成为主流。",
+      "upstream": [
+        4,
+        8,
+        9,
+        10
+      ],
+      "downstream": [],
+      "key_competitiveness": [
+        "大功率机架集成 (120kW+ 单机架)",
+        "NVL72 72-GPU 互联复杂度",
+        "ODM 设计能力 + 产能规模",
+        "地缘政治产能分散 (台湾/墨西哥/越南)"
+      ],
+      "market_share": [
+        {
+          "entity": "Wistron/纬创",
+          "share_pct": 22,
+          "note": "NVDA HGX/MGX 首要 ODM；墨西哥/越南产能"
+        },
+        {
+          "entity": "Quanta/广达",
+          "share_pct": 18,
+          "note": "Google TPU Pod 首要 ODM；Meta/Apple 客户"
+        },
+        {
+          "entity": "Dell Technologies",
+          "share_pct": 15,
+          "note": "企业级 AI 服务器品牌；NVDA OEM"
+        },
+        {
+          "entity": "HPE",
+          "share_pct": 12,
+          "note": "企业级 AI 服务器；Cray 超算"
+        },
+        {
+          "entity": "Celestica",
+          "share_pct": 10,
+          "note": "AI 服务器/交换机组装；NVDA 代工"
+        },
+        {
+          "entity": "Others (富士康/英业达/Supermicro)",
+          "share_pct": 23,
+          "note": "AI 服务器 + 存储集成"
+        }
+      ],
+      "nvidia_suppliers": [
+        {
+          "name": "Wistron/纬创",
+          "role": "首要 ODM (HGX/MGX)",
+          "note": "H200/B200/GB300 HGX 基板；墨西哥主产能"
+        },
+        {
+          "name": "Dell/HPE",
+          "role": "OEM 品牌服务器",
+          "note": "企业级 PowerEdge/Cray AI 服务器"
+        },
+        {
+          "name": "Celestica",
+          "role": "EMS 代工",
+          "note": "L1 系统集成 + 交换机"
+        },
+        {
+          "name": "Quanta/广达",
+          "role": "SXM 代工",
+          "note": "部分 NVDA SXM 模块代工"
+        }
+      ],
+      "google_tpu_suppliers": [
+        {
+          "name": "Google",
+          "role": "系统架构设计 (in-house)",
+          "note": "TPU Pod 自研机架；整机柜设计"
+        },
+        {
+          "name": "Quanta/广达",
+          "role": "首要 ODM",
+          "note": "TPU Pod 组装代工；Google 核心 ODM 伙伴"
+        },
+        {
+          "name": "Wistron/纬创",
+          "role": "第二 ODM",
+          "note": "部分 TPU 服务器组装"
+        }
+      ],
+      "linked_industry_slugs": [
+        "ai-infra"
+      ],
+      "ascend_suppliers": [
+        {
+          "name": "华为 (in-house)",
+          "role": "Atlas 900 AI集群 (8/16/64卡)",
+          "note": "全球最大AI训练集群之一。昇腾910B/C原厂集成，自研机柜设计",
+          "localization": "✓"
+        },
+        {
+          "name": "华鲲振宇 (四川长虹控股)",
+          "role": "昇腾服务器ODM — >40%份额",
+          "note": "昇腾服务器出货量最大合作伙伴。2026Q3若营收突破60亿则确认需求爆发",
+          "localization": "✓"
+        },
+        {
+          "name": "超聚变",
+          "role": "FusionServer Pro + 昇腾卡",
+          "note": "2022年从华为独立，专注服务器ODM。昇腾生态核心集成商",
+          "localization": "✓"
+        },
+        {
+          "name": "中科曙光",
+          "role": "昇腾AI服务器代工",
+          "note": "国产HPC龙头，昇腾服务器第二梯队",
+          "localization": "✓"
+        },
+        {
+          "name": "浪潮信息",
+          "role": "昇腾AI服务器",
+          "note": "中国最大服务器厂商，昇腾平台快速放量",
+          "localization": "✓"
+        }
+      ]
+    }
+  ],
+  "nvidia_vs_tpu_summary": {
+    "title": "NVDA GPU vs Google TPU — 产业链对比",
+    "description": "两条 AI 算力路线的全产业链差异：NVDA 以 GPU+CUDA 构建开放生态，Google TPU 以自研 ASIC+闭环优化追求极致效率。",
+    "comparison": [
+      {
+        "dimension": "芯片架构",
+        "nvidia": "GPU (Blackwell/Rubin) — 通用计算，Tensor Core + CUDA",
+        "google_tpu": "TPU ASIC (v6e Trillium/v7) — 专用脉动阵列，TensorFlow/JAX 优化"
+      },
+      {
+        "dimension": "芯片设计",
+        "nvidia": "全栈 in-house (GPU + NVLink + InfiniBand + DPU)",
+        "google_tpu": "Google 自研架构 + Broadcom (ASIC 设计服务 + SerDes)"
+      },
+      {
+        "dimension": "代工",
+        "nvidia": "TSMC 独供 N4→N3P→N2；占 TSMC 先进制程 25%+ 营收",
+        "google_tpu": "TSMC 独供 N4→N3→N2；占 CoWoS 产能 10% (增速最快)"
+      },
+      {
+        "dimension": "先进封装",
+        "nvidia": "CoWoS-L (14x reticle)，2026E 60K wpm 独占，52% 产能",
+        "google_tpu": "CoWoS-S→L，2026E 12K wpm，10% 产能"
+      },
+      {
+        "dimension": "HBM 内存",
+        "nvidia": "HBM3e 12Hi (B200/GB300) → HBM4 16Hi (Rubin)；SK Hynix 主供",
+        "google_tpu": "HBM3e 8Hi (v6e) → HBM4 (v8)；SK Hynix + Samsung"
+      },
+      {
+        "dimension": "互联",
+        "nvidia": "InfiniBand (Mellanox in-house) + Spectrum-X Ethernet；NVLink 7 片间互联",
+        "google_tpu": "Jupiter OCS (in-house 光交换机)；ICI 片间互联"
+      },
+      {
+        "dimension": "光模块",
+        "nvidia": "800G/1.6T 多供应商 (Innolight/Eoptolink/Coherent/Fabrinet)",
+        "google_tpu": "800G CWDM4 定制 (Innolight 主供) + OCS MEMS 光开关"
+      },
+      {
+        "dimension": "服务器集成",
+        "nvidia": "HGX/MGX 基板 ODM (Wistron 主供)；OEM (Dell/HPE) 品牌转售",
+        "google_tpu": "TPU Pod 自研机架 (Quanta 代工)；不对外销售"
+      },
+      {
+        "dimension": "软件生态",
+        "nvidia": "CUDA (开放平台，500万+ 开发者)；GPU Cloud (DGX Cloud)",
+        "google_tpu": "JAX/TensorFlow (Google 生态绑定)；仅 GCP 可用"
+      },
+      {
+        "dimension": "商业模式",
+        "nvidia": "对外销售 GPU + 网络 + 软件；$150B+ DC 年收入",
+        "google_tpu": "内部使用 + GCP 租用；不单独销售芯片；算力即服务"
+      }
+    ]
+  }
+}

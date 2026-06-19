@@ -25,6 +25,9 @@ credentials.json
 run.log
 error.log
 
+# 敏感文件
+alert_system.py
+
 # macOS
 .DS_Store
 .AppleDouble

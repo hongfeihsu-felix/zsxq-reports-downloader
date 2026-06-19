@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>共识驱动因子 — Hermes</title>
+<style>
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,'PingFang SC',sans-serif;margin:0;padding:0}
+.wrap{max-width:1300px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 4px}
+.header-sub{color:#8b949e;font-size:12px;margin-bottom:20px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.nav a{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 14px;font-size:12px;color:#8b949e;text-decoration:none}
+.nav a:hover,.nav a.active{color:#58a6ff;border-color:#58a6ff}
+.tabs{display:flex;gap:6px;margin-bottom:16px}
+.tab{padding:6px 16px;border-radius:16px;font-size:12px;cursor:pointer;border:1px solid #30363d;background:transparent;color:#8b949e}
+.tab.active{background:#58a6ff;color:#fff;border-color:#58a6ff}
+.tab.bear{background:#3d1f1f;color:#f85149;border-color:#5c2d2d}
+.tab.bear.active{background:#f85149;color:#fff}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:8px 10px;border-bottom:1px solid #30363d;color:#8b949e;font-size:10px;text-transform:uppercase;position:sticky;top:0;background:#0d1117;z-index:1}
+td{padding:7px 10px;border-bottom:1px solid #21262d}
+tr:hover{background:#161b22}
+.badge{font-size:9px;padding:2px 6px;border-radius:8px;font-weight:600;display:inline-block;margin:1px}
+.bull{background:#1f3d2f;color:#3fb950}.bear{background:#3d1f1f;color:#f85149}.neutral-bg{background:#21262d;color:#8b949e}
+.full{background:#1a3a5c;color:#79c0ff}.strong{background:#2a3a1a;color:#3fb950}.partial{background:#3a2a1a;color:#d29922}
+.highlight{background:#1a2535;border-left:3px solid #f85149}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:16px}
+.stat{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px;text-align:center}
+.stat .num{font-size:22px;font-weight:700}.stat .lbl{font-size:10px;color:#8b949e;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="nav">
+  <a href="/">Dashboard</a>
+  <a href="/industry/chain">产业链</a>
+  <a href="/chokepoint">卡脖子 L4</a>
+  <a href="/consensus" class="active">共识</a>
+  <a href="/contrarian">反共识</a>
+  <a href="/backtest">回测</a>
+</div>
+
+<h1>共识驱动因子</h1>
+<div class="header-sub">
+  多投行一致认同的方向性判断。full ≥4 banks, strong ≥3, partial ≥2。
+  共识不等于正确——但本周 AVGO 的 "Google TPU 客户集中度" full consensus 看空信号被精准验证。
+</div>
+
+{% set bearish = signals|selectattr('direction','eq','bearish')|list %}
+{% set bullish = signals|selectattr('direction','eq','bullish')|list %}
+{% set neutral = signals|selectattr('direction','eq','neutral')|list %}
+
+<div class="stats">
+  <div class="stat"><div class="num">{{ signals|length }}</div><div class="lbl">共识信号总数</div></div>
+  <div class="stat"><div class="num" style="color:#f85149">{{ bearish|length }}</div><div class="lbl">看空共识</div></div>
+  <div class="stat"><div class="num" style="color:#3fb950">{{ bullish|length }}</div><div class="lbl">看多共识</div></div>
+  <div class="stat"><div class="num">{{ signals|selectattr('consensus','eq','full')|list|length }}</div><div class="lbl">full (≥4 banks)</div></div>
+  <div class="stat"><div class="num">{{ signals|selectattr('consensus','eq','strong')|list|length }}</div><div class="lbl">strong (3 banks)</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="filter('all')">全部 ({{ signals|length }})</button>
+  <button class="tab bear" onclick="filter('bearish')">看空 ({{ bearish|length }})</button>
+  <button class="tab" onclick="filter('bullish')">看多 ({{ bullish|length }})</button>
+  <button class="tab" onclick="filter('full')">full (≥4)</button>
+</div>
+
+<table>
+<thead><tr>
+  <th>公司</th><th>共识驱动因子</th><th>方向</th><th>共识</th><th>Banks</th><th>首次出现</th><th>最近更新</th><th>影响</th><th>证据</th><th>投行</th>
+</tr></thead>
+<tbody>
+{% for s in signals %}
+<tr class="signal-row {{ s.direction }} {{ s.consensus }}{% if s.direction == 'bearish' and s.consensus in ('full','strong') %} highlight{% endif %}">
+  <td style="font-weight:600;white-space:nowrap">{{ s.company }}</td>
+  <td style="max-width:260px;overflow:hidden;text-overflow:ellipsis" title="{{ s.driver_slug }}">{{ s.canonical }}</td>
+  <td><span class="badge {{ 'bull' if s.direction == 'bullish' else 'bear' if s.direction == 'bearish' else 'neutral-bg' }}">{{ s.direction }}</span></td>
+  <td><span class="badge {{ s.consensus }}">{{ s.consensus }}</span></td>
+  <td style="text-align:center;font-weight:600">{{ s.banks }}</td>
+  <td style="font-size:11px;color:#8b949e;white-space:nowrap">{{ s.first_date }}</td>
+  <td style="font-size:11px;color:#8b949e;white-space:nowrap">{{ s.last_date if s.last_date != s.first_date else '—' }}</td>
+  <td style="text-align:center">{{ s.impacts }}</td>
+  <td style="text-align:center;color:#8b949e">{{ s.evidence }}</td>
+  <td style="font-size:10px;color:#8b949e;max-width:160px;overflow:hidden;text-overflow:ellipsis">{{ s.bank_list }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+<script>
+function filter(type) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.signal-row').forEach(r => {
+    if (type === 'all') r.style.display = '';
+    else if (type === 'full') r.style.display = r.classList.contains('full') || r.classList.contains('strong') ? '' : 'none';
+    else r.style.display = r.classList.contains(type) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

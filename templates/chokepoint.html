@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>L4 卡脖子技术 — Hermes</title>
+<style>
+body{background:#0d1117;color:#e6edf3;font-family:'Helvetica Neue','PingFang SC',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:0;padding:0}
+.wrap{max-width:1500px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 4px}
+h2{font-size:16px;color:#58a6ff;border-bottom:1px solid #30363d;padding-bottom:8px;margin:24px 0 16px}
+.header-sub{color:#8b949e;font-size:12px;margin-bottom:16px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.nav a{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 14px;font-size:12px;color:#8b949e;text-decoration:none}
+.nav a:hover,.nav a.active{color:#58a6ff;border-color:#58a6ff;text-decoration:none}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin:16px 0}
+.stat-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px}
+.stat-card .num{font-size:32px;font-weight:700;color:#58a6ff}
+.stat-card .lbl{font-size:12px;color:#8b949e;margin-top:4px}
+.stat-card .sub{font-size:11px;color:#6e7681;margin-top:6px;line-height:1.5}
+
+/* Filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;align-items:center}
+.filters select,.filters input{background:#161b22;border:1px solid #30363d;color:#e6edf3;border-radius:6px;padding:6px 10px;font-size:12px}
+.filters select:focus,.filters input:focus{outline:none;border-color:#58a6ff}
+.filters .count{font-size:12px;color:#8b949e;margin-left:auto}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;border-bottom:1px solid #30363d;color:#8b949e;font-weight:500;font-size:11px;text-transform:uppercase;cursor:pointer;user-select:none;white-space:nowrap}
+th:hover{color:#58a6ff}
+th .sort-arrow{font-size:10px;margin-left:2px}
+td{padding:8px 12px;border-bottom:1px solid #21262d;vertical-align:top}
+tr{cursor:pointer;transition:background .15s}
+tr:hover{background:#161b22}
+tr.selected{background:#1c2634}
+td .company-name{font-weight:600;color:#e6edf3;font-size:13px}
+td .company-cn{font-size:11px;color:#8b949e;display:block}
+
+/* Badges */
+.badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;margin:1px}
+.badge-absolute{background:#5e1111;color:#ff7b72}
+.badge-dominant{background:#6e3b1a;color:#ffa657}
+.badge-oligopoly{background:#1f3d2f;color:#3fb950}
+.badge-entrant{background:#1a3a5c;color:#79c0ff}
+.badge-country{font-size:10px;padding:1px 6px;border-radius:8px;background:#21262d;color:#8b949e;margin-left:4px}
+
+/* Expand row */
+.expand-row{display:none}
+.expand-row.open{display:table-row}
+.expand-row td{background:#0d1117;padding:16px 24px;border-left:2px solid #58a6ff}
+.impact-chain{margin:6px 0;padding:8px 12px;background:#161b22;border-radius:6px;border-left:3px solid #30363d;font-size:12px}
+.impact-chain.critical{border-left-color:#ff7b72}
+.impact-chain .arrow{color:#58a6ff;margin:0 4px}
+.tag{font-size:10px;padding:1px 6px;border-radius:8px;background:#21262d;color:#8b949e;margin:2px}
+
+.material-type{font-size:11px;display:inline-block;padding:2px 8px;border-radius:8px;margin:2px}
+.mt-化学配方{background:#4a1a5c;color:#d2a8ff}
+.mt-物理材料{background:#1a3a5c;color:#79c0ff}
+.mt-精密设备{background:#5e3311;color:#ffa657}
+.mt-特种气体{background:#1f4a3a;color:#3fb950}
+.mt-光学材料{background:#3a1a4a;color:#b392f0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="nav">
+  <a href="/">Dashboard</a>
+  <a href="/industry">行业 DB</a>
+  <a href="/industry/chain">产业链矩阵</a>
+  <a href="/chokepoint" class="active">卡脖子 L4</a>
+  <a href="/valuation">估值</a>
+</div>
+
+<h1>L4 卡脖子技术矩阵</h1>
+<div class="header-sub">关键原材料与核心技术 — 反向索引。追踪物理/化学底座上的垄断级瓶颈。更新于 {{ last_updated }}</div>
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="num">{{ stats.total_companies }}</div>
+    <div class="lbl">L4 卡脖子公司</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">{{ stats.by_monopoly_level.get('absolute', 0) }}</div>
+    <div class="lbl">绝对垄断 (absolute)</div>
+    <div class="sub">无可替代，断供即停产</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">{{ stats.by_monopoly_level.get('dominant', 0) }}</div>
+    <div class="lbl">主导地位 (dominant)</div>
+    <div class="sub">2-3家寡占，替代困难</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">JP {{ stats.by_country.get('JP', 0) }}</div>
+    <div class="lbl">日本企业</div>
+    <div class="sub">{% for c, n in stats.by_country.items()|sort(attribute='1', reverse=True) %}
+    {{ c }} {{ n }}{% if not loop.last %} · {% endif %}
+    {% endfor %}</div>
+  </div>
+</div>
+
+<!-- Filters -->
+<div class="filters">
+  <select id="filter-country" onchange="applyFilters()">
+    <option value="">国家/地区 (全部)</option>
+    {% for c, n in stats.by_country.items()|sort(attribute='1', reverse=True) %}
+    <option value="{{ c }}">{{ c }} ({{ n }})</option>
+    {% endfor %}
+  </select>
+  <select id="filter-type" onchange="applyFilters()">
+    <option value="">材料类型 (全部)</option>
+    {% for t, n in stats.by_type.items()|sort(attribute='1', reverse=True) %}
+    <option value="{{ t }}">{{ t }} ({{ n }})</option>
+    {% endfor %}
+  </select>
+  <select id="filter-monopoly" onchange="applyFilters()">
+    <option value="">垄断级别 (全部)</option>
+    <option value="absolute">absolute 绝对垄断</option>
+    <option value="dominant">dominant 主导地位</option>
+    <option value="oligopoly">oligopoly 寡占</option>
+    <option value="entrant">entrant 新进入者</option>
+  </select>
+  <input id="filter-search" placeholder="搜索公司名..." oninput="applyFilters()" style="width:180px">
+  <span class="count" id="result-count"></span>
+</div>
+
+<!-- Table -->
+<table>
+<thead>
+<tr>
+  <th onclick="sortTable('name_cn')">公司 <span class="sort-arrow"></span></th>
+  <th onclick="sortTable('country')">国家</th>
+  <th onclick="sortTable('material_types')">材料类型</th>
+  <th onclick="sortTable('material_count')">材料数</th>
+  <th onclick="sortTable('affect_count')">影响层数</th>
+  <th onclick="sortTable('monopoly')">垄断级别</th>
+</tr>
+</thead>
+<tbody id="table-body">
+{% for name, e in entries.items()|sort(attribute='1.name_cn') %}
+{% set max_monopoly = 'entrant' %}
+{% set has_absolute = false %}{% set has_dominant = false %}
+<tr class="data-row"
+    data-country="{{ e.country }}"
+    data-types="{{ e.materials|map(attribute='type')|unique|join(',') }}"
+    data-monopolies="{% for m in e.materials %}{% for ms in (e.affects|first and e.affects|first or {}) %}{% endfor %}{% endfor %}"
+    data-namecn="{{ e.name_cn }}"
+    data-name="{{ name }}"
+    data-material-count="{{ e.materials|length }}"
+    data-affect-count="{{ e.affects|length }}"
+    onclick="toggleRow(this)">
+  <td>
+    <span class="company-name">{{ e.name_cn }}</span>
+    <span class="company-cn">{{ name }}</span>
+  </td>
+  <td><span class="badge-country">{{ e.country }}</span></td>
+  <td>
+    {% for m in e.materials %}{% set mt = m.type %}
+    <span class="material-type mt-{{ mt }}">{{ mt }}</span>
+    {% endfor %}
+  </td>
+  <td style="text-align:center">{{ e.materials|length }}</td>
+  <td style="text-align:center">{{ e.affects|length }}</td>
+  <td>
+    {% set worst = namespace(level='oligopoly') %}
+    {% for a in e.affects %}
+      {% if a.impact_level == 'critical' %}{% set worst.level = 'dominant' %}{% endif %}
+    {% endfor %}
+    <span class="badge badge-{{ worst.level }}">{{ worst.level }}</span>
+  </td>
+</tr>
+<tr class="expand-row" id="expand-{{ loop.index }}">
+  <td colspan="6">
+    <div>
+      <strong style="color:#58a6ff">材料明细</strong>
+      {% for m in e.materials %}
+      <div style="margin:4px 0;font-size:12px">
+        <span class="material-type mt-{{ m.type }}">{{ m.type }}</span>
+        {{ m.material }}
+      </div>
+      {% endfor %}
+      <strong style="color:#58a6ff;display:block;margin-top:12px">下游影响链 ({{ e.affects|length }} 条)</strong>
+      {% for a in e.affects %}
+      <div class="impact-chain {{ a.impact_level }}">
+        <strong>L{{ a.layer_id }} {{ a.layer_name }}</strong>
+        <span class="arrow">→</span> {{ a.supplier }}
+        <span class="arrow">→</span> {{ a.component }}
+        <span class="arrow">→</span> <span class="badge badge-{{ a.impact_level }}">{{ a.impact_level }}</span>
+      </div>
+      {% endfor %}
+      {% if e.downstream_tickers %}
+      <div style="margin-top:8px;font-size:11px;color:#8b949e">
+        下游公司:
+        {% for t in e.downstream_tickers %}
+        <span class="tag">{{ t }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div style="margin-top:6px;font-size:11px;color:#8b949e">
+        报告追踪标签: {% for t in e.report_tags %}<span class="tag">{{ t }}</span>{% endfor %}
+      </div>
+    </div>
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<div style="margin-top:24px;padding:12px;background:#161b22;border-radius:8px;font-size:11px;color:#8b949e">
+<strong style="color:#e6edf3">解读 L4 材料霸权：</strong>
+越是底层的技术，市场集中度就越高。物理特性的卡脖子（如三井金属HVLP4铜箔Rz≤0.5μm）和化学配方的卡脖子（如NAMICS底部填充胶CTE匹配）一旦断供，整个AI服务器产业链从台积电到英伟达都会瞬间瘫痪。这些L4公司财务报表不与英伟达直接挂钩，但品牌印在每一颗HBM和每一片CoWoS封装的物理底层。
+</div>
+</div>
+
+<script>
+let sortCol = 'name_cn';
+let sortDir = 1;
+
+function applyFilters() {
+  const country = document.getElementById('filter-country').value;
+  const type = document.getElementById('filter-type').value;
+  const monopoly = document.getElementById('filter-monopoly').value;
+  const search = document.getElementById('filter-search').value.toLowerCase();
+
+  const rows = document.querySelectorAll('tr.data-row');
+  let count = 0;
+
+  rows.forEach(row => {
+    const cMatch = !country || row.dataset.country === country;
+    const tMatch = !type || row.dataset.types.includes(type);
+
+    // Determine monopoly level per row
+    let rowMonopoly = 'oligopoly';
+    const expandRow = row.nextElementSibling;
+    if (expandRow && expandRow.classList.contains('expand-row')) {
+      const badges = expandRow.querySelectorAll('.badge-absolute, .badge-dominant, .badge-oligopoly, .badge-entrant');
+      // Simplified: read from the impact chains
+      const impacts = expandRow.querySelectorAll('.impact-chain');
+      impacts.forEach(imp => {
+        if (imp.classList.contains('critical')) rowMonopoly = 'dominant';
+      });
+    }
+    const mMatch = !monopoly || (monopoly === 'dominant' && rowMonopoly === 'dominant') ||
+                   (monopoly !== 'dominant' && monopoly !== 'absolute');
+
+    const sMatch = !search || row.dataset.namecn.toLowerCase().includes(search) ||
+                   row.dataset.name.toLowerCase().includes(search);
+
+    if (cMatch && tMatch && sMatch) {
+      row.style.display = '';
+      count++;
+    } else {
+      row.style.display = 'none';
+      if (row.nextElementSibling && row.nextElementSibling.classList.contains('expand-row')) {
+        row.nextElementSibling.style.display = 'none';
+        row.nextElementSibling.classList.remove('open');
+      }
+    }
+  });
+
+  document.getElementById('result-count').textContent = `${count} / {{ stats.total_companies }} 家公司`;
+}
+applyFilters();
+document.getElementById('result-count').textContent = `${document.querySelectorAll('tr.data-row').length} / {{ stats.total_companies }} 家公司`;
+
+function toggleRow(tr) {
+  const expand = tr.nextElementSibling;
+  if (!expand || !expand.classList.contains('expand-row')) return;
+  const isOpen = expand.classList.contains('open');
+  expand.classList.toggle('open', !isOpen);
+  expand.style.display = isOpen ? 'none' : 'table-row';
+  tr.classList.toggle('selected', !isOpen);
+}
+
+function sortTable(col) {
+  if (sortCol === col) sortDir = -sortDir;
+  else { sortCol = col; sortDir = 1; }
+
+  const tbody = document.getElementById('table-body');
+  const rows = Array.from(tbody.querySelectorAll('tr.data-row'));
+
+  rows.sort((a, b) => {
+    let av, bv;
+    switch(col) {
+      case 'name_cn': av = a.dataset.namecn; bv = b.dataset.namecn; break;
+      case 'country': av = a.dataset.country; bv = b.dataset.country; break;
+      case 'material_count': av = parseInt(a.dataset.materialCount); bv = parseInt(b.dataset.materialCount); break;
+      case 'affect_count': av = parseInt(a.dataset.affectCount); bv = parseInt(b.dataset.affectCount); break;
+      case 'material_types': av = a.dataset.types; bv = b.dataset.types; break;
+      case 'monopoly': {
+        const aExp = a.nextElementSibling; const bExp = b.nextElementSibling;
+        av = (aExp && aExp.querySelector('.impact-chain.critical')) ? 0 : 1;
+        bv = (bExp && bExp.querySelector('.impact-chain.critical')) ? 0 : 1;
+        break;
+      }
+      default: av = a.dataset.namecn; bv = b.dataset.namecn;
+    }
+    if (typeof av === 'string') return av.localeCompare(bv, 'zh') * sortDir;
+    return (av - bv) * sortDir;
+  });
+
+  // Re-insert in order (preserve expand rows)
+  rows.forEach(row => {
+    const expand = row.nextElementSibling;
+    tbody.appendChild(row);
+    if (expand && expand.classList.contains('expand-row')) tbody.appendChild(expand);
+  });
+}
+</script>
+</body>
+</html>

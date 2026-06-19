@@ -1,0 +1,5164 @@
+{
+  "last_updated": "2026-06-12",
+  "stats": {
+    "total_companies": 158,
+    "by_country": {
+      "DE": 8,
+      "JP": 38,
+      "US": 26,
+      "DE/US": 1,
+      "NL": 1,
+      "CN": 16,
+      "TW": 9,
+      "KR": 5,
+      "IT": 1,
+      "UK": 3,
+      "US/CN": 3,
+      "JP/DE": 1,
+      "FR": 1,
+      "SA": 1,
+      "DK": 1,
+      "BE": 1,
+      "CH/FR": 1,
+      "N/A": 42
+    },
+    "by_type": {
+      "精密设备": 42,
+      "化学配方": 44,
+      "物理材料": 37,
+      "L3核心元件": 63,
+      "特种气体": 1,
+      "光学材料": 20
+    },
+    "by_monopoly_level": {
+      "absolute": 36,
+      "dominant": 81,
+      "oligopoly": 26,
+      "entrant": 18
+    }
+  },
+  "entries": {
+    "TRUMPF": {
+      "name_cn": "通快",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "EUV光源与反射镜",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "硅中介层 (Si Interposer)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "TRUMPF",
+        "通快",
+        "EUV光源与反射镜"
+      ]
+    },
+    "ZEISS": {
+      "name_cn": "蔡司",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "EUV光源与反射镜",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "硅中介层 (Si Interposer)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "ZEISS",
+        "蔡司",
+        "EUV光源与反射镜"
+      ]
+    },
+    "Shin-Etsu Chemical": {
+      "name_cn": "信越化学",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "光刻胶 (EUV Photoresist)",
+          "type": "化学配方"
+        },
+        {
+          "material": "SOI晶圆 (Silicon-on-Insulator Wafer)",
+          "type": "物理材料"
+        },
+        {
+          "material": "Q-glass石英玻璃布 (Quartz Glass Fabric)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "硅中介层 (Si Interposer)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "硅光子晶圆 (SiPh Wafer)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS",
+        "Fabrinet",
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "Shin-Etsu Chemical",
+        "信越化学",
+        "光刻胶 (EUV Photoresist)"
+      ]
+    },
+    "TOK": {
+      "name_cn": "东京应化",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "光刻胶 (EUV Photoresist)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "硅中介层 (Si Interposer)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "TOK",
+        "东京应化",
+        "光刻胶 (EUV Photoresist)"
+      ]
+    },
+    "JSR": {
+      "name_cn": "JSR",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "光刻胶 (EUV Photoresist)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "硅中介层 (Si Interposer)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "JSR",
+        "光刻胶 (EUV Photoresist)"
+      ]
+    },
+    "DuPont": {
+      "name_cn": "杜邦",
+      "country": "US",
+      "materials": [
+        {
+          "material": "光刻胶 (EUV Photoresist)",
+          "type": "化学配方"
+        },
+        {
+          "material": "铜柱电镀液 (Cu Pillar Electroplating Chemistry)",
+          "type": "化学配方"
+        },
+        {
+          "material": "特种低损耗树脂系统",
+          "type": "化学配方"
+        },
+        {
+          "material": "高频极低损耗氟塑料绝缘皮",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "硅中介层 (Si Interposer)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS",
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "DuPont",
+        "杜邦",
+        "光刻胶 (EUV Photoresist)"
+      ]
+    },
+    "Atotech/MKS": {
+      "name_cn": "安美特/MKS",
+      "country": "DE/US",
+      "materials": [
+        {
+          "material": "铜柱电镀液 (Cu Pillar Electroplating Chemistry)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Atotech/MKS",
+        "安美特/MKS",
+        "铜柱电镀液 (Cu Pillar Electroplating Chemistry)"
+      ]
+    },
+    "Uyemura": {
+      "name_cn": "上村工业",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "铜柱电镀液 (Cu Pillar Electroplating Chemistry)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Uyemura",
+        "上村工业",
+        "铜柱电镀液 (Cu Pillar Electroplating Chemistry)"
+      ]
+    },
+    "MacDermid Alpha": {
+      "name_cn": "麦德美阿尔法",
+      "country": "US",
+      "materials": [
+        {
+          "material": "铜柱电镀液 (Cu Pillar Electroplating Chemistry)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "MacDermid Alpha",
+        "麦德美阿尔法",
+        "铜柱电镀液 (Cu Pillar Electroplating Chemistry)"
+      ]
+    },
+    "ASML": {
+      "name_cn": "阿斯麦",
+      "country": "NL",
+      "materials": [
+        {
+          "material": "微凸块光刻对准技术",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "ASML",
+        "阿斯麦",
+        "微凸块光刻对准技术"
+      ]
+    },
+    "Canon": {
+      "name_cn": "佳能",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "微凸块光刻对准技术",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Canon",
+        "佳能",
+        "微凸块光刻对准技术"
+      ]
+    },
+    "Nikon": {
+      "name_cn": "尼康",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "微凸块光刻对准技术",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Nikon",
+        "尼康",
+        "微凸块光刻对准技术"
+      ]
+    },
+    "NAMICS": {
+      "name_cn": "纳米克斯",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "特种环氧树脂配方",
+          "type": "化学配方"
+        },
+        {
+          "material": "环氧树脂MUF配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "底部填充胶 (Underfill)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "MR-MUF材料 (Mass Reflow-Molded Underfill)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS",
+        "SK Hynix"
+      ],
+      "report_tags": [
+        "NAMICS",
+        "纳米克斯",
+        "特种环氧树脂配方"
+      ]
+    },
+    "HD MicroSystems": {
+      "name_cn": "HD微系统",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "特种环氧树脂配方",
+          "type": "化学配方"
+        },
+        {
+          "material": "临时键合胶 (Temporary Bonding Adhesive)",
+          "type": "化学配方"
+        },
+        {
+          "material": "TSV绝缘应力材料 (液态聚酰亚胺)",
+          "type": "化学配方"
+        },
+        {
+          "material": "NCF绝缘膜配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "底部填充胶 (Underfill)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "先进封装设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "TSV蚀刻设备 (Through-Silicon Via)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "TSV蚀刻设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "NCF材料 (Non-Conductive Film)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "TSV蚀刻设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS",
+        "SK Hynix",
+        "Samsung",
+        "Micron"
+      ],
+      "report_tags": [
+        "HD MicroSystems",
+        "HD微系统",
+        "特种环氧树脂配方"
+      ]
+    },
+    "Henkel": {
+      "name_cn": "汉高",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "特种环氧树脂配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "底部填充胶 (Underfill)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Henkel",
+        "汉高",
+        "特种环氧树脂配方"
+      ]
+    },
+    "Darbond": {
+      "name_cn": "德邦科技",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "特种环氧树脂配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "底部填充胶 (Underfill)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Darbond",
+        "德邦科技",
+        "特种环氧树脂配方"
+      ]
+    },
+    "3M": {
+      "name_cn": "3M",
+      "country": "US",
+      "materials": [
+        {
+          "material": "临时键合胶 (Temporary Bonding Adhesive)",
+          "type": "化学配方"
+        },
+        {
+          "material": "氟化液配方 (Fluorinated Coolant Formula)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "先进封装设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS",
+        "Vertiv"
+      ],
+      "report_tags": [
+        "3M",
+        "临时键合胶 (Temporary Bonding Adhesive)"
+      ]
+    },
+    "Brewer Science": {
+      "name_cn": "布鲁尔科技",
+      "country": "US",
+      "materials": [
+        {
+          "material": "临时键合胶 (Temporary Bonding Adhesive)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "先进封装设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Brewer Science",
+        "布鲁尔科技",
+        "临时键合胶 (Temporary Bonding Adhesive)"
+      ]
+    },
+    "Daxin Materials": {
+      "name_cn": "达兴材料",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "临时键合胶 (Temporary Bonding Adhesive)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "先进封装设备",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Daxin Materials",
+        "达兴材料",
+        "临时键合胶 (Temporary Bonding Adhesive)"
+      ]
+    },
+    "DISCO": {
+      "name_cn": "迪思科",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "超薄晶圆减薄技术",
+          "type": "精密设备"
+        },
+        {
+          "material": "超薄晶圆解键合技术",
+          "type": "精密设备"
+        },
+        {
+          "material": "[L3元件] 先进封装设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "先进封装设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "TSV蚀刻设备 (Through-Silicon Via)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "TSV蚀刻设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "TSV蚀刻设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS",
+        "SK Hynix",
+        "Samsung",
+        "Micron",
+        "Lam Research",
+        "ASM Pacific",
+        "DISCO",
+        "TEL",
+        "ASMPT"
+      ],
+      "report_tags": [
+        "DISCO",
+        "迪思科",
+        "超薄晶圆减薄技术"
+      ]
+    },
+    "Tokyo Seimitsu": {
+      "name_cn": "东京精密",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "超薄晶圆减薄技术",
+          "type": "精密设备"
+        },
+        {
+          "material": "超薄晶圆解键合技术",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "先进封装设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "TSV蚀刻设备 (Through-Silicon Via)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS",
+        "SK Hynix"
+      ],
+      "report_tags": [
+        "Tokyo Seimitsu",
+        "东京精密",
+        "超薄晶圆减薄技术"
+      ]
+    },
+    "Okamoto": {
+      "name_cn": "冈本工作机械",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "超薄晶圆减薄技术",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "先进封装设备",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC CoWoS"
+      ],
+      "report_tags": [
+        "Okamoto",
+        "冈本工作机械",
+        "超薄晶圆减薄技术"
+      ]
+    },
+    "Ajinomoto": {
+      "name_cn": "味之素",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+          "type": "化学配方"
+        },
+        {
+          "material": "ABF氨基酸衍生绝缘树脂",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "封装基板 (IC Substrate)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 6,
+          "layer_name": "ABF 载板",
+          "supplier": "Ibiden",
+          "component": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 6,
+          "layer_name": "ABF 载板",
+          "supplier": "Unimicron/欣兴",
+          "component": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)",
+        "Ibiden",
+        "Unimicron/欣兴"
+      ],
+      "report_tags": [
+        "Ajinomoto",
+        "味之素",
+        "ABF味之素堆积膜 (Ajinomoto Build-up Film)"
+      ]
+    },
+    "K&S (in-house)": {
+      "name_cn": "库力索法",
+      "country": "US",
+      "materials": [
+        {
+          "material": "精密陶瓷劈刀 (Ceramic Capillary)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "K&S (in-house)",
+        "库力索法",
+        "精密陶瓷劈刀 (Ceramic Capillary)"
+      ]
+    },
+    "PECO": {
+      "name_cn": "PECO",
+      "country": "KR",
+      "materials": [
+        {
+          "material": "精密陶瓷劈刀 (Ceramic Capillary)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "PECO",
+        "精密陶瓷劈刀 (Ceramic Capillary)"
+      ]
+    },
+    "GAISER": {
+      "name_cn": "GAISER",
+      "country": "US",
+      "materials": [
+        {
+          "material": "精密陶瓷劈刀 (Ceramic Capillary)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "GAISER",
+        "精密陶瓷劈刀 (Ceramic Capillary)"
+      ]
+    },
+    "潮州三环/Three-Circle": {
+      "name_cn": "潮州三环",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "精密陶瓷劈刀 (Ceramic Capillary)",
+          "type": "精密设备"
+        },
+        {
+          "material": "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "FAU光引擎 (Fiber Array Unit)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "光纤阵列 (FAU)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)",
+        "新易盛/Eoptolink",
+        "Fabrinet"
+      ],
+      "report_tags": [
+        "潮州三环/Three-Circle",
+        "潮州三环",
+        "精密陶瓷劈刀 (Ceramic Capillary)"
+      ]
+    },
+    "Small Precision Tools": {
+      "name_cn": "SPT",
+      "country": "US",
+      "materials": [
+        {
+          "material": "精密陶瓷劈刀 (Ceramic Capillary)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "Small Precision Tools",
+        "SPT",
+        "精密陶瓷劈刀 (Ceramic Capillary)"
+      ]
+    },
+    "TANAKA": {
+      "name_cn": "田中贵金属",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "高纯度键合铜线 (High Purity Bonding Copper Wire)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "TANAKA",
+        "田中贵金属",
+        "高纯度键合铜线 (High Purity Bonding Copper Wire)"
+      ]
+    },
+    "Heraeus": {
+      "name_cn": "贺利氏",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "高纯度键合铜线 (High Purity Bonding Copper Wire)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "Heraeus",
+        "贺利氏",
+        "高纯度键合铜线 (High Purity Bonding Copper Wire)"
+      ]
+    },
+    "MK Electron": {
+      "name_cn": "MK电子",
+      "country": "KR",
+      "materials": [
+        {
+          "material": "高纯度键合铜线 (High Purity Bonding Copper Wire)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "MK Electron",
+        "MK电子",
+        "高纯度键合铜线 (High Purity Bonding Copper Wire)"
+      ]
+    },
+    "康强电子/Kangqiang": {
+      "name_cn": "康强电子",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "高纯度键合铜线 (High Purity Bonding Copper Wire)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "康强电子/Kangqiang",
+        "康强电子",
+        "高纯度键合铜线 (High Purity Bonding Copper Wire)"
+      ]
+    },
+    "Nippon Micrometal": {
+      "name_cn": "日本微金属",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "高纯度键合铜线 (High Purity Bonding Copper Wire)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "Nippon Micrometal",
+        "日本微金属",
+        "高纯度键合铜线 (High Purity Bonding Copper Wire)"
+      ]
+    },
+    "FormFactor": {
+      "name_cn": "FormFactor",
+      "country": "US",
+      "materials": [
+        {
+          "material": "MEMS探针卡 (MEMS Probe Card)",
+          "type": "精密设备"
+        },
+        {
+          "material": "MEMS探针卡 (HBM专用)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)",
+        "SK Hynix",
+        "Samsung",
+        "Micron"
+      ],
+      "report_tags": [
+        "FormFactor",
+        "MEMS探针卡 (MEMS Probe Card)"
+      ]
+    },
+    "Technoprobe": {
+      "name_cn": "Technoprobe",
+      "country": "IT",
+      "materials": [
+        {
+          "material": "MEMS探针卡 (MEMS Probe Card)",
+          "type": "精密设备"
+        },
+        {
+          "material": "MEMS探针卡 (HBM专用)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)",
+        "SK Hynix",
+        "Samsung",
+        "Micron"
+      ],
+      "report_tags": [
+        "Technoprobe",
+        "MEMS探针卡 (MEMS Probe Card)"
+      ]
+    },
+    "旺矽/MPI": {
+      "name_cn": "旺矽科技",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "MEMS探针卡 (MEMS Probe Card)",
+          "type": "精密设备"
+        },
+        {
+          "material": "MEMS探针卡 (HBM专用)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)",
+        "SK Hynix",
+        "Samsung"
+      ],
+      "report_tags": [
+        "旺矽/MPI",
+        "旺矽科技",
+        "MEMS探针卡 (MEMS Probe Card)"
+      ]
+    },
+    "JEM": {
+      "name_cn": "日本电子材料",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "MEMS探针卡 (MEMS Probe Card)",
+          "type": "精密设备"
+        },
+        {
+          "material": "MEMS探针卡 (HBM专用)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)",
+        "SK Hynix"
+      ],
+      "report_tags": [
+        "JEM",
+        "日本电子材料",
+        "MEMS探针卡 (MEMS Probe Card)"
+      ]
+    },
+    "精测/CHPT": {
+      "name_cn": "中华精测",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "MEMS探针卡 (MEMS Probe Card)",
+          "type": "精密设备"
+        },
+        {
+          "material": "MEMS探针卡 (HBM专用)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)",
+        "SK Hynix"
+      ],
+      "report_tags": [
+        "精测/CHPT",
+        "中华精测",
+        "MEMS探针卡 (MEMS Probe Card)"
+      ]
+    },
+    "Advantest (in-house)": {
+      "name_cn": "爱德万",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "高精度ATE电源模块与高速通道板卡",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "Advantest (in-house)",
+        "爱德万",
+        "高精度ATE电源模块与高速通道板卡"
+      ]
+    },
+    "Teradyne (in-house)": {
+      "name_cn": "泰瑞达",
+      "country": "US",
+      "materials": [
+        {
+          "material": "高精度ATE电源模块与高速通道板卡",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "Teradyne (in-house)",
+        "泰瑞达",
+        "高精度ATE电源模块与高速通道板卡"
+      ]
+    },
+    "NI/Emerson": {
+      "name_cn": "NI/艾默生",
+      "country": "US",
+      "materials": [
+        {
+          "material": "高精度ATE电源模块与高速通道板卡",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "ASE (日月光)"
+      ],
+      "report_tags": [
+        "NI/Emerson",
+        "NI/艾默生",
+        "高精度ATE电源模块与高速通道板卡"
+      ]
+    },
+    "Lam Research (in-house process)": {
+      "name_cn": "泛林半导体",
+      "country": "US",
+      "materials": [
+        {
+          "material": "高能等离子深孔刻蚀气体",
+          "type": "特种气体"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "TSV蚀刻设备 (Through-Silicon Via)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "SK Hynix"
+      ],
+      "report_tags": [
+        "Lam Research (in-house process)",
+        "泛林半导体",
+        "高能等离子深孔刻蚀气体"
+      ]
+    },
+    "SK Hynix (in-house)": {
+      "name_cn": "SK海力士",
+      "country": "KR",
+      "materials": [
+        {
+          "material": "环氧树脂MUF配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "MR-MUF材料 (Mass Reflow-Molded Underfill)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "SK Hynix"
+      ],
+      "report_tags": [
+        "SK Hynix (in-house)",
+        "SK海力士",
+        "环氧树脂MUF配方"
+      ]
+    },
+    "Nagase": {
+      "name_cn": "长濑",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "环氧树脂MUF配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "MR-MUF材料 (Mass Reflow-Molded Underfill)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "SK Hynix"
+      ],
+      "report_tags": [
+        "Nagase",
+        "长濑",
+        "环氧树脂MUF配方"
+      ]
+    },
+    "Samsung SDI": {
+      "name_cn": "三星SDI",
+      "country": "KR",
+      "materials": [
+        {
+          "material": "NCF绝缘膜配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "NCF材料 (Non-Conductive Film)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Samsung"
+      ],
+      "report_tags": [
+        "Samsung SDI",
+        "三星SDI",
+        "NCF绝缘膜配方"
+      ]
+    },
+    "Sekisui Chemical": {
+      "name_cn": "积水化学",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "NCF绝缘膜配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "NCF材料 (Non-Conductive Film)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Samsung"
+      ],
+      "report_tags": [
+        "Sekisui Chemical",
+        "积水化学",
+        "NCF绝缘膜配方"
+      ]
+    },
+    "Toray": {
+      "name_cn": "东丽",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "NCF绝缘膜配方",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "NCF材料 (Non-Conductive Film)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Samsung"
+      ],
+      "report_tags": [
+        "Toray",
+        "东丽",
+        "NCF绝缘膜配方"
+      ]
+    },
+    "IQE": {
+      "name_cn": "IQE",
+      "country": "UK",
+      "materials": [
+        {
+          "material": "磷化铟外延片 (InP Epi-Wafer)",
+          "type": "光学材料"
+        },
+        {
+          "material": "GaAs外延片与MOCVD设备",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "EML激光器",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "VCSEL激光器",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "EML激光器",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight",
+        "新易盛/Eoptolink",
+        "Coherent"
+      ],
+      "report_tags": [
+        "IQE",
+        "磷化铟外延片 (InP Epi-Wafer)"
+      ],
+      "part": "P7",
+      "depth": "L3"
+    },
+    "Sumitomo Electric": {
+      "name_cn": "住友电工",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "InP磷化铟衬底晶圆",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 3,
+          "layer_name": "光芯片",
+          "supplier": "Coherent/Lumentum/光迅",
+          "component": "激光器/调制器/探测器",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 4,
+          "layer_name": "光模块",
+          "supplier": "中际旭创/新易盛/Coherent",
+          "component": "800G/1.6T光模块",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "300308.SZ",
+        "300502.SZ",
+        "COHR",
+        "LITE"
+      ],
+      "monopoly_level": "dominant",
+      "note": "全球InP衬底龙头，~42%份额，6英寸产能爬坡中",
+      "part": "P7",
+      "depth": "L4"
+    },
+    "Landmark Photonics": {
+      "name_cn": "朗达光子",
+      "country": "UK",
+      "materials": [
+        {
+          "material": "磷化铟外延片 (InP Epi-Wafer)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "Landmark Photonics",
+        "朗达光子",
+        "磷化铟外延片 (InP Epi-Wafer)"
+      ],
+      "part": "P7",
+      "depth": "L3"
+    },
+    "IntelliEPI": {
+      "name_cn": "英特磊",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "磷化铟外延片 (InP Epi-Wafer)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "IntelliEPI",
+        "英特磊",
+        "磷化铟外延片 (InP Epi-Wafer)"
+      ],
+      "part": "P7",
+      "depth": "L3"
+    },
+    "全磊光电": {
+      "name_cn": "全磊光电",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "磷化铟外延片 (InP Epi-Wafer)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "全磊光电",
+        "磷化铟外延片 (InP Epi-Wafer)"
+      ]
+    },
+    "Freiberger": {
+      "name_cn": "费里伯格",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "砷化镓衬底 (GaAs Substrate)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "Freiberger",
+        "费里伯格",
+        "砷化镓衬底 (GaAs Substrate)"
+      ]
+    },
+    "AXT": {
+      "name_cn": "AXT",
+      "country": "US/CN",
+      "materials": [
+        {
+          "material": "砷化镓衬底 (GaAs Substrate)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "AXT",
+        "砷化镓衬底 (GaAs Substrate)"
+      ]
+    },
+    "云南锗业": {
+      "name_cn": "云南锗业",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "砷化镓衬底 (GaAs Substrate)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "云南锗业",
+        "砷化镓衬底 (GaAs Substrate)"
+      ]
+    },
+    "Others": {
+      "name_cn": "其他",
+      "country": "JP/DE",
+      "materials": [
+        {
+          "material": "砷化镓衬底 (GaAs Substrate)",
+          "type": "光学材料"
+        },
+        {
+          "material": "高饱和磁通密度金属磁粉芯",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight",
+        "Boyd"
+      ],
+      "report_tags": [
+        "Others",
+        "其他",
+        "砷化镓衬底 (GaAs Substrate)"
+      ]
+    },
+    "TSMC": {
+      "name_cn": "台积电",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "5nm/3nm先进制程代工产能",
+          "type": "物理材料"
+        },
+        {
+          "material": "3D光电混合键合 (3D Opto-Electrical Hybrid Bonding)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "DSP芯片",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight",
+        "新易盛/Eoptolink",
+        "Coherent"
+      ],
+      "report_tags": [
+        "TSMC",
+        "台积电",
+        "5nm/3nm先进制程代工产能"
+      ]
+    },
+    "Samsung Foundry": {
+      "name_cn": "三星代工",
+      "country": "KR",
+      "materials": [
+        {
+          "material": "5nm/3nm先进制程代工产能",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "Samsung Foundry",
+        "三星代工",
+        "5nm/3nm先进制程代工产能"
+      ]
+    },
+    "Broadcom (in-house)": {
+      "name_cn": "博通",
+      "country": "US",
+      "materials": [
+        {
+          "material": "224G SerDes PHY IP",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "Broadcom (in-house)",
+        "博通",
+        "224G SerDes PHY IP"
+      ]
+    },
+    "Marvell (in-house)": {
+      "name_cn": "Marvell",
+      "country": "US",
+      "materials": [
+        {
+          "material": "224G SerDes PHY IP",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "Marvell (in-house)",
+        "Marvell",
+        "224G SerDes PHY IP"
+      ]
+    },
+    "Credo Technology": {
+      "name_cn": "Credo",
+      "country": "US/CN",
+      "materials": [
+        {
+          "material": "224G SerDes PHY IP",
+          "type": "精密设备"
+        },
+        {
+          "material": "[L3元件] DSP芯片 (224G PAM4)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] DSP芯片",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "DSP芯片",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight",
+        "Credo Technology",
+        "MaxLinear",
+        "Broadcom",
+        "Marvell",
+        "Others"
+      ],
+      "report_tags": [
+        "Credo Technology",
+        "Credo",
+        "224G SerDes PHY IP"
+      ]
+    },
+    "Alphawave Semi": {
+      "name_cn": "Alphawave",
+      "country": "UK",
+      "materials": [
+        {
+          "material": "224G SerDes PHY IP",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "Alphawave Semi",
+        "Alphawave",
+        "224G SerDes PHY IP"
+      ]
+    },
+    "Lumentum": {
+      "name_cn": "Lumentum",
+      "country": "US",
+      "materials": [
+        {
+          "material": "外置激光源 (External Laser Source, ELS)",
+          "type": "光学材料"
+        },
+        {
+          "material": "[L3元件] EML激光器 (800G/1.6T)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] EML激光器",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "EML激光器",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "EML激光器",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight",
+        "Broadcom",
+        "Lumentum",
+        "源杰科技",
+        "三菱电机",
+        "Accelink",
+        "Coherent (in-house)",
+        "Others"
+      ],
+      "report_tags": [
+        "Lumentum",
+        "外置激光源 (External Laser Source, ELS)"
+      ]
+    },
+    "Coherent": {
+      "name_cn": "Coherent",
+      "country": "US",
+      "materials": [
+        {
+          "material": "外置激光源 (External Laser Source, ELS)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "Coherent",
+        "外置激光源 (External Laser Source, ELS)"
+      ]
+    },
+    "三菱电机": {
+      "name_cn": "三菱电机",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "外置激光源 (External Laser Source, ELS)",
+          "type": "光学材料"
+        },
+        {
+          "material": "[L3元件] EML激光器 (800G/1.6T)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] EML激光器",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "EML激光器",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight",
+        "Broadcom",
+        "Lumentum",
+        "源杰科技",
+        "三菱电机",
+        "Accelink",
+        "Coherent (in-house)",
+        "Others"
+      ],
+      "report_tags": [
+        "三菱电机",
+        "外置激光源 (External Laser Source, ELS)"
+      ]
+    },
+    "源杰科技": {
+      "name_cn": "源杰科技",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "外置激光源 (External Laser Source, ELS)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "源杰科技",
+        "外置激光源 (External Laser Source, ELS)"
+      ]
+    },
+    "仕佳光子": {
+      "name_cn": "仕佳光子",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "外置激光源 (External Laser Source, ELS)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight"
+      ],
+      "report_tags": [
+        "仕佳光子",
+        "外置激光源 (External Laser Source, ELS)"
+      ]
+    },
+    "Corning": {
+      "name_cn": "康宁",
+      "country": "US",
+      "materials": [
+        {
+          "material": "3D光电混合键合 (3D Opto-Electrical Hybrid Bonding)",
+          "type": "精密设备"
+        },
+        {
+          "material": "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "FAU光引擎 (Fiber Array Unit)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "中际旭创/Innolight",
+        "新易盛/Eoptolink"
+      ],
+      "report_tags": [
+        "Corning",
+        "康宁",
+        "3D光电混合键合 (3D Opto-Electrical Hybrid Bonding)"
+      ]
+    },
+    "TOTO": {
+      "name_cn": "东陶",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "FAU光引擎 (Fiber Array Unit)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "光纤阵列 (FAU)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "新易盛/Eoptolink",
+        "Fabrinet"
+      ],
+      "report_tags": [
+        "TOTO",
+        "东陶",
+        "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)"
+      ]
+    },
+    "Kyocera": {
+      "name_cn": "京瓷",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "FAU光引擎 (Fiber Array Unit)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "新易盛/Eoptolink"
+      ],
+      "report_tags": [
+        "Kyocera",
+        "京瓷",
+        "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)"
+      ]
+    },
+    "Adamant": {
+      "name_cn": "Adamant",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "FAU光引擎 (Fiber Array Unit)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "新易盛/Eoptolink"
+      ],
+      "report_tags": [
+        "Adamant",
+        "氧化锆精密陶瓷插芯 (Zirconia Ceramic Ferrule)"
+      ]
+    },
+    "AIXTRON": {
+      "name_cn": "爱思强",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "GaAs外延片与MOCVD设备",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "VCSEL激光器",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Coherent"
+      ],
+      "report_tags": [
+        "AIXTRON",
+        "爱思强",
+        "GaAs外延片与MOCVD设备"
+      ]
+    },
+    "Veeco": {
+      "name_cn": "Veeco",
+      "country": "US",
+      "materials": [
+        {
+          "material": "GaAs外延片与MOCVD设备",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "VCSEL激光器",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Coherent"
+      ],
+      "report_tags": [
+        "Veeco",
+        "GaAs外延片与MOCVD设备"
+      ]
+    },
+    "全新光电/VPEC": {
+      "name_cn": "全新光电",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "GaAs外延片与MOCVD设备",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "VCSEL激光器",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Coherent"
+      ],
+      "report_tags": [
+        "全新光电/VPEC",
+        "全新光电",
+        "GaAs外延片与MOCVD设备"
+      ]
+    },
+    "中微公司/AMEC": {
+      "name_cn": "中微公司",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "GaAs外延片与MOCVD设备",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "VCSEL激光器",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Coherent"
+      ],
+      "report_tags": [
+        "中微公司/AMEC",
+        "中微公司",
+        "GaAs外延片与MOCVD设备"
+      ]
+    },
+    "Soitec": {
+      "name_cn": "Soitec",
+      "country": "FR",
+      "materials": [
+        {
+          "material": "SOI晶圆 (Silicon-on-Insulator Wafer)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "硅光子晶圆 (SiPh Wafer)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Fabrinet"
+      ],
+      "report_tags": [
+        "Soitec",
+        "SOI晶圆 (Silicon-on-Insulator Wafer)"
+      ]
+    },
+    "GlobalWafers": {
+      "name_cn": "环球晶圆",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "SOI晶圆 (Silicon-on-Insulator Wafer)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "硅光子晶圆 (SiPh Wafer)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Fabrinet"
+      ],
+      "report_tags": [
+        "GlobalWafers",
+        "环球晶圆",
+        "SOI晶圆 (Silicon-on-Insulator Wafer)"
+      ]
+    },
+    "PI (Physik Instrumente)": {
+      "name_cn": "PI",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "纳米定位压电系统 (Nanopositioning Piezo System)",
+          "type": "精密设备"
+        },
+        {
+          "material": "[L3元件] 精密耦合设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "精密耦合设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Fabrinet",
+        "Aerotech",
+        "ficonTEC",
+        "PI (Physik Instrumente)",
+        "Others",
+        "Aiwei"
+      ],
+      "report_tags": [
+        "PI (Physik Instrumente)",
+        "PI",
+        "纳米定位压电系统 (Nanopositioning Piezo System)"
+      ]
+    },
+    "Aerotech": {
+      "name_cn": "Aerotech",
+      "country": "US",
+      "materials": [
+        {
+          "material": "纳米定位压电系统 (Nanopositioning Piezo System)",
+          "type": "精密设备"
+        },
+        {
+          "material": "[L3元件] 精密耦合设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "精密耦合设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Fabrinet",
+        "Aerotech",
+        "ficonTEC",
+        "PI (Physik Instrumente)",
+        "Others",
+        "Aiwei"
+      ],
+      "report_tags": [
+        "Aerotech",
+        "纳米定位压电系统 (Nanopositioning Piezo System)"
+      ]
+    },
+    "Newport/MKS": {
+      "name_cn": "Newport/MKS",
+      "country": "US",
+      "materials": [
+        {
+          "material": "纳米定位压电系统 (Nanopositioning Piezo System)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "精密耦合设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Fabrinet"
+      ],
+      "report_tags": [
+        "Newport/MKS",
+        "纳米定位压电系统 (Nanopositioning Piezo System)"
+      ]
+    },
+    "艾微视/Aiwei": {
+      "name_cn": "艾微视",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "纳米定位压电系统 (Nanopositioning Piezo System)",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "精密耦合设备",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Fabrinet"
+      ],
+      "report_tags": [
+        "艾微视/Aiwei",
+        "艾微视",
+        "纳米定位压电系统 (Nanopositioning Piezo System)"
+      ]
+    },
+    "Asahi Kasei": {
+      "name_cn": "旭化成",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "Q-glass石英玻璃布 (Quartz Glass Fabric)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "Asahi Kasei",
+        "旭化成",
+        "Q-glass石英玻璃布 (Quartz Glass Fabric)"
+      ]
+    },
+    "Nittobo": {
+      "name_cn": "日东纺",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "Q-glass石英玻璃布 (Quartz Glass Fabric)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "Nittobo",
+        "日东纺",
+        "Q-glass石英玻璃布 (Quartz Glass Fabric)"
+      ]
+    },
+    "泰山玻纤/Taishan": {
+      "name_cn": "泰山玻纤",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "Q-glass石英玻璃布 (Quartz Glass Fabric)",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "泰山玻纤/Taishan",
+        "泰山玻纤",
+        "Q-glass石英玻璃布 (Quartz Glass Fabric)"
+      ]
+    },
+    "MGC/三菱瓦斯化学": {
+      "name_cn": "三菱瓦斯化学",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "特种低损耗树脂系统",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "MGC/三菱瓦斯化学",
+        "三菱瓦斯化学",
+        "特种低损耗树脂系统"
+      ]
+    },
+    "SABIC": {
+      "name_cn": "沙比克",
+      "country": "SA",
+      "materials": [
+        {
+          "material": "特种低损耗树脂系统",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "SABIC",
+        "沙比克",
+        "特种低损耗树脂系统"
+      ]
+    },
+    "Daikin": {
+      "name_cn": "大金",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "特种低损耗树脂系统",
+          "type": "化学配方"
+        },
+        {
+          "material": "高频极低损耗氟塑料绝缘皮",
+          "type": "化学配方"
+        },
+        {
+          "material": "特种全氟醚橡胶O型圈 (FFKM O-Ring)",
+          "type": "化学配方"
+        },
+        {
+          "material": "氟化液配方 (Fluorinated Coolant Formula)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "快换接头 (UQD Quick Disconnect)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC",
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Daikin",
+        "大金",
+        "特种低损耗树脂系统"
+      ]
+    },
+    "Rogers Corporation": {
+      "name_cn": "罗杰斯",
+      "country": "US",
+      "materials": [
+        {
+          "material": "特种低损耗树脂系统",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "Rogers Corporation",
+        "罗杰斯",
+        "特种低损耗树脂系统"
+      ]
+    },
+    "三井金属": {
+      "name_cn": "三井金属",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "极低轮廓铜箔表面处理技术",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "三井金属",
+        "极低轮廓铜箔表面处理技术"
+      ]
+    },
+    "古河电工": {
+      "name_cn": "古河电工",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "极低轮廓铜箔表面处理技术",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "古河电工",
+        "极低轮廓铜箔表面处理技术"
+      ]
+    },
+    "JX金属": {
+      "name_cn": "JX日矿金属",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "极低轮廓铜箔表面处理技术",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "JX金属",
+        "JX日矿金属",
+        "极低轮廓铜箔表面处理技术"
+      ]
+    },
+    "Chemours": {
+      "name_cn": "科慕",
+      "country": "US",
+      "materials": [
+        {
+          "material": "高频极低损耗氟塑料绝缘皮",
+          "type": "化学配方"
+        },
+        {
+          "material": "氟化液配方 (Fluorinated Coolant Formula)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC",
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Chemours",
+        "科慕",
+        "高频极低损耗氟塑料绝缘皮"
+      ]
+    },
+    "AGC": {
+      "name_cn": "旭硝子",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "高频极低损耗氟塑料绝缘皮",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "台光电子/EMC"
+      ],
+      "report_tags": [
+        "AGC",
+        "旭硝子",
+        "高频极低损耗氟塑料绝缘皮"
+      ]
+    },
+    "Nidec": {
+      "name_cn": "日本电产",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "低流阻高寿命水泵陶瓷轴承",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Nidec",
+        "日本电产",
+        "低流阻高寿命水泵陶瓷轴承"
+      ]
+    },
+    "Grundfos": {
+      "name_cn": "格兰富",
+      "country": "DK",
+      "materials": [
+        {
+          "material": "低流阻高寿命水泵陶瓷轴承",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Grundfos",
+        "格兰富",
+        "低流阻高寿命水泵陶瓷轴承"
+      ]
+    },
+    "Ebara": {
+      "name_cn": "荏原",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "低流阻高寿命水泵陶瓷轴承",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Ebara",
+        "荏原",
+        "低流阻高寿命水泵陶瓷轴承"
+      ]
+    },
+    "新界泵业/Shimge": {
+      "name_cn": "新界泵业",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "低流阻高寿命水泵陶瓷轴承",
+          "type": "精密设备"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "新界泵业/Shimge",
+        "新界泵业",
+        "低流阻高寿命水泵陶瓷轴承"
+      ]
+    },
+    "DuPont (Kalrez)": {
+      "name_cn": "杜邦(Kalrez)",
+      "country": "US",
+      "materials": [
+        {
+          "material": "特种全氟醚橡胶O型圈 (FFKM O-Ring)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "快换接头 (UQD Quick Disconnect)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "DuPont (Kalrez)",
+        "杜邦(Kalrez)",
+        "特种全氟醚橡胶O型圈 (FFKM O-Ring)"
+      ]
+    },
+    "Parker (Parofluor)": {
+      "name_cn": "派克(Parofluor)",
+      "country": "US",
+      "materials": [
+        {
+          "material": "特种全氟醚橡胶O型圈 (FFKM O-Ring)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "快换接头 (UQD Quick Disconnect)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Parker (Parofluor)",
+        "派克(Parofluor)",
+        "特种全氟醚橡胶O型圈 (FFKM O-Ring)"
+      ]
+    },
+    "Greene Tweed (Chemraz)": {
+      "name_cn": "格林特威德(Chemraz)",
+      "country": "US",
+      "materials": [
+        {
+          "material": "特种全氟醚橡胶O型圈 (FFKM O-Ring)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "快换接头 (UQD Quick Disconnect)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Greene Tweed (Chemraz)",
+        "格林特威德(Chemraz)",
+        "特种全氟醚橡胶O型圈 (FFKM O-Ring)"
+      ]
+    },
+    "Solvay": {
+      "name_cn": "索尔维",
+      "country": "BE",
+      "materials": [
+        {
+          "material": "氟化液配方 (Fluorinated Coolant Formula)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "Solvay",
+        "索尔维",
+        "氟化液配方 (Fluorinated Coolant Formula)"
+      ]
+    },
+    "巨化股份": {
+      "name_cn": "巨化股份",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "氟化液配方 (Fluorinated Coolant Formula)",
+          "type": "化学配方"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Vertiv"
+      ],
+      "report_tags": [
+        "巨化股份",
+        "氟化液配方 (Fluorinated Coolant Formula)"
+      ]
+    },
+    "Infineon": {
+      "name_cn": "英飞凌",
+      "country": "DE",
+      "materials": [
+        {
+          "material": "GaN/SiC第三代半导体功率器件",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "Infineon",
+        "英飞凌",
+        "GaN/SiC第三代半导体功率器件"
+      ]
+    },
+    "STMicroelectronics": {
+      "name_cn": "意法半导体",
+      "country": "CH/FR",
+      "materials": [
+        {
+          "material": "GaN/SiC第三代半导体功率器件",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "STMicroelectronics",
+        "意法半导体",
+        "GaN/SiC第三代半导体功率器件"
+      ]
+    },
+    "Wolfspeed": {
+      "name_cn": "狼速",
+      "country": "US",
+      "materials": [
+        {
+          "material": "GaN/SiC第三代半导体功率器件",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "Wolfspeed",
+        "狼速",
+        "GaN/SiC第三代半导体功率器件"
+      ]
+    },
+    "ROHM": {
+      "name_cn": "罗姆",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "GaN/SiC第三代半导体功率器件",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "ROHM",
+        "罗姆",
+        "GaN/SiC第三代半导体功率器件"
+      ]
+    },
+    "Navitas": {
+      "name_cn": "纳微半导体",
+      "country": "US",
+      "materials": [
+        {
+          "material": "GaN/SiC第三代半导体功率器件",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "Navitas",
+        "纳微半导体",
+        "GaN/SiC第三代半导体功率器件"
+      ]
+    },
+    "三安光电/Sanan": {
+      "name_cn": "三安光电",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "GaN/SiC第三代半导体功率器件",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "三安光电/Sanan",
+        "三安光电",
+        "GaN/SiC第三代半导体功率器件"
+      ]
+    },
+    "Cyntec/乾坤科技": {
+      "name_cn": "乾坤科技",
+      "country": "TW",
+      "materials": [
+        {
+          "material": "高饱和磁通密度金属磁粉芯",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "Cyntec/乾坤科技",
+        "乾坤科技",
+        "高饱和磁通密度金属磁粉芯"
+      ]
+    },
+    "TDK": {
+      "name_cn": "TDK",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "高饱和磁通密度金属磁粉芯",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "TDK",
+        "高饱和磁通密度金属磁粉芯"
+      ]
+    },
+    "Ferrite Core Enterprise": {
+      "name_cn": "磁芯企业",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "高饱和磁通密度金属磁粉芯",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd"
+      ],
+      "report_tags": [
+        "Ferrite Core Enterprise",
+        "磁芯企业",
+        "高饱和磁通密度金属磁粉芯"
+      ]
+    },
+    "TSMC (in-house)": {
+      "name_cn": "TSMC (in-house)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 硅中介层 (Si Interposer)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] 微凸块 (Micro-bump)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "硅中介层 (Si Interposer)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "微凸块 (Micro-bump)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC (in-house)",
+        "Unimicron",
+        "日月光",
+        "Amkor"
+      ],
+      "report_tags": [
+        "TSMC (in-house)"
+      ]
+    },
+    "Namics/日立化成": {
+      "name_cn": "Namics/日立化成",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 底部填充胶 (Underfill)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "底部填充胶 (Underfill)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "汉高",
+        "Darbond",
+        "长濑",
+        "日立化成"
+      ],
+      "report_tags": [
+        "Namics/日立化成"
+      ]
+    },
+    "Henkel/汉高": {
+      "name_cn": "Henkel/汉高",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 底部填充胶 (Underfill)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "TSMC CoWoS",
+          "component": "底部填充胶 (Underfill)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "汉高",
+        "Darbond",
+        "长濑",
+        "日立化成"
+      ],
+      "report_tags": [
+        "Henkel/汉高"
+      ]
+    },
+    "Ibiden/揖斐电": {
+      "name_cn": "Ibiden/揖斐电",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 封装基板 (IC Substrate)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "封装基板 (IC Substrate)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Unimicron",
+        "Kinsus",
+        "AT&S",
+        "新光电气",
+        "揖斐电"
+      ],
+      "report_tags": [
+        "Ibiden/揖斐电"
+      ]
+    },
+    "欣兴/Unimicron": {
+      "name_cn": "欣兴/Unimicron",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 封装基板 (IC Substrate)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "封装基板 (IC Substrate)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Unimicron",
+        "Kinsus",
+        "AT&S",
+        "新光电气",
+        "揖斐电"
+      ],
+      "report_tags": [
+        "欣兴/Unimicron"
+      ]
+    },
+    "AT&S": {
+      "name_cn": "AT&S",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 封装基板 (IC Substrate)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "封装基板 (IC Substrate)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Unimicron",
+        "Kinsus",
+        "AT&S",
+        "新光电气",
+        "揖斐电"
+      ],
+      "report_tags": [
+        "AT&S"
+      ]
+    },
+    "ASE (in-house)": {
+      "name_cn": "ASE (in-house)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 焊线 (Wire Bonding)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "焊线 (Wire Bonding)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "ASMPT",
+        "Kulicke & Soffa",
+        "ASE (in-house)"
+      ],
+      "report_tags": [
+        "ASE (in-house)"
+      ]
+    },
+    "Advantest": {
+      "name_cn": "Advantest",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 测试设备 (ATE)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] HBM测试设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "HBM测试设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Teradyne",
+        "Advantest",
+        "Xcerra",
+        "致茂",
+        "东京精密",
+        "SEMES (Samsung子公司)"
+      ],
+      "report_tags": [
+        "Advantest"
+      ]
+    },
+    "Teradyne": {
+      "name_cn": "Teradyne",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 测试设备 (ATE)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] HBM测试设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 4,
+          "layer_name": "先进封装 (CoWoS)",
+          "supplier": "ASE (日月光)",
+          "component": "测试设备 (ATE)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "HBM测试设备",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "HBM测试设备",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Teradyne",
+        "Advantest",
+        "Xcerra",
+        "致茂",
+        "东京精密",
+        "SEMES (Samsung子公司)"
+      ],
+      "report_tags": [
+        "Teradyne"
+      ]
+    },
+    "Lam Research": {
+      "name_cn": "Lam Research",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] TSV蚀刻设备 (Through-Silicon Via)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] TSV蚀刻设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "TSV蚀刻设备 (Through-Silicon Via)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "TSV蚀刻设备",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "TSV蚀刻设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "AMAT",
+        "KLA",
+        "Lam Research",
+        "TEL",
+        "SEMES (Samsung子公司)"
+      ],
+      "report_tags": [
+        "Lam Research"
+      ]
+    },
+    "Tokyo Electron/TEL": {
+      "name_cn": "Tokyo Electron/TEL",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] TSV蚀刻设备 (Through-Silicon Via)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] TSV蚀刻设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "TSV蚀刻设备 (Through-Silicon Via)",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "TSV蚀刻设备",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "TSV蚀刻设备",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "AMAT",
+        "KLA",
+        "Lam Research",
+        "TEL",
+        "SEMES (Samsung子公司)"
+      ],
+      "report_tags": [
+        "Tokyo Electron/TEL"
+      ]
+    },
+    "Applied Materials/AMAT": {
+      "name_cn": "Applied Materials/AMAT",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] TSV蚀刻设备 (Through-Silicon Via)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] TSV蚀刻设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "TSV蚀刻设备 (Through-Silicon Via)",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "TSV蚀刻设备",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "TSV蚀刻设备",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "AMAT",
+        "KLA",
+        "Lam Research",
+        "TEL",
+        "SEMES (Samsung子公司)"
+      ],
+      "report_tags": [
+        "Applied Materials/AMAT"
+      ]
+    },
+    "SK Hynix (自研MR-MUF)": {
+      "name_cn": "SK Hynix (自研MR-MUF)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] MR-MUF材料 (Mass Reflow-Molded Underfill)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "MR-MUF材料 (Mass Reflow-Molded Underfill)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "长濑",
+        "SK Hynix (自研MR-MUF)",
+        "日立化成"
+      ],
+      "report_tags": [
+        "SK Hynix (自研MR-MUF)"
+      ]
+    },
+    "YIKC/东京精密": {
+      "name_cn": "YIKC/东京精密",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] HBM测试设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "SK Hynix",
+          "component": "HBM测试设备",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "HBM测试设备",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Micron",
+          "component": "HBM测试设备",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Teradyne",
+        "东京精密",
+        "Advantest",
+        "SEMES (Samsung子公司)"
+      ],
+      "report_tags": [
+        "YIKC/东京精密"
+      ]
+    },
+    "SEMES (Samsung子公司)": {
+      "name_cn": "SEMES (Samsung子公司)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] TSV蚀刻设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "TSV蚀刻设备",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "AMAT",
+        "SEMES (Samsung子公司)",
+        "Lam Research",
+        "TEL"
+      ],
+      "report_tags": [
+        "SEMES (Samsung子公司)"
+      ]
+    },
+    "Samsung SDI (自研NCF)": {
+      "name_cn": "Samsung SDI (自研NCF)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] NCF材料 (Non-Conductive Film)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 5,
+          "layer_name": "HBM 高带宽内存",
+          "supplier": "Samsung",
+          "component": "NCF材料 (Non-Conductive Film)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Samsung SDI (自研NCF)",
+        "东丽",
+        "积水化学",
+        "Others"
+      ],
+      "report_tags": [
+        "Samsung SDI (自研NCF)"
+      ]
+    },
+    "Ajinomoto/味之素": {
+      "name_cn": "Ajinomoto/味之素",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 6,
+          "layer_name": "ABF 载板",
+          "supplier": "Ibiden",
+          "component": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 6,
+          "layer_name": "ABF 载板",
+          "supplier": "Unimicron/欣兴",
+          "component": "ABF味之素堆积膜 (Ajinomoto Build-up Film)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "味之素",
+        "新光电气"
+      ],
+      "report_tags": [
+        "Ajinomoto/味之素"
+      ]
+    },
+    "Broadcom": {
+      "name_cn": "Broadcom",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] EML激光器 (800G/1.6T)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] DSP芯片 (224G PAM4)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] EML激光器",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] DSP芯片",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "EML激光器 (800G/1.6T)",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "EML激光器",
+          "impact_level": "medium"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "DSP芯片",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Broadcom",
+        "Lumentum",
+        "源杰科技",
+        "三菱电机",
+        "Accelink",
+        "Coherent (in-house)",
+        "Credo Technology",
+        "MaxLinear",
+        "Marvell",
+        "Others"
+      ],
+      "report_tags": [
+        "Broadcom"
+      ]
+    },
+    "Marvell": {
+      "name_cn": "Marvell",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] DSP芯片 (224G PAM4)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] DSP芯片",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "DSP芯片 (224G PAM4)",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "DSP芯片",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Credo Technology",
+        "MaxLinear",
+        "Broadcom",
+        "Marvell",
+        "Others"
+      ],
+      "report_tags": [
+        "Marvell"
+      ]
+    },
+    "Intel": {
+      "name_cn": "Intel",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 硅光子集成 (SiPh)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/Innolight",
+          "component": "硅光子集成 (SiPh)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC",
+        "Intel",
+        "中芯集成",
+        "中际旭创 (in-house)",
+        "GlobalFoundries",
+        "Ayar Labs",
+        "Tower Semiconductor"
+      ],
+      "report_tags": [
+        "Intel"
+      ]
+    },
+    "天孚通信/TFC": {
+      "name_cn": "天孚通信/TFC",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] FAU光引擎 (Fiber Array Unit)",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] 光纤阵列 (FAU)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "新易盛/Eoptolink",
+          "component": "FAU光引擎 (Fiber Array Unit)",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "光纤阵列 (FAU)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "T&S",
+        "TFC",
+        "US Conec",
+        "扇港",
+        "Three-Circle"
+      ],
+      "report_tags": [
+        "天孚通信/TFC"
+      ]
+    },
+    "Coherent (in-house)": {
+      "name_cn": "Coherent (in-house)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] VCSEL激光器",
+          "type": "L3核心元件"
+        },
+        {
+          "material": "[L3元件] EML激光器",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "VCSEL激光器",
+          "impact_level": "high"
+        },
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Coherent",
+          "component": "EML激光器",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Coherent (in-house)",
+        "通快",
+        "Lumentum",
+        "乾照)",
+        "三菱电机",
+        "Broadcom"
+      ],
+      "report_tags": [
+        "Coherent (in-house)"
+      ]
+    },
+    "TSMC (COUPE)": {
+      "name_cn": "TSMC (COUPE)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 硅光子晶圆 (SiPh Wafer)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "硅光子晶圆 (SiPh Wafer)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC (COUPE)",
+        "中芯集成",
+        "Intel Foundry",
+        "GlobalFoundries",
+        "Tower Semiconductor"
+      ],
+      "report_tags": [
+        "TSMC (COUPE)"
+      ]
+    },
+    "GlobalFoundries": {
+      "name_cn": "GlobalFoundries",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 硅光子晶圆 (SiPh Wafer)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "硅光子晶圆 (SiPh Wafer)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "TSMC (COUPE)",
+        "中芯集成",
+        "Intel Foundry",
+        "GlobalFoundries",
+        "Tower Semiconductor"
+      ],
+      "report_tags": [
+        "GlobalFoundries"
+      ]
+    },
+    "ficonTEC": {
+      "name_cn": "ficonTEC",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 精密耦合设备",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "Fabrinet",
+          "component": "精密耦合设备",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Aerotech",
+        "ficonTEC",
+        "PI (Physik Instrumente)",
+        "Others",
+        "Aiwei"
+      ],
+      "report_tags": [
+        "ficonTEC"
+      ]
+    },
+    "台光电子/EMC": {
+      "name_cn": "台光电子/EMC",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] M8/M9级高速CCL (铜箔基板)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Isola",
+        "EMC",
+        "Rogers Corporation",
+        "TUC",
+        "松下",
+        "Nanya",
+        "Shengyi"
+      ],
+      "report_tags": [
+        "台光电子/EMC"
+      ]
+    },
+    "台燿科技/TUC": {
+      "name_cn": "台燿科技/TUC",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] M8/M9级高速CCL (铜箔基板)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Isola",
+        "EMC",
+        "Rogers Corporation",
+        "TUC",
+        "松下",
+        "Nanya",
+        "Shengyi"
+      ],
+      "report_tags": [
+        "台燿科技/TUC"
+      ]
+    },
+    "Isola": {
+      "name_cn": "Isola",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] M8/M9级高速CCL (铜箔基板)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "M8/M9级高速CCL (铜箔基板)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Isola",
+        "EMC",
+        "Rogers Corporation",
+        "TUC",
+        "松下",
+        "Nanya",
+        "Shengyi"
+      ],
+      "report_tags": [
+        "Isola"
+      ]
+    },
+    "三井金属/Mitsui Kinzoku": {
+      "name_cn": "三井金属/Mitsui Kinzoku",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] HVLP4极低轮廓铜箔",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "JX Nippon",
+        "Mitsui Kinzoku",
+        "Furukawa",
+        "Kingboard"
+      ],
+      "report_tags": [
+        "三井金属/Mitsui Kinzoku"
+      ]
+    },
+    "古河电工/Furukawa": {
+      "name_cn": "古河电工/Furukawa",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] HVLP4极低轮廓铜箔",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "JX Nippon",
+        "Mitsui Kinzoku",
+        "Furukawa",
+        "Kingboard"
+      ],
+      "report_tags": [
+        "古河电工/Furukawa"
+      ]
+    },
+    "JX金属/JX Nippon": {
+      "name_cn": "JX金属/JX Nippon",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] HVLP4极低轮廓铜箔",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 9,
+          "layer_name": "PCB/CCL 电路板",
+          "supplier": "台光电子/EMC",
+          "component": "HVLP4极低轮廓铜箔",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "JX Nippon",
+        "Mitsui Kinzoku",
+        "Furukawa",
+        "Kingboard"
+      ],
+      "report_tags": [
+        "JX金属/JX Nippon"
+      ]
+    },
+    "Vertiv": {
+      "name_cn": "Vertiv",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 液冷CDU (Coolant Distribution Unit)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Schneider Electric",
+        "Envicool",
+        "CoolIT Systems",
+        "Vertiv",
+        "Auras"
+      ],
+      "report_tags": [
+        "Vertiv"
+      ]
+    },
+    "Schneider Electric": {
+      "name_cn": "Schneider Electric",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 液冷CDU (Coolant Distribution Unit)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Schneider Electric",
+        "Envicool",
+        "CoolIT Systems",
+        "Vertiv",
+        "Auras"
+      ],
+      "report_tags": [
+        "Schneider Electric"
+      ]
+    },
+    "英维克/Envicool": {
+      "name_cn": "英维克/Envicool",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 液冷CDU (Coolant Distribution Unit)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Schneider Electric",
+        "Envicool",
+        "CoolIT Systems",
+        "Vertiv",
+        "Auras"
+      ],
+      "report_tags": [
+        "英维克/Envicool"
+      ]
+    },
+    "CoolIT Systems": {
+      "name_cn": "CoolIT Systems",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 液冷CDU (Coolant Distribution Unit)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "液冷CDU (Coolant Distribution Unit)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Schneider Electric",
+        "Envicool",
+        "CoolIT Systems",
+        "Vertiv",
+        "Auras"
+      ],
+      "report_tags": [
+        "CoolIT Systems"
+      ]
+    },
+    "Stäubli": {
+      "name_cn": "Stäubli",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 快换接头 (UQD Quick Disconnect)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "快换接头 (UQD Quick Disconnect)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Parker Hannifin",
+        "CPC (Colder Products)",
+        "Nitto Kohki",
+        "Stäubli"
+      ],
+      "report_tags": [
+        "Stäubli"
+      ]
+    },
+    "CPC (Colder Products)": {
+      "name_cn": "CPC (Colder Products)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 快换接头 (UQD Quick Disconnect)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "快换接头 (UQD Quick Disconnect)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Parker Hannifin",
+        "CPC (Colder Products)",
+        "Nitto Kohki",
+        "Stäubli"
+      ],
+      "report_tags": [
+        "CPC (Colder Products)"
+      ]
+    },
+    "Parker Hannifin": {
+      "name_cn": "Parker Hannifin",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 快换接头 (UQD Quick Disconnect)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "快换接头 (UQD Quick Disconnect)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Parker Hannifin",
+        "CPC (Colder Products)",
+        "Nitto Kohki",
+        "Stäubli"
+      ],
+      "report_tags": [
+        "Parker Hannifin"
+      ]
+    },
+    "Chemours (Opteon)": {
+      "name_cn": "Chemours (Opteon)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 特殊冷却液 (Dielectric Coolant)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "Chemours (Opteon)",
+        "Juhua",
+        "Solvay (Galden)",
+        "3M (Novec)"
+      ],
+      "report_tags": [
+        "Chemours (Opteon)"
+      ]
+    },
+    "3M (Novec)": {
+      "name_cn": "3M (Novec)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 特殊冷却液 (Dielectric Coolant)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Chemours (Opteon)",
+        "Juhua",
+        "Solvay (Galden)",
+        "3M (Novec)"
+      ],
+      "report_tags": [
+        "3M (Novec)"
+      ]
+    },
+    "Solvay (Galden)": {
+      "name_cn": "Solvay (Galden)",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 特殊冷却液 (Dielectric Coolant)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Vertiv",
+          "component": "特殊冷却液 (Dielectric Coolant)",
+          "impact_level": "medium"
+        }
+      ],
+      "downstream_tickers": [
+        "Chemours (Opteon)",
+        "Juhua",
+        "Solvay (Galden)",
+        "3M (Novec)"
+      ],
+      "report_tags": [
+        "Solvay (Galden)"
+      ]
+    },
+    "Boyd Corporation": {
+      "name_cn": "Boyd Corporation",
+      "country": "",
+      "materials": [
+        {
+          "material": "[L3元件] 液冷冷板 (Cold Plate)",
+          "type": "L3核心元件"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 10,
+          "layer_name": "电力与散热",
+          "supplier": "Boyd",
+          "component": "液冷冷板 (Cold Plate)",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "Boyd Corporation",
+        "AVC",
+        "Kool Kraft",
+        "CoolIT Systems",
+        "Auras"
+      ],
+      "report_tags": [
+        "Boyd Corporation"
+      ]
+    },
+    "AXT Inc": {
+      "name_cn": "AXT",
+      "country": "US/CN",
+      "materials": [
+        {
+          "material": "InP磷化铟衬底晶圆",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 3,
+          "layer_name": "光芯片",
+          "supplier": "光模块制造商",
+          "component": "激光器/探测器",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "AXTI"
+      ],
+      "monopoly_level": "dominant",
+      "note": "美资上市，但生产基地在北京通州，原料供应链深度依赖中国铟资源",
+      "part": "P7",
+      "depth": "L4"
+    },
+    "JX Nippon Mining": {
+      "name_cn": "JX金属",
+      "country": "JP",
+      "materials": [
+        {
+          "material": "InP磷化铟衬底晶圆",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 3,
+          "layer_name": "光芯片",
+          "supplier": "全球光模块产业链",
+          "component": "激光器/探测器",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [],
+      "monopoly_level": "oligopoly",
+      "note": "全球第三大InP衬底厂，~15-20%份额",
+      "part": "P7",
+      "depth": "L4"
+    },
+    "Yunnan Germanium": {
+      "name_cn": "云南锗业(鑫耀半导体)",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "InP磷化铟衬底晶圆",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 3,
+          "layer_name": "光芯片",
+          "supplier": "华为昇腾/国产光模块",
+          "component": "激光器/探测器",
+          "impact_level": "critical"
+        },
+        {
+          "layer_id": 4,
+          "layer_name": "光模块",
+          "supplier": "中际旭创/新易盛",
+          "component": "800G光模块",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "002428.SZ"
+      ],
+      "monopoly_level": "entrant",
+      "note": "中国InP龙头，华为锁定53%产能，2027目标年产10万片",
+      "part": "P7",
+      "depth": "L5"
+    },
+    "Grinm Advanced": {
+      "name_cn": "有研新材",
+      "country": "CN",
+      "materials": [
+        {
+          "material": "InP磷化铟衬底晶圆",
+          "type": "物理材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 3,
+          "layer_name": "光芯片",
+          "supplier": "国产光芯片",
+          "component": "激光器/探测器",
+          "impact_level": "high"
+        }
+      ],
+      "downstream_tickers": [
+        "600206.SH"
+      ],
+      "monopoly_level": "entrant",
+      "note": "国家02专项，6英寸InP产线建设中",
+      "part": "P7",
+      "depth": "L4"
+    },
+    "VPEC (Visual Photonics)": {
+      "name_cn": "全新光电",
+      "country": "TW",
+      "part": "P7",
+      "depth": "L3",
+      "materials": [
+        {
+          "material": "InP外延片 (Epi-Wafer)",
+          "type": "光学材料"
+        }
+      ],
+      "affects": [
+        {
+          "layer_id": 7,
+          "layer_name": "光模块与激光器",
+          "supplier": "中际旭创/新易盛",
+          "component": "EML激光器外延片",
+          "impact_level": "critical"
+        }
+      ],
+      "downstream_tickers": [
+        "300308.SZ",
+        "300502.SZ"
+      ],
+      "monopoly_level": "dominant",
+      "note": "全球第二大InP外延片厂，台湾龙头"
+    }
+  },
+  "meta": {
+    "naming": {
+      "x_axis": "P0-P11 (System Parts)",
+      "y_axis": "L1-L5 per chokepoint entry (L1=成品 L2=器件 L3=材料 L4=衬底 L5=元素)"
+    },
+    "updated": "2026-06-13"
+  }
+}

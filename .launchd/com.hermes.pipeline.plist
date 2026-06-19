@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.hermes.pipeline</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3 /Users/hongfeihsu/ClaudeCode/hermes/run_pipeline.py --date $(date -v-1d +%Y%m%d) --skip-download --bearish-alert --send-email</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>5</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes/pipeline.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes/pipeline_error.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

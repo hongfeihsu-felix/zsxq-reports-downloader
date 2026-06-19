@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI 产业链矩阵 — Hermes</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+body{background:#0d1117;color:#e6edf3;font-family:'Helvetica Neue','PingFang SC',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:0;padding:0}
+.wrap{max-width:1400px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 4px}
+h2{font-size:16px;color:#58a6ff;border-bottom:1px solid #30363d;padding-bottom:8px;margin:24px 0 16px}
+h3{font-size:14px;color:#e6edf3;margin:0}
+.header-sub{color:#8b949e;font-size:12px;margin-bottom:8px}
+a{color:#58a6ff;text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.nav a{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 14px;font-size:12px;color:#8b949e}
+.nav a:hover,.nav a.active{color:#58a6ff;border-color:#58a6ff;text-decoration:none}
+
+/* Mermaid diagram container */
+.diagram-box{background:#fff;border-radius:8px;padding:24px;margin:16px 0;overflow-x:auto}
+.diagram-box .mermaid{display:flex;justify-content:center}
+
+/* Cards */
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:20px;margin:0 0 16px}
+.card-header{cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.card-header h3{flex:1}
+.card-header .badge{font-size:11px;padding:2px 10px;border-radius:12px;font-weight:600}
+.badge-nvda{background:#1f3d2f;color:#3fb950}
+.badge-tpu{background:#1f2d3d;color:#58a6ff}
+.badge-both{background:#3d2f0f;color:#d29922}
+.card-body{display:none;margin-top:16px;padding-top:16px;border-top:1px solid #30363d}
+.card.open .card-body{display:block}
+.card-toggle{font-size:20px;color:#8b949e;transition:transform 0.2s;min-width:24px;text-align:center}
+.card.open .card-toggle{transform:rotate(45deg)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th{background:#0d1117;color:#8b949e;font-weight:600;text-align:left;padding:8px 10px;border:1px solid #30363d;font-size:11px;text-transform:uppercase}
+td{padding:8px 10px;border:1px solid #30363d;vertical-align:top}
+tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+
+/* Tags */
+.tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;margin:1px 2px}
+.tag-buy{background:#1f3d2f;color:#3fb950}
+.tag-info{background:#1f2d3d;color:#58a6ff}
+.tag-warn{background:#3d2f0f;color:#d29922}
+
+/* Grid layouts */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:0 0 16px}
+
+/* Market share bar */
+.share-bar{height:20px;background:#21262d;border-radius:4px;margin:4px 0;overflow:hidden;display:flex}
+.share-seg{height:100%;transition:width 0.3s;position:relative}
+.share-legend{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px;font-size:11px}
+.share-legend span{display:inline-flex;align-items:center;gap:4px}
+.share-legend .dot{width:8px;height:8px;border-radius:2px;display:inline-block}
+
+.colors-10{background:#58a6ff}.colors-10+*{background:#3fb950}.colors-10+*+*{background:#d29922}
+.colors-10+*+*+*{background:#f85149}.colors-10+*+*+*+*{background:#a371f7}
+.colors-10+*+*+*+*+*{background:#8b949e}.colors-10+*+*+*+*+*+*{background:#79c0ff}
+.colors-10+*+*+*+*+*+*+*{background:#56d364}.colors-10+*+*+*+*+*+*+*+*{background:#e3b341}
+
+/* Side by side NVDA vs TPU */
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin:16px 0}
+.vs-col{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px}
+.vs-col.nvda{border-left:3px solid #3fb950}
+.vs-col.tpu{border-left:3px solid #58a6ff}
+.vs-divider{font-size:24px;color:#8b949e;font-weight:800;text-align:center}
+.vs-title{font-size:14px;font-weight:700;margin:0 0 8px}
+.vs-title .nvda-color{color:#3fb950}
+.vs-title .tpu-color{color:#58a6ff}
+
+/* Layer path indicator */
+.layer-path{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;color:#8b949e;margin:8px 0}
+.layer-path .arrow{color:#58a6ff}
+.layer-path .node{background:#161b22;border:1px solid #30363d;border-radius:4px;padding:2px 8px}
+.layer-path .node.current{background:#1f2d3d;border-color:#58a6ff;color:#58a6ff;font-weight:700}
+
+/* Deep Chain Drill-Down */
+.drill-btn{background:transparent;border:1px solid #30363d;color:#8b949e;border-radius:4px;width:26px;height:26px;cursor:pointer;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0}
+.drill-btn:hover{border-color:#58a6ff;color:#58a6ff}
+.drill-btn.open{transform:rotate(45deg);border-color:#58a6ff;color:#58a6ff}
+.deep-chain-body{padding:8px 0 0 16px;border-left:2px solid #30363d}
+.dc-component{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px;margin:8px 0}
+.dc-component-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.dc-component-name{font-size:13px;font-weight:700;color:#e6edf3}
+.dc-bottleneck{border-left:3px solid #f85149}
+.dc-bottleneck-label{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700;background:#3d1f1f;color:#f85149;white-space:nowrap}
+/* L4 Materials */
+.material-type{font-size:10px;display:inline-block;padding:1px 6px;border-radius:8px}
+.mt-化学配方{background:#4a1a5c;color:#d2a8ff}
+.mt-物理材料{background:#1a3a5c;color:#79c0ff}
+.mt-精密设备{background:#5e3311;color:#ffa657}
+.mt-特种气体{background:#1f4a3a;color:#3fb950}
+.mt-光学材料{background:#3a1a4a;color:#b392f0}
+.badge-country{font-size:9px;padding:1px 5px;border-radius:6px;background:#21262d;color:#8b949e}
+.dc-opportunity{border-left:3px solid #3fb950}
+.dc-opportunity-label{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700;background:#1f3d2f;color:#3fb950;white-space:nowrap}
+.dc-suppliers{margin-top:6px}
+.dc-supplier-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px}
+.dc-supplier-bar{height:16px;background:#21262d;border-radius:3px;overflow:hidden;flex:1;min-width:50px}
+.dc-supplier-fill{height:100%;border-radius:3px;transition:width 0.3s}
+.dc-supplier-name{width:130px;flex-shrink:0;color:#e6edf3;font-size:11px}
+.dc-supplier-pct{width:34px;text-align:right;color:#8b949e;flex-shrink:0;font-size:11px}
+.dc-supplier-note{font-size:10px;color:#8b949e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+
+/* Responsive */
+@media(max-width:900px){.grid2,.grid3,.vs-grid{grid-template-columns:1fr}.vs-divider{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>🏭 AI 产业链矩阵</h1>
+<p class="header-sub">{{ meta.description }} · 更新: {{ meta.last_updated }} · {{ meta.data_sources[0] }} 等</p>
+
+<div class="nav">
+  <a href="#diagram" class="active">架构图</a>
+  <a href="#nvda-vs-tpu">NVDA vs TPU</a>
+  <a href="#layers">各层详情</a>
+  <a href="#market">市占率总览</a>
+  <a href="/industry">← 行业数据库</a>
+</div>
+
+<!-- ====== Mermaid Architecture Diagram ====== -->
+<h2 id="diagram">架构图 — 11 层 AI 产业链</h2>
+<div class="diagram-box">
+  <pre class="mermaid">
+{{ mermaid_diagram }}
+  </pre>
+</div>
+
+<!-- Deep Chain Drill-Down Data -->
+<script id="deepChainData" type="application/json">
+{{ deep_chain_map | tojson | safe }}
+</script>
+
+<!-- ====== NVDA vs Google TPU ====== -->
+<h2 id="nvda-vs-tpu">NVDA GPU vs Google TPU — 全产业链对比</h2>
+<p class="header-sub">{{ summary.description }}</p>
+
+<table>
+  <tr><th style="width:12%">维度</th><th style="width:29%"><span class="tag tag-buy">NVDA GPU</span></th><th style="width:29%"><span class="tag tag-info">Google TPU</span></th><th style="width:30%"><span class="tag tag-warn">华为昇腾</span></th></tr>
+  {% for comp in summary.comparison %}
+  <tr>
+    <td><strong>{{ comp.dimension }}</strong></td>
+    <td>{{ comp.nvidia }}</td>
+    <td>{{ comp.google_tpu }}</td>
+    <td>{{ comp.ascend or "—" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<!-- ====== Layer-by-Layer Details ====== -->
+<h2 id="layers">各层详解 — 点开查看供应商与市占率</h2>
+
+{% for layer in layers %}
+<div class="card" id="layer-{{ layer.id }}">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <span style="font-size:11px;color:#8b949e;margin-right:12px">L{{ layer.id }}</span>
+    <h3>{{ layer.name }} <small style="color:#8b949e;font-weight:400">{{ layer.name_en }}</small></h3>
+    {% set nv = layer.get('nvidia_suppliers', []) %}
+    {% set tp = layer.get('google_tpu_suppliers', []) %}
+    {% set asc = layer.get('ascend_suppliers', []) %}
+    {% if nv and tp and asc %}
+    <span class="badge badge-both">NVDA + TPU + 昇腾</span>
+    {% elif nv and tp %}
+    <span class="badge badge-both">NVDA + TPU</span>
+    {% elif nv and asc %}
+    <span class="badge badge-both">NVDA + 昇腾</span>
+    {% elif tp and asc %}
+    <span class="badge badge-both">TPU + 昇腾</span>
+    {% elif nv %}
+    <span class="badge badge-nvda">NVDA</span>
+    {% elif tp %}
+    <span class="badge badge-tpu">TPU</span>
+    {% elif asc %}
+    <span class="badge badge-ascend">昇腾</span>
+    {% endif %}
+    <span class="card-toggle">+</span>
+  </div>
+  <div class="card-body">
+    <p style="font-size:13px;color:#8b949e;line-height:1.6">{{ layer.description }}</p>
+
+    <!-- Upstream/Downstream -->
+    <div class="layer-path">
+      {% for up in layer.upstream %}
+      <span class="node">L{{ up }}</span><span class="arrow">→</span>
+      {% endfor %}
+      <span class="node current">L{{ layer.id }} {{ layer.name }}</span>
+      {% for down in layer.downstream %}
+      <span class="arrow">→</span><span class="node">L{{ down }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="grid2">
+      <!-- Key Competitiveness -->
+      <div>
+        <h3 style="font-size:12px;color:#8b949e;margin-bottom:8px">关键竞争要素</h3>
+        <ul style="font-size:12px;color:#e6edf3;line-height:1.8;padding-left:18px;margin:0">
+          {% for k in layer.key_competitiveness %}
+          <li>{{ k }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Market Share -->
+      <div>
+        <h3 style="font-size:12px;color:#8b949e;margin-bottom:8px">市占率分布</h3>
+        {% set mkt = layer.market_share %}
+        {% if mkt %}
+        <div class="share-bar">
+          {% for m in mkt %}
+          <div class="share-seg" style="width:{{ m.share_pct }}%;background:var(--c{{ loop.index0 }})" title="{{ m.entity }} {{ m.share_pct }}%"></div>
+          {% endfor %}
+        </div>
+        <style>
+          {% for m in mkt %}
+          #layer-{{ layer.id }} .share-seg:nth-child({{ loop.index }}){background:{{ ['#58a6ff','#3fb950','#d29922','#f85149','#a371f7','#8b949e','#79c0ff','#56d364'][loop.index0] or '#e3b341' }}}
+          {% endfor %}
+        </style>
+        <div class="share-legend">
+          {% for m in mkt %}
+          <span><span class="dot" style="background:{{ ['#58a6ff','#3fb950','#d29922','#f85149','#a371f7','#8b949e','#79c0ff','#56d364'][loop.index0] or '#e3b341' }}"></span>{{ m.entity }} {{ m.share_pct }}%</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p style="font-size:12px;color:#8b949e">—</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- NVDA vs TPU vs Ascend Suppliers -->
+    {% if nv or tp or asc %}
+    <div class="vs-grid">
+      <div class="vs-col nvda">
+        <div class="vs-title"><span class="nvda-color">NVDA</span> 线供应商</div>
+        {% if nv %}
+        {% for s in nv %}
+        <div style="margin:8px 0" class="supplier-item" data-layer="{{ layer.id }}" data-supplier="{{ s.name }}">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+            <div style="flex:1;min-width:0">
+              <strong style="font-size:13px">{{ s.name }}</strong>
+              <span class="tag tag-buy" style="margin-left:6px">{{ s.role }}</span>
+              <div style="font-size:11px;color:#8b949e;margin-top:2px">{{ s.note }}</div>
+            </div>
+            {% set dk = layer.id|string + ':' + s.name %}
+            {% if deep_chain_map.get(dk) %}
+            <button class="drill-btn" onclick="toggleDeepChain(this)" title="查看组件供给格局" data-key="{{ dk }}">+</button>
+            {% endif %}
+          </div>
+          <div class="deep-chain-body" style="display:none;margin-top:12px"></div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p style="font-size:12px;color:#8b949e">此层无直接供应商</p>
+        {% endif %}
+      </div>
+      <div class="vs-divider">VS</div>
+      <div class="vs-col tpu">
+        <div class="vs-title"><span class="tpu-color">Google TPU</span> 线供应商</div>
+        {% if tp %}
+        {% for s in tp %}
+        <div style="margin:8px 0" class="supplier-item" data-layer="{{ layer.id }}" data-supplier="{{ s.name }}">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+            <div style="flex:1;min-width:0">
+              <strong style="font-size:13px">{{ s.name }}</strong>
+              <span class="tag tag-info" style="margin-left:6px">{{ s.role }}</span>
+              <div style="font-size:11px;color:#8b949e;margin-top:2px">{{ s.note }}</div>
+            </div>
+            {% set dk = layer.id|string + ':' + s.name %}
+            {% if deep_chain_map.get(dk) %}
+            <button class="drill-btn" onclick="toggleDeepChain(this)" title="查看组件供给格局" data-key="{{ dk }}">+</button>
+            {% endif %}
+          </div>
+          <div class="deep-chain-body" style="display:none;margin-top:12px"></div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p style="font-size:12px;color:#8b949e">此层无直接供应商</p>
+        {% endif %}
+      </div>
+      {% if asc %}
+      <div class="vs-divider" style="background:#f0883e;width:1px"></div>
+      <div class="vs-col ascend">
+        <div class="vs-title"><span style="color:#f0883e;font-weight:700;font-size:11px">昇腾</span> 线供应商</div>
+        {% for s in asc %}
+        <div style="margin:8px 0" class="supplier-item" data-layer="{{ layer.id }}" data-supplier="{{ s.name }}">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+            <div style="flex:1;min-width:0">
+              <strong style="font-size:13px">{{ s.name }}</strong>
+              <span class="tag tag-warn" style="margin-left:6px">{{ s.role }}</span>
+              {% if s.localization %}
+              <span style="font-size:10px;margin-left:4px;color:{% if s.localization == '✓' %}#3fb950{% elif s.localization == '△' %}#d29922{% else %}#f85149{% endif %}">{{ s.localization }}</span>
+              {% endif %}
+              <div style="font-size:11px;color:#8b949e;margin-top:2px">{{ s.note }}</div>
+            </div>
+            {% set dk = layer.id|string + ':' + s.name %}
+            {% if deep_chain_map.get(dk) %}
+            <button class="drill-btn" onclick="toggleDeepChain(this)" title="查看组件供给格局" data-key="{{ dk }}">+</button>
+            {% endif %}
+          </div>
+          <div class="deep-chain-body" style="display:none;margin-top:12px"></div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+<!-- ====== Market Share Overview ====== -->
+<h2 id="market">市占率总览 — 各层 Top 3</h2>
+<table>
+  <tr><th>层级</th><th>第1名</th><th>份额</th><th>第2名</th><th>份额</th><th>第3名</th><th>份额</th><th>集中度</th></tr>
+  {% for layer in layers %}
+  {% set mkt = layer.market_share %}
+  <tr>
+    <td><strong><a href="#layer-{{ layer.id }}">L{{ layer.id }}: {{ layer.name }}</a></strong></td>
+    <td>{{ mkt[0].entity if mkt|length > 0 else '—' }}</td>
+    <td>{{ mkt[0].share_pct }}%</td>
+    <td>{{ mkt[1].entity if mkt|length > 1 else '—' }}</td>
+    <td>{{ mkt[1].share_pct if mkt|length > 1 else '—' }}%</td>
+    <td>{{ mkt[2].entity if mkt|length > 2 else '—' }}</td>
+    <td>{{ mkt[2].share_pct if mkt|length > 2 else '—' }}%</td>
+    <td>
+      {% set top3 = (mkt[0].share_pct if mkt else 0) + (mkt[1].share_pct if mkt|length > 1 else 0) + (mkt[2].share_pct if mkt|length > 2 else 0) %}
+      {% if top3 >= 80 %}<span class="tag tag-warn">极高 {{ top3 }}%</span>
+      {% elif top3 >= 50 %}<span class="tag tag-info">高 {{ top3 }}%</span>
+      {% else %}<span class="tag tag-buy">分散 {{ top3 }}%</span>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<p class="header-sub" style="margin-top:32px;text-align:center">
+  数据来源: {{ meta.data_sources | join('; ') }}<br>
+  Hermes Research Pipeline · {{ meta.last_updated }}
+</p>
+
+{% for layer in layers %}
+  {% if layer.depth_layers %}
+  <div class="card" style="margin-top:32px">
+    <h3>{{ layer.id }}: {{ layer.name }} — Supply Chain Depth (L1→L5)</h3>
+    <p style="color:#8b949e;font-size:12px;margin-bottom:16px">{{ layer.depth_naming }}</p>
+    {% for depth_key in ['L1','L2','L3','L4','L5'] %}
+      {% set dl = layer.depth_layers.get(depth_key) %}
+      {% if dl %}
+      <div style="margin-bottom:20px;border-left:3px solid
+        {% if depth_key=='L5' %}#f85149
+        {% elif depth_key=='L4' %}#f0883e
+        {% elif depth_key=='L3' %}#d29922
+        {% elif depth_key=='L2' %}#58a6ff
+        {% else %}#3fb950{% endif %};
+        padding-left:12px">
+        <h4 style="margin:0 0 8px;font-size:13px">{{ depth_key }}: {{ dl.name }}
+          {% if depth_key=='L5' %}<span style="color:#f85149;font-size:11px">★ 战略卡脖子层</span>{% endif %}
+        </h4>
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <thead><tr style="background:#0d1117">
+            <th style="text-align:left;padding:6px 10px;color:#8b949e">公司</th>
+            <th style="text-align:left;padding:6px 10px;color:#8b949e">代码</th>
+            <th style="text-align:right;padding:6px 10px;color:#8b949e">{% if dl.companies[0].share_pct is defined %}份额{% endif %}</th>
+            <th style="text-align:left;padding:6px 10px;color:#8b949e">备注</th>
+          </tr></thead>
+          <tbody>
+          {% for c in dl.companies %}
+          <tr style="border-bottom:1px solid #21262d">
+            <td style="padding:6px 10px;font-weight:600">{{ c.name }}</td>
+            <td style="padding:6px 10px;color:#8b949e;font-size:11px">{{ c.ticker or '—' }}</td>
+            <td style="padding:6px 10px;text-align:right;font-weight:700">{{ (c.share_pct|string + '%') if c.share_pct is defined else '—' }}</td>
+            <td style="padding:6px 10px;font-size:11px;color:#8b949e">{{ c.note or '' }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endfor %}
+
+</div><!-- /wrap -->
+
+<script>
+mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+
+// Open first layer by default
+document.querySelector('.card').classList.add('open');
+
+// Smooth scroll for nav links
+document.querySelectorAll('.nav a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(e.target.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// Deep Chain Drill-Down
+function toggleDeepChain(btn) {
+  const supplierItem = btn.closest('.supplier-item');
+  const body = supplierItem.querySelector('.deep-chain-body');
+  const key = btn.dataset.key;
+
+  if (body.style.display === 'block') {
+    body.style.display = 'none';
+    btn.classList.remove('open');
+    return;
+  }
+
+  // Close other open deep chains in the same card
+  const card = supplierItem.closest('.card-body');
+  if (card) {
+    card.querySelectorAll('.deep-chain-body[style*="block"]').forEach(b => {
+      b.style.display = 'none';
+      const otherBtn = b.closest('.supplier-item').querySelector('.drill-btn');
+      if (otherBtn) otherBtn.classList.remove('open');
+    });
+  }
+
+  btn.classList.add('open');
+
+  // Already rendered — just show
+  if (body.children.length > 0) {
+    body.style.display = 'block';
+    return;
+  }
+
+  // Render from embedded data
+  try {
+    const dataEl = document.getElementById('deepChainData');
+    if (!dataEl) { body.innerHTML = '<div style="color:#f85149;font-size:12px">数据未加载</div>'; body.style.display='block'; return; }
+    const data = JSON.parse(dataEl.textContent);
+    const chain = data[key];
+    if (!chain) { body.innerHTML = '<div style="color:#8b949e;font-size:12px;padding:8px">暂无子供应链数据</div>'; body.style.display='block'; return; }
+    body.innerHTML = '<div style="font-size:10px;color:#8b949e;margin-bottom:8px;font-style:italic">行业供给格局 · 非公司实际采购数据 · 仅供参考</div>' +
+      chain.map(c => renderDeepComponent(c)).join('');
+    body.style.display = 'block';
+  } catch(e) {
+    body.innerHTML = '<div style="color:#f85149;font-size:12px">数据加载失败: ' + e.message + '</div>';
+    body.style.display = 'block';
+  }
+}
+
+function renderDeepComponent(comp) {
+  const isBottleneck = comp.bottleneck;
+  let cls = 'dc-component';
+  let labelHtml = '';
+  if (isBottleneck) {
+    cls += ' dc-bottleneck';
+    labelHtml = '<span class="dc-bottleneck-label">瓶颈</span>';
+  } else if (comp.bottleneck_note) {
+    cls += ' dc-opportunity';
+    labelHtml = '<span class="dc-opportunity-label">机会</span>';
+  }
+
+  const colors = ['#58a6ff','#3fb950','#d29922','#f85149','#a371f7','#8b949e','#79c0ff','#56d364','#e3b341','#f78166'];
+
+  const supplierRows = comp.suppliers.map((s, i) => {
+    const color = colors[i % colors.length];
+    return '<div class="dc-supplier-row">' +
+      '<span class="dc-supplier-name">' + s.name + '</span>' +
+      '<div class="dc-supplier-bar"><div class="dc-supplier-fill" style="width:' + s.share_pct + '%;background:' + color + '"></div></div>' +
+      '<span class="dc-supplier-pct">' + s.share_pct + '%</span>' +
+      '<span class="dc-supplier-note">' + (s.note || '') + '</span>' +
+    '</div>';
+  }).join('');
+
+  // L4 Materials section
+  let materialsHtml = '';
+  if (comp.materials && comp.materials.length > 0) {
+    const monoColors = {
+      'absolute': '#ff7b72',
+      'dominant': '#ffa657',
+      'oligopoly': '#3fb950',
+      'entrant': '#79c0ff'
+    };
+    const typeClassMap = {
+      '化学配方': 'mt-化学配方',
+      '物理材料': 'mt-物理材料',
+      '精密设备': 'mt-精密设备',
+      '特种气体': 'mt-特种气体',
+      '光学材料': 'mt-光学材料'
+    };
+    const matItems = comp.materials.map(m => {
+      const matSuppliers = m.suppliers.map(ms => {
+        return '<div style="display:flex;align-items:center;gap:6px;padding:3px 0;font-size:11px">' +
+          '<span style="font-weight:600;color:#e6edf3">' + (ms.name_cn || ms.name) + '</span>' +
+          '<span style="color:#8b949e;font-size:10px">' + ms.name + '</span>' +
+          '<span class="badge-country" style="font-size:9px">' + ms.country + '</span>' +
+          '<span style="font-size:10px;color:' + (monoColors[ms.monopoly_level] || '#8b949e') + '">' + ms.monopoly_level + '</span>' +
+          (ms.share_pct ? '<span style="font-size:10px;color:#8b949e">' + ms.share_pct + '%</span>' : '') +
+          (ms.note ? '<span style="font-size:10px;color:#6e7681">' + ms.note + '</span>' : '') +
+        '</div>';
+      }).join('');
+      return '<div style="margin:6px 0;padding:8px 10px;background:#0d1117;border-radius:6px;border-left:3px solid ' +
+        (monoColors[m.suppliers[0]?.monopoly_level || 'oligopoly'] || '#58a6ff') + '">' +
+        '<div style="font-weight:600;font-size:12px;color:#e6edf3;margin-bottom:2px">' +
+          m.material +
+          '<span class="material-type ' + (typeClassMap[m.type] || '') + '" style="margin-left:6px;font-size:10px">' + m.type + '</span>' +
+        '</div>' +
+        (m.description ? '<div style="font-size:10px;color:#8b949e;margin-bottom:4px">' + m.description + '</div>' : '') +
+        matSuppliers +
+      '</div>';
+    }).join('');
+
+    materialsHtml =
+      '<div style="margin-top:8px;border-top:1px dashed #30363d;padding-top:8px">' +
+        '<div style="font-size:10px;color:#f0883e;text-transform:uppercase;margin-bottom:4px;cursor:pointer" ' +
+          'onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\'">' +
+          '★ Materials (L4) — ' + comp.materials.length + ' 项卡脖子技术</div>' +
+        '<div style="display:block">' + matItems + '</div>' +
+      '</div>';
+  }
+
+  return '<div class="' + cls + '">' +
+    '<div class="dc-component-header">' +
+      '<span class="dc-component-name">' + comp.component + '</span>' +
+      labelHtml +
+    '</div>' +
+    (comp.description ? '<div style="font-size:11px;color:#8b949e;margin-bottom:6px">' + comp.description + '</div>' : '') +
+    (comp.bottleneck_note ? '<div style="font-size:11px;color:#8b949e;margin-bottom:6px;font-style:italic">' + comp.bottleneck_note + '</div>' : '') +
+    '<div class="dc-suppliers">' + supplierRows + '</div>' +
+    materialsHtml +
+  '</div>';
+}
+</script>
+</body>
+</html>

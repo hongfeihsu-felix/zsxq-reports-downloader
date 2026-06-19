@@ -1,0 +1,9 @@
+# Hermes Pipeline + Bearish Alert crontab (backup, use launchd plists instead)
+# Install manually if launchd doesn't work:
+#   crontab /Users/hongfeihsu/ClaudeCode/hermes/.launchd/crontab.backup
+
+# Pipeline — 9:30 AM Mon-Fri
+30 9 * * 1-5 cd /Users/hongfeihsu/ClaudeCode/hermes && /Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3 run_pipeline.py --bearish-alert >> /Users/hongfeihsu/ClaudeCode/hermes/pipeline.log 2>&1
+
+# Bearish Alert — 19:00 Mon-Fri (standalone, catches late reports)
+0 19 * * 1-5 cd /Users/hongfeihsu/ClaudeCode/hermes && /Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3 bearish_alert.py >> /Users/hongfeihsu/ClaudeCode/hermes/pipeline.log 2>&1

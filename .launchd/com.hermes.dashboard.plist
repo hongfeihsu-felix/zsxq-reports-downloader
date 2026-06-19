@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.hermes.dashboard</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3</string>
+        <string>/Users/hongfeihsu/ClaudeCode/hermes/server.py</string>
+        <string>--host</string>
+        <string>0.0.0.0</string>
+        <string>--port</string>
+        <string>8899</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes/dashboard.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/hongfeihsu/ClaudeCode/hermes/dashboard_error.log</string>
+</dict>
+</plist>

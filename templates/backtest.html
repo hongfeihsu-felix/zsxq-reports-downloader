@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>回测 — Hermes</title>
+<style>
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,'PingFang SC',sans-serif;margin:0;padding:0}
+.wrap{max-width:1200px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 4px}
+.header-sub{color:#8b949e;font-size:12px;margin-bottom:20px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.nav a{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 14px;font-size:12px;color:#8b949e;text-decoration:none}
+.nav a:hover,.nav a.active{color:#58a6ff;border-color:#58a6ff}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.stat{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;text-align:center}
+.stat .num{font-size:26px;font-weight:700}.stat .lbl{font-size:11px;color:#8b949e;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+th{text-align:left;padding:8px 10px;border-bottom:1px solid #30363d;color:#8b949e;font-size:10px;text-transform:uppercase}
+td{padding:7px 10px;border-bottom:1px solid #21262d}
+tr:hover{background:#161b22}
+.hit{color:#3fb950}.miss{color:#f85149}
+.badge{font-size:9px;padding:2px 6px;border-radius:8px;font-weight:600}
+.bull{background:#1f3d2f;color:#3fb950}.bear{background:#3d1f1f;color:#f85149}
+.bar{height:6px;border-radius:3px;background:#21262d;margin-top:3px}
+.bar-fill{height:100%;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="nav">
+  <a href="/">Dashboard</a>
+  <a href="/industry/chain">产业链</a>
+  <a href="/chokepoint">卡脖子 L4</a>
+  <a href="/contrarian">反共识</a>
+  <a href="/backtest" class="active">回测</a>
+</div>
+
+<h1>逻辑链回测</h1>
+<div class="header-sub">
+  Driver方向 vs 实际股价变动 (FinMind 21d forward return)。
+  {% if stats.total > 0 %}
+  共 {{ stats.total }} 对 driver-price，命中率 {{ stats.hr30 }}%。
+  ⚠️ 数据窗口仅 2026-05-09 ~ 06-09，随数据积累命中率会收敛。
+  {% else %}
+  暂无数据。运行 python3 backtest_engine.py 生成。
+  {% endif %}
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="num" style="color:{{ '#3fb950' if stats.hr30 and stats.hr30|float > 50 else '#f85149' }}">{{ stats.hr30 or 0 }}%</div><div class="lbl">21d 命中率</div></div>
+  <div class="stat"><div class="num">{{ stats.total or 0 }}</div><div class="lbl">Driver-Price 对</div></div>
+  {% for lv in by_level %}
+  <div class="stat"><div class="num" style="font-size:20px">{{ lv.hr }}%</div><div class="lbl">{{ lv.consensus_level }} (n={{ lv.n }})</div></div>
+  {% endfor %}
+</div>
+
+<table>
+<thead><tr>
+  <th>公司</th><th>Ticker</th><th>事件日</th><th>方向</th><th>共识</th><th>21d回报</th><th>命中</th><th>Driver</th>
+</tr></thead>
+<tbody>
+{% for r in results %}
+<tr>
+  <td>{{ r.company }}</td>
+  <td style="color:#58a6ff">{{ r.ticker }}</td>
+  <td style="color:#8b949e">{{ r.event_date }}</td>
+  <td><span class="badge {{ 'bull' if r.driver_direction == 'bullish' else 'bear' }}">{{ '↑' if r.driver_direction == 'bullish' else '↓' }}</span></td>
+  <td style="font-size:10px;color:#8b949e">{{ r.consensus_level }}</td>
+  <td style="color:{{ '#3fb950' if (r.ret_30d or 0) > 0 else '#f85149' }}">{{ '%+.1f'|format(r.ret_30d or 0) }}%</td>
+  <td><span class="{{ 'hit' if r.hit_30d else 'miss' }}">{{ '✓' if r.hit_30d else '✗' }}</span></td>
+  <td style="font-size:11px;color:#8b949e;max-width:300px;overflow:hidden;text-overflow:ellipsis">{{ r.driver_slug[:60] }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% if not results %}
+<div style="text-align:center;padding:40px;color:#8b949e">
+  暂无回测结果 — 数据窗口为 2026-05-09 ~ 06-09，仅覆盖约 30 天。
+  <br>随每日新报告入库，命中率趋势将逐步收敛。
+  <br><br>运行 <code>python3 backtest_engine.py</code> 更新。
+</div>
+{% endif %}
+</div>
+</body>
+</html>
