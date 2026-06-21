@@ -8,26 +8,26 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 class TestStoreRoundTrip:
     """Verify valuation_store write → read consistency."""
 
-    def test_backfill_produces_data(self):
+    def test_backfill_produces_data(self, temp_valuation_db):
         from valuation_store import ValuationStore
-        store = ValuationStore()
+        store = ValuationStore(temp_valuation_db)
         companies = store.get_all_companies()
-        assert len(companies) >= 100, f"Expected >=100 companies, got {len(companies)}"
+        assert {"MediaTek", "NVIDIA", "Dell Technologies Inc"}.issubset(set(companies))
         store.close()
 
-    def test_nvidia_has_earnings(self):
+    def test_nvidia_has_earnings(self, temp_valuation_db):
         import sqlite3
-        conn = sqlite3.connect(str(Path(__file__).parent.parent / "valuation.db"))
+        conn = sqlite3.connect(str(temp_valuation_db))
         rows = conn.execute(
             "SELECT COUNT(*) FROM earnings_actuals WHERE company='NVIDIA'"
         ).fetchone()[0]
         conn.close()
         assert rows >= 3, f"NVIDIA should have >=3 quarters actual EPS, got {rows}"
 
-    def test_mediatek_consensus_sane(self):
+    def test_mediatek_consensus_sane(self, temp_valuation_db):
         from valuation_store import ValuationStore
         from valuation_consensus import compute_consensus
-        store = ValuationStore()
+        store = ValuationStore(temp_valuation_db)
         reports = store.get_by_company("MediaTek")
         assert len(reports) >= 10, f"MediaTek has {len(reports)} reports, expected >=10"
         consensus = compute_consensus(reports)
@@ -35,10 +35,10 @@ class TestStoreRoundTrip:
         assert consensus["cs_tp"] > 100  # Should be several thousand TWD
         store.close()
 
-    def test_company_lookup_accepts_ticker_alias(self):
+    def test_company_lookup_accepts_ticker_alias(self, temp_valuation_db):
         """Ticker aliases such as NVDA should resolve to canonical DB company names."""
         from valuation_store import ValuationStore
-        store = ValuationStore()
+        store = ValuationStore(temp_valuation_db)
         by_name = store.get_by_company("NVIDIA")
         by_ticker = store.get_by_company("NVDA")
         store.close()
@@ -46,21 +46,21 @@ class TestStoreRoundTrip:
         assert by_ticker, "NVDA alias should resolve to NVIDIA valuation reports"
         assert len(by_ticker) == len(by_name)
 
-    def test_undated_tp_rows_are_visible(self):
+    def test_undated_tp_rows_are_visible(self, temp_valuation_db):
         """Legacy rows with tp_new but blank report_date should not disappear."""
         from valuation_store import ValuationStore
-        store = ValuationStore()
+        store = ValuationStore(temp_valuation_db)
         reports = store.get_by_company("Dell Technologies Inc")
         store.close()
         assert any(r.get("tp_new") for r in reports), (
             "Dell has a TP-bearing legacy row with blank report_date and should be returned"
         )
 
-    def test_consensus_tp_near_broker_median(self):
+    def test_consensus_tp_near_broker_median(self, temp_valuation_db):
         """All companies with >=3 reports: consensus TP within 30% of broker median."""
         from valuation_store import ValuationStore
         from valuation_consensus import compute_consensus, _median
-        store = ValuationStore()
+        store = ValuationStore(temp_valuation_db)
         failures = []
         for co in store.get_all_companies():
             reports = store.get_by_company(co)

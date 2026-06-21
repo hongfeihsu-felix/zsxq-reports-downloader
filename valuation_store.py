@@ -7,10 +7,47 @@ import sqlite3
 from pathlib import Path
 from datetime import datetime
 from typing import Optional
+from entity_resolver import normalize_company
+from utils import extract_bank_from_filename
 
 PROJECT_DIR = Path(__file__).parent
 DB_PATH = PROJECT_DIR / "valuation.db"
 REPORT_BASE = Path.home() / "hermes_reports" / "Investment_Banking_Report"
+SCHEMA_VERSION = 1
+
+
+VALUATIONS_COLUMNS = {
+    "report_path": "TEXT NOT NULL DEFAULT ''",
+    "pdf_name": "TEXT NOT NULL DEFAULT ''",
+    "company": "TEXT NOT NULL DEFAULT ''",
+    "bank": "TEXT NOT NULL DEFAULT ''",
+    "report_date": "TEXT",
+    "rating": "TEXT",
+    "tp_new": "REAL",
+    "tp_old": "REAL",
+    "tp_currency": "TEXT DEFAULT 'USD'",
+    "eps_forecast": "TEXT",
+    "pe_current": "REAL",
+    "pe_historical": "REAL",
+    "valuation_method": "TEXT",
+    "eps_quality": "INTEGER DEFAULT 0",
+    "created_at": "TEXT",
+    "updated_at": "TEXT",
+}
+
+
+CONSENSUS_CACHE_COLUMNS = {
+    "company": "TEXT NOT NULL DEFAULT ''",
+    "fiscal_year": "TEXT",
+    "metric": "TEXT NOT NULL DEFAULT ''",
+    "median_val": "REAL",
+    "mean_val": "REAL",
+    "std_dev": "REAL",
+    "count": "INTEGER",
+    "min_val": "REAL",
+    "max_val": "REAL",
+    "generated_at": "TEXT",
+}
 
 
 class ValuationStore:
@@ -62,7 +99,23 @@ class ValuationStore:
 
             CREATE INDEX IF NOT EXISTS idx_cc_company ON consensus_cache(company);
         """)
+        self._migrate_schema()
         self.conn.commit()
+
+    def _migrate_schema(self):
+        """Apply lightweight additive migrations for older local valuation DBs."""
+        self._ensure_columns("valuations", VALUATIONS_COLUMNS)
+        self._ensure_columns("consensus_cache", CONSENSUS_CACHE_COLUMNS)
+        self.conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+
+    def _ensure_columns(self, table: str, columns: dict[str, str]):
+        existing = {
+            row["name"]
+            for row in self.conn.execute(f"PRAGMA table_info({table})").fetchall()
+        }
+        for name, ddl in columns.items():
+            if name not in existing:
+                self.conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {ddl}")
 
     # ---- Write ----
 
@@ -85,15 +138,10 @@ class ValuationStore:
         raw_company = parsed.get("company", "") or ""
         if not raw_company:
             return None
-        # Normalize company name for consistent querying
-        from run_pipeline import normalize_company
         company = normalize_company(raw_company)
 
         # Extract bank from filename
-        bank = ""
-        m = re.match(r'^([A-Za-z\s&.]+?)[-（(]', pdf_name)
-        if m:
-            bank = m.group(1).strip()
+        bank = extract_bank_from_filename(pdf_name)
 
         # Extract date from filename suffix -YYMMDD
         report_date = ""
@@ -158,7 +206,6 @@ class ValuationStore:
             candidates.append(raw)
 
         try:
-            from run_pipeline import normalize_company
             normalized = normalize_company(raw)
             if normalized and normalized != "Unknown":
                 candidates.append(normalized)

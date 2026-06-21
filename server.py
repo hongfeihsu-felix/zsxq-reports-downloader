@@ -19,6 +19,7 @@ from collections import defaultdict
 from flask import Flask, jsonify, render_template, request
 from utils import extract_bank_from_filename
 from report_index import ReportIndex
+from routes.valuation import bp as valuation_bp
 
 PROJECT_DIR = Path(__file__).parent
 REPORT_BASE = Path.home() / "hermes_reports" / "Investment_Banking_Report"
@@ -46,17 +47,23 @@ def _write_config(cfg):
 
 app = Flask(__name__, template_folder=str(PROJECT_DIR / "templates"),
             static_folder=str(PROJECT_DIR / "static"), static_url_path="/static")
+app.register_blueprint(valuation_bp)
 
 
 # ============ Data Loaders ============
 
+_analyses_cache = {"data": None, "ts": 0}
+
 def load_analyses() -> list[dict]:
+    now = _time.time()
+    if _analyses_cache["data"] is not None and (now - _analyses_cache["ts"]) < 600:
+        return _analyses_cache["data"]
+
     results = []
     seen = set()
     for f in sorted(REPORT_BASE.rglob("*_analysis.json")):
         try:
             data = json.loads(f.read_text(encoding="utf-8"))
-            # Dedup by normalized filename (strip special chars for comparison)
             pdf_name = data.get("pdf_name", f.stem)
             import unicodedata
             norm = unicodedata.normalize('NFKD', pdf_name)
@@ -68,10 +75,18 @@ def load_analyses() -> list[dict]:
             results.append(data)
         except (json.JSONDecodeError, KeyError):
             continue
+    _analyses_cache["data"] = results
+    _analyses_cache["ts"] = now
     return results
 
 
+_consensus_cache = {"data": None, "ts": 0}
+
 def load_consensus() -> list[dict]:
+    now = _time.time()
+    if _consensus_cache["data"] is not None and (now - _consensus_cache["ts"]) < 600:
+        return _consensus_cache["data"]
+
     results = []
     for f in sorted(REPORT_BASE.rglob("CONSENSUS_*.md")):
         try:
@@ -93,6 +108,8 @@ def load_consensus() -> list[dict]:
             })
         except Exception:
             continue
+    _consensus_cache["data"] = results
+    _consensus_cache["ts"] = now
     return results
 
 
@@ -137,18 +154,56 @@ def load_stock_prices() -> list[dict]:
     return results
 
 
+_stats_cache = {"data": None, "ts": 0}
+
+def _count_downloaded_reports() -> int:
+    """Count downloaded source reports from DB without scanning report folders."""
+    db_path = PROJECT_DIR / "zsxq_reports.db"
+    if not db_path.exists():
+        return 0
+    try:
+        conn = sqlite3.connect(str(db_path))
+        row = conn.execute(
+            "SELECT COUNT(*) FROM downloaded_files WHERE status='success'"
+        ).fetchone()
+        conn.close()
+        return row[0] if row else 0
+    except Exception:
+        return 0
+
+
+def _load_dashboard_from_index() -> dict | None:
+    """Load homepage counters from report_index.db."""
+    try:
+        with ReportIndex() as idx:
+            return idx.get_dashboard_summary()
+    except Exception:
+        return None
+
+
 def load_pipeline_stats() -> dict:
-    total_pdfs = len(list(REPORT_BASE.rglob("*.pdf"))) + len(list(REPORT_BASE.rglob("*.pptx"))) + len(list(REPORT_BASE.rglob("*.xlsx")))
-    analyzed = len(list(REPORT_BASE.rglob("*_analysis.md")))
-    consensus_count = len(list(REPORT_BASE.rglob("CONSENSUS_*.md")))
-    industry_count = len(list(REPORT_BASE.rglob("INDUSTRY_*.md")))
-    return {
+    now = _time.time()
+    if _stats_cache["data"] is not None and (now - _stats_cache["ts"]) < 600:
+        return _stats_cache["data"]
+
+    indexed = _load_dashboard_from_index()
+    total_pdfs = _count_downloaded_reports()
+    if indexed:
+        analyzed = indexed["analyzed"]
+    else:
+        analyzed = len(list(REPORT_BASE.rglob("*_analysis.md")))
+    if total_pdfs <= 0:
+        total_pdfs = analyzed
+    result = {
         "total": total_pdfs,
         "analyzed": analyzed,
-        "consensus": consensus_count,
-        "industry": industry_count,
+        "consensus": 0,
+        "industry": 0,
         "pct": round(analyzed / total_pdfs * 100, 1) if total_pdfs > 0 else 0
     }
+    _stats_cache["data"] = result
+    _stats_cache["ts"] = now
+    return result
 
 
 def _best_company_name(co_match: str) -> str:
@@ -326,19 +381,24 @@ def _render_today_table(rows):
 def index():
     """统一仪表盘首页"""
     stats = load_pipeline_stats()
-    analyses = load_analyses()
 
-    # Count companies: merge analyses + config tracking list
-    from run_pipeline import normalize_company
+    indexed_dashboard = _load_dashboard_from_index()
     companies = set()
-    total_alerts = 0
-    garbage = {"in this report", "this report", "median multiples", "note", "none"}
-    for a in analyses:
-        c = a.get("parsed", {}).get("company", "")
-        if c and c != "None" and c.lower().strip() not in garbage:
-            companies.add(normalize_company(c))
-        if a.get("parsed", {}).get("alert_severity") in ("high", "medium"):
-            total_alerts += 1
+    total_alerts = indexed_dashboard["active_alerts"] if indexed_dashboard else 0
+    if indexed_dashboard:
+        companies.update(indexed_dashboard["companies"])
+    else:
+        # Fallback for an empty/missing index: legacy filesystem scan.
+        from run_pipeline import normalize_company
+        analyses = load_analyses()
+        garbage = {"in this report", "this report", "median multiples", "note", "none"}
+        for a in analyses:
+            c = a.get("parsed", {}).get("company", "")
+            if c and c != "None" and c.lower().strip() not in garbage:
+                companies.add(normalize_company(c))
+            if a.get("parsed", {}).get("alert_severity") in ("high", "medium"):
+                total_alerts += 1
+
     # Merge config-tracked companies (includes newly added ones without reports yet)
     try:
         cfg = _read_config()
@@ -3383,71 +3443,6 @@ document.addEventListener('DOMContentLoaded', function() {{
 }});
 </script>
 </body></html>"""
-
-
-# ============ Valuation Page ============
-
-@app.route("/valuation")
-def view_valuation():
-    """公司估值模型 V0.1 — 重构版"""
-    from valuation_store import ValuationStore
-    from valuation_consensus import compute_consensus, compute_peers_consensus
-
-    company = request.args.get("company", "").strip()
-    store = ValuationStore()
-
-    # Company list from valuation DB (fallback to matrix)
-    co_list = store.get_all_companies()
-    if not co_list:
-        matrix = _load_matrix()
-        co_list = sorted(matrix.get("companies", {}).keys())
-
-    if not company:
-        return render_template("valuation_selector.html", companies=co_list)
-
-    # Load reports from DB
-    reports = store.get_by_company(company)
-    if not reports:
-        return render_template("valuation_no_data.html", company=company, companies=co_list)
-
-    # Compute consensus
-    consensus = compute_consensus(reports)
-
-    # Industry info from matrix
-    matrix = _load_matrix()
-    co_info = matrix.get("companies", {}).get(company, {})
-    ind_slug = co_info.get("industry_slug", "")
-    ind_name = co_info.get("industry", "")
-
-    # Peer valuations
-    peers = []
-    if ind_slug:
-        peer_names = [p for p in matrix.get("industries", {}).get(ind_slug, {}).get("companies", [])
-                      if p != company][:8]
-        peer_vals = store.get_peers(peer_names)
-        peers = compute_peers_consensus(peer_vals)
-
-    # Actual earnings from valuation.db
-    import sqlite3
-    actuals = []
-    try:
-        econn = sqlite3.connect(str(PROJECT_DIR / "valuation.db"))
-        econn.row_factory = sqlite3.Row
-        actuals = [dict(r) for r in econn.execute(
-            "SELECT * FROM earnings_actuals WHERE company=? ORDER BY period DESC LIMIT 4",
-            (company,)
-        ).fetchall()]
-        econn.close()
-    except Exception:
-        pass
-
-    store.close()
-    return render_template("valuation.html",
-                          company=company, consensus=consensus,
-                          reports=reports[:10], peers=peers,
-                          actuals=actuals,
-                          ind_slug=ind_slug, ind_name=ind_name)
-
 
 
 # ============ Static File Serving ============

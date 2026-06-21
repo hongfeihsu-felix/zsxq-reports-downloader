@@ -31,86 +31,15 @@ from datetime import datetime
 from collections import defaultdict
 from typing import Optional
 from utils import extract_bank_from_filename
+from entity_resolver import normalize_company as _normalize_company
 
 # ============ 路径配置 ============
 PROJECT_DIR = Path(__file__).parent
 REPORT_BASE = Path.home() / "hermes_reports" / "Investment_Banking_Report"
 
-# ============ 公司名归一化 ============
-
-# Fallback aliases for companies not yet in config.json.
-# config.json tracking.companies is the primary source — add companies there
-# to override or extend these fallbacks.
-_FALLBACK_ALIASES: dict[str, list[str]] = {
-    "MediaTek": ["mediatek", "mediatek inc", "mediatek inc.", "聯發科", "联发科", "2454"],
-    "TSMC": ["tsmc", "taiwan semiconductor", "台積電", "台积电", "2330"],
-    "NVIDIA": ["nvidia", "nvda", "nvidia corporation", "nvidia corp"],
-    "Broadcom": ["broadcom", "avgo", "broadcom inc", "broadcom inc."],
-    "Qualcomm": ["qualcomm", "qcom", "qualcomm inc", "qualcomm inc."],
-    "AMD": ["amd", "advanced micro devices"],
-    "Intel": ["intel", "intc", "intel corporation", "intel corp"],
-    "Marvell": ["marvell", "mrvl", "marvell technology"],
-    "Samsung": ["samsung", "samsung electronics", "samsung elec"],
-    "SK Hynix": ["sk hynix", "sk hynix inc", "hynix", "海力士"],
-    "Micron": ["micron", "micron technology", "mu", "美光"],
-    "SMIC": ["smic", "semiconductor manufacturing international", "中芯国际", "中芯"],
-    "UMC": ["umc", "united microelectronics", "联电", "聯電"],
-    "Hua Hong": ["hua hong", "hua hong semiconductor", "华虹半导体", "华虹半导体有限公司", "華虹半導體"],
-    "GlobalFoundries": ["globalfoundries", "global foundries", "gf", "格芯"],
-    "Lumentum": ["lumentum", "lite"],
-    "Coherent": ["coherent", "cohr"],
-    "Fabrinet": ["fabrinet", "fn"],
-    "Palantir": ["palantir", "pltr", "palantir technologies"],
-    "CoreWeave": ["coreweave", "core weave"],
-    "X-Energy": ["x-energy", "x energy"],
-    "Amazon": ["amazon", "amzn", "amazon.com"],
-    "Microsoft": ["microsoft", "msft", "microsoft corp"],
-    "Meta": ["meta", "meta platforms", "facebook"],
-    "Google": ["google", "alphabet", "googl", "goog"],
-    "Apple": ["apple", "aapl", "apple inc"],
-    "Tesla": ["tesla", "tsla"],
-    "Oracle": ["oracle", "orcl"],
-}
-
-_company_map: dict[str, str] | None = None
-
-
-def _build_company_map() -> dict[str, str]:
-    """Build alias→canonical mapping: config.json first, fallback for remainder."""
-    mapping: dict[str, str] = {}
-
-    # Primary: config.json tracking.companies
-    config_path = PROJECT_DIR / "config.json"
-    if config_path.exists():
-        cfg = json.loads(config_path.read_text(encoding="utf-8"))
-        for c in cfg.get("tracking", {}).get("companies", []):
-            canonical = c["name"]
-            for kw in c.get("keywords", []):
-                mapping[kw.lower()] = canonical
-
-    # Fallback: hardcoded aliases (only for names not already in mapping)
-    for canonical, aliases in _FALLBACK_ALIASES.items():
-        for alias in aliases:
-            alias_lower = alias.lower()
-            if alias_lower not in mapping:
-                mapping[alias_lower] = canonical
-
-    return mapping
-
-
 def normalize_company(name: str) -> str:
-    """公司名 → canonical 名 (reads from config.json + fallback)"""
-    global _company_map
-    if _company_map is None:
-        _company_map = _build_company_map()
-
-    if not name:
-        return "Unknown"
-    name_lower = name.lower().strip().rstrip(".")
-    for alias, canonical in _company_map.items():
-        if alias in name_lower:
-            return canonical
-    return name.strip().title()
+    """公司名 → canonical 名. Compatibility wrapper around entity_resolver."""
+    return _normalize_company(name)
 
 
 # ============ 共识汇总 Prompt ============

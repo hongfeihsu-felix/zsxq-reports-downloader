@@ -273,19 +273,11 @@ def _resolve_company_name(ticker: str) -> tuple[str | None, float]:
     For A-share stocks cross-listed with H-shares, returns premium > 1.0
     to adjust H-share consensus TP upward for A-share valuation.
     """
-    for c in CFG.get("tracking", {}).get("companies", []):
-        t = c.get("ticker", "").split(".")[0]
-        if t and t.lower() == ticker.lower().split(".")[0]:
-            ah = c.get("ah_cross", {})
-            return c["name"], ah.get("premium_ratio", 1.0)
-        for kw in c.get("keywords", []):
-            if kw.lower() == ticker.lower().split(".")[0]:
-                ah = c.get("ah_cross", {})
-                return c["name"], ah.get("premium_ratio", 1.0)
-        if c["name"].lower() == ticker.lower().split(".")[0]:
-            ah = c.get("ah_cross", {})
-            return c["name"], ah.get("premium_ratio", 1.0)
-    return None, 1.0
+    from entity_resolver import resolve_company
+    match = resolve_company(ticker)
+    if not match:
+        return None, 1.0
+    return match.name, match.ah_premium
 
 
 def get_research_signals(company: str | None, ticker: str) -> dict:

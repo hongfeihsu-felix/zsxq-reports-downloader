@@ -1,6 +1,7 @@
 """Shared pytest fixtures for Hermes tests."""
 
 import json
+import sqlite3
 import pytest
 from pathlib import Path
 
@@ -151,3 +152,92 @@ def pe_false_positive_1():
 @pytest.fixture
 def pe_false_positive_2():
     return PE_FALSE_POSITIVE_2
+
+
+@pytest.fixture
+def temp_valuation_db(tmp_path):
+    """Create a hermetic valuation.db with enough rows for store/consensus tests."""
+    from valuation_store import ValuationStore
+
+    db_path = tmp_path / "valuation.db"
+    store = ValuationStore(db_path)
+
+    rows = []
+    for i, tp in enumerate([5000, 4200, 5088, 3050, 4600, 4750, 4400, 4900, 5100, 4300], 1):
+        rows.append((
+            f"/tmp/mediatek_{i}_analysis.json",
+            f"Bank{i}-MediaTek report-2605{i:02d}.pdf",
+            "MediaTek",
+            f"Bank{i}",
+            f"2026-05-{i:02d}",
+            "Buy",
+            float(tp),
+            float(tp - 200),
+            "TWD",
+            json.dumps({"FY26E": 63.0 + i, "FY27E": 110.0 + i}, ensure_ascii=False),
+            30.0,
+            None,
+            "PE",
+            2,
+        ))
+
+    for i, tp in enumerate([280, 300, 288], 1):
+        rows.append((
+            f"/tmp/nvidia_{i}_analysis.json",
+            f"Bank{i}-NVIDIA Corp NVDA.US report-2605{i:02d}.pdf",
+            "NVIDIA",
+            f"Bank{i}",
+            f"2026-05-{i:02d}",
+            "Buy",
+            float(tp),
+            float(tp - 20),
+            "USD",
+            json.dumps({"FY27E": 10.0 + i}, ensure_ascii=False),
+            28.0,
+            None,
+            "PE",
+            2,
+        ))
+
+    rows.append((
+        "/tmp/dell_legacy_analysis.json",
+        "DELL_20240515_0146.pdf",
+        "Dell Technologies Inc",
+        "LegacyBank",
+        "",
+        "Buy",
+        152.0,
+        None,
+        "USD",
+        None,
+        None,
+        None,
+        "",
+        0,
+    ))
+
+    store.conn.executemany(
+        """INSERT INTO valuations
+           (report_path, pdf_name, company, bank, report_date, rating,
+            tp_new, tp_old, tp_currency, eps_forecast,
+            pe_current, pe_historical, valuation_method, eps_quality)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+
+    store.conn.execute("""
+        CREATE TABLE IF NOT EXISTS earnings_actuals (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            company TEXT NOT NULL,
+            period TEXT NOT NULL,
+            eps_actual REAL
+        )
+    """)
+    store.conn.executemany(
+        "INSERT INTO earnings_actuals (company, period, eps_actual) VALUES (?, ?, ?)",
+        [("NVIDIA", "2026Q1", 1.0), ("NVIDIA", "2026Q2", 1.1), ("NVIDIA", "2026Q3", 1.2)],
+    )
+    store.conn.commit()
+    store.close()
+
+    return db_path

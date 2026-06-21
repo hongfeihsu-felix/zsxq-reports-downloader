@@ -125,20 +125,20 @@ class TestCrossValidation:
 
     MAX_DEVIATION_PCT = 30  # Consensus TP should be within ±30% of individual broker TPs
 
-    @pytest.fixture(scope="class")
-    def all_companies(self):
+    @pytest.fixture
+    def all_companies(self, temp_valuation_db):
         from valuation_store import ValuationStore
-        store = ValuationStore()
+        store = ValuationStore(temp_valuation_db)
         companies = store.get_all_companies()
         store.close()
         return companies
 
-    @pytest.fixture(scope="class")
-    def company_results(self, all_companies):
+    @pytest.fixture
+    def company_results(self, all_companies, temp_valuation_db):
         from valuation_store import ValuationStore
         from valuation_consensus import compute_consensus
 
-        store = ValuationStore()
+        store = ValuationStore(temp_valuation_db)
         results = {}
         for co in all_companies:
             reports = store.get_by_company(co)

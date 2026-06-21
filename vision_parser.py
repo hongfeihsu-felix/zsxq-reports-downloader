@@ -9,6 +9,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
+from entity_resolver import detect_currency
 
 
 # ============ 风险/机会关键词库 ============
@@ -256,23 +257,12 @@ def extract_target_price(markdown: str) -> dict:
             except ValueError:
                 continue
 
-    # 货币检测 (KRW must be checked before CNY because 韩元 contains 元)
-    if 'NT$' in markdown or 'TWD' in markdown or 'NTD' in markdown or '新台币' in markdown or '新臺幣' in markdown:
-        result['currency'] = 'TWD'
-    elif 'HKD' in markdown or 'HK$' in markdown or '港元' in markdown:
-        result['currency'] = 'HKD'
-    elif 'US$' in markdown or 'USD' in markdown or '美元' in markdown or '$' in markdown:
-        result['currency'] = 'USD'
-    elif '₩' in markdown or 'KRW' in markdown or '韩元' in markdown or '韩圜' in markdown:
-        result['currency'] = 'KRW'
-    elif re.search(r'\bW\d', markdown):  # W460,000 / W460k / W 320,000 pattern
-        result['currency'] = 'KRW'
-    elif 'JPY' in markdown or '日元' in markdown or '日圓' in markdown or '円' in markdown or '¥' in markdown:
-        result['currency'] = 'JPY'
-    elif 'RMB' in markdown or 'CNY' in markdown or '人民币' in markdown:
-        result['currency'] = 'CNY'
-    elif '元' in markdown:
-        result['currency'] = 'CNY'
+    # 货币检测: explicit text first, then ticker suffix, then default USD.
+    result['currency'] = detect_currency(
+        markdown,
+        ticker=extract_ticker(markdown) or "",
+        default=result['currency'],
+    )
 
     # Sanity: TP too small — likely extracted from wrong context
     if result['new'] and result['new'] < 10:

@@ -36,6 +36,23 @@ AI_SEMI_DIR = Path.home() / "hermes_reports" / "ai_semiconductor_research"
 PROJECT_DIR = Path(__file__).parent
 
 
+DOCUMENT_COLUMNS = {
+    "pdf_path": "TEXT",
+    "source_type": "TEXT NOT NULL DEFAULT 'investment_banking'",
+    "bank": "TEXT",
+    "report_date": "TEXT",
+    "title": "TEXT",
+    "summary": "TEXT",
+    "raw_json_path": "TEXT",
+    "md_path": "TEXT",
+    "overview_path": "TEXT",
+    "alert_severity": "TEXT",
+    "is_expired": "INTEGER DEFAULT 0",
+    "created_at": "TEXT",
+    "updated_at": "TEXT",
+}
+
+
 def _load_config() -> dict:
     config_path = PROJECT_DIR / "config.json"
     if config_path.exists():
@@ -51,8 +68,10 @@ def _get_expire_config() -> tuple[int, int]:
     return co_q * 90, ind_d
 
 
-def init_db():
-    conn = sqlite3.connect(str(DB_PATH))
+def init_db(db_path: Path = None):
+    path = db_path or DB_PATH
+    conn = sqlite3.connect(str(path))
+    conn.row_factory = sqlite3.Row
     conn.executescript("""
         CREATE TABLE IF NOT EXISTS documents (
             id            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -66,6 +85,7 @@ def init_db():
             raw_json_path TEXT,
             md_path       TEXT,
             overview_path TEXT,
+            alert_severity TEXT,
             is_expired    INTEGER DEFAULT 0,
             created_at    TEXT NOT NULL DEFAULT (datetime('now')),
             updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
@@ -119,17 +139,60 @@ def init_db():
             tokenize='unicode61'
         );
     """)
+    _migrate_db(conn)
     conn.commit()
     conn.close()
+
+
+def _migrate_db(conn: sqlite3.Connection):
+    """Apply additive migrations for existing local report indexes."""
+    columns = {row["name"] for row in conn.execute("PRAGMA table_info(documents)").fetchall()}
+    for name, ddl in DOCUMENT_COLUMNS.items():
+        if name not in columns:
+            conn.execute(f"ALTER TABLE documents ADD COLUMN {name} {ddl}")
+    _dedupe_documents(conn)
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_documents_report_date ON documents(report_date)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_documents_alert ON documents(alert_severity)")
+    conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_documents_raw_json_unique ON documents(raw_json_path)")
+
+
+def _dedupe_documents(conn: sqlite3.Connection):
+    """Collapse duplicate document rows created before raw_json_path was unique."""
+    rows = conn.execute("""
+        SELECT raw_json_path, MIN(id) AS keep_id, GROUP_CONCAT(id) AS ids
+        FROM documents
+        WHERE raw_json_path IS NOT NULL AND raw_json_path != ''
+        GROUP BY raw_json_path
+        HAVING COUNT(*) > 1
+    """).fetchall()
+    for row in rows:
+        keep_id = row["keep_id"]
+        ids = [int(v) for v in row["ids"].split(",")]
+        dup_ids = [doc_id for doc_id in ids if doc_id != keep_id]
+        for dup_id in dup_ids:
+            conn.execute("""
+                INSERT OR IGNORE INTO doc_companies(doc_id, company_name, ticker)
+                SELECT ?, company_name, ticker FROM doc_companies WHERE doc_id=?
+            """, (keep_id, dup_id))
+            conn.execute("""
+                INSERT OR IGNORE INTO doc_industries(doc_id, industry_slug, layer, match_count)
+                SELECT ?, industry_slug, layer, match_count FROM doc_industries WHERE doc_id=?
+            """, (keep_id, dup_id))
+            conn.execute("DELETE FROM doc_fts WHERE doc_id=?", (dup_id,))
+            conn.execute("DELETE FROM doc_companies WHERE doc_id=?", (dup_id,))
+            conn.execute("DELETE FROM doc_industries WHERE doc_id=?", (dup_id,))
+            conn.execute("DELETE FROM documents WHERE id=?", (dup_id,))
 
 
 class ReportIndex:
     def __init__(self, db_path: Path = None):
         self.db_path = db_path or DB_PATH
         if not self.db_path.exists():
-            init_db()
+            init_db(self.db_path)
         self.conn = sqlite3.connect(str(self.db_path), timeout=10)
         self.conn.row_factory = sqlite3.Row
+        _migrate_db(self.conn)
+        self.conn.commit()
 
     def close(self):
         if self.conn:
@@ -308,18 +371,20 @@ class ReportIndex:
         ticker = parsed.get("ticker", "")
         rating = parsed.get("rating", "")
         tp = parsed.get("target_price") or {}
+        alert_severity = parsed.get("alert_severity", "") or ""
 
         # Upsert documents
         self.conn.execute("""
             INSERT INTO documents
                 (pdf_name, pdf_path, source_type, bank, report_date, title,
-                 summary, raw_json_path, md_path)
-            VALUES (?, ?, 'investment_banking', ?, ?, ?, ?, ?, ?)
-            ON CONFLICT DO UPDATE SET
+                 summary, raw_json_path, md_path, alert_severity)
+            VALUES (?, ?, 'investment_banking', ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(raw_json_path) DO UPDATE SET
                 bank=excluded.bank, report_date=excluded.report_date,
                 summary=excluded.summary, md_path=excluded.md_path,
+                alert_severity=excluded.alert_severity,
                 updated_at=datetime('now')
-        """, (pdf_name, str(jp), bank, report_date, "", summary, str(jp), md_rel))
+        """, (pdf_name, str(jp), bank, report_date, "", summary, str(jp), md_rel, alert_severity))
 
         doc_id = self.conn.execute("SELECT id FROM documents WHERE raw_json_path=?", (str(jp),)).fetchone()
         if not doc_id:
@@ -686,6 +751,29 @@ class ReportIndex:
             "companies": companies,
             "industries": industries,
             "source_distribution": source_dist,
+        }
+
+    def get_dashboard_summary(self) -> dict:
+        """Return dashboard counters without scanning the report filesystem."""
+        row = self.conn.execute("""
+            SELECT
+                COUNT(*) AS analyzed,
+                SUM(CASE WHEN alert_severity IN ('high', 'medium') THEN 1 ELSE 0 END) AS active_alerts
+            FROM documents
+            WHERE source_type='investment_banking' AND is_expired=0
+        """).fetchone()
+        companies = [
+            r["company_name"] for r in self.conn.execute("""
+                SELECT company_name
+                FROM doc_companies
+                GROUP BY company_name
+                ORDER BY company_name
+            """).fetchall()
+        ]
+        return {
+            "analyzed": row["analyzed"] or 0,
+            "active_alerts": row["active_alerts"] or 0,
+            "companies": companies,
         }
 
     def update_company_overview_path(self, company: str, overview_path: str):
