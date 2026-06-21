@@ -177,25 +177,43 @@ def extract_target_price(markdown: str) -> dict:
     """提取目标价"""
     result = {'new': None, 'old': None, 'currency': 'USD'}
 
-    # Skip if report explicitly says no TP
-    no_tp_patterns = [
-        r'(?:not\s+applicable|no\s+target\s+price|未提供|不适用|N/A)',
-        r'(?:does\s+not\s+provide.*?(?:target|rating))',
-    ]
-    for pat in no_tp_patterns:
-        if re.search(pat, markdown[:1500], re.IGNORECASE):
-            return None
+    # Strip markdown bold/italic to simplify regex
+    markdown = re.sub(r'\*\*([^*]+)\*\*', r'\1', markdown)
+    markdown = re.sub(r'\*([^*]+)\*', r'\1', markdown)
+
+    # Skip if report explicitly says no TP — only check near TP lines, not entire report
+    tp_search_area = '\n'.join(
+        line for line in markdown[:3000].split('\n')
+        if re.search(r'目标价|Target\s*Price|Price\s*Target|PT\b', line, re.IGNORECASE)
+    )
+    if tp_search_area:
+        # Only skip if the report says there's NO new TP (not just missing old TP)
+        no_new_tp_patterns = [
+            r'(?:not\s+applicable|no\s+target\s+price|不适用|N/A)',
+            r'(?:does\s+not\s+provide.*?(?:target|rating))',
+        ]
+        for pat in no_new_tp_patterns:
+            m = re.search(pat, tp_search_area, re.IGNORECASE)
+            if m:
+                # Don't block if it's only the OLD TP that's missing
+                context = tp_search_area[max(0, m.start()-30):m.end()+30]
+                if not re.search(r'(?:旧|此前|previous|prior|old)', context, re.IGNORECASE):
+                    return None
 
     # Normalize numbers: fullwidth commas, English commas, spaces
     def _normalize_number(s: str) -> str:
         return s.replace('，', '').replace(',', '').replace('。', '.').replace('、', '').replace(' ', '')
 
-    currency_prefix = r'(?:NT\$|TWD|US\$|USD|HKD|HK\$|CNY|RMB|W|₩|KRW|EUR|JPY|¥)?'
+    currency_prefix = r'(?:NT\$|TWD|US\$|USD|HKD|HK\$|CNY|RMB|Rmb|W|₩|KRW|EUR|€|JPY|¥|\$)?'
     patterns_new = [
         # Chinese: "**目标价**：3,100,000 韩元 (此前：1,700,000)"
-        r'目标价\**[：:\s]+' + currency_prefix + r'\s*([\d，。、, ]{3,30})',
-        # Chinese: "**新目标价**：1，130 美元"
-        r'新目标价\**[：:\s]+' + currency_prefix + r'\s*([\d，。、 ]+)',
+        r'目标价\**(?:（[^）]*）)?[：:\s]+' + currency_prefix + r'\s*([\d，。、,.]{3,30})',
+        # Chinese: "**新目标价**：1，130 美元" / "新目标价（12个月）：A股137元"
+        r'新目标价\**(?:（[^）]*）)?[：:\s]+' + currency_prefix + r'\s*([\d，。、,.]+)',
+        # Chinese: "新目标Rmb710.00" / "新目标RMB123"
+        r'新目标' + r'(?:价\**)?' + r'(?:' + currency_prefix + r')?' + r'\s*[：:\s]*' + currency_prefix + r'\s*([\d，。、,.]{2,20})',
+        # "PT ↑" or "PT Rmb710"
+        r'\bPT\s*(?:↑|：|:|\s)+' + currency_prefix + r'\s*([\d，。、,.\s]{2,20})',
         # English: "Target Price: 1,130 USD"
         r'Target Price[:\s]+' + currency_prefix + r'\s*([\d，。、,.\s]+?)(?:\s*(?:USD|TWD|HKD|CNY|KRW|美元|港元|人民币)?(?:\s|$))',
         r'Target[:\s]+' + currency_prefix + r'\s*([\d，。、,.\s]+?)(?:\s*(?:USD|TWD|HKD|CNY|KRW|美元)?(?:\s|$))',
@@ -239,15 +257,19 @@ def extract_target_price(markdown: str) -> dict:
                 continue
 
     # 货币检测 (KRW must be checked before CNY because 韩元 contains 元)
-    if 'NT$' in markdown or 'TWD' in markdown or 'NTD' in markdown:
+    if 'NT$' in markdown or 'TWD' in markdown or 'NTD' in markdown or '新台币' in markdown or '新臺幣' in markdown:
         result['currency'] = 'TWD'
-    elif 'HKD' in markdown or 'HK$' in markdown:
+    elif 'HKD' in markdown or 'HK$' in markdown or '港元' in markdown:
         result['currency'] = 'HKD'
+    elif 'US$' in markdown or 'USD' in markdown or '美元' in markdown or '$' in markdown:
+        result['currency'] = 'USD'
     elif '₩' in markdown or 'KRW' in markdown or '韩元' in markdown or '韩圜' in markdown:
         result['currency'] = 'KRW'
     elif re.search(r'\bW\d', markdown):  # W460,000 / W460k / W 320,000 pattern
         result['currency'] = 'KRW'
-    elif 'RMB' in markdown or 'CNY' in markdown:
+    elif 'JPY' in markdown or '日元' in markdown or '日圓' in markdown or '円' in markdown or '¥' in markdown:
+        result['currency'] = 'JPY'
+    elif 'RMB' in markdown or 'CNY' in markdown or '人民币' in markdown:
         result['currency'] = 'CNY'
     elif '元' in markdown:
         result['currency'] = 'CNY'

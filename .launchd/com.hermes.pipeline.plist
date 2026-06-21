@@ -9,7 +9,7 @@
     <array>
         <string>/bin/bash</string>
         <string>-c</string>
-        <string>/Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3 /Users/hongfeihsu/ClaudeCode/hermes/run_pipeline.py --date $(date -v-1d +%Y%m%d) --skip-download --bearish-alert --send-email</string>
+        <string>export $(grep -v '^#' /Users/hongfeihsu/ClaudeCode/hermes/.env | xargs) &amp;&amp; /Users/hongfeihsu/ClaudeCode/QuanTrading/venv/bin/python3 /Users/hongfeihsu/ClaudeCode/hermes/run_pipeline.py --date $(date -v-1d +%Y%m%d) --skip-download --bearish-alert --send-email</string>
     </array>
 
     <key>WorkingDirectory</key>

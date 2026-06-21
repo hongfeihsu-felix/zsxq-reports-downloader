@@ -150,13 +150,39 @@ class ValuationStore:
 
     # ---- Read ----
 
-    def get_by_company(self, company: str, months: int = 6) -> list[dict]:
-        """获取一家公司的估值记录（最近 N 个月）。"""
-        rows = self.conn.execute(
-            """SELECT * FROM valuations WHERE company=? AND report_date >= date('now', ?)
-               ORDER BY report_date DESC""",
-            (company, f'-{months} months')
-        ).fetchall()
+    def _company_candidates(self, company: str) -> list[str]:
+        """Return exact DB company candidates for a user-supplied name/ticker."""
+        raw = (company or "").strip()
+        candidates = []
+        if raw:
+            candidates.append(raw)
+
+        try:
+            from run_pipeline import normalize_company
+            normalized = normalize_company(raw)
+            if normalized and normalized != "Unknown":
+                candidates.append(normalized)
+        except Exception:
+            pass
+
+        # Preserve DB casing for case-insensitive exact matches.
+        for name in list(candidates):
+            rows = self.conn.execute(
+                "SELECT DISTINCT company FROM valuations WHERE lower(company)=lower(?)",
+                (name,)
+            ).fetchall()
+            candidates.extend(r["company"] for r in rows)
+
+        seen = set()
+        result = []
+        for c in candidates:
+            key = c.lower()
+            if c and key not in seen:
+                seen.add(key)
+                result.append(c)
+        return result
+
+    def _rows_to_reports(self, rows) -> list[dict]:
         result = []
         for r in rows:
             d = dict(r)
@@ -169,6 +195,47 @@ class ValuationStore:
             d["method"] = d.get("valuation_method")
             result.append(d)
         return result
+
+    def get_by_company(self, company: str, months: int = 6) -> list[dict]:
+        """获取一家公司的估值记录。
+
+        Uses canonical company aliases and keeps undated rows. Some legacy imports
+        have TP data but no parsed report_date; excluding them makes the UI show
+        "no data" even though valuation.db has broker target prices.
+        """
+        candidates = self._company_candidates(company)
+        if not candidates:
+            return []
+
+        placeholders = ",".join("?" * len(candidates))
+        order_by = """ORDER BY
+            CASE WHEN report_date IS NULL OR report_date='' THEN 1 ELSE 0 END,
+            report_date DESC, updated_at DESC"""
+
+        if months is None:
+            rows = self.conn.execute(
+                f"SELECT * FROM valuations WHERE company IN ({placeholders}) {order_by}",
+                candidates
+            ).fetchall()
+            return self._rows_to_reports(rows)
+
+        rows = self.conn.execute(
+            f"""SELECT * FROM valuations
+                WHERE company IN ({placeholders})
+                  AND (report_date >= date('now', ?)
+                       OR report_date IS NULL OR report_date='')
+                {order_by}""",
+            [*candidates, f'-{months} months']
+        ).fetchall()
+
+        # If all reports are outside the default window, return historical data
+        # instead of hiding an existing TP-bearing company.
+        if not rows:
+            rows = self.conn.execute(
+                f"SELECT * FROM valuations WHERE company IN ({placeholders}) {order_by}",
+                candidates
+            ).fetchall()
+        return self._rows_to_reports(rows)
 
     def get_all_companies(self) -> list[str]:
         rows = self.conn.execute(

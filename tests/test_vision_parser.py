@@ -273,6 +273,27 @@ def test_tp_single(tp_single):
     assert tp["old"] is None
 
 
+def test_tp_chinese_usd_unit():
+    tp = extract_target_price("Broadcom AVGO.US\n目标价：500.00 美元 (此前：480.00 美元)")
+    assert tp["new"] == 500
+    assert tp["old"] == 480
+    assert tp["currency"] == "USD"
+
+
+def test_tp_dollar_symbol_currency():
+    tp = extract_target_price("Marvell MRVL.US\n目标价：$180 (此前：$125)")
+    assert tp["new"] == 180
+    assert tp["old"] == 125
+    assert tp["currency"] == "USD"
+
+
+def test_tp_chinese_jpy_unit():
+    tp = extract_target_price("Taiyo Yuden 6976.T\n目标价：7,100 日元 (此前：4,900 日元)")
+    assert tp["new"] == 7100
+    assert tp["old"] == 4900
+    assert tp["currency"] == "JPY"
+
+
 @pytest.mark.xfail(reason='standalone raised-to pattern not yet supported')
 def test_tp_raised(tp_raised):
     tp = extract_target_price(tp_raised)

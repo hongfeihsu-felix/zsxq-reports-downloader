@@ -343,19 +343,14 @@ def get_research_signals(company: str | None, ticker: str) -> dict:
 
     # Valuation consensus TP
     try:
-        conn2 = sqlite3.connect(str(VALUATION_DB))
-        conn2.row_factory = sqlite3.Row
         co = company or ticker.split(".")[0]
-        vrows = conn2.execute(
-            """SELECT * FROM valuations WHERE (company LIKE ? OR company = ?)
-               AND report_date >= ? ORDER BY report_date DESC""",
-            (f"%{co}%", co, (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d"))
-        ).fetchall()
-        conn2.close()
+        from valuation_store import ValuationStore
+        store = ValuationStore(VALUATION_DB)
+        vdicts = store.get_by_company(co, months=3)
+        store.close()
 
-        if vrows:
+        if vdicts:
             from valuation_consensus import compute_consensus
-            vdicts = [dict(r) for r in vrows]
             # Normalize field names
             for v in vdicts:
                 if "tp_new" not in v:

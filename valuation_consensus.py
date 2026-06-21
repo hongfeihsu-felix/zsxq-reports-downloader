@@ -103,7 +103,12 @@ def compute_consensus(reports: list[dict]) -> dict:
     tp_vals = [r["tp_new"] for r in reports if r.get("tp_new")]
     tp_inliers, tp_outliers = _iqr_filter(tp_vals) if len(tp_vals) >= 3 else (tp_vals, [])
     cs_tp = round(_median(tp_inliers), 1) if tp_inliers else 0
-    currency = reports[0].get("tp_currency", "")
+    currencies = Counter(
+        r.get("tp_currency", "")
+        for r in reports
+        if r.get("tp_new") and r.get("tp_currency")
+    )
+    currency = currencies.most_common(1)[0][0] if currencies else reports[0].get("tp_currency", "")
 
     # Warning: EPS×PE vs consensus TP
     warning = None

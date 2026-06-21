@@ -1270,5 +1270,450 @@
     "action": "SELL",
     "score": -4.2,
     "pushed_at": 1781796704.8898802
+  },
+  {
+    "type": "realtime_alert",
+    "key": "842356fdf9a2",
+    "ticker": "300408.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1781838007.0937479
+  },
+  {
+    "type": "realtime_alert",
+    "key": "b3b8e9fd9b8a",
+    "ticker": "002436.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1781838007.0937831
+  },
+  {
+    "type": "realtime_alert",
+    "key": "67ea16649ebf",
+    "ticker": "688072.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -0.75,
+    "pushed_at": 1781838007.093801
+  },
+  {
+    "type": "realtime_alert",
+    "key": "e0c5c267ea99",
+    "ticker": "600183.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": 2.95,
+    "pushed_at": 1781838007.093819
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c1dac7cea97a",
+    "ticker": "002409.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1781838007.093836
+  },
+  {
+    "type": "realtime_alert",
+    "key": "198b338e27f3",
+    "ticker": "688981.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 0.6,
+    "pushed_at": 1781838007.093871
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c76a87af41a1",
+    "ticker": "603986.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3,
+    "pushed_at": 1781838007.093893
+  },
+  {
+    "type": "realtime_alert",
+    "key": "164e01203bf9",
+    "ticker": "603601.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3.2,
+    "pushed_at": 1781838007.093911
+  },
+  {
+    "type": "realtime_alert",
+    "key": "d60d5ff56f9f",
+    "ticker": "301511.SZ",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -1.7,
+    "pushed_at": 1781838007.093927
+  },
+  {
+    "type": "realtime_alert",
+    "key": "83961c9479c7",
+    "ticker": "512890.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.0,
+    "pushed_at": 1781838007.09394
+  },
+  {
+    "type": "realtime_alert",
+    "key": "4542a237cd5b",
+    "ticker": "9992.HK",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -2.28,
+    "pushed_at": 1781838057.144284
+  },
+  {
+    "type": "realtime_alert",
+    "key": "ead99488f1aa",
+    "ticker": "9973.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -5.0,
+    "pushed_at": 1781838057.144332
+  },
+  {
+    "type": "realtime_alert",
+    "key": "34a122846b45",
+    "ticker": "1810.HK",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 1.8,
+    "pushed_at": 1781838057.1443489
+  },
+  {
+    "type": "bearish_alert",
+    "key": "96c87e675e89",
+    "company": "NVIDIA",
+    "bank": "Morgan Stanley",
+    "driver": "存储器价格大幅上涨将导致智能手机和pc需求破坏",
+    "pushed_at": 1781866802.978417
+  },
+  {
+    "type": "bearish_alert",
+    "key": "9b1e7c58e829",
+    "company": "AMD",
+    "bank": "J.P. Morgan",
+    "driver": "当前股价已将最乐观预期完全定价远超基于利润和同业倍数的目标价",
+    "pushed_at": 1781866802.978431
+  },
+  {
+    "type": "bearish_alert",
+    "key": "a0fb4106a2c6",
+    "company": "AMD",
+    "bank": "J.P. Morgan",
+    "driver": "mi450初期爬坡将拉低公司整体毛利率叠加游戏业务旺季过后急剧萎缩2026下半年面临业绩阵痛",
+    "pushed_at": 1781866802.978451
+  },
+  {
+    "type": "bearish_alert",
+    "key": "0277947e87bc",
+    "company": "Wistron",
+    "bank": "Goldman Sachs",
+    "driver": "2026年6-8月面临pc提前拉货透支需求与ai服务器型号转换的短期逆风",
+    "pushed_at": 1781866802.978457
+  },
+  {
+    "type": "bearish_alert",
+    "key": "bf20058db566",
+    "company": "Tesla",
+    "bank": "Goldman Sachs",
+    "driver": "对robotaxi下半年部署持保留态度维持基于150倍远期pe的375目标价",
+    "pushed_at": 1781866802.978463
+  },
+  {
+    "type": "bearish_alert",
+    "key": "ebc54b8f636b",
+    "company": "Tesla",
+    "bank": "Goldman Sachs",
+    "driver": "美欧消费者情绪指标低迷可能降低未来交付增长可持续性",
+    "pushed_at": 1781866802.9784682
+  },
+  {
+    "type": "bearish_alert",
+    "key": "8caf118f4c5d",
+    "company": "深南电路",
+    "bank": "CITI",
+    "driver": "行业多家头部pcb厂商同步激进扩产引发竞争加剧担忧",
+    "pushed_at": 1781866802.978473
+  },
+  {
+    "type": "bearish_alert",
+    "key": "ef0db2a0299d",
+    "company": "Murata",
+    "bank": "MS",
+    "driver": "太阳诱电在ai数据中心高附加值mlcc领域能力不足导致股价严重泡沫化评级被下调至减持",
+    "pushed_at": 1781870014.8867042
+  },
+  {
+    "type": "bearish_alert",
+    "key": "268b179d8460",
+    "company": "Amazon",
+    "bank": "J.P. Morgan",
+    "driver": "5月营收因nre高基数和adas项目中断而环比下降导致fy2026e营收预测下调",
+    "pushed_at": 1781870014.8867142
+  },
+  {
+    "type": "bearish_alert",
+    "key": "20892fa478be",
+    "company": "Amazon",
+    "bank": "J.P. Morgan",
+    "driver": "fy26e_adj_eps因营收和毛利率预测下调而下调7",
+    "pushed_at": 1781870014.886718
+  },
+  {
+    "type": "bearish_alert",
+    "key": "d264667cca56",
+    "company": "MiniMax",
+    "bank": "Goldman Sachs",
+    "driver": "m3模型低价策略导致基础文本api毛利率预期被大幅下调",
+    "pushed_at": 1781870014.886724
+  },
+  {
+    "type": "bearish_alert",
+    "key": "c7d3210bdacb",
+    "company": "META",
+    "bank": "CITI",
+    "driver": "高额资本开支1200亿对短期盈利能力构成压力",
+    "pushed_at": 1781870014.8867269
+  },
+  {
+    "type": "bearish_alert",
+    "key": "7546c91cee53",
+    "company": "META",
+    "bank": "CITI",
+    "driver": "基础业务盈利受铜价下跌拖累",
+    "pushed_at": 1781870014.886731
+  },
+  {
+    "type": "bearish_alert",
+    "key": "b6f85e81d78c",
+    "company": "META",
+    "bank": "CITI",
+    "driver": "母公司超预期的股份出售计划",
+    "pushed_at": 1781870014.886732
+  },
+  {
+    "type": "bearish_alert",
+    "key": "9173c56f870f",
+    "company": "NVIDIA",
+    "bank": "CITI",
+    "driver": "ai液冷技术壁垒低且竞争加剧导致英维克高增长预期无法兑现",
+    "pushed_at": 1781870014.8867352
+  },
+  {
+    "type": "bearish_alert",
+    "key": "8f9e74eb9b88",
+    "company": "NVIDIA",
+    "bank": "CITI",
+    "driver": "传统基建需求持续低迷工程机械领域出现结构性下行风险",
+    "pushed_at": 1781870014.8867378
+  },
+  {
+    "type": "bearish_alert",
+    "key": "a7944fbae0b5",
+    "company": "Qualcomm",
+    "bank": "Bernstein",
+    "driver": "高通过往收购整合不力及核心人才流失历史对交易成功概率构成重大风险",
+    "pushed_at": 1781870014.886741
+  },
+  {
+    "type": "bearish_alert",
+    "key": "676fd7103460",
+    "company": "Qualcomm",
+    "bank": "Bernstein",
+    "driver": "80亿至100亿美元的交易估值相较于tenstorrent近期估值存在极高溢价",
+    "pushed_at": 1781870014.886743
+  },
+  {
+    "type": "bearish_alert",
+    "key": "999f8d5ff0f3",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "谷歌发布brazos开源cdu规范加速中低端市场商品化",
+    "pushed_at": 1781870014.8867462
+  },
+  {
+    "type": "bearish_alert",
+    "key": "e7ef4306d755",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "供应链传闻新建数据中心项目出现延迟需求从新建转向改造",
+    "pushed_at": 1781870014.8867478
+  },
+  {
+    "type": "bearish_alert",
+    "key": "05594892ffe7",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "超过2000亿美元的tam预测高度依赖ai资本支出和cpugpu配比假设若超大规模客户绕开芯片商直接采购hbm将导致gpu加速器市场价值缩水进而动摇cpu_ta",
+    "pushed_at": 1781870014.886755
+  },
+  {
+    "type": "bearish_alert",
+    "key": "83c318916b5c",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "台积电先进制程和封测产能以及hbm内存产能可能成为制约整个ai_cpu高速增长的关键瓶颈",
+    "pushed_at": 1781870014.8867588
+  },
+  {
+    "type": "bearish_alert",
+    "key": "dfd76788cd68",
+    "company": "Samsung",
+    "bank": "Nomura",
+    "driver": "对未上市子公司samsung_bioepis的公允价值引入15控股公司折价导致目标价下调",
+    "pushed_at": 1781872503.299236
+  },
+  {
+    "type": "bearish_alert",
+    "key": "555daa9ee02a",
+    "company": "Samsung",
+    "bank": "Nomura",
+    "driver": "2026年预测eps同比下降73短期盈利能力波动可能引发市场担忧",
+    "pushed_at": 1781872503.299253
+  },
+  {
+    "type": "bearish_alert",
+    "key": "91530561d742",
+    "company": "Samsung",
+    "bank": "Morgan Stanley",
+    "driver": "合资伙伴意愿有限美国ess产能在2027年35gwh后扩张路径受阻",
+    "pushed_at": 1781872503.299262
+  },
+  {
+    "type": "bearish_alert",
+    "key": "33f243a32f2c",
+    "company": "Samsung",
+    "bank": "Morgan Stanley",
+    "driver": "动力电池营收环比下滑10电动车市场需求不振持续拖累整体业绩",
+    "pushed_at": 1781872503.299267
+  },
+  {
+    "type": "bearish_alert",
+    "key": "fa86e0d2cd1c",
+    "company": "HP Inc",
+    "bank": "J.P. Morgan",
+    "driver": "打印业务营收被明确指引将在fy26下降因页面量结构性减少",
+    "pushed_at": 1781872503.2992792
+  },
+  {
+    "type": "bearish_alert",
+    "key": "7630f43c2bcf",
+    "company": "META",
+    "bank": "CITI",
+    "driver": "母公司存在超预期的股份出售风险对股价形成潜在压力",
+    "pushed_at": 1781872503.299285
+  },
+  {
+    "type": "realtime_alert",
+    "key": "6b8d4d6592f8",
+    "ticker": "AAPL.US",
+    "direction": "BUY",
+    "action": "WATCH",
+    "score": 11.5,
+    "pushed_at": 1781883109.613485
+  },
+  {
+    "type": "realtime_alert",
+    "key": "03b2d58f8649",
+    "ticker": "LITE.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -2.2,
+    "pushed_at": 1781883109.61351
+  },
+  {
+    "type": "realtime_alert",
+    "key": "d9a95c8fdf5f",
+    "ticker": "PLTR.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -2.53,
+    "pushed_at": 1781883109.6135218
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c0f29ea3c5aa",
+    "ticker": "AXTI.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3.0,
+    "pushed_at": 1781883109.6135318
+  },
+  {
+    "type": "realtime_alert",
+    "key": "b6c338f1dd41",
+    "ticker": "GOOGL.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 3.2,
+    "pushed_at": 1781883109.6135428
+  },
+  {
+    "type": "realtime_alert",
+    "key": "5f932b911021",
+    "ticker": "AVGO.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 15.3,
+    "pushed_at": 1781883109.6135511
+  },
+  {
+    "type": "realtime_alert",
+    "key": "904b5231ec3f",
+    "ticker": "TSM.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 2.2,
+    "pushed_at": 1781883109.61356
+  },
+  {
+    "type": "realtime_alert",
+    "key": "2b8fcffb02e6",
+    "ticker": "XE.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.2,
+    "pushed_at": 1781883109.613569
+  },
+  {
+    "type": "bearish_alert",
+    "key": "9dbc98229372",
+    "company": "Intel",
+    "bank": "Bernstein",
+    "driver": "当前股价已大幅超出基于远期销售额计算的目标价估值偏高",
+    "pushed_at": 1781904235.334156
+  },
+  {
+    "type": "bearish_alert",
+    "key": "2a652aeac891",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "英伟达rubin平台延迟导致三星短期hbm3e出货受影响",
+    "pushed_at": 1781904235.334177
+  },
+  {
+    "type": "bearish_alert",
+    "key": "3947436617a2",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "中国nand厂商技术及产能突破构成结构性威胁",
+    "pushed_at": 1781904235.334184
+  },
+  {
+    "type": "bearish_alert",
+    "key": "f308e63ce82f",
+    "company": "Ciena",
+    "bank": "Barclays",
+    "driver": "市场对ciena的ai预期给予了极高估值溢价隐含ai_pe高达115倍远超同业平均",
+    "pushed_at": 1781904235.334198
   }
 ]

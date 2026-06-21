@@ -35,6 +35,27 @@ class TestStoreRoundTrip:
         assert consensus["cs_tp"] > 100  # Should be several thousand TWD
         store.close()
 
+    def test_company_lookup_accepts_ticker_alias(self):
+        """Ticker aliases such as NVDA should resolve to canonical DB company names."""
+        from valuation_store import ValuationStore
+        store = ValuationStore()
+        by_name = store.get_by_company("NVIDIA")
+        by_ticker = store.get_by_company("NVDA")
+        store.close()
+        assert by_name, "NVIDIA should have valuation reports"
+        assert by_ticker, "NVDA alias should resolve to NVIDIA valuation reports"
+        assert len(by_ticker) == len(by_name)
+
+    def test_undated_tp_rows_are_visible(self):
+        """Legacy rows with tp_new but blank report_date should not disappear."""
+        from valuation_store import ValuationStore
+        store = ValuationStore()
+        reports = store.get_by_company("Dell Technologies Inc")
+        store.close()
+        assert any(r.get("tp_new") for r in reports), (
+            "Dell has a TP-bearing legacy row with blank report_date and should be returned"
+        )
+
     def test_consensus_tp_near_broker_median(self):
         """All companies with >=3 reports: consensus TP within 30% of broker median."""
         from valuation_store import ValuationStore

@@ -93,6 +93,15 @@ class TestConsensus:
         result = compute_consensus(mediatek_reports)
         assert result["currency"] == "TWD"
 
+    def test_currency_uses_majority_non_empty_tp_currency(self):
+        reports = [
+            {"tp_new": 100.0, "tp_currency": "", "rating": "Buy"},
+            {"tp_new": 110.0, "tp_currency": "USD", "rating": "Buy"},
+            {"tp_new": 105.0, "tp_currency": "USD", "rating": "Buy"},
+        ]
+        result = compute_consensus(reports)
+        assert result["currency"] == "USD"
+
     def test_clean_eps_no_warning(self, clean_eps_reports):
         """Clean data should not produce EPS×PE vs TP warning."""
         result = compute_consensus(clean_eps_reports)

@@ -41,4 +41,4 @@ alert_system.py
 
 # 下载的PDF
 Investment_Banking_Report/
-hermes_reports/
+.env
