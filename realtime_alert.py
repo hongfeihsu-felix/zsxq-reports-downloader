@@ -506,7 +506,7 @@ def format_email_html(results: list[dict]) -> str:
             if s.get("top_bearish"):
                 ind += f' <span style="color:#cf222e">⚠️{s["top_bearish"][0][:40]}</span>'
             rows_html += f"""<tr style="{_row_style(s)}">
-  <td style="padding:6px 10px">{_icon(s['action'])} {r['company']}<br><span style="color:#656d76;font-size:11px">{r['ticker']}</span></td>
+  <td style="padding:6px 10px">{_icon(s['action'])} {r['company']}<br><span style="color:#656d76;font-size:11px">{r['ticker']} {r.get('ma3_regime','')=='up' and '📈' or r.get('ma3_regime','')=='down' and '📉' or ''}</span></td>
   <td style="padding:6px 10px;text-align:right;font-weight:600">{_price(r)}<br><span style="font-size:11px">{_chg(r)}</span></td>
   <td style="padding:6px 10px;text-align:center;font-weight:700">{s['action']}</td>
   <td style="padding:6px 10px;text-align:right;font-weight:700">{s['score']:+.1f}</td>
@@ -538,7 +538,7 @@ def format_email_html(results: list[dict]) -> str:
             if s.get("top_bullish"):
                 ind += f' <span style="color:#1a7f37">📈{s["top_bullish"][0][:40]}</span>'
             rows_html += f"""<tr style="{_row_style(s)}">
-  <td style="padding:6px 10px">{_icon(s['action'])} {r['company']}<br><span style="color:#656d76;font-size:11px">{r['ticker']}</span></td>
+  <td style="padding:6px 10px">{_icon(s['action'])} {r['company']}<br><span style="color:#656d76;font-size:11px">{r['ticker']} {r.get('ma3_regime','')=='up' and '📈' or r.get('ma3_regime','')=='down' and '📉' or ''}</span></td>
   <td style="padding:6px 10px;text-align:right;font-weight:600">{_price(r)}</td>
   <td style="padding:6px 10px;text-align:right">{target:,.2f}</td>
   <td style="padding:6px 10px;text-align:right"><span style="color:{gap_color}">{gap}</span></td>
@@ -788,12 +788,31 @@ def main():
         bars = get_daily_bars(ticker, market, days=80)
         technicals = compute_technicals(bars, session_hour=datetime.now().hour) if bars else {}
 
+        # MA3 daily regime (A-share: 三日线不能破)
+        regime = "auto"
+        if bars and len(bars) >= 3:
+            ma3 = sum(b["close"] for b in bars[-3:]) / 3
+            last_close = bars[-1]["close"]
+            regime = "up" if last_close > ma3 else "down"
+
         # Signal
         if direction == "SELL":
             signal = compute_sell_signal(research, technicals, current_price,
                                           cost_basis=h.get("cost_basis", 0))
+            # MA3 regime modifier: downtrend → stronger sell signal
+            if regime == "down":
+                signal["score"] = min(1.0, signal.get("score", 0) + 0.3)
+                signal["details"] = f'📉 MA3↓ {signal.get("details", "")}'
+            elif regime == "up":
+                signal["score"] = max(0.0, signal.get("score", 0) - 0.2)
         else:
             signal = compute_buy_signal(research, technicals, current_price, target_price)
+            # MA3 regime modifier: uptrend → stronger buy signal
+            if regime == "up":
+                signal["score"] = min(1.0, signal.get("score", 0) + 0.2)
+                signal["details"] = f'📈 MA3↑ {signal.get("details", "")}'
+            elif regime == "down":
+                signal["score"] = max(0.0, signal.get("score", 0) - 0.3)
 
         result = {
             "id": h["id"], "ticker": ticker, "company": company,
@@ -801,6 +820,7 @@ def main():
             "shares": h["shares"], "target_price": target_price,
             "cost_basis": h.get("cost_basis", 0),
             "price": price_data, "signal": signal,
+            "ma3_regime": regime,
         }
         results.append(result)
 
