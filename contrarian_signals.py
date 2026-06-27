@@ -189,9 +189,21 @@ def detect_signals(company_filter: str = None, min_score: float = 0) -> list[dic
 
     conn.close()
 
-    # Sort by score descending
-    signals.sort(key=lambda s: s["contrarian_score"], reverse=True)
-    return signals
+    # Dedup: keep only highest-scored signal per (company, source_bank) pair
+    seen = {}
+    deduped = []
+    for s in sorted(signals, key=lambda s: s["contrarian_score"], reverse=True):
+        key = (s["company"], s["source_bank"])
+        if key not in seen:
+            seen[key] = s
+            deduped.append(s)
+        elif s["contrarian_score"] > seen[key]["contrarian_score"]:
+            deduped.remove(seen[key])
+            seen[key] = s
+            deduped.append(s)
+
+    deduped.sort(key=lambda s: s["contrarian_score"], reverse=True)
+    return deduped
 
 
 def save_signals(signals: list[dict]):

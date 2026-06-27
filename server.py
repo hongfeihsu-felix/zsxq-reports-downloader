@@ -514,6 +514,7 @@ a:hover{{text-decoration:underline}}
     <a href="/settings">⚙️ 设置</a>
     <a href="/alerts">🚨 Alerts</a>
     <a href="/macro">📊 Macro</a>
+    <a href="/nvidia-rack-tracker">🟢 NVIDIA Rack Tracker</a>
     <a href="/investment-themes">🤖 未来投资方向</a>
   </div>
 </div>
@@ -942,6 +943,73 @@ def api_industries():
         result.append({"layer": layer_key, "name": layer_data["name"], "tags": tags_list})
 
     return jsonify(result)
+
+
+@app.route("/alerts")
+def view_alerts():
+    """Alerts 总览页面"""
+    stats = load_pipeline_stats()
+
+    # Group alerts by company
+    analyses = load_analyses()
+    company_alerts = {}
+    total_alerts = 0
+    for a in analyses:
+        parsed = a.get("parsed", {})
+        sev = parsed.get("alert_severity", "")
+        if not sev:
+            continue
+        total_alerts += 1
+        co = parsed.get("company") or "Unknown"
+        if co not in company_alerts:
+            company_alerts[co] = []
+        company_alerts[co].append({
+            "company": co,
+            "severity": sev,
+            "title": parsed.get("alert_title", ""),
+            "rating": parsed.get("rating", ""),
+            "target_price": parsed.get("target_price", ""),
+            "bank": (a.get("pdf_name") or "")[:40],
+        })
+
+    alerts_html = ""
+    for co in sorted(k for k in company_alerts.keys() if k):
+        items = company_alerts[co]
+        sev_icons = {"critical": "🔴", "high": "🟠", "medium": "🟡", "low": "🟢"}
+        for item in items[:5]:
+            icon = sev_icons.get(item["severity"], "⚪")
+            title = (item.get('title') or '')[:80]
+            bank = (item.get('bank') or '')[:50]
+            alerts_html += '<tr><td>' + icon + '</td><td><b>' + co + '</b></td><td>' + item['severity'] + '</td><td>' + title + '</td><td style="font-size:11px;color:#656d76">' + bank + '</td></tr>'
+
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Alerts — Hermes</title>
+<style>
+body{{background:#0d1117;color:#c9d1d9;font-family:-apple-system,sans-serif;padding:20px}}
+.wrap{{max-width:1100px;margin:0 auto}}
+h1{{font-size:20px;margin:0 0 20px}}
+.grid{{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px}}
+.stat{{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px 24px;flex:1;min-width:120px}}
+.stat .num{{font-size:24px;font-weight:700}}
+.stat .lbl{{color:#8b949e;font-size:12px;margin-top:4px}}
+table{{width:100%;border-collapse:collapse;font-size:13px}}
+th{{background:#161b22;color:#8b949e;font-weight:600;text-align:left;padding:10px 12px;border-bottom:1px solid #30363d}}
+td{{padding:8px 12px;border-bottom:1px solid #21262d}}
+tr:hover{{background:#161b22}}
+a{{color:#58a6ff;text-decoration:none}}
+</style></head>
+<body><div class="wrap">
+<h1>🚨 Alerts</h1>
+<div class="grid">
+  <div class="stat"><div class="num" style="color:#f85149">{total_alerts}</div><div class="lbl">Active Alerts</div></div>
+  <div class="stat"><div class="num">{len(company_alerts)}</div><div class="lbl">Companies</div></div>
+</div>
+<table><thead><tr><th></th><th>公司</th><th>级别</th><th>标题</th><th>来源</th></tr></thead>
+<tbody>{alerts_html}</tbody></table>
+<p style="color:#8b949e;font-size:12px;margin-top:16px">Data from sell-side analysis | <a href="/">← Dashboard</a></p>
+</div></body></html>"""
 
 
 @app.route("/api/alerts")
@@ -3465,6 +3533,16 @@ def serve_pdf(rel_path):
     return send_file(str(pdf_path), mimetype="application/pdf")
 
 
+@app.route("/nvidia-rack-tracker")
+@app.route("/nvidia-rack-tracker/dashboard.html")
+def serve_nvidia_rack_tracker():
+    dashboard_path = Path("/Users/hongfeihsu/codex/nvidia-rack-tracker/reports/dashboard.html")
+    if not dashboard_path.exists():
+        return "NVIDIA rack tracker dashboard not found", 404
+    from flask import send_file
+    return send_file(str(dashboard_path), mimetype="text/html")
+
+
 
 # ============ Settings Page ============
 
@@ -3706,9 +3784,18 @@ def view_paper_trading():
             pass
 
     all_trades = []
+    recent_file = None
     for f in sorted(_g.glob(str(log_dir / "paper_trades_*.json"))):
         try:
             all_trades.extend(json.loads(open(f, encoding="utf-8").read()))
+            recent_file = f
+        except Exception:
+            pass
+
+    # If no trades today, show the most recent trading day's detail
+    if not today_trades and recent_file:
+        try:
+            today_trades = json.loads(open(recent_file, encoding="utf-8").read())
         except Exception:
             pass
 
@@ -3737,21 +3824,33 @@ def view_paper_trading():
         ("688072.SH", "拓荆科技", 200, "Hybrid Bonding"),
         ("688981.SH", "中芯国际", 600, "Foundry"),
         ("300408.SZ", "三环集团", 1500, "MLCC"),
+        ("603601.SH", "再升科技", 1500, "Advanced Materials"),
     ]
 
-    # Get current prices for floating PnL
+    # Get latest closing prices for floating PnL
     current_prices = {}
     try:
         import requests as _req
-        for ticker, _, _, _ in portfolio:
-            resp = _req.get(
-                f"http://124.220.26.164:8766/bars",
-                params={"symbol": ticker, "start": today_str, "end": today_str, "interval": "1d"},
-                timeout=5
-            )
-            bars = resp.json().get("bars", [])
-            if bars:
-                current_prices[ticker] = bars[-1]["close"]
+        from datetime import datetime as _dt, timedelta
+        # Try today, then fall back up to 5 days for the most recent close
+        for offset in range(5):
+            d = (_dt.now() - timedelta(days=offset)).strftime("%Y%m%d")
+            for ticker, _, _, _ in portfolio:
+                if ticker in current_prices:
+                    continue
+                try:
+                    resp = _req.get(
+                        f"http://124.220.26.164:8766/bars",
+                        params={"symbol": ticker, "start": d, "end": d, "interval": "1d"},
+                        timeout=5
+                    )
+                    bars = resp.json().get("bars", [])
+                    if bars:
+                        current_prices[ticker] = bars[-1]["close"]
+                except Exception:
+                    pass
+            if len(current_prices) == len(portfolio):
+                break
     except Exception:
         pass
 
@@ -3769,24 +3868,34 @@ def view_paper_trading():
         total_realized += realized
 
         # Floating PnL: (current_price - avg_cost) * held
+        has_live = ticker in current_prices
         cur_price = current_prices.get(ticker, avg_cost)
-        floating = (cur_price - avg_cost) * held if held > 0 else 0
-        total_floating += floating
+        floating = (cur_price - avg_cost) * held if held > 0 and has_live else 0
+        if has_live:
+            total_floating += floating
 
-        fp_str = f"¥{floating:+,.2f}"
-        fp_color = "#3fb950" if floating > 0 else "#f85149" if floating < 0 else "#8b949e"
+        if has_live:
+            fp_str = f"¥{floating:+,.2f}"
+            fp_color = "#3fb950" if floating > 0 else "#f85149" if floating < 0 else "#8b949e"
+            cur_str = f"¥{cur_price:,.2f}"
+        else:
+            fp_str = "—"
+            fp_color = "#8b949e"
+            cur_str = "—"
 
         rp_str = f"¥{realized:+,.2f}" if realized != 0 else "—"
         rp_color = "#3fb950" if realized > 0 else "#f85149" if realized < 0 else "#8b949e"
 
         cost_str = f"¥{avg_cost:,.2f}"
-        cur_str = f"¥{cur_price:,.2f}" if cur_price != avg_cost else "—"
 
         pos_rows += "<tr><td><b>{}</b><br><span style='color:#656d76;font-size:11px'>{}</span></td><td>{}</td><td>{:,}</td><td>{}</td><td>{}</td><td style='color:{};font-weight:600'>{}</td><td style='color:{};font-weight:600'>{}</td></tr>".format(
             name, ticker, sector, held, cost_str, cur_str, fp_color, fp_str, rp_color, rp_str)
 
     # Total PnL
     total_pnl = total_realized + total_floating
+
+    # Symbol → company name lookup
+    _co_names = {ticker: name for ticker, name, _, _ in portfolio}
 
     trade_rows = ""
     for t in today_trades[-30:]:
@@ -3795,7 +3904,9 @@ def view_paper_trading():
         pnl_str = '<span style="color:{}">{:+,.2f}</span>'.format("#3fb950" if (pnl or 0) > 0 else "#f85149", pnl) if pnl is not None else "—"
         st = (t.get("strategy","") or "")
         rsn = (t.get("reason","") or "")[:30]
-        trade_rows += "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>¥{:.2f}</td><td>{}</td><td style='font-size:11px;color:#656d76'>{} {}</td></tr>".format(icon, (t.get("time","") or "")[11:19], t["symbol"], t["direction"], t["quantity"], t["price"], pnl_str, st, rsn)
+        co_name = _co_names.get(t["symbol"], "")
+        sym_display = f'{t["symbol"]}<br><span style="color:#656d76;font-size:11px">{co_name}</span>' if co_name else t["symbol"]
+        trade_rows += "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>¥{:.2f}</td><td>{}</td><td style='font-size:11px;color:#656d76'>{} {}</td></tr>".format(icon, (t.get("time","") or "")[11:19], sym_display, t["direction"], t["quantity"], t["price"], pnl_str, st, rsn)
 
     cumulative_pnl = sum(t.get("pnl", 0) for t in all_trades)
     total_color = "#3fb950" if total_pnl > 0 else "#f85149" if total_pnl < 0 else "#8b949e"
@@ -3950,7 +4061,7 @@ tr:hover td{{background:#1a1f2e}}
         all_trades=len(all_trades),
         pos_rows=pos_rows,
         today_trades_len=len(today_trades),
-        trade_table='<table><thead><tr><th></th><th>时间</th><th>标的</th><th>方向</th><th>数量</th><th>价格</th><th>盈亏</th><th>备注</th></tr></thead><tbody>{}</tbody></table>'.format(trade_rows) if today_trades else '<p style="color:#656d76">暂无交易记录 — 周一开盘后自动运行</p>',
+        trade_table='<table><thead><tr><th></th><th>时间</th><th>标的</th><th>方向</th><th>数量</th><th>价格</th><th>盈亏</th><th>策略/备注</th></tr></thead><tbody>{}</tbody></table>'.format(trade_rows) if today_trades else '<p style="color:#656d76">暂无交易记录 — 周一开盘后自动运行</p>',
         today_str=today_str,
         rscore=rscore,
         rcolor=rcolor,

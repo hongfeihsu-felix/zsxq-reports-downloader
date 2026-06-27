@@ -164,7 +164,10 @@ DEFAULT_CONFIG = {
                 "keywords": [
                     "gpu", "tpu", "asic", "ai chip", "ai accelerator",
                     "ai semiconductor", "ai芯片", "training chip", "inference chip",
-                    "h100", "h200", "gb200", "b100", "b200", "mi300", "mi400",
+                    "h100", "h200", "gb200", "gb300", "b100", "b200", "b300",
+                    "nvl72", "nvl36", "nvl144", "vr200", "rubin", "vera rubin",
+                    "kyber", "oberon", "dgx", "hgx",
+                    "mi300", "mi400",
                     "trainium", "inferentia", "maia", "mtia", "gaudi"
                 ],
                 "active": True
@@ -184,8 +187,11 @@ DEFAULT_CONFIG = {
                 "slug": "compute",
                 "keywords": [
                     "datacenter", "data center", "server", "computing power",
-                    "算力", "hyperscaler", "cloud", "inference", "training",
-                    "supercomputer", "compute", "rack", "liquid cooling"
+                    "算力", "hyperscaler", "hyperscale", "超大规模",
+                    "CSP", "cloud provider", "cloud", "inference", "training",
+                    "supercomputer", "compute", "rack", "机柜", "整机柜", "整机架",
+                    "AI服务器", "GPU服务器", "nvl72", "nvl36",
+                    "liquid cooling", "cooling"
                 ],
                 "active": True
             },
@@ -195,7 +201,9 @@ DEFAULT_CONFIG = {
                 "keywords": [
                     "power semiconductor", "power management", "pmic",
                     "电源管理", "功率半导体", "sic", "gan", "mosfet", "igbt",
-                    "power supply", "energy", "renewable"
+                    "power supply", "pdu", "rack pdu", "busbar", "母线",
+                    "bbu", "backup battery", "power shelf", "电源架",
+                    "供电", "功耗", "energy", "renewable"
                 ],
                 "active": True
             },
@@ -205,7 +213,9 @@ DEFAULT_CONFIG = {
                 "keywords": [
                     "optical module", "光模块", "光通信", "interconnect",
                     "connecting", "transceiver", "cpo", "co-packaged optics",
-                    "serdes", "switch", "networking", "ethernet", "infiniband"
+                    "serdes", "switch", "networking", "ethernet", "infiniband",
+                    "铜缆", "copper cable", "背板", "backplane",
+                    "dac", "acc", "aec", "nvlink", "nvswitch", "pcie"
                 ],
                 "active": True
             }

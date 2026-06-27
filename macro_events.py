@@ -45,8 +45,8 @@ NFP_DATES = {
 # Major known IPOs / lockup expiries (approximate windows)
 MEGA_IPO_WINDOWS = {
     # Format: (start_date, end_date, name, description)
-    ("2026-06-12", "2026-06-30", "SpaceX IPO (SPCX)", "Largest IPO in history, $75B raise, $1.77T valuation — massive liquidity drain"),
-    ("2026-06-15", "2026-06-30", "CoreWeave IPO", "AI cloud provider, expected $3B raise, $25B valuation"),
+    ("2026-06-24", "2026-07-12", "SPCX Post-IPO/Lockup", "SpaceX $75B IPO lockup expiry late July; Nasdaq-100 inclusion, passive rebalance flows"),
+    # CoreWeave (CRWV) already IPO'd March 2025 — removed
     ("2026-07-01", "2026-07-31", "OpenAI IPO", "ChatGPT maker, rumored $60B raise, $400B+ valuation — AI liquidity drain"),
     ("2026-08-01", "2026-08-31", "SK Hynix ADR", "HBM memory leader, rumored $12B raise, $200B valuation — AI memory play"),
     ("2026-09-01", "2026-09-15", "Databricks IPO", "Data + AI platform, expected $5B raise, $50B valuation"),

@@ -138,6 +138,7 @@ class AllTickFetcher:
                 bars = []
                 for k in d["data"].get("kline_list", []):
                     bars.append({
+                        "timestamp": k.get("timestamp", "0"),
                         "close": float(k.get("close_price", 0)),
                         "open": float(k.get("open_price", 0)),
                         "high": float(k.get("high_price", 0)),

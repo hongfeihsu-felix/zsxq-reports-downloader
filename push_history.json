@@ -1715,5 +1715,1339 @@
     "bank": "Barclays",
     "driver": "市场对ciena的ai预期给予了极高估值溢价隐含ai_pe高达115倍远超同业平均",
     "pushed_at": 1781904235.334198
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c0b9c970b2ea",
+    "ticker": "300408.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782097234.394992
+  },
+  {
+    "type": "realtime_alert",
+    "key": "83386c51b417",
+    "ticker": "002436.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782097234.395023
+  },
+  {
+    "type": "realtime_alert",
+    "key": "769ffbfcd43a",
+    "ticker": "688072.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -0.75,
+    "pushed_at": 1782097234.39504
+  },
+  {
+    "type": "realtime_alert",
+    "key": "87b98c69fc97",
+    "ticker": "600183.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": 2.95,
+    "pushed_at": 1782097234.395065
+  },
+  {
+    "type": "realtime_alert",
+    "key": "b1c0d4ff33b0",
+    "ticker": "002409.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -0.75,
+    "pushed_at": 1782097234.3950899
+  },
+  {
+    "type": "realtime_alert",
+    "key": "69941a34fe99",
+    "ticker": "688981.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 2.1,
+    "pushed_at": 1782097234.395104
+  },
+  {
+    "type": "realtime_alert",
+    "key": "a427287a4974",
+    "ticker": "603986.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3,
+    "pushed_at": 1782097234.395118
+  },
+  {
+    "type": "realtime_alert",
+    "key": "db086bb11787",
+    "ticker": "603601.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.2,
+    "pushed_at": 1782097234.395133
+  },
+  {
+    "type": "realtime_alert",
+    "key": "a1efc63de459",
+    "ticker": "301511.SZ",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -1.7,
+    "pushed_at": 1782097234.395155
+  },
+  {
+    "type": "realtime_alert",
+    "key": "28e47a7e67d7",
+    "ticker": "512890.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.0,
+    "pushed_at": 1782097234.395169
+  },
+  {
+    "type": "realtime_alert",
+    "key": "90e2be6f5081",
+    "ticker": "9992.HK",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.78,
+    "pushed_at": 1782097283.3795562
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c1f1d017abfb",
+    "ticker": "9973.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.6,
+    "pushed_at": 1782097283.379586
+  },
+  {
+    "type": "realtime_alert",
+    "key": "96908bc55bf8",
+    "ticker": "1810.HK",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -1.2,
+    "pushed_at": 1782097283.379603
+  },
+  {
+    "type": "realtime_alert",
+    "key": "afe510c202e1",
+    "ticker": "AAPL.US",
+    "direction": "BUY",
+    "action": "WATCH",
+    "score": 11.9,
+    "pushed_at": 1782142305.9229262
+  },
+  {
+    "type": "realtime_alert",
+    "key": "47de243ff822",
+    "ticker": "LITE.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.8,
+    "pushed_at": 1782142305.922952
+  },
+  {
+    "type": "realtime_alert",
+    "key": "ccfe7c78cc07",
+    "ticker": "PLTR.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.85,
+    "pushed_at": 1782142305.922967
+  },
+  {
+    "type": "realtime_alert",
+    "key": "3462d54f009b",
+    "ticker": "AXTI.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.2,
+    "pushed_at": 1782142305.922981
+  },
+  {
+    "type": "realtime_alert",
+    "key": "03db8b704001",
+    "ticker": "GOOGL.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -1.8,
+    "pushed_at": 1782142305.9229949
+  },
+  {
+    "type": "realtime_alert",
+    "key": "712684dac493",
+    "ticker": "AVGO.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 16.2,
+    "pushed_at": 1782142305.9230201
+  },
+  {
+    "type": "realtime_alert",
+    "key": "aa3705d8f799",
+    "ticker": "TSM.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 2.1,
+    "pushed_at": 1782142305.923035
+  },
+  {
+    "type": "realtime_alert",
+    "key": "df7a052480ef",
+    "ticker": "XE.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.2,
+    "pushed_at": 1782142305.923049
+  },
+  {
+    "type": "bearish_alert",
+    "key": "21f4528ee7e8",
+    "company": "Micron",
+    "bank": "MS",
+    "driver": "nvidia_rubin平台下调lpddr内存配置预示ai终端需求增速可能放缓",
+    "pushed_at": 1782163130.5546591
+  },
+  {
+    "type": "bearish_alert",
+    "key": "cca13fa342a2",
+    "company": "Sandisk",
+    "bank": "MS",
+    "driver": "pc移动等消费级市场面临高价格导致的需求破坏风险",
+    "pushed_at": 1782163130.554677
+  },
+  {
+    "type": "bearish_alert",
+    "key": "77286245828f",
+    "company": "Sandisk",
+    "bank": "MS",
+    "driver": "分析师对超高毛利率可持续性存疑隐含周期性均值回归预期",
+    "pushed_at": 1782163130.554681
+  },
+  {
+    "type": "bearish_alert",
+    "key": "d4b4a380890f",
+    "company": "Murata",
+    "bank": "J.P. Morgan",
+    "driver": "历史模式显示供应瓶颈可能从mlcc转移至其他环节引发投机资本撤离",
+    "pushed_at": 1782163130.554688
+  },
+  {
+    "type": "bearish_alert",
+    "key": "16e2e745b41e",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "美国对anthropic模型实施公民身份限制标志着ai技术属性从通用商品转变为受控战略资源",
+    "pushed_at": 1782163130.554695
+  },
+  {
+    "type": "bearish_alert",
+    "key": "1f68a0f753a8",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "印度it服务业主导的生态系统导致缺乏消费者平台未能积累训练先进ai所需的丰富数据",
+    "pushed_at": 1782163130.554699
+  },
+  {
+    "type": "bearish_alert",
+    "key": "98989d8571d5",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "india_ai_mission资金投入规模不足且分配分散无法对标全球领先的基础模型研发",
+    "pushed_at": 1782163130.554702
+  },
+  {
+    "type": "bearish_alert",
+    "key": "c56950f23133",
+    "company": "Microsoft",
+    "bank": "Bernstein",
+    "driver": "四大超大规模云商运营现金流将无法覆盖资本支出2027年起需依赖外部融资",
+    "pushed_at": 1782163130.554709
+  },
+  {
+    "type": "bearish_alert",
+    "key": "10ed7484dcdc",
+    "company": "Microsoft",
+    "bank": "Bernstein",
+    "driver": "产能瓶颈从gpu供应转向电力可用性和物理数据中心容量竞争焦点转向快速上线容量",
+    "pushed_at": 1782163130.554712
+  },
+  {
+    "type": "bearish_alert",
+    "key": "6596d2eceabc",
+    "company": "Samsung",
+    "bank": "Bernstein",
+    "driver": "英伟达为维持75高毛利率将hbm成本增加以4倍转嫁给超大规模客户放大终端成本",
+    "pushed_at": 1782163130.554715
+  },
+  {
+    "type": "realtime_alert",
+    "key": "aa1157c98f0c",
+    "ticker": "300408.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782183616.791188
+  },
+  {
+    "type": "realtime_alert",
+    "key": "545b1b016931",
+    "ticker": "002436.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782183616.791213
+  },
+  {
+    "type": "realtime_alert",
+    "key": "dbaa6b164839",
+    "ticker": "688072.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -0.75,
+    "pushed_at": 1782183616.7912261
+  },
+  {
+    "type": "realtime_alert",
+    "key": "98502e85a124",
+    "ticker": "600183.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": 2.95,
+    "pushed_at": 1782183616.791235
+  },
+  {
+    "type": "realtime_alert",
+    "key": "098ce1f3bc96",
+    "ticker": "002409.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782183616.791322
+  },
+  {
+    "type": "realtime_alert",
+    "key": "88134b4a8daa",
+    "ticker": "688981.SH",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 3.3,
+    "pushed_at": 1782183616.791436
+  },
+  {
+    "type": "realtime_alert",
+    "key": "ba62274eff65",
+    "ticker": "603986.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3,
+    "pushed_at": 1782183616.7914538
+  },
+  {
+    "type": "realtime_alert",
+    "key": "845c59b69899",
+    "ticker": "603601.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.2,
+    "pushed_at": 1782183616.791466
+  },
+  {
+    "type": "realtime_alert",
+    "key": "7eb29e943d61",
+    "ticker": "301511.SZ",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -0.8,
+    "pushed_at": 1782183616.791476
+  },
+  {
+    "type": "realtime_alert",
+    "key": "5e59ef11e91a",
+    "ticker": "512890.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.0,
+    "pushed_at": 1782183616.7914848
+  },
+  {
+    "type": "realtime_alert",
+    "key": "830f00e9fea5",
+    "ticker": "9992.HK",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.6,
+    "pushed_at": 1782183667.7819278
+  },
+  {
+    "type": "realtime_alert",
+    "key": "b1c29cb48749",
+    "ticker": "9973.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.6,
+    "pushed_at": 1782183667.78196
+  },
+  {
+    "type": "realtime_alert",
+    "key": "6683273e9092",
+    "ticker": "1810.HK",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -1.2,
+    "pushed_at": 1782183667.7819772
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c93f62500c34",
+    "ticker": "AAPL.US",
+    "direction": "BUY",
+    "action": "WATCH",
+    "score": 11.9,
+    "pushed_at": 1782228701.955904
+  },
+  {
+    "type": "realtime_alert",
+    "key": "4794269c126a",
+    "ticker": "LITE.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.53,
+    "pushed_at": 1782228701.955931
+  },
+  {
+    "type": "realtime_alert",
+    "key": "421673020e0b",
+    "ticker": "AXTI.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.2,
+    "pushed_at": 1782228701.955946
+  },
+  {
+    "type": "realtime_alert",
+    "key": "3759c0c0edec",
+    "ticker": "GOOGL.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.2,
+    "pushed_at": 1782228701.955959
+  },
+  {
+    "type": "realtime_alert",
+    "key": "9ed5867306bd",
+    "ticker": "AVGO.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 15.4,
+    "pushed_at": 1782228701.955971
+  },
+  {
+    "type": "realtime_alert",
+    "key": "a3e534688ab5",
+    "ticker": "TSM.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 2.1,
+    "pushed_at": 1782228701.9559839
+  },
+  {
+    "type": "realtime_alert",
+    "key": "32c8b81a18e0",
+    "ticker": "XE.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3.0,
+    "pushed_at": 1782228701.9559958
+  },
+  {
+    "type": "bearish_alert",
+    "key": "8b406983413f",
+    "company": "Samsung",
+    "bank": "Nomura",
+    "driver": "内存采购成本急剧上升涨幅超过手机售价上调幅度导致智能手机硬件业务转为亏损",
+    "pushed_at": 1782250445.947131
+  },
+  {
+    "type": "bearish_alert",
+    "key": "fdd54f89732c",
+    "company": "Murata",
+    "bank": "Morgan Stanley",
+    "driver": "日元升值风险将直接侵蚀海外收入驱动的强劲利润",
+    "pushed_at": 1782250445.947148
+  },
+  {
+    "type": "bearish_alert",
+    "key": "8b55bc785382",
+    "company": "腾讯控股",
+    "bank": "GS",
+    "driver": "高盛量化测算微信ai助手的增量推理成本将显著侵蚀短期利润",
+    "pushed_at": 1782250445.947156
+  },
+  {
+    "type": "bearish_alert",
+    "key": "8fa5f891ccf1",
+    "company": "腾讯控股",
+    "bank": "GS",
+    "driver": "小微采用微信自研welm模型而非集团混元模型引发内部资源分散和成本协同疑虑",
+    "pushed_at": 1782250445.9471629
+  },
+  {
+    "type": "bearish_alert",
+    "key": "749ffebc8465",
+    "company": "腾讯控股",
+    "bank": "GS",
+    "driver": "目标价从752港元下调至700港元反映对ai投资短期稀释利润的审慎评估",
+    "pushed_at": 1782250445.947167
+  },
+  {
+    "type": "bearish_alert",
+    "key": "880109d91434",
+    "company": "长电科技",
+    "bank": "CITI",
+    "driver": "jcet运营费用预测大幅上调抵消毛利率改善导致营收和eps预测下调",
+    "pushed_at": 1782250445.9471722
+  },
+  {
+    "type": "bearish_alert",
+    "key": "eda4ddc2bf8e",
+    "company": "Qualcomm",
+    "bank": "Bernstein",
+    "driver": "苹果调制解调器业务从f3q26开始流失导致fy26-fy27营收与eps持续下滑",
+    "pushed_at": 1782250445.947178
+  },
+  {
+    "type": "bearish_alert",
+    "key": "4ae90aa8b97c",
+    "company": "Qualcomm",
+    "bank": "Bernstein",
+    "driver": "数据中心ai叙事推动股价飙升但估值已严重透支且业绩兑现充满不确定性",
+    "pushed_at": 1782250445.9471831
+  },
+  {
+    "type": "bearish_alert",
+    "key": "7b1e46d2ae3e",
+    "company": "Qualcomm",
+    "bank": "Bernstein",
+    "driver": "高价存储组件压制智能手机制造量与出货量核心手机业务面临需求逆风",
+    "pushed_at": 1782250445.947187
+  },
+  {
+    "type": "bearish_alert",
+    "key": "3e2b6f63302b",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "光刻设备进口持续低迷导致模型预测asml_q2中国系统收入环比暴跌52",
+    "pushed_at": 1782250445.947192
+  },
+  {
+    "type": "bearish_alert",
+    "key": "a9971205d7e9",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "中国整体wfe进口疲软ytd同比下降12",
+    "pushed_at": 1782250445.947196
+  },
+  {
+    "type": "realtime_alert",
+    "key": "a6968d7327b8",
+    "ticker": "300408.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -2.5,
+    "pushed_at": 1782270031.94894
+  },
+  {
+    "type": "realtime_alert",
+    "key": "f66704eff3ed",
+    "ticker": "002436.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782270031.94897
+  },
+  {
+    "type": "realtime_alert",
+    "key": "7fc3ebb5a26b",
+    "ticker": "688072.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -0.75,
+    "pushed_at": 1782270031.948988
+  },
+  {
+    "type": "realtime_alert",
+    "key": "26aaa50f0a77",
+    "ticker": "600183.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": 1.75,
+    "pushed_at": 1782270031.949002
+  },
+  {
+    "type": "realtime_alert",
+    "key": "a26b32defbc8",
+    "ticker": "002409.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782270031.949016
+  },
+  {
+    "type": "realtime_alert",
+    "key": "82b0b9a24fcf",
+    "ticker": "688981.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 2.9,
+    "pushed_at": 1782270031.9490502
+  },
+  {
+    "type": "realtime_alert",
+    "key": "103f80e6a73a",
+    "ticker": "603986.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3,
+    "pushed_at": 1782270031.949067
+  },
+  {
+    "type": "realtime_alert",
+    "key": "e832a52d2477",
+    "ticker": "603601.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.2,
+    "pushed_at": 1782270031.9490829
+  },
+  {
+    "type": "realtime_alert",
+    "key": "1cc2ccf49a5b",
+    "ticker": "301511.SZ",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.8,
+    "pushed_at": 1782270031.949097
+  },
+  {
+    "type": "realtime_alert",
+    "key": "186eb7f01a1b",
+    "ticker": "512890.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.0,
+    "pushed_at": 1782270031.949111
+  },
+  {
+    "type": "realtime_alert",
+    "key": "6cd98732c429",
+    "ticker": "9992.HK",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.6,
+    "pushed_at": 1782270081.091785
+  },
+  {
+    "type": "realtime_alert",
+    "key": "7671e95821e4",
+    "ticker": "9973.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.6,
+    "pushed_at": 1782270081.091816
+  },
+  {
+    "type": "realtime_alert",
+    "key": "5a356e7da535",
+    "ticker": "1810.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -5.2,
+    "pushed_at": 1782270081.0918322
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c42974595e3b",
+    "ticker": "AAPL.US",
+    "direction": "BUY",
+    "action": "WATCH",
+    "score": 11.9,
+    "pushed_at": 1782315105.8806028
+  },
+  {
+    "type": "realtime_alert",
+    "key": "70676904bd6f",
+    "ticker": "LITE.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.8,
+    "pushed_at": 1782315105.880633
+  },
+  {
+    "type": "realtime_alert",
+    "key": "8bde543b3a7d",
+    "ticker": "PLTR.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.85,
+    "pushed_at": 1782315105.8806632
+  },
+  {
+    "type": "realtime_alert",
+    "key": "bcb9ca1fc685",
+    "ticker": "AXTI.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.2,
+    "pushed_at": 1782315105.880681
+  },
+  {
+    "type": "realtime_alert",
+    "key": "1657af26a9c3",
+    "ticker": "GOOGL.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.2,
+    "pushed_at": 1782315105.880695
+  },
+  {
+    "type": "realtime_alert",
+    "key": "f672cf0f133a",
+    "ticker": "AVGO.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 15.4,
+    "pushed_at": 1782315105.8807108
+  },
+  {
+    "type": "realtime_alert",
+    "key": "3d1825f74197",
+    "ticker": "TSM.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 1.7,
+    "pushed_at": 1782315105.880724
+  },
+  {
+    "type": "realtime_alert",
+    "key": "e0922a1bf1ab",
+    "ticker": "XE.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3.0,
+    "pushed_at": 1782315105.880738
+  },
+  {
+    "type": "bearish_alert",
+    "key": "869e1f980eff",
+    "company": "NVIDIA",
+    "bank": "UBS",
+    "driver": "英伟达kyber机架架构可能推迟至2028年减缓单机柜功率密度指数级攀升的短期预期",
+    "pushed_at": 1782337688.7056792
+  },
+  {
+    "type": "bearish_alert",
+    "key": "4ba93dafe72b",
+    "company": "NVIDIA",
+    "bank": "UBS",
+    "driver": "罗格朗机架内pdu面临向侧挂式pdu迁移的结构性压力",
+    "pushed_at": 1782337688.705695
+  },
+  {
+    "type": "bearish_alert",
+    "key": "96a84c39031d",
+    "company": "NVIDIA",
+    "bank": "Jefferies",
+    "driver": "nvidia_rubin_ultra平台kyber正交背板pcb方案延迟导致单位ai服务器pcb用量和价值量增长低于此前预期",
+    "pushed_at": 1782337688.705708
+  },
+  {
+    "type": "bearish_alert",
+    "key": "6ca833e5927d",
+    "company": "NVIDIA",
+    "bank": "Bofa",
+    "driver": "消费电子市场持续疲软pc与智能手机出货量面临两位数下滑",
+    "pushed_at": 1782337688.705714
+  },
+  {
+    "type": "bearish_alert",
+    "key": "2c14e5f655e3",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "存储芯片价格暴涨将引发下游智能手机需求破坏直接压制qcom核心手机芯片业务",
+    "pushed_at": 1782337688.705719
+  },
+  {
+    "type": "bearish_alert",
+    "key": "56a2e4e63048",
+    "company": "NVIDIA",
+    "bank": "Bernstein",
+    "driver": "模拟芯片行业估值过高已充分反映复苏预期且快速增长的数据中心业务占比很小",
+    "pushed_at": 1782337688.705726
+  },
+  {
+    "type": "realtime_alert",
+    "key": "aa644a85fd47",
+    "ticker": "300408.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -2.5,
+    "pushed_at": 1782356422.983754
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c17f233b3384",
+    "ticker": "002436.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782356422.9837718
+  },
+  {
+    "type": "realtime_alert",
+    "key": "b93470ab2e9e",
+    "ticker": "688072.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -0.75,
+    "pushed_at": 1782356422.983781
+  },
+  {
+    "type": "realtime_alert",
+    "key": "ff6abb249d0b",
+    "ticker": "600183.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": 1.75,
+    "pushed_at": 1782356422.9837902
+  },
+  {
+    "type": "realtime_alert",
+    "key": "b7e8daae5732",
+    "ticker": "002409.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782356422.983797
+  },
+  {
+    "type": "realtime_alert",
+    "key": "1e2339411464",
+    "ticker": "688981.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 2.9,
+    "pushed_at": 1782356422.983805
+  },
+  {
+    "type": "realtime_alert",
+    "key": "dcc8487f069e",
+    "ticker": "603986.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3.5,
+    "pushed_at": 1782356422.983814
+  },
+  {
+    "type": "realtime_alert",
+    "key": "dba30ae299ab",
+    "ticker": "603601.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -5.0,
+    "pushed_at": 1782356422.9838238
+  },
+  {
+    "type": "realtime_alert",
+    "key": "0f34c74d9b4a",
+    "ticker": "301511.SZ",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.37,
+    "pushed_at": 1782356422.983831
+  },
+  {
+    "type": "realtime_alert",
+    "key": "32bc9e3f0689",
+    "ticker": "512890.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.0,
+    "pushed_at": 1782356422.983839
+  },
+  {
+    "type": "realtime_alert",
+    "key": "a9432cd7227f",
+    "ticker": "9992.HK",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.6,
+    "pushed_at": 1782356471.954283
+  },
+  {
+    "type": "realtime_alert",
+    "key": "39d192da071e",
+    "ticker": "9973.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.6,
+    "pushed_at": 1782356471.954319
+  },
+  {
+    "type": "realtime_alert",
+    "key": "61c4bd0dcdad",
+    "ticker": "1810.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -5.2,
+    "pushed_at": 1782356471.954335
+  },
+  {
+    "type": "realtime_alert",
+    "key": "cb0c3da7334f",
+    "ticker": "AAPL.US",
+    "direction": "BUY",
+    "action": "BUY_NOW",
+    "score": 12.22,
+    "pushed_at": 1782401512.1730518
+  },
+  {
+    "type": "realtime_alert",
+    "key": "2f7660dab442",
+    "ticker": "LITE.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.8,
+    "pushed_at": 1782401512.173079
+  },
+  {
+    "type": "realtime_alert",
+    "key": "1094fb885e53",
+    "ticker": "PLTR.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -2.1,
+    "pushed_at": 1782401512.1731079
+  },
+  {
+    "type": "realtime_alert",
+    "key": "437ce456b570",
+    "ticker": "AXTI.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -5.0,
+    "pushed_at": 1782401512.173122
+  },
+  {
+    "type": "realtime_alert",
+    "key": "3d2208c50001",
+    "ticker": "GOOGL.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.2,
+    "pushed_at": 1782401512.1731358
+  },
+  {
+    "type": "realtime_alert",
+    "key": "e4d3d194a55f",
+    "ticker": "AVGO.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 15.4,
+    "pushed_at": 1782401512.1731489
+  },
+  {
+    "type": "realtime_alert",
+    "key": "385b9410b8d5",
+    "ticker": "TSM.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 0.0,
+    "pushed_at": 1782401512.1731641
+  },
+  {
+    "type": "bearish_alert",
+    "key": "ddc689ab0b71",
+    "company": "字节跳动",
+    "bank": "Nomura",
+    "driver": "抖音可转化用户池接近饱和导致soda_music用户增长引擎显著熄火",
+    "pushed_at": 1782423848.891051
+  },
+  {
+    "type": "bearish_alert",
+    "key": "75ccc58a5e98",
+    "company": "字节跳动",
+    "bank": "Nomura",
+    "driver": "字节跳动集团的战略定位要求soda_music作为抖音生态护城河优先吸收过剩广告库存以维持盈亏平衡",
+    "pushed_at": 1782423848.891068
+  },
+  {
+    "type": "bearish_alert",
+    "key": "5bfad903c93a",
+    "company": "字节跳动",
+    "bank": "Nomura",
+    "driver": "受限于严格成本控制和版权预算版权覆盖率劣势抑制订阅收入转化形成恶性循环",
+    "pushed_at": 1782423848.8910751
+  },
+  {
+    "type": "bearish_alert",
+    "key": "556ae8733ee8",
+    "company": "字节跳动",
+    "bank": "Nomura",
+    "driver": "平台存在大量ai侵权混音内容可绕过正版付费墙预示潜在的法律与商业冲突风险",
+    "pushed_at": 1782423848.89108
+  },
+  {
+    "type": "bearish_alert",
+    "key": "2f14a5d88830",
+    "company": "Amazon",
+    "bank": "Morgan Stanley",
+    "driver": "中国ai芯片市场10龙混战非头部厂商面临激烈竞争和盈利能力挑战",
+    "pushed_at": 1782423848.891086
+  },
+  {
+    "type": "bearish_alert",
+    "key": "cc7c136dc6c2",
+    "company": "MediaTek",
+    "bank": "Morgan Stanley",
+    "driver": "ai_asic云业务爆发式增长将导致公司整体毛利率持续且显著地结构性稀释",
+    "pushed_at": 1782423848.891093
+  },
+  {
+    "type": "bearish_alert",
+    "key": "c0bd2e92553d",
+    "company": "MediaTek",
+    "bank": "Morgan Stanley",
+    "driver": "2nm_tpu采用的emib-t先进封装基板良率是量产规模的关键瓶颈构成供应与成本风险",
+    "pushed_at": 1782423848.891099
+  },
+  {
+    "type": "bearish_alert",
+    "key": "ccfc5efd0195",
+    "company": "NVIDIA",
+    "bank": "Morgan Stanley",
+    "driver": "abf基板供应瓶颈可能压制联发科tpu出货量上行空间",
+    "pushed_at": 1782423848.891105
+  },
+  {
+    "type": "bearish_alert",
+    "key": "b021f95604f9",
+    "company": "Qualcomm",
+    "bank": "MS",
+    "driver": "分析师对3年期增长缺乏信心认为从定制芯片向商业解决方案过渡存在不确定性",
+    "pushed_at": 1782423848.891111
+  },
+  {
+    "type": "bearish_alert",
+    "key": "b9b485dd9423",
+    "company": "Samsung",
+    "bank": "JPM",
+    "driver": "股价前期涨幅可观且波动加剧存储股价可能已超前反映部分利好",
+    "pushed_at": 1782423848.8911161
+  },
+  {
+    "type": "bearish_alert",
+    "key": "b3d910d61766",
+    "company": "小米集团",
+    "bank": "Goldman Sachs",
+    "driver": "核心智能手机和aiot业务2q26业绩预计大幅下滑短期财报承压",
+    "pushed_at": 1782423848.891123
+  },
+  {
+    "type": "bearish_alert",
+    "key": "750442a7eecf",
+    "company": "Qualcomm",
+    "bank": "Goldman Sachs",
+    "driver": "fy26营收预计下降4核心手机业务疲软短期盈利承压",
+    "pushed_at": 1782423848.891128
+  },
+  {
+    "type": "bearish_alert",
+    "key": "587048423ca8",
+    "company": "Micron",
+    "bank": "Goldman Sachs",
+    "driver": "2027-2028年hbm预期大量新增供应可能减缓价格动能构成主要风险",
+    "pushed_at": 1782423848.89114
+  },
+  {
+    "type": "bearish_alert",
+    "key": "60c61b71491f",
+    "company": "Micron",
+    "bank": "Goldman Sachs",
+    "driver": "国内竞争者cxmt在dram市场份额提升可能对行业定价产生负面冲击",
+    "pushed_at": 1782423848.891145
+  },
+  {
+    "type": "bearish_alert",
+    "key": "713cfed1de6c",
+    "company": "Intel",
+    "bank": "Goldman Sachs",
+    "driver": "amd凭借台积电先进制程和更强产品路线图持续侵蚀intel服务器cpu市场份额",
+    "pushed_at": 1782423848.89115
+  },
+  {
+    "type": "bearish_alert",
+    "key": "858462c06cb1",
+    "company": "Intel",
+    "bank": "Goldman Sachs",
+    "driver": "相比amd英伟达博通intel基于2030年远期预期的估值已相对充分风险回报平衡",
+    "pushed_at": 1782423848.891155
+  },
+  {
+    "type": "bearish_alert",
+    "key": "c4fce8f22229",
+    "company": "Intel",
+    "bank": "Goldman Sachs",
+    "driver": "高盛自身2028年eps预测远超市场共识若代工和服务器cpu增长不及预期将导致显著下行风险",
+    "pushed_at": 1782423848.8911612
+  },
+  {
+    "type": "bearish_alert",
+    "key": "2afb28a7263d",
+    "company": "Qualcomm",
+    "bank": "Bernstein",
+    "driver": "智能手机业务面临重大逆风fy27收入将同比骤减50亿-60亿",
+    "pushed_at": 1782423848.891165
+  },
+  {
+    "type": "bearish_alert",
+    "key": "3ece6fec6536",
+    "company": "Qualcomm",
+    "bank": "Bernstein",
+    "driver": "数据中心业务初期利润率低且运营支出增加压制整体盈利前景",
+    "pushed_at": 1782423848.89117
+  },
+  {
+    "type": "realtime_alert",
+    "key": "c2ba5ec033a9",
+    "ticker": "300408.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -2.0,
+    "pushed_at": 1782442827.5820081
+  },
+  {
+    "type": "realtime_alert",
+    "key": "065e94385b16",
+    "ticker": "002436.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782442827.582033
+  },
+  {
+    "type": "realtime_alert",
+    "key": "2401bf886a90",
+    "ticker": "688072.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -0.75,
+    "pushed_at": 1782442827.582054
+  },
+  {
+    "type": "realtime_alert",
+    "key": "f015dff3e57a",
+    "ticker": "600183.SH",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": 1.75,
+    "pushed_at": 1782442827.582068
+  },
+  {
+    "type": "realtime_alert",
+    "key": "5ea70cd3d905",
+    "ticker": "002409.SZ",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.25,
+    "pushed_at": 1782442827.58208
+  },
+  {
+    "type": "realtime_alert",
+    "key": "cabfc37c2131",
+    "ticker": "688981.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": 2.9,
+    "pushed_at": 1782442827.582092
+  },
+  {
+    "type": "realtime_alert",
+    "key": "7525c7b426a9",
+    "ticker": "603986.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3.5,
+    "pushed_at": 1782442827.582106
+  },
+  {
+    "type": "realtime_alert",
+    "key": "3fd1da8c8aa2",
+    "ticker": "603601.SH",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -5.0,
+    "pushed_at": 1782442827.5821178
+  },
+  {
+    "type": "realtime_alert",
+    "key": "3414b0e60c31",
+    "ticker": "301511.SZ",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -3.5,
+    "pushed_at": 1782442827.58213
+  },
+  {
+    "type": "realtime_alert",
+    "key": "daf145a7174e",
+    "ticker": "512890.SH",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.0,
+    "pushed_at": 1782442827.5821419
+  },
+  {
+    "type": "realtime_alert",
+    "key": "785ad0b9e591",
+    "ticker": "9992.HK",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.6,
+    "pushed_at": 1782442877.359509
+  },
+  {
+    "type": "realtime_alert",
+    "key": "f64994f52e0e",
+    "ticker": "9973.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.6,
+    "pushed_at": 1782442877.359533
+  },
+  {
+    "type": "realtime_alert",
+    "key": "ae2a0eba75e7",
+    "ticker": "1810.HK",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -4.0,
+    "pushed_at": 1782442877.3595479
+  },
+  {
+    "type": "realtime_alert",
+    "key": "3f822bf384ba",
+    "ticker": "LITE.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.35,
+    "pushed_at": 1782487890.470252
+  },
+  {
+    "type": "realtime_alert",
+    "key": "853ef3672086",
+    "ticker": "PLTR.US",
+    "direction": "BUY",
+    "action": "WAIT",
+    "score": -1.85,
+    "pushed_at": 1782487890.470276
+  },
+  {
+    "type": "realtime_alert",
+    "key": "13921242825e",
+    "ticker": "AXTI.US",
+    "direction": "SELL",
+    "action": "SELL",
+    "score": -5.0,
+    "pushed_at": 1782487890.470293
+  },
+  {
+    "type": "realtime_alert",
+    "key": "7cf549737fdb",
+    "ticker": "GOOGL.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -2.2,
+    "pushed_at": 1782487890.470307
+  },
+  {
+    "type": "realtime_alert",
+    "key": "215218fa209b",
+    "ticker": "AAPL.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 15.0,
+    "pushed_at": 1782487890.470319
+  },
+  {
+    "type": "realtime_alert",
+    "key": "0f4e6c942c3a",
+    "ticker": "AVGO.US",
+    "direction": "SELL",
+    "action": "BUY",
+    "score": 12.2,
+    "pushed_at": 1782487890.470338
+  },
+  {
+    "type": "realtime_alert",
+    "key": "1ede1aa73c94",
+    "ticker": "TSM.US",
+    "direction": "SELL",
+    "action": "HOLD",
+    "score": -1.8,
+    "pushed_at": 1782487890.470352
+  },
+  {
+    "type": "bearish_alert",
+    "key": "499def8cc5bb",
+    "company": "Apple",
+    "bank": "UBS",
+    "driver": "dram和nand内存价格急剧上涨压缩产品毛利率",
+    "pushed_at": 1782509407.486465
+  },
+  {
+    "type": "bearish_alert",
+    "key": "836cd4082c93",
+    "company": "Apple",
+    "bank": "UBS",
+    "driver": "ubs对fy27盈利前景的预期比市场共识更为谨慎",
+    "pushed_at": 1782509407.4864798
+  },
+  {
+    "type": "bearish_alert",
+    "key": "4d5086dccbb0",
+    "company": "Lenovo Group",
+    "bank": "Nomura",
+    "driver": "联想作为中国公司标签导致的地缘政治风险可能制约海外ai服务器业务扩张",
+    "pushed_at": 1782509407.4864872
+  },
+  {
+    "type": "bearish_alert",
+    "key": "3d852a24f61d",
+    "company": "Apple",
+    "bank": "J.P. Morgan",
+    "driver": "苹果宣布产品提价且幅度超出摩根大通此前预期引发macipad销量下行风险",
+    "pushed_at": 1782509407.486494
+  },
+  {
+    "type": "bearish_alert",
+    "key": "146648fb12c7",
+    "company": "Quanta Computer",
+    "bank": "CITI",
+    "driver": "2026年利润因记忆体芯片涨价承压",
+    "pushed_at": 1782509407.4865012
+  },
+  {
+    "type": "bearish_alert",
+    "key": "a4d02658748b",
+    "company": "长电科技",
+    "bank": "CITI",
+    "driver": "先进封装产能扩张可能超过需求增长尤其在前道工艺面临挑战的背景下",
+    "pushed_at": 1782509407.486507
   }
 ]
